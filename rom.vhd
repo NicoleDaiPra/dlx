@@ -5,6 +5,7 @@ use ieee.numeric_std.all;
 use std.textio.all;
 use ieee.std_logic_textio.all;
 
+-- ROM that reads its content from a file. It has an asynchronous read.
 
 entity rom is
     generic ( 
@@ -19,7 +20,7 @@ entity rom is
     );
 end rom;
 
-architecture behavioral of rom is
+architecture beh of rom is
 
     type storage is array (0 to M-1) of std_logic_vector(N-1 downto 0);
     signal rom_mem: storage;
@@ -49,4 +50,4 @@ begin
 
 		end process;
 
-end behavioral;
+end beh;

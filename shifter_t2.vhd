@@ -3,6 +3,10 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use WORK.stype.all;
 
+-- This shifter exploits the algorithm used by the T2 shifter in order to compute
+-- logical and arithmetical shift. The same concept is also used to perform
+-- the rotate operation.
+
 entity shifter_t2 is
     port (
         data_in: in std_logic_vector(31 downto 0);
@@ -12,17 +16,22 @@ entity shifter_t2 is
     );
 end shifter_t2;
 
-architecture behavioral of shifter_t2 is
+architecture beh of shifter_t2 is
 	
 	signal mask00, mask08, mask16, mask24: std_logic_vector(38 downto 0) := (others => '0');
 
 	begin
 
+    -- Process that creates the masks required based on the type of the operation
+    -- Each type of operation has four different masks shifted/rotated by 0, 8, 16
+    -- and 24 positions. 
+    
 	mask_p: process (data_in, shift_type)
 		variable zeros: std_logic_vector(31 downto 0) := (others => '0');
 		variable msb: std_logic_vector(30 downto 0);
 		begin
 		    msb := (others => data_in(31));
+		    
 			case shift_type is
 				when LOGRIGHT => 
 					mask00 <= zeros(6 downto 0) & data_in;
@@ -63,6 +72,9 @@ architecture behavioral of shifter_t2 is
 			 
 		end process mask_p;
 
+    -- Process that performs the exact shift starting from the closest mask
+    -- to the actual number of positions that has to be shifted.
+    
 	shift_p: process(mask00, mask08, mask16, mask24, shift, shift_type)
 	    variable to_value: integer;
 	    variable from_value_r: integer;
@@ -71,15 +83,19 @@ architecture behavioral of shifter_t2 is
             
             to_value := to_integer(unsigned(not(shift(2 downto 0))));
             from_value_r := 31 + to_integer(unsigned(shift(2 downto 0)));
-            from_value_l:= 38 - to_integer(unsigned(shift(2 downto 0)));
+            from_value_l:= to_value + 31;
             
+            -- Select the closest mask taking into account the 2 MSB of 
+            -- the shift signal. Detect if it is a left or right shift
+            -- and extract the bits of the mask that represent the final result.
+             
 			case shift(4 downto 3) is
 				when "00" =>
 				    if (shift_type(0) = '1') then -- logical shift left
 				        if(shift(2 downto 0) = "000") then
 				            data_out <= mask00(38 downto 7);
 				        else
-				            data_out <= mask00(from_value_l downto to_value);
+				           data_out <= mask00(from_value_l downto to_value);
 				        end if;    
 				    else -- logical shift right
 				         if(shift(2 downto 0) = "000") then
@@ -137,4 +153,4 @@ architecture behavioral of shifter_t2 is
 			
 		end process shift_p;
 
-end behavioral;
+end beh;

@@ -4,6 +4,8 @@ use ieee.numeric_std.all;
 use ieee.math_real.all;
 use WORK.stype.all;
 
+-- Behavioral shifter ablle to perform logical and arithmetical shifts and also 
+-- rotate operations.
 
 entity shifter is
     port ( 
@@ -14,7 +16,7 @@ entity shifter is
     );
 end shifter;
 
-architecture behavioral of shifter is
+architecture beh of shifter is
 
 begin
     shift_p: process(data_in, shift, shift_type)
@@ -32,4 +34,4 @@ begin
         end process shift_p;
 
 
-end behavioral;
+end beh;

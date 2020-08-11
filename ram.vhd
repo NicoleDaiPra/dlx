@@ -3,6 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.math_real.all;
 use ieee.numeric_std.all;
 
+-- RAM with synchronous write and asynchronous read.
 entity ram is
     generic ( 
             N: integer := 32;
@@ -19,7 +20,7 @@ entity ram is
     );
 end ram;
 
-architecture behavioral of ram is
+architecture beh of ram is
 
 type storage is array (0 to M-1) of std_logic_vector(N-1 downto 0);
 signal ram_mem: storage;
@@ -45,4 +46,4 @@ begin
             end if;
         end if;
     end process write_p;
-end behavioral;
+end beh;
