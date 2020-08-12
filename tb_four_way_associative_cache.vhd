@@ -21,16 +21,7 @@ architecture test of tb_four_way_associative_cache is
 		address: in std_logic_vector(T+n_width(NL/4)+2-1 downto 0); -- data to match
 		data_in: in std_logic_vector(4*W-1 downto 0); -- data to be added to the cache
 		hit_miss: out std_logic; -- if hit then hit_miss = '1', otherwise hit_miss ='0'
-		data_out: out std_logic_vector(W-1 downto 0); -- if hit = '1' it contains the searched data, otherwise its value must not be considered 
-		b0: out std_logic_vector(W-1 downto 0);
-		b1: out std_logic_vector(W-1 downto 0);
-		b2: out std_logic_vector(W-1 downto 0);
-		b3: out std_logic_vector(W-1 downto 0);
-		ts0, ts1, ts2, ts3: out std_logic_vector(31 downto 0);
-		comp0, comp1: out std_logic;
-		ind0, ind1: out std_logic_vector(1 downto 0);
-		comp2: out std_logic;
-		ind2: out std_logic_vector(1 downto 0)
+		data_out: out std_logic_vector(W-1 downto 0) -- if hit = '1' it contains the searched data, otherwise its value must not be considered 
 	);
 	end component four_way_associative_dcache;
 
@@ -42,12 +33,7 @@ architecture test of tb_four_way_associative_cache is
 	signal clk, rst, update, read_line, hit_miss: std_logic;
 	signal address: std_logic_vector(T+n_width(NL/4)+2-1 downto 0);
 	signal data_in: std_logic_vector(4*W-1 downto 0);
-	signal data_out, b0, b1, b2, b3: std_logic_vector(W-1 downto 0);
-	signal ts0, ts1, ts2, ts3: std_logic_vector(31 downto 0);
-	signal comp0, comp1: std_logic;
-	signal ind0, ind1: std_logic_vector(1 downto 0);
-	signal comp2: std_logic;
-	signal ind2: std_logic_vector(1 downto 0);
+	signal data_out: std_logic_vector(W-1 downto 0);
 
 begin
 	dut: four_way_associative_dcache
@@ -64,21 +50,7 @@ begin
 			address => address,
 			data_in => data_in,
 			hit_miss =>  hit_miss,
-			data_out => data_out,
-			b0 => b0,
-			b1 => b1,
-			b2 => b2,
-			b3 => b3,
-			ts0 => ts0,
-			ts1 => ts1,
-			ts2 => ts2,
-			ts3 => ts3,
-			comp0 => comp0,
-			comp1 => comp1,
-			ind0 => ind0,
-			ind1 => ind1,
-			comp2 => comp2,
-			ind2 => ind2
+			data_out => data_out
 		);
 
 	clk_proc: process

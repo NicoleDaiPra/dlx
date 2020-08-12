@@ -17,20 +17,11 @@ entity four_way_associative_dcache is
 		clk: in std_logic;
 		rst: in std_logic;
 		update: in std_logic; -- if update = '1' the cache adds the data in data_in to the cache
-		read_line: in std_logic;
+		read_line: in std_logic; -- set to 1 if a read operation is being performed
 		address: in std_logic_vector(T+n_width(NL/4)+2-1 downto 0); -- data to match
 		data_in: in std_logic_vector(4*W-1 downto 0); -- data to be added to the cache
 		hit_miss: out std_logic; -- if hit then hit_miss = '1', otherwise hit_miss ='0'
-		data_out: out std_logic_vector(W-1 downto 0); -- if hit = '1' it contains the searched data, otherwise its value must not be considered 
-		b0: out std_logic_vector(W-1 downto 0);
-		b1: out std_logic_vector(W-1 downto 0);
-		b2: out std_logic_vector(W-1 downto 0);
-		b3: out std_logic_vector(W-1 downto 0);
-		ts0, ts1, ts2, ts3: out std_logic_vector(31 downto 0);
-		comp0, comp1: out std_logic;
-		ind0, ind1: out std_logic_vector(1 downto 0);
-		comp2: out std_logic;
-		ind2: out std_logic_vector(1 downto 0)
+		data_out: out std_logic_vector(W-1 downto 0) -- if hit = '1' it contains the searched data, otherwise its value must not be considered 
 	);
 end entity four_way_associative_dcache;
 
@@ -225,11 +216,6 @@ begin
 		int_inc_timestamp(i) <= hits(i) and (not update);	
 	end generate blocks;
 
-	b0 <= data_out_array(0);
-	b1 <= data_out_array(1);
-	b2 <= data_out_array(2);
-	b3 <= data_out_array(3);
-
 	-- generate the selection bits for the output mux.
 	--
 	-- use a priority encoder to be sure to generate the correct
@@ -309,11 +295,6 @@ begin
 			);
 	end generate update_comp_lv1;
 
-	comp0 <= lte_lv1(0);
-	comp1 <= lte_lv1(1);
-	ind0 <= index_mux_lv1(1 downto 0);
-	ind1 <= index_mux_lv1(3 downto 2); 
-
 	final_lte: lte_comparator
 		generic map (
 			N => 32
@@ -340,12 +321,5 @@ begin
 			i => update_enc_input,
 			en => update,
 			o => update_array
-		);
-
-	comp2 <= lte_final_mux;
-	ind2 <= update_enc_input;
-	ts0 <= timestamps(0);
-	ts1 <= timestamps(1);
-	ts2 <= timestamps(2);
-	ts3 <= timestamps(3);	
+		);	
 end architecture structural;
