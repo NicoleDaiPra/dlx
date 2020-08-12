@@ -12,9 +12,7 @@ entity shifter_t2 is
         data_in: in std_logic_vector(31 downto 0);
         shift: in std_logic_vector(4 downto 0);
         shift_type: in std_logic_vector(3 downto 0);
-        data_out: out std_logic_vector(31 downto 0);
-        to_value: out integer;
-        from_value: out integer
+        data_out: out std_logic_vector(31 downto 0)
     );
 end shifter_t2;
 
@@ -78,16 +76,7 @@ architecture beh of shifter_t2 is
     -- to the actual number of positions that has to be shifted.
     
 	shift_p: process(mask00, mask08, mask16, mask24, shift, shift_type)
-	    variable to_value_l: integer := 7;
-	    variable to_value_r: integer := 0;
-	    variable from_value_r: integer;
-	    variable from_value_l: integer;
 		begin
-            
-            --to_value_l := to_integer(unsigned(not(shift(2 downto 0))));
-            --to_value_r := to_integer(unsigned(shift(2 downto 0)));
-            --from_value_r := 31 + to_value_r;
-            --from_value_l:= 31 + to_value_l;
             
             -- Select the closest mask taking into account the 2 MSB of 
             -- the shift signal. Detect if it is a left or right shift
@@ -96,51 +85,32 @@ architecture beh of shifter_t2 is
 			case shift(4 downto 3) is
 				when "00" =>
 				    if (shift_type(0) = '1') then -- logical shift left
-                       to_value_l := to_integer(unsigned(not(shift(2 downto 0))));
-                       from_value_l:= 31 + to_value_l;
-                       from_value <= from_value_l;
-                       to_value <= to_value_l;
-                       data_out <= mask00(from_value_l downto to_value_l);     
+                       data_out <= mask00(31+to_integer(unsigned(not(shift(2 downto 0)))) downto to_integer(unsigned(not(shift(2 downto 0)))));     
 				    else -- logical shift right
-                        to_value_r := to_integer(unsigned(shift(2 downto 0)));
-                        from_value_r := 31 + to_value_r;
-                        from_value <= from_value_r;
-                        to_value <= to_value_r;
-                        data_out <= mask00(from_value_r downto to_value_r);
+                        data_out <= mask00(31+to_integer(unsigned(shift(2 downto 0))) downto to_integer(unsigned(shift(2 downto 0))));
 				    end if;
 
 				when "01" => 
 					if (shift_type(0) = '1') then -- logical shift left 
-                        to_value_l := to_integer(unsigned(not(shift(2 downto 0))));
-                        from_value_l:= 31 + to_value_l;
-                        data_out <= mask08(from_value_l downto to_value_l);   
+                        data_out <= mask08(31+to_integer(unsigned(not(shift(2 downto 0)))) downto to_integer(unsigned(not(shift(2 downto 0)))));   
 				    else -- logical shift right
-                        to_value_r := to_integer(unsigned(shift(2 downto 0)));
-                        from_value_r := 31 + to_value_r;
-                        data_out <= mask08(from_value_r downto to_value_r);
+                        data_out <= mask08(31+to_integer(unsigned(shift(2 downto 0))) downto to_integer(unsigned(shift(2 downto 0))));
 				    end if;
 				    
 				when "10" => 
 				    if (shift_type(0) = '1') then -- logical shift left
-                        to_value_l := to_integer(unsigned(not(shift(2 downto 0))));
-                        from_value_l:= 31 + to_value_l;
-                        data_out <= mask16(from_value_l downto to_value_l);   
+                        data_out <= mask16(31+to_integer(unsigned(not(shift(2 downto 0)))) downto to_integer(unsigned(not(shift(2 downto 0)))));   
 				    else -- logical shift right
-				            to_value_r := to_integer(unsigned(shift(2 downto 0)));
-				            from_value_r := 31 + to_value_r;
-				            data_out <= mask16(from_value_r downto to_value_r);
+				        data_out <= mask16(31+to_integer(unsigned(shift(2 downto 0))) downto to_integer(unsigned(shift(2 downto 0))));
 				    end if;
 					
 				when "11" => 
 				    if (shift_type(0) = '1') then -- logical shift left
-                        to_value_l := to_integer(unsigned(not(shift(2 downto 0))));
-                        from_value_l:= 31 + to_value_l;
-                        data_out <= mask24(from_value_l downto to_value_l); 
+                        data_out <= mask24(31+to_integer(unsigned(not(shift(2 downto 0)))) downto to_integer(unsigned(not(shift(2 downto 0))))); 
 				    else -- logical shift right
-                        to_value_r := to_integer(unsigned(shift(2 downto 0)));
-                        from_value_r := 31 + to_value_r;
-                        data_out <= mask24(from_value_r downto to_value_r);
+                        data_out <= mask24(31+to_integer(unsigned(shift(2 downto 0))) downto to_integer(unsigned(shift(2 downto 0))));
 				    end if;
+				    
 				when others => data_out <= (others => '0');
 			end case;
 			
