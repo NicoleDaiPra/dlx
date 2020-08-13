@@ -6,19 +6,23 @@ use ieee.std_logic_misc.all;
 
 
 entity alu_out_selector is
+	generic(
+		N: integer
+	);
     port (	
     	clk: in std_logic;
     	rst: in std_logic;
     	op_type: in std_logic_vector(1 downto 0);
     	op_sign: in std_logic; 							-- 1 if the operands are signed, 0 otherwise
-    	adder_out: in std_logic_vector(31 downto 0);
+    	adder_out: in std_logic_vector(N-1 downto 0);
     	adder_cout: in std_logic;
-    	mul_out: in std_logic_vector(31 downto 0);
+    	mul_out: in std_logic_vector(2*N-1 downto 0);
     	mul_cout: in std_logic;
-    	shifter_out: in std_logic_vector(31 downto 0);
-    	logicals_out: in std_logic_vector(31 downto 0);
-    	alu_sel_out: out std_logic_vector(31 downto 0);
-    	alu_flags: out std_logic_vector(2 downto 0) 	-- Z,V,S
+    	shifter_out: in std_logic_vector(N-1 downto 0);
+    	logicals_out: in std_logic_vector(N-1 downto 0);
+    	alu_sel_out_high: out std_logic_vector(N-1 downto 0);
+    	alu_sel_out_low: out std_logic_vector(N-1 downto 0);
+    	alu_flags: out std_logic_vector(2 downto 0) 	-- Z: zero flag, V: overflow flag, S: sign flag
     );
 end alu_out_selector;
 
@@ -47,26 +51,28 @@ begin
 			-- 11: logicals
 			
 			next_flags <= curr_flags;
+			alu_sel_out_high <= (others => '0');
 			
 			case op_type is
 				when "00" => 
-					alu_sel_out <= adder_out;
+					alu_sel_out_low <= adder_out;
 					next_flags <= not(or_reduce(adder_out)) & adder_cout & op_sign;
 
 				when "01" => 
-					alu_sel_out <= mul_out;
+					alu_sel_out_low <= mul_out(N-1 downto 0);
+					alu_sel_out_high  <= mul_out(2*N-1 downto N);
 					next_flags <= not(or_reduce(mul_out)) & mul_cout & op_sign;
 
 				when "10" => 
-					alu_sel_out <= shifter_out;
+					alu_sel_out_low <= shifter_out;
 					next_flags <= not(or_reduce(shifter_out)) & '0' & op_sign;
 
 				when "11" => 
-					alu_sel_out <= logicals_out;
+					alu_sel_out_low <= logicals_out;
 					next_flags <= not(or_reduce(shifter_out)) & '0' & '0';
 				
 				when others => 
-					alu_sel_out <= (others => '0');
+					alu_sel_out_low <= (others => '0');
 					
 			end case;
 		end process sel_p;

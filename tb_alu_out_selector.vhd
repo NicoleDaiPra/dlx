@@ -7,39 +7,48 @@ end tb_alu_out_selector;
 architecture tb of tb_alu_out_selector is
 
 	component alu_out_selector is
+        generic(
+            N: integer
+        );
 	    port (	
 	    	clk: in std_logic;
 	    	rst: in std_logic;
 	    	op_type: in std_logic_vector(1 downto 0);
 	    	op_sign: in std_logic; 							-- 1 if the operands are signed, 0 otherwise
-	    	adder_out: in std_logic_vector(31 downto 0);
+	    	adder_out: in std_logic_vector(N-1 downto 0);
 	    	adder_cout: in std_logic;
-	    	mul_out: in std_logic_vector(31 downto 0);
+	    	mul_out: in std_logic_vector(2*N-1 downto 0);
 	    	mul_cout: in std_logic;
-	    	shifter_out: in std_logic_vector(31 downto 0);
-	    	logicals_out: in std_logic_vector(31 downto 0);
-	    	alu_sel_out: out std_logic_vector(31 downto 0);
+	    	shifter_out: in std_logic_vector(N-1 downto 0);
+	    	logicals_out: in std_logic_vector(N-1 downto 0);
+	    	alu_sel_out_low: out std_logic_vector(N-1 downto 0);
+	    	alu_sel_out_high: out std_logic_vector(N-1 downto 0);
 	    	alu_flags: out std_logic_vector(2 downto 0) 	-- Z,V,S
 	    );
 	end component alu_out_selector;
 
+    constant period: time := 10 ns;
+    constant N: integer := 32;
+    
 	signal clk, rst: std_logic;
 	signal op_type:  std_logic_vector(1 downto 0);
 	signal op_sign: std_logic; 							
-	signal adder_out: std_logic_vector(31 downto 0);
+	signal adder_out: std_logic_vector(N-1 downto 0);
 	signal adder_cout: std_logic;
-	signal mul_out: std_logic_vector(31 downto 0);
+	signal mul_out: std_logic_vector(2*N-1 downto 0);
 	signal mul_cout: std_logic;
-	signal shifter_out: std_logic_vector(31 downto 0);
-	signal logicals_out: std_logic_vector(31 downto 0);
-	signal alu_sel_out: std_logic_vector(31 downto 0);
+	signal shifter_out: std_logic_vector(N-1 downto 0);
+	signal logicals_out: std_logic_vector(N-1 downto 0);
+	signal alu_sel_out_low: std_logic_vector(N-1 downto 0);
+	signal alu_sel_out_high: std_logic_vector(N-1 downto 0);
 	signal alu_flags: std_logic_vector(2 downto 0);
-
-	constant period: time := 10 ns;
 
 begin
 
 	dut: alu_out_selector 
+	    generic map (
+	       N => N
+	    )
 		port map (
 			clk  => clk,
 			rst => rst,
@@ -51,7 +60,8 @@ begin
 			mul_cout => mul_cout,
 			shifter_out => shifter_out,
 			logicals_out => logicals_out,
-			alu_sel_out => alu_sel_out,
+			alu_sel_out_low => alu_sel_out_low,
+			alu_sel_out_high => alu_sel_out_high,
 			alu_flags => alu_flags
 		);
 
@@ -74,7 +84,7 @@ begin
 			adder_out <= X"11112222";
 			adder_cout <= '1';
 
-			mul_out <= X"33334444";
+			mul_out <= X"33334444AAAABBBB";
 			mul_cout <= '1';
 
 			shifter_out <= X"55556666";
