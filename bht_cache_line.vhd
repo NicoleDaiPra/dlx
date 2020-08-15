@@ -11,7 +11,8 @@ entity bht_cache_line is
 	port (
 		clk: in std_logic;
 		rst: in std_logic;
-		update: in std_logic; -- if update = '1' the line stores the incoming data
+		update_line: in std_logic; -- if update_line = '1' the line stores the incoming data and tag
+		update_data: in std_logic; -- if update_line = '1' the line stores the incoming data, maintaining the tag
 		tag_in: in std_logic_vector(T-1 downto 0); -- tag to be saved when update = 1
 		data_in: in std_logic_vector(L-1 downto 0); -- data to be added to the line
 		valid: out std_logic; -- 1 if the data contained in the line is valid, 0 otherwise
@@ -44,17 +45,21 @@ begin
 	tag_out <= curr_tag;
 	data_out <= curr_data;
 
-	comblogic: process(curr_valid, curr_tag, curr_data, update, tag_in, data_in)
+	comblogic: process(curr_valid, curr_tag, curr_data, update_line, update_data, tag_in, data_in)
 	begin
 		next_valid <= curr_valid;
 		next_tag <= curr_tag;
 		next_data <= curr_data;
-		
-		if (update = '1') then
-			-- if an update is requested store the line and save the new tag
+
+		-- the tag must be updated
+		if (update_line = '1') then
+			next_tag <= tag_in;
+		end if;
+
+		-- update the data and set the validity bit to 1
+		if (update_line = '1' or update_data = '1') then
 			next_data <= data_in;
 			next_valid <= '1';
-			next_tag <= tag_in;
 		end if;
 	end process comblogic;
 end architecture behavioral;
