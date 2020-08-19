@@ -35,7 +35,7 @@ entity bht is
 end entity bht;
 
 architecture behavioral of bht is
-	component bht_4_way_associative_way is
+	component bht_direct_mapping_cache is
 		generic (
 			T: integer := 8; -- width of the TAG bits
 			W: integer := 8; -- line size
@@ -46,16 +46,15 @@ architecture behavioral of bht is
 			rst: in std_logic;
 			update_line: in std_logic; -- if update_line = '1' the cache adds a new entry to the cache
 			update_data: in std_logic; -- if update_data = '1' the cache only replace the data corresponding to a tag
-			read_address: in std_logic_vector(T+n_width(NL/4)-1 downto 0); -- address to be read from the cache
-			rw_address: in std_logic_vector(T+n_width(NL/4)-1 downto 0); -- address to be written from the cache
+			read_address: in std_logic_vector(T+n_width(NL)-1 downto 0); -- address to be read from the cache
+			rw_address: in std_logic_vector(T+n_width(NL)-1 downto 0); -- address to be written from the cache
 			data_in: in std_logic_vector(W-1 downto 0); -- data to be added to the cache
 			hit_miss_read: out std_logic; -- if read_address generates a hit then hit_miss_read = '1', otherwise hit_miss_read ='0'
 			data_out_read: out std_logic_vector(W-1 downto 0); -- if hit_miss_read = '1' it contains the searched data, otherwise its value must not be considered
 			hit_miss_rw: out std_logic; -- if rw_address generates a hit then hit_miss_rw = '1', otherwise hit_miss_rw ='0'
-
 			data_out_rw: out std_logic_vector(W-1 downto 0) -- if hit_miss_rw = '1' it contains the searched data, otherwise its value must not be considered
 		);
-	end component bht_4_way_associative_way;
+	end component bht_direct_mapping_cache;
 
 	constant STRONGLY_NOT_TAKEN: std_logic_vector(1 downto 0) := "00";
 	constant WEAKLY_NOT_TAKEN: std_logic_vector(1 downto 0) := "01";
@@ -72,9 +71,9 @@ architecture behavioral of bht is
 	signal cache_hit_read, cache_hit_rw: std_logic;
 
 begin
-	cache: bht_4_way_associative_way
+	cache: bht_direct_mapping_cache
 		generic map (
-			T => A-3,
+			T => A-5,
 			W => A+2, -- store the target address + 2 prediction bits
 			NL => 32
 		)

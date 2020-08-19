@@ -58,9 +58,6 @@ begin
 			update => update,
 			instr_to_update => instr_to_update,
 			target_addr => target_addr,
-
-			upd => upd,
-
 			taken => taken
 		);
 
@@ -213,7 +210,7 @@ begin
 		update <= NEW_BRANCH_UPDATE;
 		taken <= '1';
 		for i in 0 to 31 loop
-			instr_to_update <= std_logic_vector(to_unsigned(0 + i*4, 16));
+			instr_to_update <= std_logic_vector(to_unsigned(0 + i, 16));
 			target_addr <= std_logic_vector(to_unsigned(0 - i*4, 16));
 			wait for period;
 		end loop;

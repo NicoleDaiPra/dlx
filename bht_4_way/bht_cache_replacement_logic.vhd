@@ -21,6 +21,7 @@ architecture behavioral of bht_cache_replacement_logic is
 	type sets_array is array (0 to NL-1) of std_logic_vector(3 downto 0);
 
 	signal curr_repl, next_repl: sets_array;
+	signal cu_extended: std_logic_vector(3 downto 0);
 
 begin
 	state_reg: process(clk)
@@ -34,14 +35,15 @@ begin
 		end if;
 	end process state_reg;
 
+	cu_extended <= (others => cache_update);
+	line_update <= curr_repl(to_integer(unsigned(set_rw))) and cu_extended;
+
 	comblogic: process(curr_repl, cache_update, set_rw)
 	   variable tmp: std_logic_vector(3 downto 0);
-	   variable cu_extended: std_logic_vector(3 downto 0) := (others => cache_update);
 	begin
 		next_repl <= curr_repl;
-		tmp := curr_repl(to_integer(unsigned(set_rw)));
-		line_update <= tmp and cu_extended;
 
+		tmp := curr_repl(to_integer(unsigned(set_rw)));
 		if (cache_update = '1') then
 			next_repl(to_integer(unsigned(set_rw))) <= tmp(2 downto 0)&tmp(3);
 		end if;
