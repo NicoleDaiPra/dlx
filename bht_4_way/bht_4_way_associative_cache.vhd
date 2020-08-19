@@ -3,6 +3,10 @@ use ieee.std_logic_1164.all;
 use ieee.std_logic_misc.all;
 use work.fun_pack.all;
 
+-- 4 way associative cache implementation for the BHT. It doesn't support multiple words per line.
+-- The replacement algorithm is a per-set FIFO.
+-- It has a read-only interface and a read-write one. The latter allows to read and write the data
+-- contained in a single line in a clock cycle, which is useful for the BHT
 entity bht_4_way_associative_way is
 	generic (
 		T: integer := 29; -- width of the TAG bits
