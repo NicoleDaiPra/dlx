@@ -76,7 +76,7 @@ architecture beh of shifter_t2 is
     -- to the actual number of positions that has to be shifted.
     
 	shift_p: process(mask00, mask08, mask16, mask24, shift, shift_type)
-			variable msb: std_logic_vector(1 dwonto 0);
+			variable msb: std_logic_vector(1 downto 0);
 		begin
             
             -- Select the closest mask taking into account the 2 MSB of 
