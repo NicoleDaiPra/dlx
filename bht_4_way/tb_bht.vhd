@@ -20,6 +20,8 @@ architecture test of tb_bht is
 			predicted_taken: out std_logic; -- tells if a branch has been recognized and it's predicted to be taken
 			addr_known: out std_logic; -- tells if the instruction in 'pc' is known to the BHT, regardless of the predictred_taken value
 
+            upd: out std_logic_vector(3 downto 0);
+
 			-- "00" if nothing has to be done
 			-- "01" if an already known instruction has to be updated (taken/not taken)
 			-- "10" if a new instruction must be added
@@ -42,6 +44,7 @@ architecture test of tb_bht is
 	signal clk, rst, predicted_taken, addr_known, taken: std_logic;
 	signal pc, next_pc, instr_to_update, target_addr: std_logic_vector(A-1 downto 0);
 	signal update: std_logic_vector(1 downto 0);
+	signal upd: std_logic_vector(3 downto 0);
 
 begin
 	dut: bht
@@ -58,6 +61,9 @@ begin
 			update => update,
 			instr_to_update => instr_to_update,
 			target_addr => target_addr,
+
+			upd => upd,
+
 			taken => taken
 		);
 
@@ -96,7 +102,7 @@ begin
 		assert (predicted_taken = '0') report "predicted_taken should have been 0" severity FAILURE;
 
 		-- address 0x00A0 is being read again. This time the bht knows about it
-		-- also address 0x00FA has been discovered to be a non taken branch with target address 0x0004
+		-- also address 0x00FB has been discovered to be a non taken branch with target address 0x0004
 		pc <= X"00A0";
 
 		update <= NEW_BRANCH_UPDATE;
@@ -109,7 +115,7 @@ begin
 		assert (addr_known = '1') report "address 0x00A0 should have been known" severity FAILURE;
 		assert (next_pc = X"FFB0") report "next_pc is not equal to 0xFFB0" severity FAILURE;
 
-		-- address 0x00FA is being read again now, address 0x00A0 has been taken again
+		-- address 0x00FB is being read again now, address 0x00A0 has been taken again
 		pc <= X"00FA";
 
 		update <= HISTORY_UPDATE;
@@ -122,7 +128,7 @@ begin
 		assert (next_pc = X"0004") report "next_pc is not equal to 0x0004" severity FAILURE;
 
 		-- check that address 0x00A0 still returns the correct values
-		-- address 0x00FA has been not taken again
+		-- address 0x00FB has been not taken again
 		pc <= X"00A0";
 
 		update <= HISTORY_UPDATE;
@@ -134,7 +140,7 @@ begin
 		assert (predicted_taken = '1') report "predicted_taken should have been 1" severity FAILURE;
 		assert (next_pc = X"FFB0") report "next_pc is not equal to 0xFFB0" severity FAILURE;
 
-		-- check that address 0x00FA still returns the correct values
+		-- check that address 0x00FB still returns the correct values
 		pc <= X"00FA";
 
 		update <= NO_UPDATE;
@@ -175,7 +181,7 @@ begin
 		assert (predicted_taken = '0') report "predicted_taken should have been 0" severity FAILURE;
 		assert (next_pc = X"FFB0") report "next_pc is not equal to 0xFFB0" severity FAILURE;
 
-		-- now do the opposite for address 0x00FA
+		-- now do the opposite for address 0x00FB
 		pc <= X"00FA";
 
 		update <= HISTORY_UPDATE;

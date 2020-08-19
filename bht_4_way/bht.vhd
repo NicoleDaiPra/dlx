@@ -23,6 +23,8 @@ entity bht is
 		predicted_taken: out std_logic; -- tells if a branch has been recognized and it's predicted to be taken
 		addr_known: out std_logic; -- tells if the instruction in 'pc' is known to the BHT, regardless of the predictred_taken value
 
+        upd: out std_logic_vector(3 downto 0);
+        
 		-- "00" if nothing has to be done
 		-- "01" if an already known instruction has to be updated (taken/not taken)
 		-- "10" if a new instruction must be added
@@ -52,6 +54,9 @@ architecture behavioral of bht is
 			hit_miss_read: out std_logic; -- if read_address generates a hit then hit_miss_read = '1', otherwise hit_miss_read ='0'
 			data_out_read: out std_logic_vector(W-1 downto 0); -- if hit_miss_read = '1' it contains the searched data, otherwise its value must not be considered
 			hit_miss_rw: out std_logic; -- if rw_address generates a hit then hit_miss_rw = '1', otherwise hit_miss_rw ='0'
+			
+			upd: out std_logic_vector(3 downto 0);
+
 			data_out_rw: out std_logic_vector(W-1 downto 0) -- if hit_miss_rw = '1' it contains the searched data, otherwise its value must not be considered
 		);
 	end component bht_4_way_associative_way;
@@ -88,6 +93,9 @@ begin
 			hit_miss_read => cache_hit_read,
 			data_out_read => cache_data_out_read,
 			hit_miss_rw => cache_hit_rw,
+
+			upd => upd,
+			
 			data_out_rw => cache_data_out_rw
 		);
 

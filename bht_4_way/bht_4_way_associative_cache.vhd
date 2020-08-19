@@ -20,6 +20,9 @@ entity bht_4_way_associative_way is
 		hit_miss_read: out std_logic; -- if read_address generates a hit then hit_miss_read = '1', otherwise hit_miss_read ='0'
 		data_out_read: out std_logic_vector(W-1 downto 0); -- if hit_miss_read = '1' it contains the searched data, otherwise its value must not be considered
 		hit_miss_rw: out std_logic; -- if rw_address generates a hit then hit_miss_rw = '1', otherwise hit_miss_rw ='0'
+		
+		upd: out std_logic_vector(3 downto 0);
+
 		data_out_rw: out std_logic_vector(W-1 downto 0) -- if hit_miss_rw = '1' it contains the searched data, otherwise its value must not be considered
 	);
 end entity bht_4_way_associative_way;
@@ -129,6 +132,8 @@ begin
 			set_rw => rw_address(n_width(NL/4)-1 downto 0),
 			line_update => update_line_int
 		);
+
+	upd <= update_line_int;
 
 	-- instantiate the 4 cache blocks along with the logic for detecting if a hit has occurred
 	block_gen: for i in 0 to 3 generate
