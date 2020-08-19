@@ -20,8 +20,6 @@ architecture test of tb_bht is
 			predicted_taken: out std_logic; -- tells if a branch has been recognized and it's predicted to be taken
 			addr_known: out std_logic; -- tells if the instruction in 'pc' is known to the BHT, regardless of the predictred_taken value
 
-            upd: out std_logic_vector(3 downto 0);
-
 			-- "00" if nothing has to be done
 			-- "01" if an already known instruction has to be updated (taken/not taken)
 			-- "10" if a new instruction must be added
@@ -44,7 +42,6 @@ architecture test of tb_bht is
 	signal clk, rst, predicted_taken, addr_known, taken: std_logic;
 	signal pc, next_pc, instr_to_update, target_addr: std_logic_vector(A-1 downto 0);
 	signal update: std_logic_vector(1 downto 0);
-	signal upd: std_logic_vector(3 downto 0);
 
 begin
 	dut: bht
