@@ -8,7 +8,7 @@ architecture tb of tb_alu_out_selector is
 
 	component alu_out_selector is
         generic(
-            N: integer
+            N: integer := 32
         );
 	    port (	
 	    	clk: in std_logic;
@@ -18,7 +18,6 @@ architecture tb of tb_alu_out_selector is
 	    	adder_out: in std_logic_vector(N-1 downto 0);
 	    	adder_cout: in std_logic;
 	    	mul_out: in std_logic_vector(2*N-1 downto 0);
-	    	mul_cout: in std_logic;
 	    	shifter_out: in std_logic_vector(N-1 downto 0);
 	    	logicals_out: in std_logic_vector(N-1 downto 0);
 	    	alu_sel_out_low: out std_logic_vector(N-1 downto 0);
@@ -36,7 +35,6 @@ architecture tb of tb_alu_out_selector is
 	signal adder_out: std_logic_vector(N-1 downto 0);
 	signal adder_cout: std_logic;
 	signal mul_out: std_logic_vector(2*N-1 downto 0);
-	signal mul_cout: std_logic;
 	signal shifter_out: std_logic_vector(N-1 downto 0);
 	signal logicals_out: std_logic_vector(N-1 downto 0);
 	signal alu_sel_out_low: std_logic_vector(N-1 downto 0);
@@ -57,7 +55,6 @@ begin
 			adder_out => adder_out,
 			adder_cout => adder_cout,
 			mul_out => mul_out,
-			mul_cout => mul_cout,
 			shifter_out => shifter_out,
 			logicals_out => logicals_out,
 			alu_sel_out_low => alu_sel_out_low,
@@ -85,7 +82,6 @@ begin
 			adder_cout <= '1';
 
 			mul_out <= X"33334444AAAABBBB";
-			mul_cout <= '1';
 
 			shifter_out <= X"55556666";
 			logicals_out <= X"77778888";
@@ -105,7 +101,6 @@ begin
 			op_sign <= '0';
 			wait for period;
 
-			mul_cout <= '0';
 			op_sign <= '1';
 			wait for period;
 
