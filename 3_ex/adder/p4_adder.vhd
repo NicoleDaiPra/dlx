@@ -40,18 +40,24 @@ architecture struct of p4_adder is
 			s: out std_logic_vector(NBIT_PER_BLOCK*NBLOCKS-1 downto 0)
 		);
 	end component sum_generator;
-
+    
+    signal b_add_sub: std_logic_vector(N-1 downto 0);
 	signal carry: std_logic_vector(N/4-1 downto 0); -- stores the result of the carry generator
 	signal carry_sum: std_logic_vector(N/4-1 downto 0); -- stores the input of the sum_generator
 
 begin
+    -- Take the complement of b if a sub has to be performed
+    op_b_loop: for i in 0 to N-1 generate
+        b_add_sub(i) <= b(i) xor cin;
+    end generate op_b_loop;
+    
 	cg: carry_generator
 		generic map (
 			N => N	
 		)
 		port map (
 			a => a,
-			b => b,
+			b => b_add_sub,
 			cin => cin,
 			cout => carry
 		);
@@ -67,7 +73,7 @@ begin
 		)
 		port map (
 			a => a,
-			b => b,
+			b => b_add_sub,
 			cin => carry_sum,
 			s => s
 		);		

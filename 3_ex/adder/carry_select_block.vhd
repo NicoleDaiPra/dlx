@@ -14,7 +14,7 @@ entity carry_select_block is
 end entity carry_select_block;
 
 architecture structural of carry_select_block is
-	component rca_generic is
+	component rca_generic_struct is
 		generic (
         	N: integer := 8
     	);
@@ -25,7 +25,7 @@ architecture structural of carry_select_block is
 	        s: out std_logic_vector(N-1 downto 0);
 	        cout: out std_logic
 	    );
-	end component rca_generic;
+	end component rca_generic_struct;
 
 	component mux_2x1 is
 		generic (
@@ -40,7 +40,7 @@ architecture structural of carry_select_block is
 
 	signal s0, s1: std_logic_vector(N-1 downto 0);
 begin
-	rca_0: rca_generic
+	rca_0: rca_generic_struct
 		generic map (
 			N => N
 		)
@@ -52,7 +52,7 @@ begin
 			cout => open
 		);
 
-	rca_1: rca_generic
+	rca_1: rca_generic_struct
 		generic map (
 			N => N
 		)

@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all; 
 use ieee.numeric_std.all;
 
-entity rca_generic is 
+entity rca_generic_struct is 
     generic (
         N: integer := 8
     );
@@ -13,11 +13,11 @@ entity rca_generic is
         s: out std_logic_vector(N-1 downto 0);
         cout: out std_logic
     );
-end rca_generic; 
+end rca_generic_struct; 
 
 -- Structural implementation
 
-architecture structural of rca_generic is
+architecture structural of rca_generic_struct is
     signal stmp: std_logic_vector(N-1 downto 0); -- Store the s output of the fa
     signal ctmp: std_logic_vector(N downto 0); -- Store the carry of the fa
 
