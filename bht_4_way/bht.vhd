@@ -52,7 +52,6 @@ architecture behavioral of bht is
 			hit_miss_read: out std_logic; -- if read_address generates a hit then hit_miss_read = '1', otherwise hit_miss_read ='0'
 			data_out_read: out std_logic_vector(W-1 downto 0); -- if hit_miss_read = '1' it contains the searched data, otherwise its value must not be considered
 			hit_miss_rw: out std_logic; -- if rw_address generates a hit then hit_miss_rw = '1', otherwise hit_miss_rw ='0'
-
 			data_out_rw: out std_logic_vector(W-1 downto 0) -- if hit_miss_rw = '1' it contains the searched data, otherwise its value must not be considered
 		);
 	end component bht_4_way_associative_way;
@@ -88,7 +87,7 @@ begin
 			data_in => cache_data_in,
 			hit_miss_read => cache_hit_read,
 			data_out_read => cache_data_out_read,
-			hit_miss_rw => cache_hit_rw,			
+			hit_miss_rw => cache_hit_rw,
 			data_out_rw => cache_data_out_rw
 		);
 
@@ -98,8 +97,12 @@ begin
 	comblogic: process(cache_hit_read, cache_data_out_read, cache_hit_rw, cache_data_out_rw,
 						pc, update, instr_to_update, target_addr, taken)
 		variable predicted_t: std_logic;
+		variable predicted_read, predicted_rw: std_logic_vector(1 downto 0);
 	begin
 		cache_data_in <= (others => '0');
+		
+		predicted_read := cache_data_out_read(A+2-1 downto A);
+		predicted_rw := cache_data_out_rw(A+2-1 downto A);
 
 		-- set the predicted_taken signal based on the history bits
 		-- 00 -> not taken
@@ -112,8 +115,8 @@ begin
 		-- the and between the components could be spared since
 		--		addr_known and 0 -> 0
 		--		addr_known and 1 -> addr_known
-
-		case (cache_data_out_read(A+2-1 downto A)) is
+		
+		case (predicted_read) is
 			when STRONGLY_NOT_TAKEN =>
 				predicted_t := '0';
 
@@ -142,7 +145,7 @@ begin
 			when HISTORY_UPDATE => -- an already known instruction must be updated
 				cache_update_line <= '0';
 				cache_update_data <= '1';
-				case (cache_data_out_rw(A+2-1 downto A)) is
+				case (predicted_rw) is
 					when STRONGLY_NOT_TAKEN =>
 						if (taken = '1') then
 							cache_data_in <= WEAKLY_NOT_TAKEN&cache_data_out_rw(A-1 downto 0);
