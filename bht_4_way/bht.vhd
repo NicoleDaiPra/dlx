@@ -100,9 +100,6 @@ begin
 		variable predicted_state_read, predicted_state_rw: std_logic_vector(1 downto 0);
 	begin
 		cache_data_in <= (others => '0');
-		
-		predicted_read := cache_data_out_read(A+2-1 downto A);
-		predicted_rw := cache_data_out_rw(A+2-1 downto A);
 
 		predicted_state_read := cache_data_out_read(A+2-1 downto A);
 		predicted_state_rw := cache_data_out_rw(A+2-1 downto A);
@@ -147,7 +144,7 @@ begin
 			when HISTORY_UPDATE => -- an already known instruction must be updated
 				cache_update_line <= '0';
 				cache_update_data <= '1';
-				
+
 				case (predicted_state_rw) is
 					when STRONGLY_NOT_TAKEN =>
 						if (taken = '1') then
