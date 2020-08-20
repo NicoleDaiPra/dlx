@@ -18,8 +18,11 @@ entity alu_out_selector is
     port (	
     	clk: in std_logic;
     	rst: in std_logic;
+    	a: in std_logic_vector(N-1 downto 0);
+    	b: in std_logic_vector(N-1 downto 0);
     	op_type: in std_logic_vector(1 downto 0);
     	op_sign: in std_logic; 							-- 1 if the operands are signed, 0 otherwise
+    	sub_add: std_logic;
     	adder_out: in std_logic_vector(N-1 downto 0);
     	adder_cout: in std_logic;
     	mul_out: in std_logic_vector(2*N-1 downto 0);
@@ -48,7 +51,9 @@ begin
 			end if;
 		end process reg_p;
 
-	sel_p: process (curr_flags, op_type, op_sign, adder_out, adder_cout, mul_out, shifter_out, logicals_out)
+	sel_p: process (curr_flags, op_type, op_sign, sub_add, adder_out, adder_cout, mul_out, shifter_out, logicals_out)
+		  variable overflow: std_logic;
+		  
 		begin
 		
 			-- op_type is encoded in the following way:
@@ -62,9 +67,12 @@ begin
 			
 			case op_type is
 				when "00" => 
+				    
+				    overflow:= (not(a(N-1)) and not(b(N-1)) and adder_out(N-1)) or (a(N-1) and b(N-1) and not(adder_out(N-1)));
+					overflow:= overflow or (sub_add and (adder_cout xor adder_out(N-1)));
 					alu_sel_out_low <= adder_out;
 					if (op_sign = '1') then
-						next_flags <= not(or_reduce(adder_out)) & (adder_cout xor adder_out(N-1)) & op_sign;
+						next_flags <= not(or_reduce(adder_out)) & overflow & op_sign;
 					else
 						-- DLX instructions do not produce overflow with unsigned numbers
 						next_flags <= not(or_reduce(adder_out)) & '0' & op_sign; 
@@ -81,7 +89,7 @@ begin
 
 				when "11" => 
 					alu_sel_out_low <= logicals_out;
-					next_flags <= not(or_reduce(shifter_out)) & '0' & '0';
+					next_flags <= not(or_reduce(logicals_out)) & '0' & '0';
 				
 				when others => 
 					alu_sel_out_low <= (others => '0');
