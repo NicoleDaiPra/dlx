@@ -97,8 +97,12 @@ begin
 	comblogic: process(cache_hit_read, cache_data_out_read, cache_hit_rw, cache_data_out_rw,
 						pc, update, instr_to_update, target_addr, taken)
 		variable predicted_t: std_logic;
+		variable predicted_state_read, predicted_state_rw: std_logic_vector(1 downto 0);
 	begin
 		cache_data_in <= (others => '0');
+
+		predicted_state_read := cache_data_out_read(A+2-1 downto A);
+		predicted_state_rw := cache_data_out_rw(A+2-1 downto A);
 
 		-- set the predicted_taken signal based on the history bits
 		-- 00 -> not taken
@@ -112,7 +116,7 @@ begin
 		--		addr_known and 0 -> 0
 		--		addr_known and 1 -> addr_known
 
-		case (cache_data_out_read(A+2-1 downto A)) is
+		case (predicted_state_read) is
 			when STRONGLY_NOT_TAKEN =>
 				predicted_t := '0';
 
@@ -141,7 +145,7 @@ begin
 			when HISTORY_UPDATE => -- an already known instruction must be updated
 				cache_update_line <= '0';
 				cache_update_data <= '1';
-				case (cache_data_out_rw(A+2-1 downto A)) is
+				case (predicted_state_rw) is
 					when STRONGLY_NOT_TAKEN =>
 						if (taken = '1') then
 							cache_data_in <= WEAKLY_NOT_TAKEN&cache_data_out_rw(A-1 downto 0);

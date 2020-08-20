@@ -1,0 +1,35 @@
+
+# fill these lines with your files ...
+analyze -library WORK -format vhdl {fun_pack.vhd and2.vhd equality_comparator.vhd bht_cache_line.vhd bht_cache_replacement.vhd bht_direct_mapping_cache.vhd bht.vhd}
+##############################################################
+##
+# choose the architecture you want
+elaborate bht -architecture behavioral -parameters "T = 32, W = 32, NL = 32"
+##########################################
+# first compilation, without constraints #
+compile
+##########################################
+# reporting timing and power after the first synthesis without constraints #
+# ungroup -all -flatten
+# report_timing > report/windowed_rf_timing_no_opt.txt
+# report_area > report/windowwd_rf_area_no_opt.txt
+################################################
+# force a clock
+create_clock -name "clk" -period 1 clk
+#save the clock report
+report_clock > report/windowed_rf_clk_report.txt
+#compile
+#ungroup -all -flatten
+#report_timing > report/windowed_rf_timing_clk_constr.txt
+#report_area > report/rf_area_clk_constr.txt
+################################################
+# force the combinational logic delay to the one of the sequential logic
+set_max_delay 1 -from [all_inputs] -to [all_outputs]
+compile
+ungroup -all -flatten
+# save the timing and area reports
+report_timing > bht_timing.txt
+report_area > bht_area.txt
+report_power > bht_power.txt
+# saving files
+#write -hierarchy -format vhdl -output registerfile-32x8x64bit-topt.vhdl

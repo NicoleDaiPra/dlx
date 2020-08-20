@@ -58,6 +58,9 @@ begin
 			update => update,
 			instr_to_update => instr_to_update,
 			target_addr => target_addr,
+
+			upd => upd,
+
 			taken => taken
 		);
 

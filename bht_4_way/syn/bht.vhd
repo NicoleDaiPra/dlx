@@ -1,5 +1,6 @@
  library ieee;
 use ieee.std_logic_1164.all;
+use work.fun_pack.all;
 
 -- BHT for the fetch stage implementation.
 -- It takes in input the address fetched and checks if it is contained in its cache.
@@ -21,7 +22,7 @@ entity bht is
 		next_pc: out std_logic_vector(A-1 downto 0); -- memory address to be fetched in the next cycle
 		predicted_taken: out std_logic; -- tells if a branch has been recognized and it's predicted to be taken
 		addr_known: out std_logic; -- tells if the instruction in 'pc' is known to the BHT, regardless of the predictred_taken value
-
+        
 		-- "00" if nothing has to be done
 		-- "01" if an already known instruction has to be updated (taken/not taken)
 		-- "10" if a new instruction must be added
@@ -34,25 +35,27 @@ entity bht is
 end entity bht;
 
 architecture behavioral of bht is
-	component bht_fully_associative_cache is
+	component bht_4_way_associative_way is
 		generic (
 			T: integer := 8; -- width of the TAG bits
-			L: integer := 8 -- line size
+			W: integer := 8; -- line size
+			NL: integer := 64 -- total number of lines in the cache (internally they're split in sets)
 		);
 		port (
 			clk: in std_logic;
 			rst: in std_logic;
 			update_line: in std_logic; -- if update_line = '1' the cache adds a new entry to the cache
 			update_data: in std_logic; -- if update_data = '1' the cache only replace the data corresponding to a tag
-			read_address: in std_logic_vector(T-1 downto 0); -- address to be read from the cache
-			rw_address: in std_logic_vector(T-1 downto 0); -- address to be written from the cache
-			data_in: in std_logic_vector(L-1 downto 0); -- data to be added to the cache
+			read_address: in std_logic_vector(T+n_width(NL/4)-1 downto 0); -- address to be read from the cache
+			rw_address: in std_logic_vector(T+n_width(NL/4)-1 downto 0); -- address to be written from the cache
+			data_in: in std_logic_vector(W-1 downto 0); -- data to be added to the cache
 			hit_miss_read: out std_logic; -- if read_address generates a hit then hit_miss_read = '1', otherwise hit_miss_read ='0'
-			data_out_read: out std_logic_vector(L-1 downto 0); -- if hit_miss_read = '1' it contains the searched data, otherwise its value must not be considered
+			data_out_read: out std_logic_vector(W-1 downto 0); -- if hit_miss_read = '1' it contains the searched data, otherwise its value must not be considered
 			hit_miss_rw: out std_logic; -- if rw_address generates a hit then hit_miss_rw = '1', otherwise hit_miss_rw ='0'
-			data_out_rw: out std_logic_vector(L-1 downto 0) -- if hit_miss_rw = '1' it contains the searched data, otherwise its value must not be considered
+
+			data_out_rw: out std_logic_vector(W-1 downto 0) -- if hit_miss_rw = '1' it contains the searched data, otherwise its value must not be considered
 		);
-	end component bht_fully_associative_cache;
+	end component bht_4_way_associative_way;
 
 	constant STRONGLY_NOT_TAKEN: std_logic_vector(1 downto 0) := "00";
 	constant WEAKLY_NOT_TAKEN: std_logic_vector(1 downto 0) := "01";
@@ -69,10 +72,11 @@ architecture behavioral of bht is
 	signal cache_hit_read, cache_hit_rw: std_logic;
 
 begin
-	cache: bht_fully_associative_cache
+	cache: bht_4_way_associative_way
 		generic map (
-			T => A,
-			L => A+2 -- store the target address + 2 prediction bits
+			T => A-3,
+			W => A+2, -- store the target address + 2 prediction bits
+			NL => 32
 		)
 		port map (
 			clk => clk,
@@ -84,7 +88,7 @@ begin
 			data_in => cache_data_in,
 			hit_miss_read => cache_hit_read,
 			data_out_read => cache_data_out_read,
-			hit_miss_rw => cache_hit_rw,
+			hit_miss_rw => cache_hit_rw,			
 			data_out_rw => cache_data_out_rw
 		);
 
