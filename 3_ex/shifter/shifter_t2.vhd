@@ -76,13 +76,15 @@ architecture beh of shifter_t2 is
     -- to the actual number of positions that has to be shifted.
     
 	shift_p: process(mask00, mask08, mask16, mask24, shift, shift_type)
+			variable msb: std_logic_vector(1 downto 0);
 		begin
             
             -- Select the closest mask taking into account the 2 MSB of 
             -- the shift signal. Detect if it is a left or right shift
             -- and extract the bits of the mask that represent the final result.
-             
-			case shift(4 downto 3) is
+            msb := shift(4 downto 3);
+
+			case msb is
 				when "00" =>
 				    if (shift_type(0) = '1') then -- logical shift left
                        data_out <= mask00(31+to_integer(unsigned(not(shift(2 downto 0)))) downto to_integer(unsigned(not(shift(2 downto 0)))));     
