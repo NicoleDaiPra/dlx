@@ -2,22 +2,21 @@
 use ieee.std_logic_1164.all;
 
 -- BHT for the fetch stage implementation.
--- It takes in input the address fetched and checks if it is contained in its cache.
+-- It takes as input the address fetched and checks if it is contained in its cache.
 -- If so, it returns the predicted address if the jump will be taken and sets the 'predicted_taken'
 -- signal to 1, otherwise it's set to 0 and the value in 'next_pc' must not be taken
 -- in consideration.
 -- A branch not known to the cache can be added by setting the update signal to a specified value
 -- and the address is passed through the 'instr_to_update' signal. These pins are also
 -- used to update the branch prediction bits after the instruction's execution.
+--
+-- The cache is connected through an entity interface in order to synthetize only this component
+-- while being still able to simulate it
 entity bht is
 	generic (
-		A: integer := 32; -- address length
-		NL: integer := 128 -- cache size in line
+		A: integer := 32 -- address length
 	);
 	port (
-		clk: in std_logic;
-		rst: in std_logic;
-
 		pc: in std_logic_vector(A-1 downto 0); -- current fetched instruction (program counter value)
 		next_pc: out std_logic_vector(A-1 downto 0); -- memory address to be fetched in the next cycle
 		predicted_taken: out std_logic; -- tells if a branch has been recognized and it's predicted to be taken
@@ -30,32 +29,20 @@ entity bht is
 		update: in std_logic_vector(1 downto 0);
 		instr_to_update: in std_logic_vector(A-1 downto 0); -- address instruction to be updated/added
 		target_addr: in std_logic_vector(A-1 downto 0); -- next address to be fetched in case of a predicted taken
-		taken: in std_logic -- if 1 the branch has been taken, 0 if not.
+		taken: in std_logic; -- if 1 the branch has been taken, 0 if not.;
+
+		-- cache interface
+		cache_update_line: out std_logic;
+		cache_update_data: out std_logic;
+		cache_data_in: out std_logic_vector(A+2-1 downto 0);
+		cache_data_out_read: in std_logic_vector(A+2-1 downto 0);
+		cache_data_out_rw: in std_logic_vector(A+2-1 downto 0);
+		cache_hit_read: in std_logic;
+		cache_hit_rw: in std_logic
 	);
 end entity bht;
 
 architecture behavioral of bht is
-	component bht_fully_associative_cache is
-		generic (
-			T: integer := 8; -- width of the TAG bits
-			L: integer := 8; -- line size
-			NL: integer := 32 -- number of lines in the cache
-		);
-		port (
-			clk: in std_logic;
-			rst: in std_logic;
-			update_line: in std_logic; -- if update_line = '1' the cache adds a new entry to the cache
-			update_data: in std_logic; -- if update_data = '1' the cache only replace the data corresponding to a tag
-			read_address: in std_logic_vector(T-1 downto 0); -- address to be read from the cache
-			rw_address: in std_logic_vector(T-1 downto 0); -- address to be written from the cache
-			data_in: in std_logic_vector(L-1 downto 0); -- data to be added to the cache
-			hit_miss_read: out std_logic; -- if read_address generates a hit then hit_miss_read = '1', otherwise hit_miss_read ='0'
-			data_out_read: out std_logic_vector(L-1 downto 0); -- if hit_miss_read = '1' it contains the searched data, otherwise its value must not be considered
-			hit_miss_rw: out std_logic; -- if rw_address generates a hit then hit_miss_rw = '1', otherwise hit_miss_rw ='0'
-			data_out_rw: out std_logic_vector(L-1 downto 0) -- if hit_miss_rw = '1' it contains the searched data, otherwise its value must not be considered
-		);
-	end component bht_fully_associative_cache;
-
 	constant STRONGLY_NOT_TAKEN: std_logic_vector(1 downto 0) := "00";
 	constant WEAKLY_NOT_TAKEN: std_logic_vector(1 downto 0) := "01";
 	constant WEAKLY_TAKEN: std_logic_vector(1 downto 0) := "10";
@@ -66,31 +53,7 @@ architecture behavioral of bht is
 	constant NEW_BRANCH_UPDATE: std_logic_vector(1 downto 0) := "10";
 	constant RESERVED: std_logic_vector(1 downto 0) := "11";
 
-	signal cache_update_line, cache_update_data: std_logic;
-	signal cache_data_in, cache_data_out_read, cache_data_out_rw: std_logic_vector(A+2-1 downto 0); -- prediction_bits&target_address
-	signal cache_hit_read, cache_hit_rw: std_logic;
-
 begin
-	cache: bht_fully_associative_cache
-		generic map (
-			T => A,
-			L => A+2, -- store the target address + 2 prediction bits
-			NL => NL
-		)
-		port map (
-			clk => clk,
-			rst => rst,
-			update_line => cache_update_line,
-			update_data => cache_update_data,
-			read_address => pc,
-			rw_address => instr_to_update,
-			data_in => cache_data_in,
-			hit_miss_read => cache_hit_read,
-			data_out_read => cache_data_out_read,
-			hit_miss_rw => cache_hit_rw,
-			data_out_rw => cache_data_out_rw
-		);
-
 	next_pc <= cache_data_out_read(A-1 downto 0);
 	addr_known <= cache_hit_read;
 
