@@ -12,28 +12,26 @@ architecture test of tb_bht is
 			A: integer := 32 -- address length
 		);
 		port (
-			pc: in std_logic_vector(A-1 downto 0); -- current fetched instruction (program counter value)
 			next_pc: out std_logic_vector(A-1 downto 0); -- memory address to be fetched in the next cycle
 			predicted_taken: out std_logic; -- tells if a branch has been recognized and it's predicted to be taken
-			addr_known: out std_logic; -- tells if the instruction in 'pc' is known to the BHT, regardless of the predictred_taken value
+			addr_known: out std_logic; -- tells if the instruction passed to the cache is known to the BHT, regardless of the predictred_taken value
 
 			-- "00" if nothing has to be done
 			-- "01" if an already known instruction has to be updated (taken/not taken)
 			-- "10" if a new instruction must be added
 			-- "11" reserved
 			update: in std_logic_vector(1 downto 0);
-			instr_to_update: in std_logic_vector(A-1 downto 0); -- address instruction to be updated/added
 			target_addr: in std_logic_vector(A-1 downto 0); -- next address to be fetched in case of a predicted taken
-			taken: in std_logic; -- if 1 the branch has been taken, 0 if not.
+			taken: in std_logic; -- if 1 the branch has been taken, 0 if not.;
 
 			-- cache interface
-			cache_update_line: out std_logic;
-			cache_update_data: out std_logic;
-			cache_data_in: out std_logic_vector(A+2-1 downto 0);
-			cache_data_out_read: in std_logic_vector(A+2-1 downto 0);
-			cache_data_out_rw: in std_logic_vector(A+2-1 downto 0);
-			cache_hit_read: in std_logic;
-			cache_hit_rw: in std_logic
+			cache_update_line: out std_logic; -- set to 1 if the cache has to update a whole line
+			cache_update_data: out std_logic; -- set to 1 if the cache has to update only a line's data
+			cache_data_in: out std_logic_vector(A+2-1 downto 0); -- data to be written in the cache
+			cache_data_out_read: in std_logic_vector(A+2-1 downto 0); -- data out of the read-only address port of the cache
+			cache_data_out_rw: in std_logic_vector(A+2-1 downto 0); -- data out of the read-write address port of the cache
+			cache_hit_read: in std_logic; -- set to 1 if the read-only address generated a hit 
+			cache_hit_rw: in std_logic -- set to 1 if the read-write address generated a hit
 		);
 	end component bht;
 
@@ -101,12 +99,10 @@ begin
 			A => A
 		)
 		port map (
-			pc => pc,
 			next_pc => next_pc,
 			predicted_taken => predicted_taken,
 			addr_known => addr_known,
 			update => update,
-			instr_to_update => instr_to_update,
 			target_addr => target_addr,
 			taken => taken,
 			cache_update_line => cache_update_line,
