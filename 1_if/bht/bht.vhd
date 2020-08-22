@@ -56,7 +56,7 @@ begin
 	addr_known <= cache_hit_read;
 
 	comblogic: process(cache_hit_read, cache_data_out_read, cache_hit_rw, cache_data_out_rw,
-						pc, update, instr_to_update, target_addr, taken)
+						update, target_addr, taken)
 		variable predicted_t: std_logic;
 		variable predicted_state_read, predicted_state_rw: std_logic_vector(1 downto 0);
 	begin
