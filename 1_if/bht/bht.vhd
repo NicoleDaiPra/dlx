@@ -10,7 +10,7 @@ use ieee.std_logic_1164.all;
 -- and the address is passed through the 'instr_to_update' signal. These pins are also
 -- used to update the branch prediction bits after the instruction's execution.
 --
--- The cache is connected through an entity interface in order to synthetize only this component
+-- The cache is connected through an entity interface in order to synthesize only this component
 -- while being still able to simulate it
 entity bht is
 	generic (

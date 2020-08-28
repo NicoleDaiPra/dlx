@@ -80,10 +80,12 @@ begin
 
 	state_reg: process(clk)
 	begin
-		if (rst = '0') then
-			curr_timestamps <= (others => (others => '0'));
-		elsif (clk = '1' and clk'event) then
-			curr_timestamps <= next_timestamps;
+		if (clk = '1' and clk'event) then
+			if (rst = '0') then
+				curr_timestamps <= (others => (others => '0'));
+			else
+				curr_timestamps <= next_timestamps;
+			end if;
 		end if;
 	end process state_reg;
 

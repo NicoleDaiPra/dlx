@@ -21,10 +21,12 @@ begin
 
 	state_reg: process(clk)
 	begin
-		if (rst = '0') then
-			curr_o <= (others => '0');
-		elsif (clk = '1' and clk'event) then
-			curr_o <= next_o;
+		if (clk = '1' and clk'event) then
+			if (rst = '0') then
+				curr_o <= (others => '0');
+			else
+				curr_o <= next_o;
+			end if;
 		end if;
 	end process state_reg;
 

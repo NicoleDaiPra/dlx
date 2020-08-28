@@ -30,14 +30,16 @@ architecture behavioral of bht_cache_line is
 begin
 	state_reg: process(clk)
 	begin
-		if (rst = '0') then
-			curr_valid <= '0';
-			curr_tag <= (others => '0');
-			curr_data <= (others => '0');
-		elsif (clk = '1' and clk'event) then
-			curr_valid <= next_valid;
-			curr_tag <= next_tag;
-			curr_data <= next_data;
+		if (clk = '1' and clk'event) then
+			if (rst = '0') then
+				curr_valid <= '0';
+				curr_tag <= (others => '0');
+				curr_data <= (others => '0');
+			else
+				curr_valid <= next_valid;
+				curr_tag <= next_tag;
+				curr_data <= next_data;
+			end if;	
 		end if;
 	end process state_reg;
 

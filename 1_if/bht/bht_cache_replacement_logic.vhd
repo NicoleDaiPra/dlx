@@ -20,10 +20,12 @@ architecture behavioral of bht_cache_replacement_logic is
 begin
 	state_reg: process(clk)
 	begin
-		if (rst = '0') then
-			curr_repl <= (0 => '1', others => '0');
-		elsif (clk = '1' and clk'event) then
-			curr_repl <= next_repl;	
+		if (clk = '1' and clk'event) then
+			if (rst = '0') then
+				curr_repl <= (0 => '1', others => '0');
+			else
+				curr_repl <= next_repl;
+			end if;	
 		end if;
 	end process state_reg;
 
