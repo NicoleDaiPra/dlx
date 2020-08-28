@@ -95,74 +95,20 @@ architecture beh of alu is
 	    	alu_flags: out std_logic_vector(2 downto 0) 	-- Z: zero flag, V: overflow flag, S: sign flag
 	    );
 	end component alu_out_selector;
-	
-	component reg_en is
-        generic (
-            N: integer := 32
-        );
-        port (
-            d: in std_logic_vector(N-1 downto 0);
-            en: in std_logic;
-            clk: in std_logic;
-            rst: in std_logic;
-            q: out std_logic_vector(N-1 downto 0)	
-        );
-    end component reg_en;
 
-    type operand_array is array (0 to 3) of std_logic_vector(31 downto 0);
-    signal a_array: operand_array;
-	signal b_array: operand_array;
-	
 	signal adder_out, shifter_out, logicals_out: std_logic_vector(31 downto 0);
 	signal mul_out: std_logic_vector(63 downto 0);
 	signal adder_cout: std_logic;
-	
-	signal enable: std_logic_vector(3 downto 0);
-	
 
 begin
-
-    with op_type select
-        enable <= "0001" when "00",
-                  "0010" when "01",
-                  "0100" when "10",
-                  "1000" when "11",
-                  "0000" when others;
-        
-    regs: for i in 0 to 3 generate
-        reg_i_op_a: reg_en
-            generic map (
-                N => 32
-            )
-            port map (
-                d => op_a,
-                en => enable(i),
-                clk => clk,
-                rst => rst,
-                q => a_array(i)
-            );
-            
-        reg_i_op_b: reg_en
-            generic map (
-                N => 32
-            )
-            port map (
-                d => op_b,
-                en => enable(i),
-                clk => clk,
-                rst => rst,
-                q => b_array(i)
-            );
-    end generate regs;
-    
 	
 	add_sub: p4_adder
 		generic map (
 			N => 32
 		)
 		port map (
-			a => a_array(0),
-			b => b_array(0),
+			a => op_a,
+			b => op_b,
 			cin => sub_add,
 			s => adder_out,
 			cout => adder_cout,
@@ -174,15 +120,15 @@ begin
 			N => 32
 		)
 		port map (
-			a => a_array(1),
-			b => b_array(1),
+			a => op_a,
+			b => op_b,
 			y => mul_out
 		);
 
 	shifter: shifter_t2
 		port map (
-			data_in => a_array(2),
-			shift => b_array(2)(4 downto 0),
+			data_in => op_a,
+			shift => op_b(4 downto 0),
 			shift_type => shift_type,
 			data_out => shifter_out
 		);
@@ -192,8 +138,8 @@ begin
 			N => 32
 		)
 		port map (
-			a => a_array(3),
-			b => b_array(3),
+			a => op_a,
+			b => op_b,
 			sel => log_type,
 			res => logicals_out
 		);
@@ -219,6 +165,6 @@ begin
 			alu_sel_out_low => alu_out_low,
 			alu_flags => alu_flags
 		);
-    
+
 
 end beh;
