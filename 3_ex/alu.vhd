@@ -11,8 +11,15 @@ entity alu is
     	op_type: in std_logic_vector(1 downto 0);
     	op_sign: in std_logic; 							-- 1 if the operands are signed, 0 otherwise
 
-    	op_a: in std_logic_vector(31 downto 0);
-    	op_b: in std_logic_vector(31 downto 0);
+    	-- operands
+    	a_adder: in std_logic_vector(31 downto 0);
+    	b_adder: in std_logic_vector(31 downto 0);
+    	a_mult: in std_logic_vector(31 downto 0);
+    	b_mult: in std_logic_vector(31 downto 0);
+    	a_shift: in std_logic_vector(31 downto 0);
+    	b_shift: in std_logic_vector(31 downto 0);
+    	a_log: in std_logic_vector(31 downto 0);
+    	b_log: in std_logic_vector(31 downto 0);
 
     	sub_add: in std_logic;							-- 1 if it is a subtraction, 0 otherwise
     	shift_type: in std_logic_vector(3 downto 0);
@@ -107,8 +114,8 @@ begin
 			N => 32
 		)
 		port map (
-			a => op_a,
-			b => op_b,
+			a => a_adder,
+			b => b_adder,
 			cin => sub_add,
 			s => adder_out,
 			cout => adder_cout,
@@ -120,15 +127,15 @@ begin
 			N => 32
 		)
 		port map (
-			a => op_a,
-			b => op_b,
+			a => a_mult,
+			b => b_mult,
 			y => mul_out
 		);
 
 	shifter: shifter_t2
 		port map (
-			data_in => op_a,
-			shift => op_b(4 downto 0),
+			data_in => a_shift,
+			shift => b_shift(4 downto 0),
 			shift_type => shift_type,
 			data_out => shifter_out
 		);
@@ -138,8 +145,8 @@ begin
 			N => 32
 		)
 		port map (
-			a => op_a,
-			b => op_b,
+			a => a_log,
+			b => b_log,
 			sel => log_type,
 			res => logicals_out
 		);
@@ -151,8 +158,8 @@ begin
 		port map (
 			clk => clk,
 			rst => rst,
-			a => op_a,
-			b => op_b,
+			a => a_adder,
+			b => b_adder,
 			sub_add => sub_add,
 			op_type => op_type,
 			op_sign => op_sign,
