@@ -27,7 +27,13 @@ entity alu is
     	
     	alu_out_high: out std_logic_vector(31 downto 0);
     	alu_out_low: out std_logic_vector(31 downto 0);
-    	alu_flags: out std_logic_vector(2 downto 0) 	-- Z: zero flag, V: overflow flag, S: sign flag
+    	alu_flags: out std_logic_vector(2 downto 0); 	-- Z: zero flag, V: overflow flag, S: sign flag
+		le: out std_logic; -- less than or equal
+		lt: out std_logic; -- less than
+		ge: out std_logic; -- greater than or equal
+		gt: out std_logic; -- greater than
+		eq: out std_logic; -- equal
+		ne: out std_logic -- not equal
 		);
 end alu;
 
@@ -99,9 +105,28 @@ architecture beh of alu is
 	    	logicals_out: in std_logic_vector(N-1 downto 0);
 	    	alu_sel_out_high: out std_logic_vector(N-1 downto 0);
 	    	alu_sel_out_low: out std_logic_vector(N-1 downto 0);
-	    	alu_flags: out std_logic_vector(2 downto 0) 	-- Z: zero flag, V: overflow flag, S: sign flag
+	    	alu_flags: out std_logic_vector(2 downto 0) 	-- Z: zero flag, V: overflow flag, S: sign flag 
 	    );
 	end component alu_out_selector;
+
+	component comparator is
+		generic (
+			N: integer := 32
+		);
+		port (
+			res: in std_logic_vector(N-1 downto 0); -- adder/subtractor result
+			cout: in std_logic; -- adder/subtractor cout
+			a_msb: in std_logic; -- MSB of the first operand
+			b_msb: in std_logic; -- MSB of the second operand
+			op_sign: in std_logic; -- 1 if the operands are signed, 0 otherwise
+			le: out std_logic; -- less than or equal
+			lt: out std_logic; -- less than
+			ge: out std_logic; -- greater than or equal
+			gt: out std_logic; -- greater than
+			eq: out std_logic; -- equal
+			ne: out std_logic -- not equal
+		);
+	end component comparator;
 
 	signal adder_out, shifter_out, logicals_out: std_logic_vector(31 downto 0);
 	signal mul_out: std_logic_vector(63 downto 0);
@@ -171,6 +196,24 @@ begin
 			alu_sel_out_high => alu_out_high,
 			alu_sel_out_low => alu_out_low,
 			alu_flags => alu_flags
+		);
+
+	comp: comparator
+		generic map (
+			N => 32
+		)
+		port map (
+			res => adder_out,
+			cout => adder_cout,
+			a_msb => a_adder(31),
+			b_msb => b_adder(31),
+			op_sign => op_sign,
+			le => le,
+			lt => lt,
+			ge => ge,
+			gt => gt,
+			eq => eq,
+			ne => ne
 		);
 
 
