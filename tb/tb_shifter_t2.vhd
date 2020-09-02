@@ -70,6 +70,14 @@ architecture tb of tb_shifter_t2 is
                 wait for 5 ns;
             end loop;
             
+            -- arithmetic shift right with a positive number
+            data_in <= "01010011000000000001011000110011";
+            shift_type <= "0100"; -- arithmetic right
+            for index in 0 to 31 loop
+                shift <= std_logic_vector(to_unsigned(index,5));
+                wait for 5 ns;
+            end loop;
+            
             wait;
         end process test_p;
 

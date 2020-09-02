@@ -77,6 +77,8 @@ architecture beh of shifter_t2 is
     
 	shift_p: process(mask00, mask08, mask16, mask24, shift, shift_type)
 			variable msb: std_logic_vector(1 downto 0);
+			
+			variable bound: integer;
 		begin
             
             -- Select the closest mask taking into account the 2 MSB of 
@@ -87,30 +89,135 @@ architecture beh of shifter_t2 is
 			case msb is
 				when "00" =>
 				    if (shift_type(0) = '1') then -- logical shift left
-                       data_out <= mask00(31+to_integer(unsigned(not(shift(2 downto 0)))) downto to_integer(unsigned(not(shift(2 downto 0)))));     
+				        bound := to_integer(unsigned(not(shift(2 downto 0))));
+				        
+				        case bound is
+				            when 0 => data_out <= mask00(31 downto 0);
+				            when 1 => data_out <= mask00(32 downto 1);
+				            when 2 => data_out <= mask00(33 downto 2);
+				            when 3 => data_out <= mask00(34 downto 3);
+				            when 4 => data_out <= mask00(35 downto 4);
+				            when 5 => data_out <= mask00(36 downto 5);
+				            when 6 => data_out <= mask00(37 downto 6);
+				            when 7 => data_out <= mask00(38 downto 7);  
+				            when others => data_out <= (others => '0');      
+				        end case;
+				        
+                       --data_out <= mask00(31+to_integer(unsigned(not(shift(2 downto 0)))) downto to_integer(unsigned(not(shift(2 downto 0)))));     
 				    else -- logical shift right
-                        data_out <= mask00(31+to_integer(unsigned(shift(2 downto 0))) downto to_integer(unsigned(shift(2 downto 0))));
+				    	bound := to_integer(unsigned(shift(2 downto 0)));
+
+                        case bound is
+				            when 0 => data_out <= mask00(31 downto 0);
+				            when 1 => data_out <= mask00(32 downto 1);
+				            when 2 => data_out <= mask00(33 downto 2);
+				            when 3 => data_out <= mask00(34 downto 3);
+				            when 4 => data_out <= mask00(35 downto 4);
+				            when 5 => data_out <= mask00(36 downto 5);
+				            when 6 => data_out <= mask00(37 downto 6);
+				            when 7 => data_out <= mask00(38 downto 7);  
+				            when others => data_out <= (others => '0');      
+				        end case;
+                        --data_out <= mask00(31+to_integer(unsigned(shift(2 downto 0))) downto to_integer(unsigned(shift(2 downto 0))));
 				    end if;
 
 				when "01" => 
 					if (shift_type(0) = '1') then -- logical shift left 
-                        data_out <= mask08(31+to_integer(unsigned(not(shift(2 downto 0)))) downto to_integer(unsigned(not(shift(2 downto 0)))));   
+						bound := to_integer(unsigned(not(shift(2 downto 0))));
+				        
+				        case bound is
+				            when 0 => data_out <= mask08(31 downto 0);
+				            when 1 => data_out <= mask08(32 downto 1);
+				            when 2 => data_out <= mask08(33 downto 2);
+				            when 3 => data_out <= mask08(34 downto 3);
+				            when 4 => data_out <= mask08(35 downto 4);
+				            when 5 => data_out <= mask08(36 downto 5);
+				            when 6 => data_out <= mask08(37 downto 6);
+				            when 7 => data_out <= mask08(38 downto 7);    
+				            when others => data_out <= (others => '0');    
+				        end case;
+                        --data_out <= mask08(31+to_integer(unsigned(not(shift(2 downto 0)))) downto to_integer(unsigned(not(shift(2 downto 0)))));   
 				    else -- logical shift right
-                        data_out <= mask08(31+to_integer(unsigned(shift(2 downto 0))) downto to_integer(unsigned(shift(2 downto 0))));
+					    bound := to_integer(unsigned(shift(2 downto 0)));
+
+                        case bound is
+				            when 0 => data_out <= mask08(31 downto 0);
+				            when 1 => data_out <= mask08(32 downto 1);
+				            when 2 => data_out <= mask08(33 downto 2);
+				            when 3 => data_out <= mask08(34 downto 3);
+				            when 4 => data_out <= mask08(35 downto 4);
+				            when 5 => data_out <= mask08(36 downto 5);
+				            when 6 => data_out <= mask08(37 downto 6);
+				            when 7 => data_out <= mask08(38 downto 7); 
+				            when others => data_out <= (others => '0');       
+				        end case;
+                        --data_out <= mask08(31+to_integer(unsigned(shift(2 downto 0))) downto to_integer(unsigned(shift(2 downto 0))));
 				    end if;
 				    
 				when "10" => 
 				    if (shift_type(0) = '1') then -- logical shift left
-                        data_out <= mask16(31+to_integer(unsigned(not(shift(2 downto 0)))) downto to_integer(unsigned(not(shift(2 downto 0)))));   
+                        bound := to_integer(unsigned(not(shift(2 downto 0))));
+
+                        case bound is
+				            when 0 => data_out <= mask16(31 downto 0);
+				            when 1 => data_out <= mask16(32 downto 1);
+				            when 2 => data_out <= mask16(33 downto 2);
+				            when 3 => data_out <= mask16(34 downto 3);
+				            when 4 => data_out <= mask16(35 downto 4);
+				            when 5 => data_out <= mask16(36 downto 5);
+				            when 6 => data_out <= mask16(37 downto 6);
+				            when 7 => data_out <= mask16(38 downto 7); 
+				            when others => data_out <= (others => '0');       
+				        end case;
+                        --data_out <= mask16(31+to_integer(unsigned(not(shift(2 downto 0)))) downto to_integer(unsigned(not(shift(2 downto 0)))));   
 				    else -- logical shift right
-				        data_out <= mask16(31+to_integer(unsigned(shift(2 downto 0))) downto to_integer(unsigned(shift(2 downto 0))));
+				        bound := to_integer(unsigned(shift(2 downto 0)));
+
+                        case bound is
+				            when 0 => data_out <= mask16(31 downto 0);
+				            when 1 => data_out <= mask16(32 downto 1);
+				            when 2 => data_out <= mask16(33 downto 2);
+				            when 3 => data_out <= mask16(34 downto 3);
+				            when 4 => data_out <= mask16(35 downto 4);
+				            when 5 => data_out <= mask16(36 downto 5);
+				            when 6 => data_out <= mask16(37 downto 6);
+				            when 7 => data_out <= mask16(38 downto 7);  
+				            when others => data_out <= (others => '0');      
+				        end case;
+				        --data_out <= mask16(31+to_integer(unsigned(shift(2 downto 0))) downto to_integer(unsigned(shift(2 downto 0))));
 				    end if;
 					
 				when "11" => 
 				    if (shift_type(0) = '1') then -- logical shift left
-                        data_out <= mask24(31+to_integer(unsigned(not(shift(2 downto 0)))) downto to_integer(unsigned(not(shift(2 downto 0))))); 
+                        bound := to_integer(unsigned(not(shift(2 downto 0))));
+
+                        case bound is
+				            when 0 => data_out <= mask24(31 downto 0);
+				            when 1 => data_out <= mask24(32 downto 1);
+				            when 2 => data_out <= mask24(33 downto 2);
+				            when 3 => data_out <= mask24(34 downto 3);
+				            when 4 => data_out <= mask24(35 downto 4);
+				            when 5 => data_out <= mask24(36 downto 5);
+				            when 6 => data_out <= mask24(37 downto 6);
+				            when 7 => data_out <= mask24(38 downto 7);  
+				            when others => data_out <= (others => '0');      
+				        end case;
+                        --data_out <= mask24(31+to_integer(unsigned(not(shift(2 downto 0)))) downto to_integer(unsigned(not(shift(2 downto 0))))); 
 				    else -- logical shift right
-                        data_out <= mask24(31+to_integer(unsigned(shift(2 downto 0))) downto to_integer(unsigned(shift(2 downto 0))));
+                        bound := to_integer(unsigned(shift(2 downto 0)));
+
+                        case bound is
+				            when 0 => data_out <= mask24(31 downto 0);
+				            when 1 => data_out <= mask24(32 downto 1);
+				            when 2 => data_out <= mask24(33 downto 2);
+				            when 3 => data_out <= mask24(34 downto 3);
+				            when 4 => data_out <= mask24(35 downto 4);
+				            when 5 => data_out <= mask24(36 downto 5);
+				            when 6 => data_out <= mask24(37 downto 6);
+				            when 7 => data_out <= mask24(38 downto 7);   
+				            when others => data_out <= (others => '0');     
+				        end case;
+                        --data_out <= mask24(31+to_integer(unsigned(shift(2 downto 0))) downto to_integer(unsigned(shift(2 downto 0))));
 				    end if;
 				    
 				when others => data_out <= (others => '0');
