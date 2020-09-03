@@ -5,14 +5,14 @@ entity mux_5x1 is
 	generic (
 		NBIT: integer := 4
 	);
-	port ( -- the mux takes N and not N-1 as input because it has to handle the size of the shifted values
-        a: in	std_logic_vector(NBIT downto 0);
-        b: in	std_logic_vector(NBIT downto 0);
-        c: in	std_logic_vector(NBIT downto 0);
-        d: in	std_logic_vector(NBIT downto 0);
-        e: in	std_logic_vector(NBIT downto 0);
+	port (
+        a: in std_logic_vector(NBIT-1 downto 0);
+        b: in std_logic_vector(NBIT-1 downto 0);
+        c: in std_logic_vector(NBIT-1 downto 0);
+        d: in std_logic_vector(NBIT-1 downto 0);
+        e: in std_logic_vector(NBIT-1 downto 0);
         sel: in std_logic_vector(2 downto 0);
-        y: out std_logic_vector(NBIT downto 0)
+        y: out std_logic_vector(NBIT-1 downto 0)
 	);
 end entity mux_5x1;
 
@@ -29,7 +29,7 @@ begin
 	       when "010" => y <= c;
 	       when "011" => y <= d;
 	       when "100" => y <= e;
-	       when others => y <= (others => 'Z');
+	       when others => y <= (others => '0');
 	   end case;    
     end process;
 end architecture behavioral;
