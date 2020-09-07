@@ -9,7 +9,6 @@ entity mul is
 		b: in std_logic_vector(2 downto 0);
 		it: in std_logic_vector(3 downto 0);
 		neg: in std_logic; -- used to negate a before actually multiplying
-		is_signed: in std_logic;
 		adder_feedback: in std_logic_vector(63 downto 0);
 		res: out std_logic_vector(63 downto 0)
 	);
@@ -125,7 +124,6 @@ architecture structural of mul is
 			a_in: in std_logic_vector(63 downto 0);
 			neg_a_in: in std_logic_vector(63 downto 0);
 			sel: in std_logic_vector(3 downto 0);
-			--is_signed: in std_logic;
 			a: out std_logic_vector(63 downto 0);
 			neg_a: out std_logic_vector(63 downto 0);
 			ax2: out std_logic_vector(63 downto 0);
@@ -158,17 +156,8 @@ architecture structural of mul is
 	signal cin: std_logic;
 	signal cout: std_logic;
 	signal mux_op1_sel: std_logic_vector(1 downto 0);
+
 begin
-	-- generate the required shifts of "a"
-	--msb_a <= (others => a(31));
-	--msb_neg_a <= (others => a_neg(31));
-
-	--with is_signed select a_int <= 
-	--	zeros(31 downto 0)&a when '0',
-	--	msb_a&a when others;
-
-	--neg_a_int <= msb_neg_a&a_neg;
-
 	a_shift2 <= a(62 downto 0)&'0';
 	neg_a_shift2 <= a_neg(62 downto 0)&'0';
 
@@ -177,7 +166,6 @@ begin
 			a_in => a,
 			neg_a_in => a_neg,
 			sel => it,
-			--is_signed => is_signed,
 			a => a_shiftn,
 			neg_a => neg_a_shiftn,
 			ax2 => ax2_shiftn,
@@ -226,8 +214,6 @@ begin
 		)
 		port map (
 			a => zeros,
-			--b => a_int,
-			--c => neg_a_int,
 			b => a,
 			c => a_neg,
 			d => a_shift2,

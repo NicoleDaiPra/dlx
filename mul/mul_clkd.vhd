@@ -13,7 +13,6 @@ entity mul_clkd is
 		a: in std_logic_vector(31 downto 0);
 		b: in std_logic_vector(31 downto 0);
 		it: in std_logic_vector(3 downto 0);
-		is_signed: in std_logic;
 		res: out std_logic_vector(63 downto 0)
 	);
 end mul_clkd;
@@ -27,7 +26,6 @@ architecture behavioral of mul_clkd is
 			b: in std_logic_vector(2 downto 0);
 			it: in std_logic_vector(3 downto 0);
 			neg: in std_logic; -- used to negate "a" before actually multiply
-			is_signed: in std_logic;
 			adder_feedback: in std_logic_vector(63 downto 0);
 			res: out std_logic_vector(63 downto 0)
 		);
@@ -92,12 +90,9 @@ begin
 		end if;
 	end process state_reg;
 
-	-- generate the required shifts of "a"
+	-- sign extend "a"
 	msb_a <= (others => a(31));
-
-	with is_signed select a_int <= 
-		zeros(31 downto 0)&a when '0',
-		msb_a&a when others;
+	a_int <= msb_a&a;
 
 	a_reg: reg_en
 		generic map (
@@ -158,7 +153,6 @@ begin
 			b => b_out(2 downto 0),
 			it => it,
 			neg => neg,
-			is_signed => is_signed,
 			adder_feedback => curr_feedback,
 			res => adder_res
 		);

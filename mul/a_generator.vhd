@@ -7,7 +7,6 @@ entity a_generator is
 		a_in: in std_logic_vector(63 downto 0);
 		neg_a_in: in std_logic_vector(63 downto 0);
 		sel: in std_logic_vector(3 downto 0);
-		--is_signed: in std_logic;
 		a: out std_logic_vector(63 downto 0);
 		neg_a: out std_logic_vector(63 downto 0);
 		ax2: out std_logic_vector(63 downto 0);
@@ -17,21 +16,8 @@ end a_generator;
 
 architecture behavioral of a_generator is
 	constant zeros : std_logic_vector(31 downto 0) := (others => '0'); 
-	--signal a_int, neg_a_int: std_logic_vector(63 downto 0);
-	--signal zeros, msb_a, msb_neg_a: std_logic_vector(31 downto 0);
 
 begin
-	--zeros <= (others => '0');
-	--msb_a <= (others => a_in(31));
-	--msb_neg_a <= (others => neg_a_in(31));
-
-	--with is_signed select a_int <= 
-	--	zeros&a_in when '0',
-	--	msb_a&a_in when others;
-
-	--neg_a_int <= msb_neg_a&neg_a_in;
-
-	--comblogic: process(a_int, neg_a_int, sel, zeros)
 	comblogic: process(a_in, neg_a_in, sel)
 	begin
 		case (sel) is
