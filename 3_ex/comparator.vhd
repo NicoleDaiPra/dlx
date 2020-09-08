@@ -22,7 +22,7 @@ entity comparator is
 	);
 end entity comparator;
 
-architecture brehavioral of comparator is
+architecture behavioral of comparator is
 	signal res_nor: std_logic;
 	signal cout_not: std_logic;
 	signal lt_signed, gt_signed: std_logic;
@@ -41,4 +41,4 @@ begin
 	ge <= (cout or gt_signed) and (not lt_signed); 
 	--gt <= (cout and (not res_nor)) or gt_signed; -- again, let's hope the tool notices the double negation
 	gt <= (gt_signed or (cout and (not res_nor))) and (not lt_signed);
-end architecture brehavioral;
+end architecture behavioral;
