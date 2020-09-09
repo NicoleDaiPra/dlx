@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 -- This component implements a FIFO replacement logic
-entity bht_cache_replacement_logic is
+entity btb_cache_replacement_logic is
 	generic (
 		NL: integer := 128
 	);
@@ -12,9 +12,9 @@ entity bht_cache_replacement_logic is
 		cache_update: in std_logic; -- if 1 the cache wants to update a line
 		line_update: out std_logic_vector(NL-1 downto 0) -- if the i-th bit is set to 1 the i-th line updates its content
 	);
-end entity bht_cache_replacement_logic;
+end entity btb_cache_replacement_logic;
 
-architecture behavioral of bht_cache_replacement_logic is
+architecture behavioral of btb_cache_replacement_logic is
 	signal curr_repl, next_repl: std_logic_vector(NL-1 downto 0);
 	signal cu_extended: std_logic_vector(NL-1 downto 0);
 begin

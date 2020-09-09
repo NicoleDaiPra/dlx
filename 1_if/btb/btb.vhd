@@ -1,7 +1,7 @@
  library ieee;
 use ieee.std_logic_1164.all;
 
--- BHT for the fetch stage implementation.
+-- btb for the fetch stage implementation.
 -- It takes as input the address fetched and checks if it is contained in its cache.
 -- If so, it returns the predicted address if the jump will be taken and sets the 'predicted_taken'
 -- signal to 1, otherwise it's set to 0 and the value in 'next_pc' must not be taken
@@ -12,14 +12,14 @@ use ieee.std_logic_1164.all;
 --
 -- The cache is connected through an entity interface in order to synthesize only this component
 -- while being still able to simulate it
-entity bht is
+entity btb is
 	generic (
 		A: integer := 32 -- address length
 	);
 	port (
 		next_pc: out std_logic_vector(A-1 downto 0); -- memory address to be fetched in the next cycle
 		predicted_taken: out std_logic; -- tells if a branch has been recognized and it's predicted to be taken
-		addr_known: out std_logic; -- tells if the instruction passed to the cache is known to the BHT, regardless of the predictred_taken value
+		addr_known: out std_logic; -- tells if the instruction passed to the cache is known to the btb, regardless of the predictred_taken value
 
 		-- "00" if nothing has to be done
 		-- "01" if an already known instruction has to be updated (taken/not taken)
@@ -38,9 +38,9 @@ entity bht is
 		cache_hit_read: in std_logic; -- set to 1 if the read-only address generated a hit 
 		cache_hit_rw: in std_logic -- set to 1 if the read-write address generated a hit
 	);
-end entity bht;
+end entity btb;
 
-architecture behavioral of bht is
+architecture behavioral of btb is
 	constant STRONGLY_NOT_TAKEN: std_logic_vector(1 downto 0) := "00";
 	constant WEAKLY_NOT_TAKEN: std_logic_vector(1 downto 0) := "01";
 	constant WEAKLY_TAKEN: std_logic_vector(1 downto 0) := "10";
