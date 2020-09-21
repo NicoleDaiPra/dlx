@@ -3,9 +3,8 @@ use ieee.std_logic_1164.all;
 use ieee.std_logic_misc.all;
 use work.fun_pack.n_width;
 
--- Fully associative cache implementation.
--- It's possible to define the width of the tag bits, the size of a line
--- and how much lines the cache contains (it must be a power-of-2 value).
+-- 32-entries fully associative cache implementation.
+-- It's possible to define the width of the tag bits and the size of a line.
 -- The replacement policy is FIFO.
 -- This cache doesn't support multiple words stored into a single line
 -- as it is meant to be used inside a BHT.
@@ -16,8 +15,7 @@ use work.fun_pack.n_width;
 entity btb_fully_associative_cache is
 	generic (
 		T: integer := 8; -- width of the TAG bits
-		L: integer := 8; -- line size
-		NL: integer := 32 -- number of lines in the cache
+		L: integer := 8 -- line size
 	);
 	port (
 		clk: in std_logic;
@@ -35,94 +33,121 @@ entity btb_fully_associative_cache is
 end entity btb_fully_associative_cache;
 
 architecture structural of btb_fully_associative_cache is
-component btb_cache_line is
-	generic (
-		T: integer := 22; -- tag bit size
-		L: integer := 32 -- line size
-	);
-	port (
-		clk: in std_logic;
-		rst: in std_logic;
-		update_line: in std_logic; -- if update_line = '1' the line stores the incoming data and tag
-		update_data: in std_logic; -- if update_line = '1' the line stores the incoming data, maintaining the tag
-		tag_in: in std_logic_vector(T-1 downto 0); -- tag to be saved when update = 1
-		data_in: in std_logic_vector(L-1 downto 0); -- data to be added to the line
-		valid: out std_logic; -- 1 if the data contained in the line is valid, 0 otherwise
-		tag_out: out std_logic_vector(T-1 downto 0); -- tag stored in the line
-		data_out: out std_logic_vector(L-1 downto 0) -- output containing the word chosen with offset
-	);
-end component btb_cache_line;
+	component btb_cache_line is
+		generic (
+			T: integer := 22; -- tag bit size
+			L: integer := 32 -- line size
+		);
+		port (
+			clk: in std_logic;
+			rst: in std_logic;
+			update_line: in std_logic; -- if update_line = '1' the line stores the incoming data and tag
+			update_data: in std_logic; -- if update_line = '1' the line stores the incoming data, maintaining the tag
+			tag_in: in std_logic_vector(T-1 downto 0); -- tag to be saved when update = 1
+			data_in: in std_logic_vector(L-1 downto 0); -- data to be added to the line
+			valid: out std_logic; -- 1 if the data contained in the line is valid, 0 otherwise
+			tag_out: out std_logic_vector(T-1 downto 0); -- tag stored in the line
+			data_out: out std_logic_vector(L-1 downto 0) -- output containing the word chosen with offset
+		);
+	end component btb_cache_line;
 
-component btb_cache_replacement_logic is
-	generic (
-		NL: integer := 128
-	);
-	port (
-		clk: in std_logic;
-		rst: in std_logic;
-		cache_update: in std_logic; -- if 1 the cache wants to update a line
-		line_update: out std_logic_vector(NL-1 downto 0) -- if the i-th bit is set to 1 the i-th line updates its content
-	);
-end component btb_cache_replacement_logic;
+	component btb_cache_replacement_logic is
+		generic (
+			NL: integer := 128
+		);
+		port (
+			clk: in std_logic;
+			rst: in std_logic;
+			cache_update: in std_logic; -- if 1 the cache wants to update a line
+			line_update: out std_logic_vector(NL-1 downto 0) -- if the i-th bit is set to 1 the i-th line updates its content
+		);
+	end component btb_cache_replacement_logic;
 
-component equality_comparator is
-	generic (
-		N: integer := 32 -- number of bits
-	);
-	port (
-		a: in std_logic_vector(N-1 downto 0);
-		b: in std_logic_vector(N-1 downto 0);
-		o: out std_logic
-	);
-end component equality_comparator;
+	component equality_comparator is
+		generic (
+			N: integer := 32 -- number of bits
+		);
+		port (
+			a: in std_logic_vector(N-1 downto 0);
+			b: in std_logic_vector(N-1 downto 0);
+			o: out std_logic
+		);
+	end component equality_comparator;
 
-component and2 is
-	port (
-		a: in std_logic;
-		b: in std_logic;
-		o: out std_logic
-	);
-end component and2;
+	component and2 is
+		port (
+			a: in std_logic;
+			b: in std_logic;
+			o: out std_logic
+		);
+	end component and2;
 
-component pri_encoder_generic is
-	generic (
-		N: integer := 128
-	);
-	port (
-		i: in std_logic_vector(N-1 downto 0);
-		enc: out std_logic_vector(n_width(N)-1 downto 0)
-	);
-end component pri_encoder_generic;
+	component encoder_32x5 is
+		port (
+			i: in std_logic_vector(31 downto 0);
+			enc: out std_logic_vector(4 downto 0)
+		);
+	end component encoder_32x5;
 
-component mux_nx1 is
-	generic (
-		N: integer := 32; -- data bit size
-		M: integer := 128 -- number of elements to be muxed
-	);
-	port (
-		i: in std_logic_vector(N*M-1 downto 0);
-		sel: in std_logic_vector(n_width(M)-1 downto 0);
-		o: out std_logic_vector(N-1 downto 0)
-	);
-end component mux_nx1;
+	component mux_32x1 is
+		generic (
+			NBIT: integer := 32
+		);
+		port (
+			a: in std_logic_vector(NBIT-1 downto 0);
+			b: in std_logic_vector(NBIT-1 downto 0);
+			c: in std_logic_vector(NBIT-1 downto 0);
+			d: in std_logic_vector(NBIT-1 downto 0);
+			e: in std_logic_vector(NBIT-1 downto 0);
+			f: in std_logic_vector(NBIT-1 downto 0);
+			g: in std_logic_vector(NBIT-1 downto 0);
+			h: in std_logic_vector(NBIT-1 downto 0);
+			i: in std_logic_vector(NBIT-1 downto 0);
+			j: in std_logic_vector(NBIT-1 downto 0);
+			k: in std_logic_vector(NBIT-1 downto 0);
+			l: in std_logic_vector(NBIT-1 downto 0);
+			m: in std_logic_vector(NBIT-1 downto 0);
+			n: in std_logic_vector(NBIT-1 downto 0);
+			o: in std_logic_vector(NBIT-1 downto 0);
+			p: in std_logic_vector(NBIT-1 downto 0);
+			q: in std_logic_vector(NBIT-1 downto 0);
+			r: in std_logic_vector(NBIT-1 downto 0);
+			s: in std_logic_vector(NBIT-1 downto 0);
+			t: in std_logic_vector(NBIT-1 downto 0);
+			u: in std_logic_vector(NBIT-1 downto 0);
+			v: in std_logic_vector(NBIT-1 downto 0);
+			w: in std_logic_vector(NBIT-1 downto 0);
+			x: in std_logic_vector(NBIT-1 downto 0);
+			y: in std_logic_vector(NBIT-1 downto 0);
+			z: in std_logic_vector(NBIT-1 downto 0);
+			aa: in std_logic_vector(NBIT-1 downto 0);
+			ab: in std_logic_vector(NBIT-1 downto 0);
+			ac: in std_logic_vector(NBIT-1 downto 0);
+			ad: in std_logic_vector(NBIT-1 downto 0);
+			ae: in std_logic_vector(NBIT-1 downto 0);
+			af: in std_logic_vector(NBIT-1 downto 0);
+			sel: in std_logic_vector(4 downto 0);
+			outp: out std_logic_vector(NBIT-1 downto 0)
+		);
+	end component mux_32x1;
 
-type tag_array is array (0 to NL-1) of std_logic_vector(T-1 downto 0);
-type data_array is array (0 to NL-1) of std_logic_vector(L-1 downto 0);
+	type tag_array is array (0 to 31) of std_logic_vector(T-1 downto 0);
+	type data_array is array (0 to 31) of std_logic_vector(L-1 downto 0);
 
-signal update_line_int: std_logic_vector(NL-1 downto 0);
-signal valid_int: std_logic_vector(NL-1 downto 0);
-signal tags: tag_array;
-signal data_out_vector: std_logic_vector(L*NL-1 downto 0);
-signal equals_read, equals_rw: std_logic_vector(NL-1 downto 0);
-signal hits_read, hits_rw: std_logic_vector(NL-1 downto 0);
-signal update_data_int: std_logic_vector(NL-1 downto 0);
-signal read_mux_enc, rw_mux_enc: std_logic_vector(n_width(NL)-1 downto 0);
+	signal update_line_int: std_logic_vector(31 downto 0);
+	signal valid_int: std_logic_vector(31 downto 0);
+	signal tags: tag_array;
+	signal data_out_vector: data_array;
+	signal equals_read, equals_rw: std_logic_vector(31 downto 0);
+	signal hits_read, hits_rw: std_logic_vector(31 downto 0);
+	signal update_data_int: std_logic_vector(31 downto 0);
+	signal read_mux_enc, rw_mux_enc: std_logic_vector(4 downto 0);
 
 begin
 	-- tells to the lines when they have to update their data
 	replacement: btb_cache_replacement_logic
 		generic map (
-			NL => NL
+			NL => 32
 		)
 		port map (
 			clk => clk,
@@ -132,7 +157,7 @@ begin
 		);
 	
 	-- Instantiate NL lines along with their comparators and hit detectors
-	line_gen: for i in 0 to NL-1 generate
+	line_gen: for i in 0 to 31 generate
 		line: btb_cache_line
 			generic map (
 				T => T,
@@ -147,7 +172,7 @@ begin
 				data_in => data_in,
 				valid => valid_int(i),
 				tag_out => tags(i),
-				data_out => data_out_vector((i+1)*L-1 downto i*L)
+				data_out => data_out_vector(i)
 			);
 
 		eq_comp_read_hit: equality_comparator
@@ -201,46 +226,100 @@ begin
 	end generate line_gen;
 
 	-- decides which output signal has to go toward the read_data_mux
-	read_encoder: pri_encoder_generic
-		generic map (
-			N => NL
-		)
+	read_encoder: encoder_32x5
 		port map (
 			i => hits_read,
 			enc => read_mux_enc
 		);
 
 	-- decides which output signal has to go toward the rw_data_mux
-	rw_encoder: pri_encoder_generic
-		generic map (
-			N => NL
-		)
+	rw_encoder: encoder_32x5
 		port map (
 			i => hits_rw,
 			enc => rw_mux_enc
 		);
 
 	-- data mux read_address port
-	read_data_mux: mux_nx1
+	read_data_mux: mux_32x1
 		generic map (
-			N => L,
-			M => NL
+			NBIT => L
 		)
 		port map (
-			i => data_out_vector,
+			a => data_out_vector(0),
+			b => data_out_vector(1),
+			c => data_out_vector(2),
+			d => data_out_vector(3),
+			e => data_out_vector(4),
+			f => data_out_vector(5),
+			g => data_out_vector(6),
+			h => data_out_vector(7),
+			i => data_out_vector(8),
+			j => data_out_vector(9),
+			k => data_out_vector(10),
+			l => data_out_vector(11),
+			m => data_out_vector(12),
+			n => data_out_vector(13),
+			o => data_out_vector(14),
+			p => data_out_vector(15),
+			q => data_out_vector(16),
+			r => data_out_vector(17),
+			s => data_out_vector(18),
+			t => data_out_vector(19),
+			u => data_out_vector(20),
+			v => data_out_vector(21),
+			w => data_out_vector(22),
+			x => data_out_vector(23),
+			y => data_out_vector(24),
+			z => data_out_vector(25),
+			aa => data_out_vector(26),
+			ab => data_out_vector(27),
+			ac => data_out_vector(28),
+			ad => data_out_vector(29),
+			ae => data_out_vector(30),
+			af => data_out_vector(31),
 			sel => read_mux_enc,
-			o => data_out_read
+			outp => data_out_read
 		);
 
-	rw_data_mux: mux_nx1
+	rw_data_mux: mux_32x1
 		generic map (
-			N => L,
-			M => NL
+			NBIT => L
 		)
 		port map (
-			i => data_out_vector,
+			a => data_out_vector(0),
+			b => data_out_vector(1),
+			c => data_out_vector(2),
+			d => data_out_vector(3),
+			e => data_out_vector(4),
+			f => data_out_vector(5),
+			g => data_out_vector(6),
+			h => data_out_vector(7),
+			i => data_out_vector(8),
+			j => data_out_vector(9),
+			k => data_out_vector(10),
+			l => data_out_vector(11),
+			m => data_out_vector(12),
+			n => data_out_vector(13),
+			o => data_out_vector(14),
+			p => data_out_vector(15),
+			q => data_out_vector(16),
+			r => data_out_vector(17),
+			s => data_out_vector(18),
+			t => data_out_vector(19),
+			u => data_out_vector(20),
+			v => data_out_vector(21),
+			w => data_out_vector(22),
+			x => data_out_vector(23),
+			y => data_out_vector(24),
+			z => data_out_vector(25),
+			aa => data_out_vector(26),
+			ab => data_out_vector(27),
+			ac => data_out_vector(28),
+			ad => data_out_vector(29),
+			ae => data_out_vector(30),
+			af => data_out_vector(31),
 			sel => rw_mux_enc,
-			o => data_out_rw
+			outp => data_out_rw
 		);
 
 	hit_miss_read <= or_reduce(hits_read);

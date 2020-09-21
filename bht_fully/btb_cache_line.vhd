@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 
 -- Represent a single line in the cache.
 -- It stores the tag, the data corresponding to it and a valid bit
-entity bht_cache_line is
+entity btb_cache_line is
 	generic (
 		T: integer := 22; -- tag bit size
 		L: integer := 32 -- line size
@@ -19,9 +19,9 @@ entity bht_cache_line is
 		tag_out: out std_logic_vector(T-1 downto 0); -- tag stored in the line
 		data_out: out std_logic_vector(L-1 downto 0) -- output containing the word chosen with offset
 	);
-end entity bht_cache_line;
+end entity btb_cache_line;
 
-architecture behavioral of bht_cache_line is
+architecture behavioral of btb_cache_line is
 
 	signal curr_valid, next_valid: std_logic;
 	signal curr_tag, next_tag: std_logic_vector(T-1 downto 0);

@@ -12,7 +12,7 @@ use work.fun_pack.n_width;
 -- is an address used for read-only operations, and another one corresponding to
 -- 'rw_address' which can be used for both read and write instructions.
 -- The output ports have corresponding 'hit_miss' signals
-entity bht_fully_associative_cache is
+entity btb_fully_associative_cache is
 	generic (
 		T: integer := 8; -- width of the TAG bits
 		L: integer := 8 -- line size
@@ -30,10 +30,10 @@ entity bht_fully_associative_cache is
 		hit_miss_rw: out std_logic; -- if rw_address generates a hit then hit_miss_rw = '1', otherwise hit_miss_rw ='0'
 		data_out_rw: out std_logic_vector(L-1 downto 0) -- if hit_miss_rw = '1' it contains the searched data, otherwise its value must not be considered
 	);
-end entity bht_fully_associative_cache;
+end entity btb_fully_associative_cache;
 
-architecture structural of bht_fully_associative_cache is
-	component bht_cache_line is
+architecture structural of btb_fully_associative_cache is
+	component btb_cache_line is
 		generic (
 			T: integer := 22; -- tag bit size
 			L: integer := 32 -- line size
@@ -49,9 +49,9 @@ architecture structural of bht_fully_associative_cache is
 			tag_out: out std_logic_vector(T-1 downto 0); -- tag stored in the line
 			data_out: out std_logic_vector(L-1 downto 0) -- output containing the word chosen with offset
 		);
-	end component bht_cache_line;
+	end component btb_cache_line;
 
-	component bht_cache_replacement_logic is
+	component btb_cache_replacement_logic is
 		generic (
 			NL: integer := 128
 		);
@@ -61,7 +61,7 @@ architecture structural of bht_fully_associative_cache is
 			cache_update: in std_logic; -- if 1 the cache wants to update a line
 			line_update: out std_logic_vector(NL-1 downto 0) -- if the i-th bit is set to 1 the i-th line updates its content
 		);
-	end component bht_cache_replacement_logic;
+	end component btb_cache_replacement_logic;
 
 	component equality_comparator is
 		generic (
@@ -145,7 +145,7 @@ architecture structural of bht_fully_associative_cache is
 
 begin
 	-- tells to the lines when they have to update their data
-	replacement: bht_cache_replacement_logic
+	replacement: btb_cache_replacement_logic
 		generic map (
 			NL => 32
 		)
@@ -158,7 +158,7 @@ begin
 	
 	-- Instantiate NL lines along with their comparators and hit detectors
 	line_gen: for i in 0 to 31 generate
-		line: bht_cache_line
+		line: btb_cache_line
 			generic map (
 				T => T,
 				L => L
