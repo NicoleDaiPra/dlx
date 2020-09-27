@@ -40,7 +40,7 @@ architecture behavioral of alu_out_selector is
 
 begin
 
-	sel_p: process (op_type, op_sign, sub_add, adder_out, adder_cout, mul_out, shifter_out, logicals_out)
+	sel_p: process (a, b, op_type, op_sign, sub_add, adder_out, adder_cout, mul_out, shifter_out, logicals_out)
 		  variable overflow: std_logic;
 		  
 		begin
