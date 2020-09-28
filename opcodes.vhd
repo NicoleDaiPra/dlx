@@ -37,9 +37,9 @@ package opcodes is
 
 	-- I type instructions
 	constant bgez_opc : opcode_t 	:= "000001"; -- 0x01
-	constant bltz_opc : opcode_t 	:= "000001"; -- 0x01 
-	constant beqz_opc : opcode_t 	:= "000100"; -- 0x04
-	constant bnez_opc : opcode_t 	:= "000101"; -- 0x05
+	constant bltz_opc : opcode_t 	:= "000001"; -- 0x01
+	constant beq_opc : opcode_t 	:= "000100"; -- 0x04
+	constant bne_opc : opcode_t 	:= "000101"; -- 0x05
 	constant blez_opc : opcode_t 	:= "000110"; -- 0x06 
 	constant bgtz_opc : opcode_t 	:= "000111"; -- 0x07 
 	constant addi_opc : opcode_t 	:= "001000"; -- 0x08
@@ -49,7 +49,9 @@ package opcodes is
 	constant andi_opc : opcode_t 	:= "001100"; -- 0x0C
 	constant ori_opc : opcode_t 	:= "001101"; -- 0x0D
 	constant xori_opc : opcode_t 	:= "001110"; -- 0x0E
-	constant lhi_opc : opcode_t 	:= "001111"; -- 0x0F 
+	constant lhi_opc : opcode_t 	:= "001111"; -- 0x0F
+	constant beqz_opc : opcode_t 	:= "010000"; -- 0x10
+	constant bnez_opc : opcode_t 	:= "010001"; -- 0x11
 	constant slli_opc : opcode_t 	:= "010100"; -- 0x14 
 	constant srli_opc : opcode_t 	:= "010110"; -- 0X16
 	constant srai_opc : opcode_t 	:= "010111"; -- 0x17
@@ -72,7 +74,7 @@ package opcodes is
 
 	-- BXXX "rt" format
 	constant bltz_reg : reg_t 		:= "00000";
-	constant bgez_reg : reg_t 		:= "00000";  
+	constant bgez_reg : reg_t 		:= "00001";  
 
 	-- J type instructions
 	constant j_opc : opcode_t 		:= "000010"; -- 0x02
