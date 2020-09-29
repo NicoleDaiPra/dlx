@@ -10,7 +10,7 @@ package opcodes is
 	constant rtype_opc : opcode_t := "000000"; -- 0x00
 
 	constant nop_func : func_t 		:= "00000000000"; -- 0x000
-	constant sll_func : func_t 		:= "00000000100"; -- 0x004
+	constant sll_func : func_t 		:= "00000000000"; -- 0x000
 	constant srl_func : func_t 		:= "00000000110"; -- 0x006
 	constant sra_func : func_t 		:= "00000000111"; -- 0x007
 	constant jr_func : func_t 		:= "00000001000"; -- 0x008 
