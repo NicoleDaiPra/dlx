@@ -34,11 +34,8 @@ begin
 
 	eq <= res_nor;
 	ne <= not res_nor; -- hopefully the synthesizer notices that here there's a double negation
-	--le <= res_nor or cout_not or lt_signed;
 	le <= (lt_signed or res_nor or ((not res_nor) and cout_not)) and (not gt_signed);
-	--lt <= cout_not or lt_signed;
 	lt <= (lt_signed or ((not lt_signed) and (cout_not))) and (not gt_signed);
 	ge <= (cout or gt_signed) and (not lt_signed); 
-	--gt <= (cout and (not res_nor)) or gt_signed; -- again, let's hope the tool notices the double negation
 	gt <= (gt_signed or (cout and (not res_nor))) and (not lt_signed);
 end architecture behavioral;

@@ -103,7 +103,7 @@ architecture beh of shifter_t2 is
 				            when others => data_out <= (others => '0');      
 				        end case;
 				        
-                       --data_out <= mask00(31+to_integer(unsigned(not(shift(2 downto 0)))) downto to_integer(unsigned(not(shift(2 downto 0)))));     
+                      
 				    else -- logical shift right
 				    	bound := to_integer(unsigned(shift(2 downto 0)));
 
@@ -118,7 +118,7 @@ architecture beh of shifter_t2 is
 				            when 7 => data_out <= mask00(38 downto 7);  
 				            when others => data_out <= (others => '0');      
 				        end case;
-                        --data_out <= mask00(31+to_integer(unsigned(shift(2 downto 0))) downto to_integer(unsigned(shift(2 downto 0))));
+                        
 				    end if;
 
 				when "01" => 
@@ -136,7 +136,7 @@ architecture beh of shifter_t2 is
 				            when 7 => data_out <= mask08(38 downto 7);    
 				            when others => data_out <= (others => '0');    
 				        end case;
-                        --data_out <= mask08(31+to_integer(unsigned(not(shift(2 downto 0)))) downto to_integer(unsigned(not(shift(2 downto 0)))));   
+                       
 				    else -- logical shift right
 					    bound := to_integer(unsigned(shift(2 downto 0)));
 
@@ -151,7 +151,7 @@ architecture beh of shifter_t2 is
 				            when 7 => data_out <= mask08(38 downto 7); 
 				            when others => data_out <= (others => '0');       
 				        end case;
-                        --data_out <= mask08(31+to_integer(unsigned(shift(2 downto 0))) downto to_integer(unsigned(shift(2 downto 0))));
+                        
 				    end if;
 				    
 				when "10" => 
@@ -169,7 +169,7 @@ architecture beh of shifter_t2 is
 				            when 7 => data_out <= mask16(38 downto 7); 
 				            when others => data_out <= (others => '0');       
 				        end case;
-                        --data_out <= mask16(31+to_integer(unsigned(not(shift(2 downto 0)))) downto to_integer(unsigned(not(shift(2 downto 0)))));   
+                        
 				    else -- logical shift right
 				        bound := to_integer(unsigned(shift(2 downto 0)));
 
@@ -184,7 +184,7 @@ architecture beh of shifter_t2 is
 				            when 7 => data_out <= mask16(38 downto 7);  
 				            when others => data_out <= (others => '0');      
 				        end case;
-				        --data_out <= mask16(31+to_integer(unsigned(shift(2 downto 0))) downto to_integer(unsigned(shift(2 downto 0))));
+				        
 				    end if;
 					
 				when "11" => 
@@ -202,7 +202,7 @@ architecture beh of shifter_t2 is
 				            when 7 => data_out <= mask24(38 downto 7);  
 				            when others => data_out <= (others => '0');      
 				        end case;
-                        --data_out <= mask24(31+to_integer(unsigned(not(shift(2 downto 0)))) downto to_integer(unsigned(not(shift(2 downto 0))))); 
+                        
 				    else -- logical shift right
                         bound := to_integer(unsigned(shift(2 downto 0)));
 
@@ -217,7 +217,7 @@ architecture beh of shifter_t2 is
 				            when 7 => data_out <= mask24(38 downto 7);   
 				            when others => data_out <= (others => '0');     
 				        end case;
-                        --data_out <= mask24(31+to_integer(unsigned(shift(2 downto 0))) downto to_integer(unsigned(shift(2 downto 0))));
+                        
 				    end if;
 				    
 				when others => data_out <= (others => '0');

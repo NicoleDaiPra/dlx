@@ -20,10 +20,10 @@ entity alu is
     	sub_add: in std_logic;						-- 1 if it is a subtraction, 0 otherwise
     	shift_type: in std_logic_vector(3 downto 0);
     	log_type: in std_logic_vector(3 downto 0);
-    	op_type: in std_logic_vector(1 downto 0);	--00: add/sub, 01: mul, 10: shift/rot, 11: log
+    	op_type: in std_logic_vector(1 downto 0);	-- 00: add/sub, 01: mul, 10: shift/rot, 11: log
     	op_sign: in std_logic; 						-- 1 if the operands are signed, 0 otherwise
     	it: in std_logic_vector(3 downto 0);		-- iteration
-    	neg: in std_logic;							-- used to negate a before actually multiplying
+    	neg: in std_logic;							-- used to negate 'a' before actually multiplying
 
     	-- outputs
     	alu_out_high: out std_logic_vector(31 downto 0);
@@ -95,18 +95,18 @@ architecture beh of alu is
 			N: integer := 32
 		);
 	    port (	
-	    	a: in std_logic;	-- MSB of a
-	    	b: in std_logic;	-- MSB of b
-	    	op_type: in std_logic_vector(1 downto 0); -- identifies which unit is computing the result
-	    	op_sign: in std_logic; 	-- 1 if the operands are signed, 0 otherwise
-	    	sub_add: std_logic;		-- 1 if it is a subtraction, 0 otherwise
+	    	a: in std_logic;	
+	    	b: in std_logic;	
+	    	op_type: in std_logic_vector(1 downto 0); 
+	    	op_sign: in std_logic; 	
+	    	sub_add: std_logic;		
 	    	adder_out: in std_logic_vector(N-1 downto 0);
 	    	adder_cout: in std_logic;
 	    	mul_out: in std_logic_vector(2*N-1 downto 0);
 	    	shifter_out: in std_logic_vector(N-1 downto 0);
 	    	logicals_out: in std_logic_vector(N-1 downto 0);
-	    	alu_sel_out_high: out std_logic_vector(N-1 downto 0); -- upper part (63 downto 32) of the result used only for the multiply
-	    	alu_sel_out_low: out std_logic_vector(N-1 downto 0); -- lower part (31 downto 0) of the result
+	    	alu_sel_out_high: out std_logic_vector(N-1 downto 0); 
+	    	alu_sel_out_low: out std_logic_vector(N-1 downto 0); 
 	    	alu_flags: out std_logic_vector(2 downto 0) 	
 	    );
 	end component alu_out_selector;
@@ -116,17 +116,17 @@ architecture beh of alu is
 			N: integer := 32
 		);
 		port (
-			res: in std_logic_vector(N-1 downto 0); -- adder/subtractor result
-			cout: in std_logic; -- adder/subtractor cout
-			a_msb: in std_logic; -- MSB of the first operand
-			b_msb: in std_logic; -- MSB of the second operand
-			op_sign: in std_logic; -- 1 if the operands are signed, 0 otherwise
-			le: out std_logic; -- less than or equal
-			lt: out std_logic; -- less than
-			ge: out std_logic; -- greater than or equal
-			gt: out std_logic; -- greater than
-			eq: out std_logic; -- equal
-			ne: out std_logic -- not equal
+			res: in std_logic_vector(N-1 downto 0); 
+			cout: in std_logic; 
+			a_msb: in std_logic; 
+			b_msb: in std_logic; 
+			op_sign: in std_logic; 
+			le: out std_logic; 
+			lt: out std_logic; 
+			ge: out std_logic; 
+			gt: out std_logic; 
+			eq: out std_logic; 
+			ne: out std_logic 
 		);
 	end component comparator;
 
