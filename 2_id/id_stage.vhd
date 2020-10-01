@@ -41,7 +41,9 @@ entity id_stage is
 		b_selector: in std_logic; -- 0 to select the immediate as output, 1 to select the read port 2
 		a: out std_logic_vector(31 downto 0); -- first operand output
 		b: out std_logic_vector(31 downto 0); -- second operand output
-		dest_reg: out std_logic_vector(4 downto 0) -- propagate the destination register to the subsequent stages
+		dest_reg: out std_logic_vector(4 downto 0); -- propagate the destination register to the subsequent stages
+		npc: out std_logic_vector(31 downto 0); -- propagate the PC to the EXE stage
+		imm: out std_logic_vector(31 downto 0) -- propagate the immediate (needed for PC + offset calculation)
 	);
 end id_stage;
 
@@ -109,6 +111,8 @@ architecture behavioral of id_stage is
 	signal rp1, rp2: std_logic_vector(31 downto 0);
 
 begin
+	npc <= pc; -- propagate the PC
+
 	-- I type and R type have the destination register in 2 different positions, output the correct value
 	dest_selector: mux_2x1
 		generic map (
@@ -152,6 +156,8 @@ begin
 			sel => sign_ext_sel,
 			o => immediate
 		);
+
+	imm <= immediate; -- propagate the immediate
 
 	-- select the output of the a port (choose between rp1 and the pc)
 	a_sel: mux_2x1
