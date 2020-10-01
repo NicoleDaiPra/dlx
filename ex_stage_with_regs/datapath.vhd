@@ -45,8 +45,9 @@ entity datapath is
     	fw_op_a: in std_logic_vector(2 downto 0);
     	fw_op_b: in std_logic_vector(1 downto 0);
     	en_rd: in std_logic;
-    	en_jump: in std_logic;
-    	en_npc: in std_logic;
+    	en_npc_id: in std_logic;
+    	en_npc_ex: in std_logic;
+    	en_imm: in std_logic;
     	cond_sel: in std_logic_vector(2 downto 0);
 
     	-- outputs
@@ -87,7 +88,8 @@ architecture struct of datapath is
 		    shift_reg: in std_logic;
 		    en_shift_reg: in std_logic;
 		    en_rd: in std_logic;
-		    en_jump: in std_logic;
+		    en_npc: in std_logic;
+		    en_imm: in std_logic;
 		
 			-- outputs
 			npc: out std_logic_vector(31 downto 0);
@@ -233,7 +235,8 @@ begin
 		    shift_reg => shift_reg,
 		    en_shift_reg => en_shift_reg,
 		    en_rd =>  en_rd,
-		    en_jump => en_jump,
+		    en_npc => en_npc_id,
+		    en_imm => en_imm,
 		
 			-- outputs
 			npc => npc_int,
@@ -323,7 +326,7 @@ begin
 
 			en_output => en_output,
 			en_rd => en_rd,
-			en_npc => en_npc,
+			en_npc => en_npc_ex,
 
 			-- outputs
 			npc => npc_out,

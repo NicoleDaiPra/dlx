@@ -307,5 +307,12 @@ begin
 			ne => ne_int
 		);
 
+	le <= le_int;
+	lt <= lt_int;
+	ge <= ge_int;
+	gt <= gt_int;
+	eq <= eq_int;
+	ne <= ne_int;
+
 
 end struct;

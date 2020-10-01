@@ -27,7 +27,8 @@ entity id_ex_reg is
 	    shift_reg: in std_logic; -- signal that controls the shift register
 	    en_shift_reg: in std_logic;
 	    en_rd: in std_logic;
-	    en_jump: in std_logic;
+	    en_npc: in std_logic;
+	    en_imm: in std_logic;
 	
 		-- outputs
 		npc: out std_logic_vector(31 downto 0);
@@ -89,7 +90,7 @@ begin
 		)
     	port map(
     		d => npc_in,
-    		en => en_jump,
+    		en => en_npc,
     		clk => clk,
     		rst => rst,
     		q => npc
@@ -101,7 +102,7 @@ begin
 		)
 		port map (
 			d => imm_in,
-			en => en_jump,
+			en => en_imm,
 			clk => clk,
 			rst => rst,
 			q => imm
