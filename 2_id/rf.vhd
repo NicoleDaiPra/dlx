@@ -28,13 +28,13 @@ entity rf is
 		-- 		00 for an arch register
 		-- 		01 for the LO register
 		-- 		10 for the HI register
-		-- 		11 reserved
+		-- 		11 output all 0s
 		rp1_out_sel: in std_logic_vector(1 downto 0);
 		-- rp2_out_sel values:
 		-- 		00 for an arch register
 		-- 		01 for the LO register
 		-- 		10 for the HI register
-		-- 		11 reserved
+		-- 		11 output all 0s
 		rp2_out_sel: in std_logic_vector(1 downto 0);
 		hilo_wr_en: in std_logic; -- 1 if the HI and LO register must be written
 		lo_in: in std_logic_vector(N-1 downto 0); -- input data for the LO register

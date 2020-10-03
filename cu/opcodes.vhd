@@ -32,7 +32,8 @@ package opcodes is
 	constant sle_func : func_t 		:= "00000101100"; -- 0x02C
 	constant sge_func : func_t 		:= "00000101101"; -- 0x02D
 	constant sltu_func : func_t 	:= "00000111010"; -- 0x03A 
-	constant sgtu_func : func_t 	:= "00000111011"; -- 0x03B 
+	constant sgtu_func : func_t 	:= "00000111011"; -- 0x03B
+	constant sleu_func : func_t 	:= "00000111100"; -- 0x03C 
 	constant sgeu_func : func_t 	:= "00000111101"; -- 0x03D 
 
 	-- I type instructions
@@ -49,7 +50,6 @@ package opcodes is
 	constant andi_opc : opcode_t 	:= "001100"; -- 0x0C
 	constant ori_opc : opcode_t 	:= "001101"; -- 0x0D
 	constant xori_opc : opcode_t 	:= "001110"; -- 0x0E
-	constant lhi_opc : opcode_t 	:= "001111"; -- 0x0F
 	constant beqz_opc : opcode_t 	:= "010000"; -- 0x10
 	constant bnez_opc : opcode_t 	:= "010001"; -- 0x11
 	constant slli_opc : opcode_t 	:= "010100"; -- 0x14 
@@ -62,6 +62,7 @@ package opcodes is
 	constant slei_opc : opcode_t 	:= "011100"; -- 0x1C
 	constant sgei_opc : opcode_t 	:= "011101"; -- 0x1D  
 	constant lb_opc : opcode_t 		:= "100000"; -- 0x20 
+	constant lh_opc : opcode_t 		:= "010001"; -- 0x21 
 	constant lw_opc : opcode_t 		:= "100011"; -- 0x23
 	constant lbu_opc : opcode_t 	:= "100100"; -- 0x24
 	constant lhu_opc : opcode_t 	:= "100101"; -- 0x25
@@ -69,7 +70,8 @@ package opcodes is
 	constant sh_opc : opcode_t 		:= "101001"; -- 0x29
 	constant sw_opc : opcode_t 		:= "101011"; -- 0x2B
 	constant sltui_opc : opcode_t 	:= "111010"; -- 0x3A 
-	constant sgtui_opc : opcode_t 	:= "111011"; -- 0x3B 
+	constant sgtui_opc : opcode_t 	:= "111011"; -- 0x3B
+	constant sleui_opc : opcode_t 	:= "111100"; -- 0x3C 
 	constant sgeui_opc : opcode_t 	:= "111101"; -- 0x3D
 
 	-- BXXX "rt" format
