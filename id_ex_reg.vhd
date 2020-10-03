@@ -18,6 +18,7 @@ entity id_ex_reg is
 		Rd_in: in std_logic_vector(4 downto 0); -- destination register
 		npc_in: in std_logic_vector(31 downto 0);
 		imm_in: in std_logic_vector(31 downto 0);
+		op_b_in: in std_logic_vector(31 downto 0);
 	
 		-- control signals
 		en_add: in std_logic;
@@ -29,8 +30,10 @@ entity id_ex_reg is
 	    en_rd: in std_logic;
 	    en_npc: in std_logic;
 	    en_imm: in std_logic;
+	    en_b: in std_logic;
 	
 		-- outputs
+		op_b: out std_logic_vector(31 downto 0);
 		npc: out std_logic_vector(31 downto 0);
 		imm: out std_logic_vector(31 downto 0);
 		Rd_out: out std_logic_vector(4 downto 0);
@@ -83,6 +86,18 @@ architecture struct of id_ex_reg is
  	
 
 begin
+
+	 b_reg: reg_en
+    	generic map (
+    		N => 32
+		)
+    	port map(
+    		d => op_b_in,
+    		en => en_b,
+    		clk => clk,
+    		rst => rst,
+    		q => op_b
+		);
 
     npc_reg: reg_en
     	generic map (

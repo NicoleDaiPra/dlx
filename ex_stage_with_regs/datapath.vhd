@@ -12,6 +12,7 @@ entity datapath is
     	Rd_in: in std_logic_vector(4 downto 0);
     	npc_in: in std_logic_vector(31 downto 0);
     	imm_in: in std_logic_vector(31 downto 0);
+    	op_b_in: in std_logic_vector(31 downto 0);
 
     	-- forwarded ex/mem operands
     	hi_fw_ex: in std_logic_vector(31 downto 0);
@@ -46,23 +47,20 @@ entity datapath is
     	fw_op_b: in std_logic_vector(1 downto 0);
     	en_rd: in std_logic;
     	en_npc_id: in std_logic;
-    	en_npc_ex: in std_logic;
     	en_imm: in std_logic;
+    	en_b_id: in std_logic;
+    	en_b_ex: in std_logic;
     	cond_sel: in std_logic_vector(2 downto 0);
+    	alu_comp_sel: in std_logic_vector(2 downto 0);
 
     	-- outputs
-    	npc_out: out std_logic_vector(31 downto 0);
+    	npc_jump_reg: out std_logic_vector(31 downto 0);
+    	op_b: out std_logic_vector(31 downto 0);
+    	npc_jump_dp: out std_logic_vector(31 downto 0);
     	Rd_out: out std_logic_vector(4 downto 0);
     	alu_out_high_ex: out std_logic_vector(31 downto 0);
     	alu_out_low_ex: out std_logic_vector(31 downto 0);
-    	alu_flags_ex: out std_logic_vector(2 downto 0); 
-    	taken: out std_logic;	
-		le: out std_logic; -- less than or equal
-		lt: out std_logic; -- less than
-		ge: out std_logic; -- greater than or equal
-		gt: out std_logic; -- greater than
-		eq: out std_logic; -- equal
-		ne: out std_logic -- not equal
+    	taken: out std_logic
 	);
 end datapath;
 
@@ -76,22 +74,25 @@ architecture struct of datapath is
 			a: in std_logic_vector(31 downto 0);
 			b: in std_logic_vector(31 downto 0);
 			a_neg_in: in std_logic_vector(63 downto 0);
-			Rd_in: in std_logic_vector(4 downto 0);
+			Rd_in: in std_logic_vector(4 downto 0); -- destination register
 			npc_in: in std_logic_vector(31 downto 0);
 			imm_in: in std_logic_vector(31 downto 0);
+			op_b_in: in std_logic_vector(31 downto 0);
 		
 			-- control signals
 			en_add: in std_logic;
 		    en_mul: in std_logic;
 		    en_shift: in std_logic;
 		    en_a_neg: in std_logic;
-		    shift_reg: in std_logic;
+		    shift_reg: in std_logic; -- signal that controls the shift register
 		    en_shift_reg: in std_logic;
 		    en_rd: in std_logic;
 		    en_npc: in std_logic;
 		    en_imm: in std_logic;
+		    en_b: in std_logic;
 		
 			-- outputs
+			op_b: out std_logic_vector(31 downto 0);
 			npc: out std_logic_vector(31 downto 0);
 			imm: out std_logic_vector(31 downto 0);
 			Rd_out: out std_logic_vector(4 downto 0);
@@ -108,17 +109,17 @@ architecture struct of datapath is
 
 	component ex_stage is
 		port ( 
-	    	-- operands
+	    	-- inputs
 	    	a_adder: in std_logic_vector(31 downto 0);
 	    	b_adder: in std_logic_vector(31 downto 0);
-	    	a_mult: in std_logic_vector(63 downto 0);
-	    	a_neg_mult: in std_logic_vector(63 downto 0);
-	    	b_mult: in std_logic_vector(2 downto 0);
-	    	b10_1_mult: in std_logic_vector(2 downto 0);
+	    	a_mult: in std_logic_vector(63 downto 0); -- first operand of the multiplication
+	    	a_neg_mult: in std_logic_vector(63 downto 0); -- negated a computed by the multiplication unit
+	    	b_mult: in std_logic_vector(2 downto 0); -- part of the second operand extracted based on Booth's algorithm
+	    	b10_1_mult: in std_logic_vector(2 downto 0); -- first part of the second operand
 	    	a_shift: in std_logic_vector(31 downto 0);
 	    	b_shift: in std_logic_vector(4 downto 0);
-	    	mul_feedback: in std_logic_vector(63 downto 0);
-	    	npc_in: in std_logic_vector(31 downto 0);
+	    	mul_feedback: in std_logic_vector(63 downto 0); -- partial result of the multiplication 
+	    	npc_in: in std_logic_vector(31 downto 0); 
 	    	imm_in: in std_logic_vector(31 downto 0);
 
 	    	-- forwarded ex/mem operands
@@ -136,31 +137,26 @@ architecture struct of datapath is
 	    	b_shift_fw_mem: in std_logic_vector(4 downto 0);
 
 	    	-- control signals
-	    	sub_add: in std_logic;						
+	    	sub_add: in std_logic; -- 1 if it is a subtraction, 0 otherwise
 	    	shift_type: in std_logic_vector(3 downto 0);
 	    	log_type: in std_logic_vector(3 downto 0);
-	    	op_type: in std_logic_vector(1 downto 0);	
-	    	op_sign: in std_logic; 						
-	    	it: in std_logic_vector(3 downto 0);		
-	    	neg: in std_logic;							
-	    	fw_op_a: in std_logic_vector(2 downto 0);		
+	    	op_type: in std_logic_vector(1 downto 0); -- 00: add/sub, 01: mul, 10: shift/rot, 11: log
+	    	op_sign: in std_logic; -- 1 if the operands are signed, 0 otherwise
+	    	it: in std_logic_vector(3 downto 0); -- iterations of the multiplier
+	    	neg: in std_logic; -- used to negate a before actually multiplying
+	    	fw_op_a: in std_logic_vector(2 downto 0); -- used to choose between the forwarded operands and the other ones
 	    	fw_op_b: in std_logic_vector(1 downto 0);
-	    	cond_sel: in std_logic_vector(2 downto 0);	
+	    	cond_sel: in std_logic_vector(2 downto 0); -- used to identify the condition of the branch instruction
+	    	alu_comp_sel: in std_logic_vector(2 downto 0); -- used to select the output to be stored in the alu out register	
 
 	    	-- outputs
+	    	npc_jump_reg: out std_logic_vector(31 downto 0);
 	    	alu_out_high: out std_logic_vector(31 downto 0);
 	    	alu_out_low: out std_logic_vector(31 downto 0);
-	    	alu_flags: out std_logic_vector(2 downto 0); 
-	    	a_neg_out: out std_logic_vector(63 downto 0);	
-	    	npc_out: out std_logic_vector(31 downto 0);
-	    	taken: out std_logic;
-			le: out std_logic; 
-			lt: out std_logic; 
-			ge: out std_logic; 
-			gt: out std_logic; 
-			eq: out std_logic; 
-			ne: out std_logic 
-		);
+	    	a_neg_out: out std_logic_vector(63 downto 0); -- negated a that goes back to the multiplier
+	    	npc_jump: out std_logic_vector(31 downto 0); -- updated next program counter
+	    	taken: out std_logic
+	    );
 	end component ex_stage;
 
 	component ex_mem_reg is
@@ -168,35 +164,21 @@ architecture struct of datapath is
 			clk: in std_logic;
 			rst: in std_logic;
 			
-			npc_in: in std_logic_vector(31 downto 0);
+			op_b_in: in std_logic_vector(31 downto 0);
 			alu_out_high_in: in std_logic_vector(31 downto 0);
 	    	alu_out_low_in: in std_logic_vector(31 downto 0);
-	    	alu_flags_in: in std_logic_vector(2 downto 0); 
-			le_in: in std_logic; 
-			lt_in: in std_logic; 
-			ge_in: in std_logic; 
-			gt_in: in std_logic; 
-			eq_in: in std_logic; 
-			ne_in: in std_logic; 
-			Rd_in: in std_logic_vector(4 downto 0);
+			Rd_in: in std_logic_vector(4 downto 0); -- destination register
 
 			en_output: in std_logic;
 			en_rd: in std_logic;
-			en_npc: in std_logic;
+			en_b: in std_logic;
 
 			-- outputs
-			npc: out std_logic_vector(31 downto 0);
+			op_b: out std_logic_vector(31 downto 0); 
 			Rd_out: out std_logic_vector(4 downto 0);
-			mul_feedback: out std_logic_vector(63 downto 0);
+			mul_feedback: out std_logic_vector(63 downto 0); -- signal that goes back to the multiplier
 			alu_out_high: out std_logic_vector(31 downto 0);
-	    	alu_out_low: out std_logic_vector(31 downto 0);
-	    	alu_flags: out std_logic_vector(2 downto 0); 
-			le: out std_logic; 
-			lt: out std_logic; 
-			ge: out std_logic; 
-			gt: out std_logic; 
-			eq: out std_logic; 
-			ne: out std_logic 
+	    	alu_out_low: out std_logic_vector(31 downto 0)
 		);
 	end component ex_mem_reg;
 
@@ -212,8 +194,12 @@ architecture struct of datapath is
 	signal rd_int: std_logic_vector(4 downto 0);
 	signal npc_int, next_pc: std_logic_vector(31 downto 0);
 	signal imm_int: std_logic_vector(31 downto 0);
+	signal op_b_int: std_logic_vector(31 downto 0);
+
 
 begin
+
+	npc_jump_dp <= next_pc;
 
 	id_ex_regs: id_ex_reg
 		port map (
@@ -226,6 +212,7 @@ begin
 			Rd_in => Rd_in,
 			npc_in => npc_in,
 			imm_in => imm_in,
+			op_b_in => op_b_in,
 		
 			-- control signals
 			en_add => en_add,
@@ -237,8 +224,10 @@ begin
 		    en_rd =>  en_rd,
 		    en_npc => en_npc_id,
 		    en_imm => en_imm,
+		    en_b => en_b_id,
 		
 			-- outputs
+			op_b => op_b_int,
 			npc => npc_int,
 			imm => imm_int,
 			Rd_out => rd_int,
@@ -291,20 +280,15 @@ begin
 	    	fw_op_a => fw_op_a,	
 	    	fw_op_b => fw_op_b,
 	    	cond_sel => cond_sel,
+	    	alu_comp_sel => alu_comp_sel,
 	    	
 	    	-- outputs
+	    	npc_jump_reg => npc_jump_reg,
 	    	alu_out_high => alu_out_high_int,
 	    	alu_out_low => alu_out_low_int,
-	    	alu_flags => alu_flags_int,
 	    	a_neg_out => a_neg_ext,
-	    	npc_out => next_pc,
-	    	taken => taken,
-			le => le_int,
-			lt => lt_int,
-			ge => ge_int,
-			gt => gt_int,
-			eq => eq_int,
-			ne => ne_int
+	    	npc_jump => next_pc,
+	    	taken => taken
 		);
 
 	ex_mem_regs: ex_mem_reg
@@ -312,34 +296,20 @@ begin
 			clk => clk,
 			rst => rst,
 			
-			npc_in => next_pc,
+			op_b_in => op_b_int,
 			alu_out_high_in => alu_out_high_int,
 	    	alu_out_low_in => alu_out_low_int,
-	    	alu_flags_in => alu_flags_int, 	
-			le_in => le_int,
-			lt_in => lt_int,
-			ge_in => ge_int,
-			gt_in => gt_int,
-			eq_in => eq_int,
-			ne_in => ne_int,
 			Rd_in => rd_int,
 
 			en_output => en_output,
 			en_rd => en_rd,
-			en_npc => en_npc_ex,
+			en_b => en_b_ex,
 
 			-- outputs
-			npc => npc_out,
+			op_b => op_b,
 			Rd_out => Rd_out,
 			mul_feedback => mul_feedback_int,
 			alu_out_high => alu_out_high_ex,
-	    	alu_out_low => alu_out_low_ex,
-	    	alu_flags => alu_flags_ex,	
-			le => le,
-			lt => lt,
-			ge => ge,
-			gt => gt,
-			eq => eq,
-			ne => ne
+	    	alu_out_low => alu_out_low_ex
 		);
 end struct;

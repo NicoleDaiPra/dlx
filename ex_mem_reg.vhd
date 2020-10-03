@@ -12,35 +12,21 @@ entity ex_mem_reg is
 		clk: in std_logic;
 		rst: in std_logic;
 		
-		npc_in: in std_logic_vector(31 downto 0);
+		op_b_in: in std_logic_vector(31 downto 0);
 		alu_out_high_in: in std_logic_vector(31 downto 0);
     	alu_out_low_in: in std_logic_vector(31 downto 0);
-    	alu_flags_in: in std_logic_vector(2 downto 0); 
-		le_in: in std_logic; -- less than or equal
-		lt_in: in std_logic; -- less than
-		ge_in: in std_logic; -- greater than or equal
-		gt_in: in std_logic; -- greater than
-		eq_in: in std_logic; -- equal
-		ne_in: in std_logic; -- not equal
 		Rd_in: in std_logic_vector(4 downto 0); -- destination register
 
 		en_output: in std_logic;
 		en_rd: in std_logic;
-		en_npc: in std_logic;
+		en_b: in std_logic;
 
 		-- outputs
-		npc: out std_logic_vector(31 downto 0);
+		op_b: out std_logic_vector(31 downto 0); 
 		Rd_out: out std_logic_vector(4 downto 0);
 		mul_feedback: out std_logic_vector(63 downto 0); -- signal that goes back to the multiplier
 		alu_out_high: out std_logic_vector(31 downto 0);
-    	alu_out_low: out std_logic_vector(31 downto 0);
-    	alu_flags: out std_logic_vector(2 downto 0); 
-		le: out std_logic; -- less than or equal
-		lt: out std_logic; -- less than
-		ge: out std_logic; -- greater than or equal
-		gt: out std_logic; -- greater than
-		eq: out std_logic; -- equal
-		ne: out std_logic -- not equal
+    	alu_out_low: out std_logic_vector(31 downto 0)
 	);
 end ex_mem_reg;
 
@@ -68,16 +54,17 @@ begin
 	-- It is on 64 bits and it represent the partial product
 	mul_feedback <= alu_out_high_int & alu_out_low_int;
 
-	npc_reg: reg_en
+	-- register used to take the value to be stored from the ID stage to the MEM
+	b_reg: reg_en
 		generic map (
 			N => 32
 		)
 		port map (
-			d => npc_in,
-			en => en_npc,
+			d => op_b_in,
+			en => en_b,
 			clk => clk,
 			rst => rst,
-			q => npc
+			q => op_b
 		);
 
 	alu_out_high_reg: reg_en
@@ -104,32 +91,6 @@ begin
 			q => alu_out_low_int
 		);
 
-	flags_reg: reg_en
-		generic map (
-			N => 3
-		)
-		port map (
-			d => alu_flags_in,
-			en => en_output,
-			clk => clk,
-			rst => rst,
-			q => alu_flags
-		);
-
-	cmp_res_in <= le_in&lt_in&ge_in&gt_in&eq_in&ne_in;
-
-	cmp_reg: reg_en
-		generic map (
-			N => 6
-		)
-		port map (
-			d => cmp_res_in,
-			en => en_output,
-			clk => clk,
-			rst => rst,
-			q => cmp_res_out	
-		);
-
 	rd_reg: reg_en
 		generic map (
 			N => 5
@@ -144,13 +105,5 @@ begin
 
 	alu_out_low <= alu_out_low_int;
 	alu_out_high <= alu_out_high_int;
-
-	le <= cmp_res_out(5);
-	lt <= cmp_res_out(4);
-	ge <= cmp_res_out(3);
-	gt <= cmp_res_out(2);
-	eq <= cmp_res_out(1);
-	ne <= cmp_res_out(0);
-
 
 end struct;

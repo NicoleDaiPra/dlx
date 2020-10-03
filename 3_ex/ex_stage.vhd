@@ -37,31 +37,26 @@ entity ex_stage is
     	b_shift_fw_mem: in std_logic_vector(4 downto 0);
 
     	-- control signals
-    	sub_add: in std_logic;						-- 1 if it is a subtraction, 0 otherwise
+    	sub_add: in std_logic; -- 1 if it is a subtraction, 0 otherwise
     	shift_type: in std_logic_vector(3 downto 0);
     	log_type: in std_logic_vector(3 downto 0);
-    	op_type: in std_logic_vector(1 downto 0);	-- 00: add/sub, 01: mul, 10: shift/rot, 11: log
-    	op_sign: in std_logic; 						-- 1 if the operands are signed, 0 otherwise
-    	it: in std_logic_vector(3 downto 0);		-- iterations of the multiplier
-    	neg: in std_logic;							-- used to negate a before actually multiplying
-    	fw_op_a: in std_logic_vector(2 downto 0);	-- used to choose between the forwarded operands and the other ones
+    	op_type: in std_logic_vector(1 downto 0); -- 00: add/sub, 01: mul, 10: shift/rot, 11: log
+    	op_sign: in std_logic; -- 1 if the operands are signed, 0 otherwise
+    	it: in std_logic_vector(3 downto 0); -- iterations of the multiplier
+    	neg: in std_logic; -- used to negate a before actually multiplying
+    	fw_op_a: in std_logic_vector(2 downto 0); -- used to choose between the forwarded operands and the other ones
     	fw_op_b: in std_logic_vector(1 downto 0);
-    	cond_sel: in std_logic_vector(2 downto 0);  -- used to identify the condition of the branch instruction	
+    	cond_sel: in std_logic_vector(2 downto 0); -- used to identify the condition of the branch instruction	
+    	alu_comp_sel: in std_logic_vector(2 downto 0); -- used to select the output to be stored in the alu out register
 
     	-- outputs
+    	npc_jump_reg: out std_logic_vector(31 downto 0);
     	alu_out_high: out std_logic_vector(31 downto 0);
     	alu_out_low: out std_logic_vector(31 downto 0);
-    	alu_flags: out std_logic_vector(2 downto 0); 
     	a_neg_out: out std_logic_vector(63 downto 0); -- negated a that goes back to the multiplier
-    	npc_out: out std_logic_vector(31 downto 0); -- updated next program counter
-    	taken: out std_logic;
-		le: out std_logic; 
-		lt: out std_logic; 
-		ge: out std_logic; 
-		gt: out std_logic; 
-		eq: out std_logic; 
-		ne: out std_logic 
-	);
+    	npc_jump: out std_logic_vector(31 downto 0); -- updated next program counter
+    	taken: out std_logic
+    );
 end ex_stage;
 
 architecture struct of ex_stage is
@@ -81,18 +76,17 @@ architecture struct of ex_stage is
 	    	mul_feedback: in std_logic_vector(63 downto 0);
 
 	    	-- control signals
-	    	sub_add: in std_logic;						-- 1 if it is a subtraction, 0 otherwise
+	    	sub_add: in std_logic; -- 1 if it is a subtraction, 0 otherwise
 	    	shift_type: in std_logic_vector(3 downto 0);
 	    	log_type: in std_logic_vector(3 downto 0);
-	    	op_type: in std_logic_vector(1 downto 0);	-- 00: add/sub, 01: mul, 10: shift/rot, 11: log
-	    	op_sign: in std_logic; 						-- 1 if the operands are signed, 0 otherwise
-	    	it: in std_logic_vector(3 downto 0);		-- iteration
-	    	neg: in std_logic;							-- used to negate a before actually multiplying
+	    	op_type: in std_logic_vector(1 downto 0); -- 00: add/sub, 01: mul, 10: shift/rot, 11: log
+	    	op_sign: in std_logic; -- 1 if the operands are signed, 0 otherwise
+	    	it: in std_logic_vector(3 downto 0); -- iteration
+	    	neg: in std_logic;	-- used to negate a before actually multiplying
 
 	    	-- outputs
 	    	alu_out_high: out std_logic_vector(31 downto 0);
 	    	alu_out_low: out std_logic_vector(31 downto 0);
-	    	alu_flags: out std_logic_vector(2 downto 0); 
 	    	a_neg_out: out std_logic_vector(63 downto 0);	
 			le: out std_logic; 
 			lt: out std_logic; 
@@ -157,7 +151,7 @@ architecture struct of ex_stage is
 		);
 	end component mux_2x1;
 
-	component mux_6x1_single_bit is
+	component mux_7x1_single_bit is
 		port (
 	        a: in std_logic;
 	        b: in std_logic;
@@ -165,10 +159,28 @@ architecture struct of ex_stage is
 	        d: in std_logic;
 	        e: in std_logic;
 	        f: in std_logic;
+	        g: in std_logic;
 	        sel: in std_logic_vector(2 downto 0);
 	        y: out std_logic
 		);
-	end component mux_6x1_single_bit;
+	end component mux_7x1_single_bit;
+
+	component mux_7x1 is
+		generic (
+			N: integer := 4
+		);
+		port (
+	        a: in std_logic_vector(N-1 downto 0);
+	        b: in std_logic_vector(N-1 downto 0);
+	        c: in std_logic_vector(N-1 downto 0);
+	        d: in std_logic_vector(N-1 downto 0);
+	        e: in std_logic_vector(N-1 downto 0);
+	        f: in std_logic_vector(N-1 downto 0);
+	        g: in std_logic_vector(N-1 downto 0);
+	        sel: in std_logic_vector(2 downto 0);
+	        y: out std_logic_vector(N-1 downto 0)
+		);
+	end component mux_7x1;
 
 	signal a_add_int, b_add_int: std_logic_vector(31 downto 0);
 	signal a_shift_int: std_logic_vector(31 downto 0); 
@@ -176,6 +188,10 @@ architecture struct of ex_stage is
 	signal pc_off, next_pc: std_logic_vector(31 downto 0);
 	signal pc_sel: std_logic;
 	signal le_int, lt_int, ge_int, gt_int, eq_int, ne_int: std_logic;
+	signal le_ext, lt_ext, ge_ext, gt_ext, eq_ext, ne_ext: std_logic_vector(31 downto 0);
+	signal alu_out_low_int: std_logic_vector(31 downto 0);
+
+	constant zeros: std_logic_vector(30 downto 0) := (others => '0');
 
 
 begin
@@ -200,10 +216,10 @@ begin
 			a => pc_off,
 			b => npc_in,
 			sel => pc_sel,
-			o => npc_out
+			o => npc_jump
 		);
 
-	cond_mux: mux_6x1_single_bit
+	cond_mux: mux_7x1_single_bit
 		port map (
 			a => le_int,
 			b => lt_int,
@@ -211,6 +227,7 @@ begin
 			d => gt_int,
 			e => eq_int,
 			f => ne_int,
+			g => '1',
 			sel => cond_sel,
 			y => pc_sel
 		);
@@ -296,8 +313,7 @@ begin
 
 	    	-- outputs
 	    	alu_out_high => alu_out_high,
-	    	alu_out_low => alu_out_low,
-	    	alu_flags => alu_flags,
+	    	alu_out_low => alu_out_low_int,
 	    	a_neg_out => a_neg_out,	
 			le => le_int,
 			lt => lt_int,
@@ -307,12 +323,29 @@ begin
 			ne => ne_int
 		);
 
-	le <= le_int;
-	lt <= lt_int;
-	ge <= ge_int;
-	gt <= gt_int;
-	eq <= eq_int;
-	ne <= ne_int;
+		le_ext <= zeros&le_int;
+		lt_ext <= zeros&lt_int;
+		ge_ext <= zeros&ge_int;
+		gt_ext <= zeros&gt_int;
+		eq_ext <= zeros&eq_int;
+		ne_ext <= zeros&ne_int;
 
+	output_sel: mux_7x1
+		generic map (
+			N => 32
+		)
+		port map (
+			a => le_ext,
+			b => lt_ext,
+			c => ge_ext,
+			d => gt_ext,
+			e => eq_ext,
+			f => ne_ext,
+			g => alu_out_low_int,
+			sel => alu_comp_sel,
+			y => alu_out_low
+		);
+
+	npc_jump_reg <= alu_out_low_int;
 
 end struct;

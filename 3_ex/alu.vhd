@@ -28,7 +28,6 @@ entity alu is
     	-- outputs
     	alu_out_high: out std_logic_vector(31 downto 0);
     	alu_out_low: out std_logic_vector(31 downto 0);
-    	alu_flags: out std_logic_vector(2 downto 0); 
     	a_neg_out: out std_logic_vector(63 downto 0);	
 		le: out std_logic; -- less than or equal
 		lt: out std_logic; -- less than
@@ -95,19 +94,13 @@ architecture beh of alu is
 			N: integer := 32
 		);
 	    port (	
-	    	a: in std_logic;	
-	    	b: in std_logic;	
-	    	op_type: in std_logic_vector(1 downto 0); 
-	    	op_sign: in std_logic; 	
-	    	sub_add: std_logic;		
-	    	adder_out: in std_logic_vector(N-1 downto 0);
-	    	adder_cout: in std_logic;
-	    	mul_out: in std_logic_vector(2*N-1 downto 0);
-	    	shifter_out: in std_logic_vector(N-1 downto 0);
-	    	logicals_out: in std_logic_vector(N-1 downto 0);
-	    	alu_sel_out_high: out std_logic_vector(N-1 downto 0); 
-	    	alu_sel_out_low: out std_logic_vector(N-1 downto 0); 
-	    	alu_flags: out std_logic_vector(2 downto 0) 	
+	    	op_type: in std_logic_vector(1 downto 0); -- identifies which unit is computing the result
+	    	adder_out: in std_logic_vector(N-1 downto 0); -- adder output
+	    	mul_out: in std_logic_vector(2*N-1 downto 0); -- multiplier output
+	    	shifter_out: in std_logic_vector(N-1 downto 0); -- shifter output
+	    	logicals_out: in std_logic_vector(N-1 downto 0); -- logicals output
+	    	alu_sel_out_high: out std_logic_vector(N-1 downto 0); -- upper part (63 downto 32) of the result used only for the multiply
+	    	alu_sel_out_low: out std_logic_vector(N-1 downto 0) -- lower part (31 downto 0) of the result	
 	    );
 	end component alu_out_selector;
 
@@ -116,17 +109,17 @@ architecture beh of alu is
 			N: integer := 32
 		);
 		port (
-			res: in std_logic_vector(N-1 downto 0); 
-			cout: in std_logic; 
-			a_msb: in std_logic; 
-			b_msb: in std_logic; 
-			op_sign: in std_logic; 
-			le: out std_logic; 
-			lt: out std_logic; 
-			ge: out std_logic; 
-			gt: out std_logic; 
-			eq: out std_logic; 
-			ne: out std_logic 
+			res: in std_logic_vector(N-1 downto 0); -- adder/subtractor result
+			cout: in std_logic; -- adder/subtractor cout
+			a_msb: in std_logic; -- MSB of the first operand
+			b_msb: in std_logic; -- MSB of the second operand
+			op_sign: in std_logic; -- 1 if the operands are signed, 0 otherwise
+			le: out std_logic; -- less than or equal
+			lt: out std_logic; -- less than
+			ge: out std_logic; -- greater than or equal
+			gt: out std_logic; -- greater than
+			eq: out std_logic; -- equal
+			ne: out std_logic -- not equal
 		);
 	end component comparator;
 
@@ -186,19 +179,13 @@ begin
 			N => 32
 		)
 		port map (
-			a => a_adder(31),
-			b => b_adder(31),
-			sub_add => sub_add,
 			op_type => op_type,
-			op_sign => op_sign,
 			adder_out => adder_out,
-			adder_cout => adder_cout,
 			mul_out => mul_out,
 			shifter_out => shifter_out,
 			logicals_out => logicals_out,
 			alu_sel_out_high => alu_out_high_int,
-			alu_sel_out_low => alu_out_low_int,
-			alu_flags => alu_flags
+			alu_sel_out_low => alu_out_low_int
 		);
 
 	comp: comparator

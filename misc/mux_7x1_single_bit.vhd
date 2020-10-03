@@ -1,7 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity mux_6x1_single_bit is
+entity mux_7x1_single_bit is
 	port (
         a: in std_logic;
         b: in std_logic;
@@ -9,17 +9,18 @@ entity mux_6x1_single_bit is
         d: in std_logic;
         e: in std_logic;
         f: in std_logic;
+        g: in std_logic;
         sel: in std_logic_vector(2 downto 0);
         y: out std_logic
 	);
-end entity mux_6x1_single_bit;
+end entity mux_7x1_single_bit;
 
 -- behavioral implementation
 
-architecture behavioral of mux_6x1_single_bit is
+architecture behavioral of mux_7x1_single_bit is
 
 begin
-	process(a, b, c, d, e, f, sel)
+	process(a, b, c, d, e, f, g, sel)
 	begin
 	   case sel is
 	       when "000" => y <= a;
@@ -28,6 +29,7 @@ begin
 	       when "011" => y <= d;
 	       when "100" => y <= e;
 	       when "101" => y <= f;
+	       when "110" => y <= g;
 	       when others => y <= '0';
 	   end case;    
     end process;

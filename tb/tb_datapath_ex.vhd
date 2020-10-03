@@ -9,67 +9,65 @@ architecture tb of tb_datapath is
 
 	component datapath is
 		port(
-		clk: std_logic;
-		rst: std_logic;
+			clk: std_logic;
+			rst: std_logic;
 
-    	-- operands
-    	a: in std_logic_vector(31 downto 0);
-    	b: in std_logic_vector(31 downto 0);
-    	Rd_in: in std_logic_vector(4 downto 0);
-    	npc_in: in std_logic_vector(31 downto 0);
-    	imm_in: in std_logic_vector(31 downto 0);
+	    	-- operands
+	    	a: in std_logic_vector(31 downto 0);
+	    	b: in std_logic_vector(31 downto 0);
+	    	Rd_in: in std_logic_vector(4 downto 0);
+	    	npc_in: in std_logic_vector(31 downto 0);
+	    	imm_in: in std_logic_vector(31 downto 0);
+	    	op_b_in: in std_logic_vector(31 downto 0);
 
-    	-- forwarded ex/mem operands
-    	hi_fw_ex: in std_logic_vector(31 downto 0);
-    	a_adder_fw_ex: in std_logic_vector(31 downto 0);
-    	b_adder_fw_ex: in std_logic_vector(31 downto 0);
-    	a_shift_fw_ex: in std_logic_vector(31 downto 0);
-    	b_shift_fw_ex: in std_logic_vector(4 downto 0);
+	    	-- forwarded ex/mem operands
+	    	hi_fw_ex: in std_logic_vector(31 downto 0);
+	    	a_adder_fw_ex: in std_logic_vector(31 downto 0);
+	    	b_adder_fw_ex: in std_logic_vector(31 downto 0);
+	    	a_shift_fw_ex: in std_logic_vector(31 downto 0);
+	    	b_shift_fw_ex: in std_logic_vector(4 downto 0);
 
-    	-- forwarded mem/wb operands
-    	hi_fw_mem: in std_logic_vector(31 downto 0);
-    	a_adder_fw_mem: in std_logic_vector(31 downto 0);
-    	b_adder_fw_mem: in std_logic_vector(31 downto 0);
-    	a_shift_fw_mem: in std_logic_vector(31 downto 0);
-    	b_shift_fw_mem: in std_logic_vector(4 downto 0);
-    	
-    	-- control signals
-    	sub_add: in std_logic;						
-    	shift_type: in std_logic_vector(3 downto 0);
-    	log_type: in std_logic_vector(3 downto 0);
-    	op_type: in std_logic_vector(1 downto 0);	
-    	op_sign: in std_logic; 						
-    	it: in std_logic_vector(3 downto 0);		
-    	neg: in std_logic;							
-    	en_add: in std_logic;
-    	en_mul: in std_logic;
-    	en_shift: in std_logic;
-    	en_a_neg: in std_logic;
-    	shift_reg: in std_logic;
-    	en_shift_reg: in std_logic;
-    	en_output: in std_logic;
-    	fw_op_a: in std_logic_vector(2 downto 0);
-    	fw_op_b: in std_logic_vector(1 downto 0);
-    	en_rd: in std_logic;
-    	en_npc_id: in std_logic;
-    	en_npc_ex: in std_logic;
-    	en_imm: in std_logic;
-    	cond_sel: in std_logic_vector(2 downto 0);
+	    	-- forwarded mem/wb operands
+	    	hi_fw_mem: in std_logic_vector(31 downto 0);
+	    	a_adder_fw_mem: in std_logic_vector(31 downto 0);
+	    	b_adder_fw_mem: in std_logic_vector(31 downto 0);
+	    	a_shift_fw_mem: in std_logic_vector(31 downto 0);
+	    	b_shift_fw_mem: in std_logic_vector(4 downto 0);
+	    	
+	    	-- control signals
+	    	sub_add: in std_logic;						
+	    	shift_type: in std_logic_vector(3 downto 0);
+	    	log_type: in std_logic_vector(3 downto 0);
+	    	op_type: in std_logic_vector(1 downto 0);	
+	    	op_sign: in std_logic; 						
+	    	it: in std_logic_vector(3 downto 0);		
+	    	neg: in std_logic;							
+	    	en_add: in std_logic;
+	    	en_mul: in std_logic;
+	    	en_shift: in std_logic;
+	    	en_a_neg: in std_logic;
+	    	shift_reg: in std_logic;
+	    	en_shift_reg: in std_logic;
+	    	en_output: in std_logic;
+	    	fw_op_a: in std_logic_vector(2 downto 0);
+	    	fw_op_b: in std_logic_vector(1 downto 0);
+	    	en_rd: in std_logic;
+	    	en_npc_id: in std_logic;
+	    	en_imm: in std_logic;
+	    	en_b_id: in std_logic;
+	    	en_b_ex: in std_logic;
+	    	cond_sel: in std_logic_vector(2 downto 0);
+	    	alu_comp_sel: in std_logic_vector(2 downto 0);
 
-    	-- outputs
-    	npc_out: out std_logic_vector(31 downto 0);
-    	Rd_out: out std_logic_vector(4 downto 0);
-    	alu_out_high_ex: out std_logic_vector(31 downto 0);
-    	alu_out_low_ex: out std_logic_vector(31 downto 0);
-    	alu_flags_ex: out std_logic_vector(2 downto 0); 
-    	taken: out std_logic;	
-		le: out std_logic; -- less than or equal
-		lt: out std_logic; -- less than
-		ge: out std_logic; -- greater than or equal
-		gt: out std_logic; -- greater than
-		eq: out std_logic; -- equal
-		ne: out std_logic -- not equal
-	);
+	    	-- outputs
+	    	npc_jump_reg: out std_logic_vector(31 downto 0);
+	    	op_b: out std_logic_vector(31 downto 0);
+	    	npc_jump_dp: out std_logic_vector(31 downto 0);
+	    	Rd_out: out std_logic_vector(4 downto 0);
+	    	alu_out_high_ex: out std_logic_vector(31 downto 0);
+	    	alu_out_low_ex: out std_logic_vector(31 downto 0);
+	    	taken: out std_logic
+		);
 	end component datapath;
 
 	constant period: time := 10 ns;
@@ -78,7 +76,7 @@ architecture tb of tb_datapath is
 	signal clk, rst: std_logic;
 	signal a, b: std_logic_vector(31 downto 0);
 	signal Rd_in: std_logic_vector(4 downto 0);
-	signal imm_in, npc_in: std_logic_vector(31 downto 0);
+	signal imm_in, npc_in, op_b_in: std_logic_vector(31 downto 0);
 	signal a_adder_fw_ex, a_adder_fw_mem, b_adder_fw_ex, b_adder_fw_mem: std_logic_vector(31 downto 0);
 	signal a_shift_fw_ex, a_shift_fw_mem, hi_fw_ex, hi_fw_mem: std_logic_vector(31 downto 0);
 	signal b_shift_fw_ex, b_shift_fw_mem: std_logic_vector(4 downto 0);
@@ -90,13 +88,11 @@ architecture tb of tb_datapath is
 	signal shift_reg: std_logic;
 	signal fw_a: std_logic_vector(2 downto 0);
 	signal fw_b: std_logic_vector(1 downto 0);
-	signal en_npc_id, en_npc_ex, en_imm: std_logic;
-	signal cond_sel: std_logic_vector(2 downto 0);
+	signal en_npc_id, en_imm, en_b_id, en_b_ex: std_logic;
+	signal cond_sel, alu_comp_sel: std_logic_vector(2 downto 0);
 
 	signal Rd_out: std_logic_vector(4 downto 0);
-	signal alu_out_high_ex, alu_out_low_ex, npc_out: std_logic_vector(31 downto 0);
-	signal alu_flags_ex: std_logic_vector(2 downto 0);
-	signal le, lt, ge, gt, eq, ne: std_logic;
+	signal alu_out_high_ex, alu_out_low_ex, op_b, npc_jump_dp, npc_jump_reg: std_logic_vector(31 downto 0);
 	signal taken: std_logic;
 
 begin
@@ -112,6 +108,7 @@ begin
 	    	Rd_in => Rd_in,
 	    	npc_in => npc_in,
 	    	imm_in => imm_in,
+	    	op_b_in => op_b_in,
 
 	    	-- forwarded ex/mem operands
 	    	hi_fw_ex => hi_fw_ex,
@@ -146,23 +143,20 @@ begin
 	    	fw_op_b => fw_b,
 	    	en_rd => en_rd,
 	    	en_npc_id => en_npc_id,
-	    	en_npc_ex => en_npc_ex,
 	    	en_imm => en_imm,
+	    	en_b_id => en_b_id,
+	    	en_b_ex => en_b_ex,
 	    	cond_sel => cond_sel,
+	    	alu_comp_sel => alu_comp_sel,
 
 	    	-- outputs
-	    	npc_out => npc_out,
+	    	npc_jump_reg => npc_jump_reg,
+	    	op_b => op_b,
+	    	npc_jump_dp => npc_jump_dp,
 	    	Rd_out => Rd_out,
 	    	alu_out_high_ex => alu_out_high_ex,
 	    	alu_out_low_ex => alu_out_low_ex,
-	    	alu_flags_ex => alu_flags_ex,
-	    	taken => taken,	
-			le => le,
-			lt => lt,
-			ge => ge,
-			gt => gt,
-			eq => eq,
-			ne => ne
+	    	taken => taken
 		);
 
 	clk_p: process
@@ -185,6 +179,7 @@ begin
 	    	Rd_in <= "10011";
 	    	npc_in <= X"12345678";
 	    	imm_in <= X"11111111";
+	    	op_b_in <= X"00000000";
 
 	    	hi_fw_ex <= X"44444444";
 	    	hi_fw_mem <= X"33333333";
@@ -217,9 +212,11 @@ begin
 	    	fw_b <= "00";
 	    	en_rd <= '1';
 	    	en_npc_id <= '1';
-	    	en_npc_ex <= '1';
+	    	en_b_id <= '1';
+	    	en_b_ex  <= '1';
 	    	en_imm <= '1';
 	    	cond_sel <= "111";
+	    	alu_comp_sel <= "111";
 
 	    	wait for period;
 
@@ -230,6 +227,7 @@ begin
 	    	Rd_in <= "10011";
 	    	npc_in <= X"22222222";
 	    	imm_in <= X"11111111";
+	    	op_b_in <= X"00000500";
 
 	    	wait for period/2;
 	    	sub_add <= '0';
@@ -250,9 +248,11 @@ begin
 	    	fw_b <= "00";
 	    	en_rd <= '1';
 	    	en_npc_id <= '1';
-	    	en_npc_ex <= '1';
+	    	en_b_id <= '1';
+	    	en_b_ex  <= '1';
 	    	en_imm <= '1';
 	    	cond_sel <= "111";
+	    	alu_comp_sel <= "110";
 
 	    	wait for period/2;
 
@@ -264,6 +264,7 @@ begin
 	    	npc_in <= X"33333333";
 	    	imm_in <= X"11111111";
 	    	a_adder_fw_ex  <= X"ffffffff";
+	    	op_b_in <= X"00000001";
 
 	    	wait for period/2;
 
@@ -285,9 +286,11 @@ begin
 	    	fw_b <= "00";
 	    	en_rd <= '1';
 	    	en_npc_id <= '1';
-	    	en_npc_ex <= '1';
+	    	en_b_id <= '1';
+	    	en_b_ex  <= '1';
 	    	en_imm <= '1';
 	    	cond_sel <= "111";
+	    	alu_comp_sel <= "110";
 
 	    	wait for period/2;
 
@@ -299,6 +302,7 @@ begin
 	    	npc_in <= X"44444444";
 	    	imm_in <= X"11111111";
 	    	b_adder_fw_mem <= X"11112222"; 
+	    	op_b_in <= X"11111111";
 
 	    	wait for period/2;
 	    	sub_add <= '0';
@@ -319,9 +323,11 @@ begin
 	    	fw_b <= "10";
 	    	en_rd <= '1';
 	    	en_npc_id <= '1';
-	    	en_npc_ex <= '1';
+	    	en_b_id <= '1';
+	    	en_b_ex  <= '1';
 	    	en_imm <= '1';
 	    	cond_sel <= "111";
+	    	alu_comp_sel <= "110";
 
 	    	wait for period/2;
 
@@ -333,6 +339,7 @@ begin
 	    	npc_in <= X"55555555";
 	    	imm_in <= X"11111111";
 	    	hi_fw_ex <= X"88888888";
+	    	op_b_in <= X"88888888";
 
 	    	wait for period/2;
 
@@ -354,9 +361,11 @@ begin
 	    	fw_b <= "00";
 	    	en_rd <= '1';
 	    	en_npc_id <= '1';
-	    	en_npc_ex <= '1';
+	    	en_b_id <= '1';
+	    	en_b_ex  <= '1';
 	    	en_imm <= '1';
 	    	cond_sel <= "111";
+	    	alu_comp_sel <= "110";
 
 	    	wait for period/2;
 
@@ -367,6 +376,7 @@ begin
 	    	Rd_in <= "10011";
 	    	npc_in <= X"66666666";
 	    	imm_in <= X"11111111";
+	    	op_b_in <= X"80000000";
 
 	    	wait for period/2;
 	    	
@@ -388,9 +398,11 @@ begin
 	    	fw_b <= "00";
 	    	en_rd <= '1';
 	    	en_npc_id <= '1';
-	    	en_npc_ex <= '1';
+	    	en_b_id <= '1';
+	    	en_b_ex  <= '1';
 	    	en_imm <= '1';
 	    	cond_sel <= "111";
+	    	alu_comp_sel <= "110";
 
 	    	wait for period/2;
 
@@ -402,6 +414,7 @@ begin
 	    	Rd_in <= "10011";
 	    	npc_in <= X"12345678";
 	    	imm_in <= X"11111111";
+	    	op_b_in <= X"11111111";
 
 	    	wait for period/2;
 	    	
@@ -423,9 +436,11 @@ begin
 	    	fw_b <= "00";
 	    	en_rd <= '1';
 	    	en_npc_id <= '1';
-	    	en_npc_ex <= '1';
+	    	en_b_id <= '1';
+	    	en_b_ex  <= '1';
 	    	en_imm <= '1';
 	    	cond_sel <= "111";
+	    	alu_comp_sel <= "110";
 
 	    	wait for period/2;
 
@@ -436,6 +451,7 @@ begin
 	    	Rd_in <= "10011";
 	    	npc_in <= X"22222222";
 	    	imm_in <= X"11111111";
+	    	op_b_in <= X"11111111";
 
 	    	wait for period/2;
 	    	
@@ -457,9 +473,11 @@ begin
 	    	fw_b <= "00";
 	    	en_rd <= '1';
 	    	en_npc_id <= '1';
-	    	en_npc_ex <= '1';
+	    	en_b_id <= '1';
+	    	en_b_ex  <= '1';
 	    	en_imm <= '1';
 	    	cond_sel <= "111";
+	    	alu_comp_sel <= "110";
 
 	    	wait for period/2;
 
@@ -472,6 +490,7 @@ begin
 	    	Rd_in <= "10011";
 	    	npc_in <= X"33333333";
 	    	imm_in <= X"11111111";
+	    	op_b_in <= X"0000000a";
 
 	    	wait for period/2;
 	    	
@@ -493,9 +512,11 @@ begin
 	    	fw_b <= "00";
 	    	en_rd <= '1';
 	    	en_npc_id <= '1';
-	    	en_npc_ex <= '1';
+	    	en_b_id <= '1';
+	    	en_b_ex  <= '1';
 	    	en_imm <= '1';
 	    	cond_sel <= "111";
+	    	alu_comp_sel <= "110";
 
 	    	wait for period/2;
 
@@ -507,6 +528,7 @@ begin
 	    	Rd_in <= "10011";
 	    	npc_in <= X"44444444";
 	    	imm_in <= X"11111111";
+	    	op_b_in <= X"00000005";
 
 	    	wait for period/2;
 	    	
@@ -528,9 +550,11 @@ begin
 	    	fw_b <= "00";
 	    	en_rd <= '1';
 	    	en_npc_id <= '1';
-	    	en_npc_ex <= '1';
+	    	en_b_id <= '1';
+	    	en_b_ex  <= '1';
 	    	en_imm <= '1';
 	    	cond_sel <= "111";
+	    	alu_comp_sel <= "110";
 
 	    	wait for period/2;
 
@@ -541,6 +565,7 @@ begin
 	    	Rd_in <= "10011";
 	    	npc_in <= X"33333333";
 	    	imm_in <= X"11111111";
+	    	op_b_in <= X"11111111";
 
 	    	wait for period/2;
 
@@ -562,9 +587,11 @@ begin
 	    	fw_b <= "00";
 	    	en_rd <= '1';
 	    	en_npc_id <= '1';
-	    	en_npc_ex <= '1';
+	    	en_b_id <= '1';
+	    	en_b_ex  <= '1';
 	    	en_imm <= '1';
 	    	cond_sel <= "100";
+	    	alu_comp_sel <= "110";
 
 	    	wait for period/2;
 
@@ -575,6 +602,7 @@ begin
 	    	Rd_in <= "10011";
 	    	npc_in <= X"33333333";
 	    	imm_in <= X"11111111";
+	    	op_b_in <= X"00000000";
 
 	    	wait for period/2;
 
@@ -596,9 +624,11 @@ begin
 	    	fw_b <= "00";
 	    	en_rd <= '1';
 	    	en_npc_id <= '1';
-	    	en_npc_ex <= '1';
+	    	en_b_id <= '1';
+	    	en_b_ex  <= '1';
 	    	en_imm <= '1';
 	    	cond_sel <= "011";
+	    	alu_comp_sel <= "110";
 
 	    	wait for period/2;
 
@@ -631,9 +661,11 @@ begin
 	    	fw_b <= "00";
 	    	en_rd <= '1';
 	    	en_npc_id <= '1';
-	    	en_npc_ex <= '1';
+	    	en_b_id <= '1';
+	    	en_b_ex  <= '1';
 	    	en_imm <= '1';
 	    	cond_sel <= "111";
+	    	alu_comp_sel <= "110";
 
 	    	wait for period;
 
@@ -657,9 +689,11 @@ begin
 	    	fw_b <= "00";
 	    	en_rd <= '1';
 	    	en_npc_id <= '0';
-	    	en_npc_ex <= '0';
+	    	en_b_id <= '1';
+	    	en_b_ex  <= '1';
 	    	en_imm <= '0';
 	    	cond_sel <= "111";
+	    	alu_comp_sel <= "110";
 
 	    	wait for period;
 	    	
@@ -686,9 +720,11 @@ begin
 	    	fw_b <= "00";
 	    	en_rd <= '1';
 	    	en_npc_id <= '0';
-	    	en_npc_ex <= '0';
+	    	en_b_id <= '1';
+	    	en_b_ex  <= '1';
 	    	en_imm <= '0';
 	    	cond_sel <= "111";
+	    	alu_comp_sel <= "110";
 
 	    	wait for period;
 
@@ -739,7 +775,8 @@ begin
 	    	fw_b <= "00";
 	    	en_rd <= '1';
 	    	en_npc_id <= '1';
-	    	en_npc_ex <= '1';
+	    	en_b_id <= '1';
+	    	en_b_ex  <= '1';
 	    	en_imm <= '1';
 	    	cond_sel <= "111";
 
@@ -765,7 +802,8 @@ begin
 	    	fw_b <= "00";
 	    	en_rd <= '1';
 	    	en_npc_id <= '0';
-	    	en_npc_ex <= '0';
+	    	en_b_id <= '1';
+	    	en_b_ex  <= '1';
 	    	en_imm <= '0';
 	    	cond_sel <= "111";
 
@@ -794,7 +832,8 @@ begin
 	    	fw_b <= "00";
 	    	en_rd <= '1';
 	    	en_npc_id <= '0';
-	    	en_npc_ex <= '0';
+	    	en_b_id <= '1';
+	    	en_b_ex  <= '1';
 	    	en_imm <= '0';
 	    	cond_sel <= "111";
 	    	
@@ -818,7 +857,8 @@ begin
 	    	wait for period; 
 	    	en_output <= '0';
 	    	en_npc_id <= '0';
-	    	en_npc_ex <= '0';
+	    	en_b_id <= '1';
+	    	en_b_ex  <= '1';
 	    	en_imm <= '0';
 	    	cond_sel <= "111";
 

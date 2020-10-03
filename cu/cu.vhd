@@ -101,7 +101,7 @@ entity cu is
     	en_output_exe: out std_logic;
 		en_rd_exe: out std_logic;
 		en_npc_exe: out std_logic;
-		en_b_id: out std_logic;
+		en_b_exe: out std_logic;
 -- 33
     	-- mem stage inputs
     	
