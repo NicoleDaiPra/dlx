@@ -13,7 +13,13 @@ entity if_stage is
 
 		-- control interface
 		pc_en: in std_logic; -- enable the PC register
-		pc_sel: in std_logic; -- 1 if the next pc must be pc+4, 0 if it has to be the one coming out from the BTB
+		-- "00" if the next pc must me pc+4
+		-- "01" if the next pc must be the one coming out from the BTB
+		-- "10" if the next PC is the one coming out from the main adder
+		-- "11" if the next PC is the one coming out from the secondary adder
+		pc_sel: in std_logic_vector(1 downto 0); -- 1 if the next pc must be pc+4, 0 if it has to be the one coming out from the BTB
+		pc_main_adder: in std_logic_vector(29 downto 0);
+		pc_secondary_adder: in std_logic_vector(29 downto 0);
 		-- "00" if nothing has to be done
 		-- "01" if an already known instruction has to be updated (taken/not taken)
 		-- "10" if a new instruction must be added
@@ -101,6 +107,20 @@ architecture behavioral of if_stage is
 		);
 	end component mux_2x1;
 
+	component mux_4x1 is
+		generic (
+			N: integer := 22
+		);
+		port (
+			a: in std_logic_vector(N-1 downto 0);
+			b: in std_logic_vector(N-1 downto 0);
+			c: in std_logic_vector(N-1 downto 0);
+			d: in std_logic_vector(N-1 downto 0);
+			sel: in std_logic_vector(1 downto 0);
+			o: out std_logic_vector(N-1 downto 0)
+	);	
+	end component mux_4x1;
+
 	constant one: std_logic_vector(29 downto 0) := (0 => '1', others => '0'); 
 
 	signal curr_pc, next_pc: std_logic_vector(29 downto 0);
@@ -158,14 +178,16 @@ begin
 			cout => open
 		);
 
-	-- based on the CU "pc_sel" input select either pc+4 or pc_btb as the next pc
-	pc_selector: mux_2x1
+	-- based on the CU "pc_sel" input select the next pc
+	pc_selector: mux_4x1
 		generic map (
 			N => 30
 		)
 		port map (
 			a => pc_plus4,
 			b => pc_btb,
+			c => pc_main_adder,
+			d => pc_secondary_adder,
 			sel => pc_sel,
 			o => next_pc
 		);

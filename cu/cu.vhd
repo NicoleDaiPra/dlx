@@ -15,7 +15,11 @@ entity cu is
 		-- if stage outputs
 
 		pc_en_if: out std_logic; -- enable the PC register
-		pc_sel_if: out std_logic; -- 1 if the next pc must be pc+4, 0 if it has to be the one coming out from the BTB
+		-- "00" if the next pc must me pc+4
+		-- "01" if the next pc must be the one coming out from the BTB
+		-- "10" if the next PC is the one coming out from the main adder
+		-- "11" if the next PC is the one coming out from the secondary adder
+		pc_sel: in std_logic_vector(1 downto 0); -- 1 if the next pc must be pc+4, 0 if it has to be the one coming out from the BTB
 		--btb_target_addr_if: out std_logic_vector(29 downto 0); -- address to be added to the BTB
 -- 0
 		-- if/id regs
@@ -28,17 +32,18 @@ entity cu is
 		-- id stage outputs
 
 		i_instr_id: out std_logic; -- 1 if the istruction is of type I, 0 otherwise
+		j_instr_id: in std_logic; -- 1 if the instruction is of type J, o otherwise
 		-- rp1_out_sel values:
 		-- 		00 for an arch register
 		-- 		01 for the LO register
 		-- 		10 for the HI register
-		-- 		11 reserved
+		-- 		11 output all 0s
 		rp1_out_sel_id: out std_logic_vector(1 downto 0);
 		-- rp2_out_sel values:
 		-- 		00 for an arch register
 		-- 		01 for the LO register
 		-- 		10 for the HI register
-		-- 		11 reserved
+		-- 		11 output all 0s
 		rp2_out_sel_id: out std_logic_vector(1 downto 0);
 		is_signed_id: out std_logic; -- 1 if extension is signed, 0 if unsigned
 		sign_ext_sel_id: out std_logic; -- 1 if the 16 bits input must be used, 0 if the 26 bits input must be used
@@ -56,6 +61,7 @@ entity cu is
 	    en_rd_id: out std_logic;
 	    en_npc_id: out std_logic;
 	    en_imm_id: out std_logic;
+	    en_b_id: out std_logic;
 -- 18
 		-- exe stage inputs
 
@@ -73,6 +79,16 @@ entity cu is
     	--fw_op_a_exe: out std_logic_vector(2 downto 0);	-- used to choose between the forwarded operands and the other ones
     	--fw_op_b_exe: out std_logic_vector(1 downto 0);
     	cond_sel_exe: out std_logic_vector(2 downto 0);  -- used to identify the condition of the branch instruction
+    	-- select if in the alu register goes the alu output or a comparison output
+		-- "000" if le
+		-- "001" if lt
+		-- "010" if ge
+		-- "011" if gt
+		-- "100" if eq
+		-- "101" if ne
+		-- "110" if alu
+		-- "111" reserved
+		alu_comp_sel: out std_logic_vector(2 downto 0); 
     	-- "00" if nothing has to be done
 		-- "01" if an already known instruction has to be updated (taken/not taken)
 		-- "10" if a new instruction must be added
@@ -85,6 +101,7 @@ entity cu is
     	en_output_exe: out std_logic;
 		en_rd_exe: out std_logic;
 		en_npc_exe: out std_logic;
+		en_b_id: out std_logic;
 -- 33
     	-- mem stage inputs
     	
@@ -100,6 +117,13 @@ entity cu is
 		-- 10: stores N/2 bits coming from the CPU
 		-- 11: stores N/4 bits coming from the CPU
 		update_type_mem: out std_logic_vector(1 downto 0);
+		ld_sign_mem: out std_logic; -- 1 if load is signed, 0 if unsigned
+		-- controls how many bits of the word are kept after a load
+		-- 00: load N bits
+		-- 01: load N/2 bits
+		-- 10: load N/4 bits
+		-- 11: reserved
+		ld_type_mem: out std_logic_vector(1 downto 0);
 -- 36
 		-- mem/wb regs
 		en_alu_mem: out std_logic;
@@ -118,7 +142,7 @@ end cu;
 
 
 architecture behavioral of cu is
-	type cw_array is array (0 to 63) of std_logic_vector(40 downto 0);
+	type cw_array is array (0 to 63) of std_logic_vector(41 downto 0);
 	type func_array is array (0 to 63) of std_logic_vector(32 downto 0);
 
 	constant cw_mem : cw_array := (
@@ -253,8 +277,13 @@ architecture behavioral of cu is
 									"", -- 111101
 									"", -- 111110
 									"", -- 111111
-		); 
-
+		);
+	
+	-- used by the EXE stage to communicate to the IF stage whether it has to use the PC calculated in the EXE stage or not
+	-- "00": no PC
+	-- "01": main adder PC
+	-- "10": secondary adder PC
+	signal exe_pc: std_logic_vector(1 downto 0);
 	signal curr_id, next_id: std_logic_vector(40 downto 0);
 	signal curr_exe, next_exe: std_logic_vector(22 downto 0);
 	signal curr_mem, next_mem: std_logic_vector(7 downto 0);

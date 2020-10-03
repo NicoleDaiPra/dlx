@@ -14,7 +14,7 @@ package opcodes is
 	constant srl_func : func_t 		:= "00000000110"; -- 0x006
 	constant sra_func : func_t 		:= "00000000111"; -- 0x007
 	constant jr_func : func_t 		:= "00000001000"; -- 0x008 
-	constant jarl_func : func_t 	:= "00000001001"; -- 0x009 
+	constant jalr_func : func_t 	:= "00000001001"; -- 0x009 
 	constant mult_func : func_t 	:= "00000001110"; -- 0x00E 
 	constant mfhi_func : func_t 	:= "00000010000"; -- 0x010 
 	constant mflo_func : func_t 	:= "00000010010"; -- 0x012
