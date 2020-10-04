@@ -1,92 +1,89 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
 
--- cache line implementation. It stores a tag, the data corresponding to the tag and a valid bit.
--- A line is 4*W bits wide
+-- A single line cache. It stores a word, the tag, the validity bit and the dirty bit.
 entity dcache_line is
 	generic (
-		T: integer := 22; -- tag bit size
-		W: integer := 32 -- word size (in bits)
+		T: integer := 22; -- tag size
+		N: integer := 32 -- word size
 	);
 	port (
 		clk: in std_logic;
 		rst: in std_logic;
-		update: in std_logic; -- if update = '1' the line stores the incoming data
-		tag_in: in std_logic_vector(T-1 downto 0); -- tag to be saved when update = 1
-		offset: in std_logic_vector(1 downto 0); -- offset bits to select a word
-		data_in: in std_logic_vector(4*W-1 downto 0); -- data to be added to the line
-		valid: out std_logic; -- 1 if the data contained in the line is valid, 0 otherwise
-		tag_out: out std_logic_vector(T-1 downto 0); -- tag stored in the line
-		data_out: out std_logic_vector(W-1 downto 0) -- output containing the word chosen with offset
-	);	
-end entity dcache_line;
+		tag_in: std_logic_vector(T-1 downto 0); -- tag to be added to the cache in case of an update
+		update: in std_logic; -- 1 if an update must be performed, 0 otherwise
+		-- controls how the data is added to the line
+		-- 00: stores N bits coming from the RAM
+		-- 01: stores N bits coming from the CPU
+		-- 10: stores N/2 bits coming from the CPU
+		-- 11: stores N/4 bits coming from the CPU
+		update_type: in std_logic_vector(1 downto 0);
+		ram_data_in: in std_logic_vector(N-1 downto 0); -- data coming from the RAM (in big endian)
+		cpu_data_in: in std_logic_vector(N-1 downto 0); -- data coming from the CPU (in little endian)
+		valid: out std_logic; -- if 1 the data read is valid, 0 otherwise
+		dirty: out std_logic; -- 1 if the content of the line has been modified and its change not propagated to the RAM, 0 otherwise
+		ram_data_out: out std_logic_vector(N-1 downto 0); -- data going to the RAM (in big endian)
+		cpu_data_out: out std_logic_vector(N-1 downto 0); -- data going to the CPU (in little endian)
+		tag_out: out std_logic_vector(T-1 downto 0) -- tag stored in the line
+	);
+end dcache_line;
 
 architecture behavioral of dcache_line is
-	component mux_4x1 is
-		generic (
-			N: integer := 22
-		);
-		port (
-			a: in std_logic_vector(N-1 downto 0);
-			b: in std_logic_vector(N-1 downto 0);
-			c: in std_logic_vector(N-1 downto 0);
-			d: in std_logic_vector(N-1 downto 0);
-			sel: in std_logic_vector(1 downto 0);
-			o: out std_logic_vector(N-1 downto 0)
-		);
-	end component mux_4x1;
-
-	signal curr_valid, next_valid: std_logic;
+	signal curr_data, next_data: std_logic_vector(N-1 downto 0); -- data stored inside the cache (in big endian)
 	signal curr_tag, next_tag: std_logic_vector(T-1 downto 0);
-	signal curr_data, next_data: std_logic_vector(4*W-1 downto 0);
-
+	signal curr_valid, next_valid: std_logic;
+	signal curr_dirty, next_dirty: std_logic;
 begin
-	state_reg: process(clk)
+	state_reg: process(clk, rst)
 	begin
 		if (clk = '1' and clk'event) then
 			if (rst = '0') then
+				curr_data <= (others  => '0');
+				curr_tag <= (others  => '0');
 				curr_valid <= '0';
-				curr_tag <= (others => '0');
-				curr_data <= (others => '0');
+				curr_dirty <= '0';
 			else
-				curr_valid <= next_valid;
-				curr_tag <= next_tag;
 				curr_data <= next_data;
+				curr_tag <= next_tag;
+				curr_valid <= next_valid;
+				curr_dirty <= next_dirty;
 			end if;
 		end if;
 	end process state_reg;
 
-		mux: mux_4x1
-		generic map (
-			N => W
-		)
-		port map (
-			a => curr_data(W-1 downto 0),
-			b => curr_data(2*W-1 downto W),
-			c => curr_data(3*w-1 downto 2*W),
-			d => curr_data(4*W-1 downto 3*W),
-			sel => offset,
-			o => data_out
-		);
-
-	valid <= curr_valid;
+	ram_data_out <= curr_data;
+	cpu_data_out <= curr_data(N/4-1 downto 0)&curr_data(N/2-1 downto N/4)&curr_data(3*N/4-1 downto N/2)&curr_data(N-1 downto 3*N/4);
 	tag_out <= curr_tag;
-
-	comblogic: process(curr_valid, curr_tag, curr_data, update, tag_in, data_in)
-		variable data_in_be: std_logic_vector(4*W-1 downto 0) := (others => '0');
+	valid <= curr_valid;
+	dirty <= curr_dirty;
+	
+	comblogic: process(curr_data, curr_tag, curr_valid, curr_dirty, tag_in, update, update_type, ram_data_in, cpu_data_in)
 	begin
-		next_valid <= curr_valid;
+		next_data <=  curr_data;
 		next_tag <= curr_tag;
-		next_data <= curr_data;
-		
+		next_valid <= curr_valid;
+		next_dirty <= curr_dirty;
+
 		if (update = '1') then
-			-- if an update is requested store the line and save the new tag
-			-- store the input data in big endian
-			data_in_be := data_in(W-1 downto 0)&data_in(2*W-1 downto W)&data_in(3*W-1 downto 2*W)&data_in(4*W-1 downto 3*W);
-			next_data <= data_in_be;
-			next_valid <= '1';
 			next_tag <= tag_in;
+			next_valid <= '1';
+			case (update_type) is
+				when "00" => -- stores N bits from the RAM
+					next_data <= ram_data_in;
+					next_dirty <= '0';
+				when "01" => -- stores N bits from the CPU
+					next_data <= cpu_data_in(N/4-1 downto 0)&cpu_data_in(N/2-1 downto N/4)&cpu_data_in(3*N/4-1 downto N/2)&cpu_data_in(N-1 downto 3*N/4);
+					next_dirty <= '1';
+				when "10" => -- stores N/2 bits from the CPU
+					next_data <= cpu_data_in(N/4-1 downto 0)&cpu_data_in(N/2-1 downto N/4)&curr_data(N/2-1 downto 0);
+					next_dirty <= '1';
+				when "11" => -- stores N/4 bits from the CPU
+					next_data <= cpu_data_in(N/4-1 downto 0)&curr_data(3*N/4-1 downto 0);	
+				when others => -- this really shouldn't happens
+					next_data <= curr_data;
+					next_dirty <= '1';
+			end case;
 		end if;
 	end process comblogic;
-end architecture behavioral;
+
+end behavioral;
