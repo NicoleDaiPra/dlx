@@ -1,5 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use work.control_words.all;
+use work.func_words.all;
 
 entity cu is
 	port (
@@ -145,141 +147,141 @@ end cu;
 
 
 architecture behavioral of cu is
-	type cw_array is array (0 to 63) of std_logic_vector(41 downto 0);
-	type func_array is array (0 to 63) of std_logic_vector(32 downto 0);
+	type cw_array is array (0 to 63) of cw_t;
+	type func_array is array (0 to 63) of fw_t;
 
 	constant cw_mem : cw_array := (
-									"", -- 000000
-									"", -- 000001
-									"", -- 000010
-									"", -- 000011
-									"", -- 000100
-									"", -- 000101
-									"", -- 000110
-									"", -- 000111
-									"", -- 001000
-									"", -- 001001
-									"", -- 001010
-									"", -- 001011
-									"", -- 001100
-									"", -- 001101
-									"", -- 001110
-									"", -- 001111
-									"", -- 010000
-									"", -- 010001
-									"", -- 010010
-									"", -- 010011
-									"", -- 010100
-									"", -- 010101
-									"", -- 010110
-									"", -- 010111
-									"", -- 011000
-									"", -- 011001
-									"", -- 011010
-									"", -- 011011
-									"", -- 011100
-									"", -- 011101
-									"", -- 011110
-									"", -- 011111
-									"", -- 100000
-									"", -- 100001
-									"", -- 100010
-									"", -- 100011
-									"", -- 100100
-									"", -- 100101
-									"", -- 100110
-									"", -- 100111
-									"", -- 101000
-									"", -- 101001
-									"", -- 101010
-									"", -- 101011
-									"", -- 101100
-									"", -- 101101
-									"", -- 101110
-									"", -- 101111
-									"", -- 110000
-									"", -- 110001
-									"", -- 110010
-									"", -- 110011
-									"", -- 110100
-									"", -- 110101
-									"", -- 110110
-									"", -- 110111
-									"", -- 111000
-									"", -- 111001
-									"", -- 111010
-									"", -- 111011
-									"", -- 111100
-									"", -- 111101
-									"", -- 111110
-									""  -- 111111
+									rtype_cw,		-- 000000
+									bgez_bltz_cw,	-- 000001
+									j_cw, 			-- 000010
+									jal_cw, 		-- 000011
+									beq_cw, 		-- 000100
+									bne_cw, 		-- 000101
+									blez_cw, 		-- 000110
+									bgtz_cw, 		-- 000111
+									addi_cw, 		-- 001000
+									addui_cw, 		-- 001001
+									subi_cw, 		-- 001010
+									subui_cw, 		-- 001011
+									andi_cw, 		-- 001100
+									ori_cw, 		-- 001101
+									xori_cw, 		-- 001110
+									nop_cw, 		-- 001111
+									beqz_cw, 		-- 010000
+									bnez_cw, 		-- 010001
+									nop_cw, 		-- 010010
+									nop_cw, 		-- 010011
+									slli_cw, 		-- 010100
+									nop_cw, 		-- 010101
+									srli_cw, 		-- 010110
+									srai_cw, 		-- 010111
+									seqi_cw, 		-- 011000
+									snei_cw, 		-- 011001
+									slti_cw, 		-- 011010
+									sgti_cw, 		-- 011011
+									slei_cw, 		-- 011100
+									sgei_cw, 		-- 011101
+									nop_cw, 		-- 011110
+									nop_cw, 		-- 011111
+									lb_cw, 			-- 100000
+									lh_cw, 			-- 100001
+									nop_cw, 		-- 100010
+									lw_cw, 			-- 100011
+									lbu_cw, 		-- 100100
+									lhu_cw, 		-- 100101
+									nop_cw, 		-- 100110
+									nop_cw, 		-- 100111
+									sb_cw, 			-- 101000
+									sh_cw, 			-- 101001
+									nop_cw, 		-- 101010
+									nop_cw, 		-- 101011
+									sw_cw, 			-- 101100
+									nop_cw, 		-- 101101
+									nop_cw, 		-- 101110
+									nop_cw, 		-- 101111
+									nop_cw, 		-- 110000
+									nop_cw, 		-- 110001
+									nop_cw, 		-- 110010
+									nop_cw, 		-- 110011
+									nop_cw, 		-- 110100
+									nop_cw, 		-- 110101
+									nop_cw, 		-- 110110
+									nop_cw, 		-- 110111
+									nop_cw, 		-- 111000
+									nop_cw, 		-- 111001
+									sltui_cw, 		-- 111010
+									sgtui_cw, 		-- 111011
+									sleui_cw, 		-- 111100
+									sgeui_cw, 		-- 111101
+									nop_cw, 		-- 111110
+									nop_cw 			-- 111111
 		);
 
 	constant func_mem : func_array := (
-									"", -- 000000
-									"", -- 000001
-									"", -- 000010
-									"", -- 000011
-									"", -- 000100
-									"", -- 000101
-									"", -- 000110
-									"", -- 000111
-									"", -- 001000
-									"", -- 001001
-									"", -- 001010
-									"", -- 001011
-									"", -- 001100
-									"", -- 001101
-									"", -- 001110
-									"", -- 001111
-									"", -- 010000
-									"", -- 010001
-									"", -- 010010
-									"", -- 010011
-									"", -- 010100
-									"", -- 010101
-									"", -- 010110
-									"", -- 010111
-									"", -- 011000
-									"", -- 011001
-									"", -- 011010
-									"", -- 011011
-									"", -- 011100
-									"", -- 011101
-									"", -- 011110
-									"", -- 011111
-									"", -- 100000
-									"", -- 100001
-									"", -- 100010
-									"", -- 100011
-									"", -- 100100
-									"", -- 100101
-									"", -- 100110
-									"", -- 100111
-									"", -- 101000
-									"", -- 101001
-									"", -- 101010
-									"", -- 101011
-									"", -- 101100
-									"", -- 101101
-									"", -- 101110
-									"", -- 101111
-									"", -- 110000
-									"", -- 110001
-									"", -- 110010
-									"", -- 110011
-									"", -- 110100
-									"", -- 110101
-									"", -- 110110
-									"", -- 110111
-									"", -- 111000
-									"", -- 111001
-									"", -- 111010
-									"", -- 111011
-									"", -- 111100
-									"", -- 111101
-									"", -- 111110
-									""  -- 111111
+									sll_func, 		-- 000000
+									nop_func, 		-- 000001
+									nop_func, 		-- 000010
+									nop_func, 		-- 000011
+									nop_func, 		-- 000100
+									nop_func, 		-- 000101
+									srl_func, 		-- 000110
+									sra_func, 		-- 000111
+									jr_func, 		-- 001000
+									jalr_func, 		-- 001001
+									nop_func, 		-- 001010
+									nop_func, 		-- 001011
+									nop_func, 		-- 001100
+									nop_func, 		-- 001101
+									mult_func, 		-- 001110
+									nop_func, 		-- 001111
+									mfhi_func, 		-- 010000
+									mflo_func, 		-- 010001
+									nop_func, 		-- 010010
+									nop_func, 		-- 010011
+									nop_func, 		-- 010100
+									nop_func, 		-- 010101
+									nop_func, 		-- 010110
+									nop_func, 		-- 010111
+									nop_func, 		-- 011000
+									nop_func, 		-- 011001
+									nop_func, 		-- 011010
+									nop_func, 		-- 011011
+									nop_func, 		-- 011100
+									nop_func, 		-- 011101
+									nop_func, 		-- 011110
+									nop_func, 		-- 011111
+									add_func, 		-- 100000
+									addu_func, 		-- 100001
+									sub_func, 		-- 100010
+									subu_func, 		-- 100011
+									and_func, 		-- 100100
+									or_func, 		-- 100101
+									xor_func, 		-- 100110
+									nop_func, 		-- 100111
+									seq_func, 		-- 101000
+									sne_func, 		-- 101001
+									slt_func, 		-- 101010
+									sgt_func, 		-- 101011
+									sle_func, 		-- 101100
+									sge_func, 		-- 101101
+									nop_func, 		-- 101110
+									nop_func, 		-- 101111
+									nop_func, 		-- 110000
+									nop_func, 		-- 110001
+									nop_func, 		-- 110010
+									nop_func, 		-- 110011
+									nop_func, 		-- 110100
+									nop_func, 		-- 110101
+									nop_func, 		-- 110110
+									nop_func, 		-- 110111
+									nop_func, 		-- 111000
+									nop_func, 		-- 111001
+									sltu_func, 		-- 111010
+									sgtu_func, 		-- 111011
+									sleu_func, 		-- 111100
+									sgeu_func, 		-- 111101
+									nop_func, 		-- 111110
+									nop_func,  		-- 111111
 		);
 	
 	-- used by the EXE stage to communicate to the IF stage whether it has to use the PC calculated in the EXE stage or not
@@ -287,6 +289,8 @@ architecture behavioral of cu is
 	-- "01": main adder PC
 	-- "10": secondary adder PC
 	signal exe_pc: std_logic_vector(1 downto 0);
+
+	-- THEY HAVE TO BE SIZED AGAIN
 	signal curr_id, next_id: std_logic_vector(40 downto 0);
 	signal curr_exe, next_exe: std_logic_vector(22 downto 0);
 	signal curr_mem, next_mem: std_logic_vector(7 downto 0);
