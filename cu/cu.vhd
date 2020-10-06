@@ -281,7 +281,7 @@ architecture behavioral of cu is
 									sleu_func, 		-- 111100
 									sgeu_func, 		-- 111101
 									nop_func, 		-- 111110
-									nop_func,  		-- 111111
+									nop_func  		-- 111111
 		);
 	
 	-- used by the EXE stage to communicate to the IF stage whether it has to use the PC calculated in the EXE stage or not
