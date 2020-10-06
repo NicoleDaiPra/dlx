@@ -103,7 +103,7 @@ if ($srcfile =~ /^(.*)\.dlx$/) {
 	"cvtd2i" => "fd,0x0b",
 	"cvti2f" => "fd,0x0c",
 	"cvti2d" => "fd,0x0d",
-	"mult"  => "r,0x0e", # MODIFIED, was an F instruction
+	"mult"  => "r4,0x0e", # MODIFIED, was an F instruction
 	"div"   => "f,0x0f",
 	"eqf"   => "f2,0x10",
 	"nef"   => "f2,0x11",
@@ -457,15 +457,22 @@ sub forminstr {
 		if ($itype eq "r") {
 			$src1 = &getreg ($a[2]);
 			$src2 = &getreg ($a[3]);
+			$dst = &getreg ($a[1]);
 		} elsif ($itype eq "r2") {
 			$src1 = &getreg ($a[2]);
 			$src2 = 0;
-		} else {
+			$dst = &getreg ($a[1]);
+		} elsif ($itype eq "r3") {
 			# r3, aka mflo and mfhi
 			$src1 = 0;
 			$src2 = 0;
+			$dst = &getreg ($a[1]);
+		} else {
+			#r4, aka mult (dst is equal to 0)
+			$src1 = &getreg ($a[1]);
+			$src2 = &getreg ($a[2]);
+			$dst = 0;
 		}
-		$dst = &getreg ($a[1]);
 		$out = 0x00000000 | ($src1 << 21) | ($src2 << 16) | ($dst << 11) |
 			$op;
 	} elsif ($itype eq "i") {

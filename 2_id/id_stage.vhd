@@ -39,11 +39,13 @@ entity id_stage is
 		-- output interface
 		a_selector: in std_logic; -- 0 to select the PC as output, 1 to select the read port 1
 		b_selector: in std_logic; -- 0 to select the immediate as output, 1 to select the read port 2
+		data_tbs_selector: in std_logic; -- 0 to select the output of rp2, 1 to select the npc
 		a: out std_logic_vector(31 downto 0); -- first operand output
 		b: out std_logic_vector(31 downto 0); -- second operand output
 		dest_reg: out std_logic_vector(4 downto 0); -- propagate the destination register to the subsequent stages
 		npc: out std_logic_vector(31 downto 0); -- propagate the PC to the EXE stage
-		imm: out std_logic_vector(31 downto 0) -- propagate the immediate (needed for PC + offset calculation)
+		imm: out std_logic_vector(31 downto 0); -- propagate the immediate (needed for PC + offset calculation)
+		data_tbs: out std_logic_vector(31 downto 0) -- data to be stored (used for str ops and to pass the return address to be stored in r31 in case of a jalr)
 	);
 end id_stage;
 
@@ -202,5 +204,17 @@ begin
 			b => immediate,
 			sel => b_selector,
 			o => b
+		);
+
+	-- select the output of data_tbs (choose between rp2 and the immediate)
+	b_sel: mux_2x1
+		generic map (
+			N => 32
+		)
+		port map (
+			a => rp2,
+			b => npc,
+			sel => data_tbs_selector,
+			o => data_tbs
 		);
 end behavioral;

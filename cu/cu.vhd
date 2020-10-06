@@ -19,7 +19,7 @@ entity cu is
 		-- "01" if the next pc must be the one coming out from the BTB
 		-- "10" if the next PC is the one coming out from the main adder
 		-- "11" if the next PC is the one coming out from the secondary adder
-		pc_sel: in std_logic_vector(1 downto 0); -- 1 if the next pc must be pc+4, 0 if it has to be the one coming out from the BTB
+		pc_sel: in std_logic_vector(1 downto 0);
 		--btb_target_addr_if: out std_logic_vector(29 downto 0); -- address to be added to the BTB
 -- 0
 		-- if/id regs
@@ -49,7 +49,8 @@ entity cu is
 		sign_ext_sel_id: out std_logic; -- 1 if the 16 bits input must be used, 0 if the 26 bits input must be used
 		a_selector_id: out std_logic; -- 0 to select the PC as output, 1 to select the read port 1
 		b_selector_id: out std_logic; -- 0 to select the immediate as output, 1 to select the read port 2
--- 9
+		data_tbs_selector_id: out std_logic; -- 0 to select the output of rp2, 1 to select the npc
+-- 11
 		-- id/exe regs
 
 		en_add_id: out std_logic;
@@ -62,7 +63,7 @@ entity cu is
 	    en_npc_id: out std_logic;
 	    en_imm_id: out std_logic;
 	    en_b_id: out std_logic;
--- 18
+-- 21
 		-- exe stage inputs
 
 		taken_exe: in std_logic;
@@ -95,14 +96,14 @@ entity cu is
 		-- "11" reserved
 		btb_update_exe: out std_logic_vector(1 downto 0);
 		btb_taken_exe: out std_logic; -- when an address is being added to the BTB tells if it was taken or not
---33
+--39
     	-- exe/mem regs
     	
     	en_output_exe: out std_logic;
 		en_rd_exe: out std_logic;
 		en_npc_exe: out std_logic;
 		en_b_exe: out std_logic;
--- 33
+-- 43
     	-- mem stage inputs
     	
 		cu_resume_mem: in std_logic; -- raised by the memory controller when a cache miss has been solved
@@ -124,18 +125,20 @@ entity cu is
 		-- 10: load N/4 bits
 		-- 11: reserved
 		ld_type_mem: out std_logic_vector(1 downto 0);
--- 36
+		alu_data_tbs_selector: out std_logic; -- 0 to select the output of the ALU, 1 to select the data_tbs
+-- 49
 		-- mem/wb regs
 		en_alu_mem: out std_logic;
 		en_cache_mem: out std_logic;
 		en_rd_mem: out std_logic;
--- 39
+-- 52
 		-- wb stage inputs
 
 		-- wb stage outputs
 		wp_en_id: out std_logic; -- write port enable
+		store_sel: out std_logic; -- 0 to select ALU output, 1 to select memory output
 		hilo_wr_en_id: out std_logic -- 1 if the HI and LO register must be write
--- 41		
+-- 55
 	);
 end cu;
 
@@ -209,7 +212,7 @@ architecture behavioral of cu is
 									"", -- 111100
 									"", -- 111101
 									"", -- 111110
-									"", -- 111111
+									""  -- 111111
 		);
 
 	constant func_mem : func_array := (
@@ -276,7 +279,7 @@ architecture behavioral of cu is
 									"", -- 111100
 									"", -- 111101
 									"", -- 111110
-									"", -- 111111
+									""  -- 111111
 		);
 	
 	-- used by the EXE stage to communicate to the IF stage whether it has to use the PC calculated in the EXE stage or not

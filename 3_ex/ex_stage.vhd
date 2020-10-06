@@ -50,11 +50,11 @@ entity ex_stage is
     	alu_comp_sel: in std_logic_vector(2 downto 0); -- used to select the output to be stored in the alu out register
 
     	-- outputs
-    	npc_jump_reg: out std_logic_vector(31 downto 0);
+    	npc_jr: out std_logic_vector(31 downto 0); -- used by jalr and jr
     	alu_out_high: out std_logic_vector(31 downto 0);
     	alu_out_low: out std_logic_vector(31 downto 0);
     	a_neg_out: out std_logic_vector(63 downto 0); -- negated a that goes back to the multiplier
-    	npc_jump: out std_logic_vector(31 downto 0); -- updated next program counter
+    	npc_jump: out std_logic_vector(31 downto 0); -- used by j instructions and branches
     	taken: out std_logic
     );
 end ex_stage;
@@ -346,6 +346,6 @@ begin
 			y => alu_out_low
 		);
 
-	npc_jump_reg <= alu_out_low_int;
+	npc_jr <= alu_out_low_int;
 
 end struct;

@@ -17,7 +17,7 @@ entity if_stage is
 		-- "01" if the next pc must be the one coming out from the BTB
 		-- "10" if the next PC is the one coming out from the main adder
 		-- "11" if the next PC is the one coming out from the secondary adder
-		pc_sel: in std_logic_vector(1 downto 0); -- 1 if the next pc must be pc+4, 0 if it has to be the one coming out from the BTB
+		pc_sel: in std_logic_vector(1 downto 0);
 		pc_main_adder: in std_logic_vector(29 downto 0);
 		pc_secondary_adder: in std_logic_vector(29 downto 0);
 		-- "00" if nothing has to be done
