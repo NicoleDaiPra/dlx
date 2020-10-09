@@ -10,6 +10,7 @@ entity if_stage is
 		rst: in std_logic;
 
 		pc_out: out std_logic_vector(29 downto 0); -- current PC value (used by the BTB cache)
+		pc_plus4_out: out std_logic_vector(29 downto 0); -- PC+4 value (used in the datapath)
 
 		-- control interface
 		pc_en: in std_logic; -- enable the PC register
@@ -177,6 +178,8 @@ begin
 			sum => pc_plus4,
 			cout => open
 		);
+
+	pc_plus4_out <= pc_plus4;
 
 	-- based on the CU "pc_sel" input select the next pc
 	pc_selector: mux_4x1
