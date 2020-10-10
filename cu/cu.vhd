@@ -5,6 +5,8 @@ use work.control_words.all;
 use work.func_words.all;
 use work.opcodes.all;
 
+-- DLX control unit. It's based on the hardwired approach, although there are some small FSMs to handle
+-- complex operations such as multiplications and cache misses
 entity cu is
 	port (
 		clk: in std_logic;
@@ -114,6 +116,7 @@ entity cu is
 		hit_mem: in std_logic; -- if 1 the read operation was a hit, 0 otherwise
     	
     	-- mem stage outputs
+    	cpu_is_reading: out std_logic; -- used to discriminate by the memory controller false-positive cache misses when the CPU is not using at all the cache.
     	wr_mem: out std_logic; -- 1 for writing to the cache, 0 for reading. In case of a cache miss it goes in high impedance
 		-- controls how the data is added to the line. In case of a cache miss it goes in high impedance
 		-- 00: stores N bits coming from the RAM
@@ -303,21 +306,25 @@ architecture behavioral of cu is
 	constant SEC_ADD_PC : std_logic_vector(1 downto 0) := "10";
 
 	signal curr_ak_id, next_ak_id, curr_ak_exe, next_ak_exe: std_logic; -- propagate addr_known from the IF to the EXE stage
-	signal curr_id, next_id: std_logic_vector(57 downto 0);
-	signal curr_exe, next_exe: std_logic_vector(36 downto 0);
-	signal curr_mem, next_mem: std_logic_vector(12 downto 0);
+	signal curr_id, next_id: std_logic_vector(58 downto 0);
+	signal curr_exe, next_exe: std_logic_vector(37 downto 0);
+	signal curr_mem, next_mem: std_logic_vector(13 downto 0);
 	signal curr_wb, next_wb: std_logic_vector(2 downto 0);
 	signal curr_mul_in_prog, next_mul_in_prog: std_logic; -- tells to the ID stage to not drive some signals while a multiplication is in progress. SOURCE OF STALL	
 	signal curr_it, next_it: std_logic_vector(3 downto 0);
 	signal curr_cache_miss, next_cache_miss: std_logic;
+	signal if_stall, id_stall, exe_stall, mem_stall: std_logic; -- driven by the stall unit to stall the pipeline
+	signal curr_fw, next_fw: std_logic_vector(2 downto 0); -- IF stage writes it, ID stage reads it (actually, the stall unit reads it) 
+	signal curr_mul_end_mem, next_mul_end_mem, curr_mul_end_wb, next_mul_end_wb: std_logic; -- signal to the wb stage that a mul has finished its execution
+	signal exe_unlock_pipeline: std_logic; -- raised by the WB stage when 'curr_mul_end_wb' = '1': the exe can unlock the pipeline
 begin
 	state_reg: process(clk, rst)
 	begin
-		if (clk = '1') then
+		if (clk = '1' and clk'event) then
 			if (rst = '0') then
 				curr_id <= nop_fw;
-				curr_exe <= nop_fw(36 downto 0);
-				curr_mem <= nop_fw(12 downto 0);
+				curr_exe <= nop_fw(37 downto 0);
+				curr_mem <= nop_fw(13 downto 0);
 				curr_wb <= nop_fw(2 downto 0);
 				curr_ak_id <= '0';
 				curr_ak_exe <= '0';
@@ -326,10 +333,14 @@ begin
 				curr_it <= (others => '0');
 				curr_ms <= NORMAL_OP_MEM;
 				curr_cache_miss <= '0';
+				curr_fw <= "100";
+				curr_mul_end_mem <= '1';
+				curr_mul_end_wb <= '1';
 			else
 				if (id_en = '1') then
 					curr_id <= next_id;
 					curr_ak_id <= next_ak_id;
+					curr_fw <= next_fw;
 				end if;
 
 				if (exe_en = '1') then
@@ -343,10 +354,13 @@ begin
 				if (mem_en = '1') then
 					curr_mem <= next_mem;
 					curr_cache_miss <= next_cache_miss;
+					curr_ms <= next_ms;
+					curr_mul_end_mem <= next_mul_end_mem;
 				end if;
 
 				if (wb_en = '1') then
 					curr_wb <= next_wb;
+					curr_mul_end_wb <= next_mul_end_wb;
 				end if;
 			end if;
 		end if;
@@ -354,7 +368,7 @@ begin
 
 
 	-- IF stage logic
-	if_comblogic: process(btb_addr_known_if, btb_predicted_taken_if, instr_if, pc_exe)
+	if_comblogic: process(curr_id, btb_addr_known_if, btb_predicted_taken_if, instr_if, pc_exe, if_stall)
 	begin
 		next_id <= curr_id;
 
@@ -368,9 +382,26 @@ begin
 					next_id <= nop_fw;	
 				end if;
 
+			when bgez_opc => 
+				if (instr_if(20 downto 16) = "00001") then
+					-- BGEZ
+					next_id <= cw_mem(to_integer(unsigned(instr_if(31 downto 26))))(58 downto 25)&"010"&cw_mem(to_integer(unsigned(instr_if(31 downto 26))))(21 downto 0);
+				elsif (instr_if(20 downto 16) = "00000") then
+					-- BLTZ
+					next_id <= cw_mem(to_integer(unsigned(instr_if(31 downto 26))))(58 downto 25)&"001"&cw_mem(to_integer(unsigned(instr_if(31 downto 26))))(21 downto 0);
+				else
+					-- unkown instruction: schedule a nop
+					next_id <= nop_fw;
+				end if;
+
 			when others => -- any other kind of instruction
 				next_id <= cw_mem(to_integer(unsigned(instr_if(31 downto 26))));
 		end case;
+
+		if (if_stall = '1') then
+			-- keep the old value in next_id
+			next_id <= curr_id;
+		end if;
 
 		case (pc_exe) is
 			when STD_PC => -- the EXE didn't executed a branch or a jump
@@ -391,34 +422,36 @@ begin
 		end case;
 
 		next_ak_id <= btb_addr_known_if;
-		en_npc_if <= '1';
-		en_ir_if <= '1';
-		pc_en_if <= '1';
 	end process if_comblogic;
 
 	-- ID stage logic
-	id_comblogic: process(curr_id, curr_ak_id)
+	id_comblogic: process(curr_id, curr_exe, curr_ak_id, curr_mul_in_prog, id_stall)
 	begin
-		next_exe <= curr_id(36 downto 0); -- pass to the EXE stage its control signals
+		-- in case of an ID stall this must not be propagated
+		if (id_stall = '1') then
+			next_exe <= curr_exe;
+		else
+			next_exe <= curr_id(37 downto 0); -- pass to the EXE stage its control signals
+		end if;
 
-		i_instr_id <= curr_id(57);
-		j_instr_id <= curr_id(56);
-		rp1_out_sel_id <= curr_id(55 downto 54);
-		rp2_out_sel_id <= curr_id(53 downto 52);
-		is_signed_id <= curr_id(51);
-		sign_ext_sel_id <= curr_id(50);
-		a_selector_id <= curr_id(49);
-		b_selector_id <= curr_id(48);
-		data_tbs_selector_id <= curr_id(47);
+		i_instr_id <= curr_id(58);
+		j_instr_id <= curr_id(57);
+		rp1_out_sel_id <= curr_id(56 downto 55);
+		rp2_out_sel_id <= curr_id(54 downto 53);
+		is_signed_id <= curr_id(52);
+		sign_ext_sel_id <= curr_id(51);
+		a_selector_id <= curr_id(50);
+		b_selector_id <= curr_id(49);
+		data_tbs_selector_id <= curr_id(48);
 
-		en_add_id <= curr_id(46);
-	    en_shift_id <= curr_id(44);
+		en_add_id <= curr_id(47);
+	    en_shift_id <= curr_id(45);
 	    
 	    if (curr_mul_in_prog = '0') then
-	    	en_mul_id <= curr_id(45);
-	    	en_a_neg_id <= curr_id(43);
-	    	shift_reg_id <= curr_id(42);
-	    	en_shift_reg_id <= curr_id(41);
+	    	en_mul_id <= curr_id(46);
+	    	en_a_neg_id <= curr_id(44);
+	    	shift_reg_id <= curr_id(43);
+	    	en_shift_reg_id <= curr_id(42);
 	    else
 	    	en_mul_id <= 'Z';
 	    	en_a_neg_id <= 'Z';
@@ -427,40 +460,45 @@ begin
 	    end if;
 	    
 	    next_ak_exe <= curr_ak_id; -- propagate "addr_known" to the exe
-	    en_rd_id <= curr_id(40);
-	    en_npc_id <= curr_id(39);
-	    en_imm_id <= curr_id(38);
-	    en_b_id <= curr_id(37);
+	    en_rd_id <= curr_id(41);
+	    en_npc_id <= curr_id(40);
+	    en_imm_id <= curr_id(39);
+	    en_b_id <= curr_id(38);
 	end process id_comblogic;
 
-	exe_comblogic: process(curr_exe, curr_mul_in_prog, curr_es, curr_ak_exe, taken_exe)
+	exe_comblogic: process(curr_exe, curr_mem, curr_mul_in_prog, curr_es, curr_ak_exe, curr_it, taken_exe, exe_stall, exe_unlock_pipeline)
 	begin
 		next_mul_in_prog <= curr_mul_in_prog;
+		next_mul_end_mem <= '1';
 		next_es <= curr_es;
 		it_exe <= curr_it;
 		neg_exe <= '0';
 		btb_update_exe <= "00";
 		btb_taken_exe <= '0';
-		neg_exe <= '1';
 		en_mul_id <= 'Z';
 	    en_a_neg_id <= 'Z';
 	    shift_reg_id <= 'Z';
 	    en_shift_reg_id <= 'Z';
 
 		-- deliver the control signals to the EXE datapath
-		sub_add_exe <= curr_exe(36);
-    	shift_type_exe <= curr_exe(35 downto 32);
-    	log_type_exe <= curr_exe(31 downto 28);
-    	op_type_exe <= curr_exe(27 downto 26);
-    	op_sign_exe <= curr_exe(25);
-    	cond_sel_exe <= curr_exe(24 downto 22);
-		alu_comp_sel <= curr_exe(21 downto 19);
-		en_output_exe <= curr_exe(18);
-		en_rd_exe <= curr_exe(17);
-		en_npc_exe <= curr_exe(16);
-		en_b_exe <= curr_exe(15);
-		pc_exe <= curr_exe(14 downto 13);
-		next_mem <= curr_exe(12 downto 0); -- propagate the remaining control signals to the MEM stage
+		sub_add_exe <= curr_exe(37);
+    	shift_type_exe <= curr_exe(36 downto 33);
+    	log_type_exe <= curr_exe(32 downto 29);
+    	op_type_exe <= curr_exe(28 downto 27);
+    	op_sign_exe <= curr_exe(26);
+    	cond_sel_exe <= curr_exe(25 downto 23);
+		alu_comp_sel <= curr_exe(22 downto 20);
+		en_output_exe <= curr_exe(19);
+		en_rd_exe <= curr_exe(18);
+		en_npc_exe <= curr_exe(17);
+		en_b_exe <= curr_exe(16);
+		pc_exe <= curr_exe(15 downto 14);
+		
+		if (exe_stall = '1') then
+			next_mem <= curr_mem;
+		else
+			next_mem <= curr_exe(13 downto 0); -- propagate the remaining control signals to the MEM stage
+		end if;
     	
     	-- FSM to handle normal ops and multiplication 
 		case (curr_es) is
@@ -490,6 +528,7 @@ begin
 	    		en_shift_reg_id <= '0';
 	    		en_output_exe <= '1';
 	    		next_it <= (others => '0');
+	    		next_mul_end_mem <= '0';
 
 			when MUL_IN_PROG => -- calculate the partial results
 				neg_exe <= '0';
@@ -499,21 +538,29 @@ begin
 	    		en_shift_reg_id <= '1';
 	    		en_output_exe <= '1';
 	    		next_it <= std_logic_vector(unsigned(curr_it) + 1);
+	    		next_mul_end_mem <= '0';
 	    		if (curr_it = "1110") then
 	    			next_es <= MUL_END;
 	    			next_it <= curr_it;
 	    		end if;
 
-			when MUL_END => -- sample the result and unlock the pipeline
+			when MUL_END => -- sample the final result
 				neg_exe <= '0';
 				en_mul_id <= '0';
 	    		en_a_neg_id <= '0';
 	    		shift_reg_id <= '0';
 	    		en_shift_reg_id <= '0';
-	    		en_output_exe <= '1';
+	    		next_mul_end_mem <= '1';
+	    		if (curr_it /= "0000") then
+	    			en_output_exe <= '1';
+	    		else
+	    			en_output_exe <= '0';
+	    		end if;
 	    		next_it <= "0000";
-	    		next_mul_in_prog <= '0';
-	    		next_es <= NORMAL_OP_EXE;
+	    		if (exe_unlock_pipeline = '1') then
+	    			next_es <= NORMAL_OP_EXE;
+	    			next_mul_in_prog <= '0';
+	    		end if;
 
 			when others => -- why are we even here?
 				next_es <= NORMAL_OP_EXE;
@@ -521,8 +568,9 @@ begin
 
 	end process exe_comblogic;
 
-	mem_comblogic: process(curr_mem, curr_ms, curr_cache_miss, cu_resume_mem, hit_mem)
+	mem_comblogic: process(curr_mem, curr_wb, curr_ms, curr_cache_miss, curr_mul_end_mem, curr_mul_end_wb, cu_resume_mem, hit_mem, mem_stall)
 	begin
+		cpu_is_reading <= curr_mem(13);
 		wr_mem <= curr_mem(12);
 		update_type_mem <= curr_mem(11 downto 10);
 		ld_sign_mem <= curr_mem(9);
@@ -531,13 +579,20 @@ begin
 		en_alu_mem <= curr_mem(5);
 		en_cache_mem <= curr_mem(4);
 		en_rd_mem <= curr_mem(3);
-		next_wb <= curr_mem(2 downto 0);
 		next_cache_miss <= '0';
 		next_ms <= curr_ms;
 
+		if (mem_stall = '1') then
+			next_wb <= curr_wb;
+			next_mul_end_wb <= curr_mul_end_wb;
+		else
+			next_wb <= curr_mem(2 downto 0);
+			next_mul_end_wb <= curr_mul_end_mem;
+		end if;
+
 		case (curr_ms) is
 			when NORMAL_OP_MEM =>
-				if (curr_mem(12) = '0' and hit_mem = '0') then
+				if (curr_mem(12) = '0' and hit_mem = '0' and curr_mem(13) = '1') then
 					-- we have detected a cache miss, pass the ball to the memory controller
 					next_ms <= CACHE_MISS;
 					next_cache_miss <= '1'; -- stall IF, ID and EXE
@@ -557,10 +612,45 @@ begin
 		end case;
 	end process mem_comblogic;
 
-	wb_comblogic: process(curr_wb)
+	wb_comblogic: process(curr_wb, curr_mul_end_wb)
 	begin
 		wp_en_id <= curr_wb(2);
 		store_sel <= curr_wb(1);
 		hilo_wr_en_id <= curr_wb(0);
+		if (curr_mul_end_wb = '1') then
+			exe_unlock_pipeline <= '1';
+		else
+			exe_unlock_pipeline <= '0';
+		end if;
 	end process wb_comblogic;
+
+	stall_comblogic: process(curr_mul_in_prog, curr_cache_miss)
+	begin
+		id_en <= '1';
+		exe_en <= '1';
+		mem_en <= '1';
+		wb_en <= '1';
+		en_npc_if <= '1';
+		en_ir_if <= '1';
+		pc_en_if <= '1';
+		if_stall <= '0';
+		id_stall <= '0';
+		exe_stall <= '0';
+		mem_stall <= '0';
+
+		if (curr_mul_in_prog = '1') then
+			id_en <= '0';
+			en_npc_if <= '0';
+			en_ir_if <= '0';
+			pc_en_if <= '0';
+		end if;
+
+		if (curr_cache_miss = '1') then
+			id_en <= '0';
+			exe_en <= '0';
+			en_npc_if <= '0';
+			en_ir_if <= '0';
+			pc_en_if <= '0';
+		end if;
+	end process stall_comblogic;
 end behavioral;
