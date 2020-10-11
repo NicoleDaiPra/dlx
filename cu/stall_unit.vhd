@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 
 entity stall_unit is
 	port (
-		mul_in_prog: in std_logic; -- 1 if a mul is in progress
+		mul_stall: in std_logic; -- 1 if a mul is in progress
 		cache_miss: in std_logic; -- 1 if a cache miss is in progress
 		rd_exemem: in std_logic_vector(4 downto 0); -- the rd stored in exe/mem regs
 		rd_memwb: in std_logic_vector(4 downto 0); -- the rd stored in mem/wb regs
@@ -62,7 +62,7 @@ begin
 		end if;
 	end process hazard_check;
 
-	comblogic: process(mul_in_prog, cache_miss, rd_exemem, rd_memwb, rs, rt, cpu_is_reading, id_fw_type, rd_exemem_valid, rd_memwb_valid, hazards)
+	comblogic: process(mul_stall, cache_miss, rd_exemem, rd_memwb, rs, rt, cpu_is_reading, id_fw_type, rd_exemem_valid, rd_memwb_valid, hazards)
 	begin
 		en_npc_if <= '1';
 		en_ir_if <= '1';
@@ -87,7 +87,7 @@ begin
 			if_stall <= '1';
 			id_stall <= '1';
 			exe_stall <= '1';
-		elsif (mul_in_prog = '1') then
+		elsif (mul_stall = '1') then
 			en_npc_if <= '0';
 			en_ir_if <= '0';
 			pc_en_if <= '0';
@@ -121,7 +121,7 @@ begin
 						fw_a <= "10";
 					end if;
 
-				when "10" => 
+				when "10" =>
 					if (hazards(0) = '1') then
 						-- hazard between id/exe and exe/mem
 						if (cpu_is_reading = '1') then
