@@ -15,6 +15,8 @@ entity id_ex_reg is
 		a: in std_logic_vector(31 downto 0);
 		b: in std_logic_vector(31 downto 0);
 		a_neg_in: in std_logic_vector(63 downto 0);
+		rs_in: in std_logic_vector(4 downto 0);
+		rt_in: in std_logic_vector(4 downto 0);
 		Rd_in: in std_logic_vector(4 downto 0); -- destination register
 		npc_in: in std_logic_vector(31 downto 0);
 		imm_in: in std_logic_vector(31 downto 0);
@@ -36,6 +38,8 @@ entity id_ex_reg is
 		op_b: out std_logic_vector(31 downto 0);
 		npc: out std_logic_vector(31 downto 0);
 		imm: out std_logic_vector(31 downto 0);
+		rs_idexe: out std_logic_vector(4 downto 0);
+		rt_idexe: out std_logic_vector(4 downto 0);
 		Rd_out: out std_logic_vector(4 downto 0);
 		a_adder: out std_logic_vector(31 downto 0);
 		b_adder: out std_logic_vector(31 downto 0);
@@ -121,6 +125,30 @@ begin
 			clk => clk,
 			rst => rst,
 			q => imm
+		);
+
+	rs_reg: reg_en
+		generic map (
+			N => 5
+		)
+		port map (
+			d => rs_in,
+			en => '1',
+			clk => clk,
+			rst => rst,
+			q => rs_idexe
+		);
+
+	rt_reg: reg_en
+		generic map (
+			N => 5
+		)
+		port map (
+			d => rt_in,
+			en => '1',
+			clk => clk,
+			rst => rst,
+			q => rt_idexe
 		);
 
 	rd_reg: reg_en

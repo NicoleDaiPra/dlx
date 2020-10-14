@@ -239,15 +239,15 @@ begin
 
 	a_adder_mux: mux_4x1
 		generic map (
-			NBIT => 32
+			N => 32
 		)
 		port map (
 			a => a_adder,
 			b => a_adder_fw_ex,
 			c => a_adder_fw_mem,
-			d => (others => '0');
+			d => (others => '0'),
 			sel => fw_op_a,
-			y => a_add_int
+			o => a_add_int
 		);
 
 	b_adder_mux: mux_4x1

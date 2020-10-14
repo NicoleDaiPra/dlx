@@ -9,7 +9,7 @@ entity if_stage is
 		clk: in std_logic;
 		rst: in std_logic;
 
-		pc_out: out std_logic_vector(29 downto 0); -- current PC value (used by the BTB cache)
+		pc_out: out std_logic_vector(29 downto 0); -- current PC value (used by the BTB cache and the IROM)
 		pc_plus4_out: out std_logic_vector(29 downto 0); -- PC+4 value (used in the datapath)
 
 		-- control interface
@@ -21,17 +21,18 @@ entity if_stage is
 		pc_sel: in std_logic_vector(1 downto 0);
 		pc_main_adder: in std_logic_vector(29 downto 0);
 		pc_secondary_adder: in std_logic_vector(29 downto 0);
+		btb_pc_exe: in std_logic_vector(29 downto 0); -- pc+4 coming from the exe. Used as rw_address of the BTB
 		-- "00" if nothing has to be done
 		-- "01" if an already known instruction has to be updated (taken/not taken)
 		-- "10" if a new instruction must be added
 		-- "11" reserved
 		btb_update: in std_logic_vector(1 downto 0);
 		btb_taken: in std_logic; -- when an address is being added to the BTB tells if it was taken or not
-		btb_target_addr: in std_logic_vector(29 downto 0); -- address to be added to the BTB
 		btb_addr_known: out std_logic; -- tells if the BTB has recognized or not the current PC address
 		btb_predicted_taken: out std_logic; -- the BTB has predicted the branch to be taken
 
 		-- cache interface
+		cache_rw_address: out std_logic_vector(29 downto 0); -- address to perform write operations
 		cache_update_line: out std_logic; -- set to 1 if the cache has to update a whole line
 		cache_update_data: out std_logic; -- set to 1 if the cache has to update only a line's data
 		cache_data_in: out std_logic_vector(31 downto 0); -- data to be written in the cache
@@ -122,10 +123,12 @@ architecture behavioral of if_stage is
 	);	
 	end component mux_4x1;
 
-	constant one: std_logic_vector(29 downto 0) := (0 => '1', others => '0'); 
+	constant one: std_logic_vector(29 downto 0) := (0 => '1', others => '0');
+	constant minus_one : std_logic_vector(29 downto 0) := (others  => '1'); 
 
 	signal curr_pc, next_pc: std_logic_vector(29 downto 0);
 	signal pc_plus4, pc_btb: std_logic_vector(29 downto 0);
+	signal btb_target_addr: std_logic_vector(29 downto 0); -- next address to be fetched in case of a predicted taken
 
 begin
 	pc_out <= curr_pc;
@@ -143,6 +146,30 @@ begin
 		);
 
 	-- PC update logic
+
+	target_addr_sel: mux_2x1
+		generic map (
+			N => 30
+		)
+		port map (
+			a => pc_main_adder,
+			b => pc_secondary_adder,
+			sel => pc_sel(0),
+			o => btb_target_addr
+		);
+
+	-- calculate pc-4 to retrieve the instruction's actual PC
+	-- subtracting 1 instead of 4 is enough since the calculation is done on 30 bits
+	btb_addr_sub: beh_hadder
+		generic map (
+			N => 30
+		)
+		port map (
+			a => btb_pc_exe,
+			b => minus_one,
+			sum => cache_rw_address,
+			cout => open
+		);
 
 	branch_target_buffer: btb
 		generic map (

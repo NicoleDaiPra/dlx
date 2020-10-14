@@ -39,6 +39,8 @@ entity id_stage is
 		-- output interface
 		a_selector: in std_logic; -- 0 to select the PC as output, 1 to select the read port 1
 		b_selector: in std_logic; -- 0 to select the immediate as output, 1 to select the read port 2
+		rs_out: out std_logic_vector(4 downto 0); -- index value of the rd register
+		rt_out: out std_logic_vector(4 downto 0); -- index value of the rt register
 		data_tbs_selector: in std_logic; -- 0 to select the output of rp2, 1 to select the npc
 		a: out std_logic_vector(31 downto 0); -- first operand output
 		b: out std_logic_vector(31 downto 0); -- second operand output
@@ -148,6 +150,9 @@ begin
 			o => dest_reg
 		);
 
+	rs_out <= instr(25 downto 21);
+	rt_out <= instr(20 downto 16);
+
 	-- register file instantiation
 	reg_file: rf
 		generic map (
@@ -207,13 +212,13 @@ begin
 		);
 
 	-- select the output of data_tbs (choose between rp2 and the immediate)
-	b_sel: mux_2x1
+	opb_sel: mux_2x1
 		generic map (
 			N => 32
 		)
 		port map (
 			a => rp2,
-			b => npc,
+			b => pc,
 			sel => data_tbs_selector,
 			o => data_tbs
 		);

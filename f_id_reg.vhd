@@ -1,7 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity f_id_reg is
+entity if_id_reg is
 	port(
 		clk: in std_logic;
 		rst: in std_logic;
@@ -15,12 +15,12 @@ entity f_id_reg is
 		en_ir: in std_logic;
 
 		-- outputs data
-		npc_out: out std_logic_vector(29 downto 0);
+		npc_out: out std_logic_vector(31 downto 0);
 		ir_out: out std_logic_vector(25 downto 0)
 	);
-end f_id_reg;
+end if_id_reg;
 
-architecture struct of f_id_reg is
+architecture struct of if_id_reg is
 
 	component reg_en is
 		generic (
@@ -45,8 +45,10 @@ begin
 			en => en_npc,
 			clk => clk,
 			rst => rst,
-			q => npc_out
+			q => npc_out(31 downto 2)
 		);
+
+	npc_out(1 downto 0) <= "00";
 
 	ir_reg: reg_en
 		generic map (

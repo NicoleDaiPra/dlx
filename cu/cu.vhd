@@ -129,7 +129,8 @@ entity cu is
     	-- mem stage outputs
 
     	cpu_is_reading: out std_logic; -- used to discriminate by the memory controller false-positive cache misses when the CPU is not using at all the cache.
-    	wr_mem: out std_logic; -- 1 for writing to the cache, 0 for reading. In case of a cache miss it goes in high impedance
+    	wr_mem: out std_logic; -- 1 for writing to the cache, 0 for reading (this goes inside the memory controller).
+    	dcache_update: out std_logic; -- 1 for writing to the cache, 0 for reading. In case of a cache miss it goes in high impedance
 		-- controls how the data is added to the line. In case of a cache miss it goes in high impedance
 		-- 00: stores N bits coming from the RAM
 		-- 01: stores N bits coming from the CPU
@@ -743,6 +744,7 @@ begin
 	begin
 		cpu_is_reading <= curr_mem(14);
 		wr_mem <= curr_mem(13);
+		dcache_update <= curr_mem(13);
 		update_type_mem <= curr_mem(12 downto 11);
 		ld_sign_mem <= curr_mem(10);
 		ld_type_mem <= curr_mem(9 downto 8);
@@ -771,7 +773,7 @@ begin
 
 			when CACHE_MISS =>
 				-- allow the memory controller to perform its job 
-				wr_mem <= 'Z';
+				dcache_update <= 'Z';
 				update_type_mem <= "ZZ";
 				if (cu_resume_mem = '1') then
 					next_ms <= NORMAL_OP_MEM;

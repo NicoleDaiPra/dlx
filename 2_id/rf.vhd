@@ -107,7 +107,7 @@ begin
 		);
 
 
-	comblogic: process(regout_array, rp1_addr, rp2_addr, wp_addr, wp, rp1_out_sel, rp2_out_sel)
+	comblogic: process(regout_array, rp1_addr, rp2_addr, wp_addr, wp_en, wp, lo_out, hi_out, rp1_out_sel, rp2_out_sel)
 		variable gpr_rp1, gpr_rp2: std_logic_vector(N-1 downto 0);
 	begin
 		enable <= (others => '0');
@@ -146,7 +146,7 @@ begin
 				rp2 <= (others => '0');
 		end case;
 
-		if (unsigned(wp_addr) /= 0) then
+		if (unsigned(wp_addr) /= 0 and wp_en = '1') then
 			enable(to_integer(unsigned(wp_addr))) <= '1';
 		end if;
 	end process comblogic;
