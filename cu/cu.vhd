@@ -114,7 +114,7 @@ entity cu is
     	
     	en_output_exe: out std_logic;
 		en_rd_exe: out std_logic;
-		en_npc_exe: out std_logic;
+		--en_npc_exe: out std_logic;
 		en_b_exe: out std_logic;
 -- 43
     	-- mem stage inputs
@@ -355,8 +355,8 @@ architecture behavioral of cu is
 
 	signal curr_ak_id, next_ak_id, curr_ak_exe, next_ak_exe: std_logic; -- propagate addr_known from the IF to the EXE stage
 	signal curr_pt_id, next_pt_id, curr_pt_exe, next_pt_exe: std_logic; -- propagate predicted_taken from the IF to the EXE stage
-	signal curr_id, next_id: std_logic_vector(62 downto 0);
-	signal curr_exe, next_exe: std_logic_vector(39 downto 0);
+	signal curr_id, next_id: std_logic_vector(61 downto 0);
+	signal curr_exe, next_exe: std_logic_vector(38 downto 0);
 	signal curr_mem, next_mem: std_logic_vector(14 downto 0);
 	signal curr_wb, next_wb: std_logic_vector(2 downto 0);
 	signal curr_mul_in_prog, next_mul_in_prog: std_logic; -- tells to the ID stage to not drive some signals while a multiplication is in progress. SOURCE OF STALL	
@@ -389,7 +389,7 @@ begin
 			end if;
 
 			if (rst_exe = '0') then
-				curr_exe <= nop_fw(39 downto 0);
+				curr_exe <= nop_fw(38 downto 0);
 				curr_ak_exe <= '0';
 				curr_pt_exe <= '0';
 				curr_mul_in_prog <= '0';
@@ -438,7 +438,7 @@ begin
 			rs => rs_id,
 			rt => rt_id,
 			cpu_is_reading => curr_mem(13),
-			id_fw_type => curr_id(41 downto 40),
+			id_fw_type => curr_id(40 downto 39),
 			rd_exemem_valid => curr_exe(15),
 			rd_memwb_valid => curr_mem(3),
 			fw_a => fw_a,
@@ -474,10 +474,10 @@ begin
 			when bgez_opc => 
 				if (instr_if(20 downto 16) = "00001") then
 					-- BGEZ
-					next_id <= cw_mem(to_integer(unsigned(instr_if(31 downto 26))))(62 downto 28)&"010"&cw_mem(to_integer(unsigned(instr_if(31 downto 26))))(24 downto 0);
+					next_id <= cw_mem(to_integer(unsigned(instr_if(31 downto 26))))(61 downto 27)&"010"&cw_mem(to_integer(unsigned(instr_if(31 downto 26))))(23 downto 0);
 				elsif (instr_if(20 downto 16) = "00000") then
 					-- BLTZ
-					next_id <= cw_mem(to_integer(unsigned(instr_if(31 downto 26))))(62 downto 28)&"001"&cw_mem(to_integer(unsigned(instr_if(31 downto 26))))(24 downto 0);
+					next_id <= cw_mem(to_integer(unsigned(instr_if(31 downto 26))))(61 downto 27)&"001"&cw_mem(to_integer(unsigned(instr_if(31 downto 26))))(23 downto 0);
 				else
 					-- unkown instruction: schedule a nop
 					next_id <= nop_fw;
@@ -521,30 +521,30 @@ begin
 		if (id_stall = '1') then
 			next_exe <= curr_exe;
 		else
-			next_exe <= curr_id(39 downto 0); -- pass to the EXE stage its control signals
+			next_exe <= curr_id(38 downto 0); -- pass to the EXE stage its control signals
 		end if;
 
-		i_instr_id <= curr_id(62);
-		j_instr_id <= curr_id(61);
-		rp1_out_sel_id <= curr_id(60 downto 59);
-		rp2_out_sel_id <= curr_id(58 downto 57);
-		is_signed_id <= curr_id(56);
-		sign_ext_sel_id <= curr_id(55);
-		a_selector_id <= curr_id(54);
-		b_selector_id <= curr_id(53);
-		data_tbs_selector_id <= curr_id(52);
+		i_instr_id <= curr_id(61);
+		j_instr_id <= curr_id(60);
+		rp1_out_sel_id <= curr_id(59 downto 58);
+		rp2_out_sel_id <= curr_id(57 downto 56);
+		is_signed_id <= curr_id(55);
+		sign_ext_sel_id <= curr_id(54);
+		a_selector_id <= curr_id(53);
+		b_selector_id <= curr_id(52);
+		data_tbs_selector_id <= curr_id(51);
 	    
 	    if (curr_mul_in_prog = '0') then
-	    	en_add_id <= curr_id(51);
-	    	en_shift_id <= curr_id(49);
-	    	en_mul_id <= curr_id(50);
-	    	en_a_neg_id <= curr_id(48);
-	    	shift_reg_id <= curr_id(47);
-	    	en_shift_reg_id <= curr_id(46);
-	    	en_rd_id <= curr_id(45);
-	    	en_npc_id <= curr_id(44);
-	    	en_imm_id <= curr_id(43);
-	    	en_b_id <= curr_id(42);
+	    	en_add_id <= curr_id(50);
+	    	en_shift_id <= curr_id(48);
+	    	en_mul_id <= curr_id(49);
+	    	en_a_neg_id <= curr_id(47);
+	    	shift_reg_id <= curr_id(46);
+	    	en_shift_reg_id <= curr_id(45);
+	    	en_rd_id <= curr_id(44);
+	    	en_npc_id <= curr_id(43);
+	    	en_imm_id <= curr_id(42);
+	    	en_b_id <= curr_id(41);
 	    else
 	    	en_add_id <= 'Z';
 	    	en_shift_id <= 'Z';
@@ -586,17 +586,17 @@ begin
 	    flush_exe <= '1';
 
 		-- deliver the control signals to the EXE datapath
-		sub_add_exe <= curr_exe(39);
-    	shift_type_exe <= curr_exe(38 downto 35);
-    	log_type_exe <= curr_exe(34 downto 31);
-    	op_type_exe <= curr_exe(30 downto 29);
-    	op_sign_exe <= curr_exe(28);
-    	cond_sel_exe <= curr_exe(27 downto 25);
-		alu_comp_sel <= curr_exe(24 downto 22);
-		pc_exe <= curr_exe(21 downto 20);
-		en_output_exe <= curr_exe(19);
-		en_rd_exe <= curr_exe(18);
-		en_npc_exe <= curr_exe(17);
+		sub_add_exe <= curr_exe(38);
+    	shift_type_exe <= curr_exe(37 downto 34);
+    	log_type_exe <= curr_exe(33 downto 30);
+    	op_type_exe <= curr_exe(29 downto 28);
+    	op_sign_exe <= curr_exe(27);
+    	cond_sel_exe <= curr_exe(26 downto 24);
+		alu_comp_sel <= curr_exe(23 downto 21);
+		pc_exe <= curr_exe(20 downto 19);
+		en_output_exe <= curr_exe(18);
+		en_rd_exe <= curr_exe(17);
+		--en_npc_exe <= curr_exe(17);
 		en_b_exe <= curr_exe(16);
 		
 		if (exe_stall = '1') then
@@ -609,7 +609,7 @@ begin
 		case (curr_es) is
 			when NORMAL_OP_EXE => -- anything but a mul
 				next_it <= (others => '0');
-				if (curr_exe(19 downto 16) = "1000") then -- workaround to detect the start of a multiplication
+				if (curr_exe(18 downto 16) = "100") then -- workaround to detect the start of a multiplication
 					next_mul_in_prog <= '1';
 					mul_stall <= '1';
 					next_es <= A_NEG_SAMPLE;
