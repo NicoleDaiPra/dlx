@@ -60,6 +60,8 @@ architecture test of tb_cu is
 	-- 11
 			-- id/exe regs
 
+			rd_idexe: in std_logic_vector(4 downto 0);
+
 			en_add_id: out std_logic;
 		    en_mul_id: out std_logic;
 		    en_shift_id: out std_logic;
@@ -74,6 +76,8 @@ architecture test of tb_cu is
 			-- exe stage inputs
 
 			taken_exe: in std_logic;
+			rs_exe: in std_logic_vector(4 downto 0);
+			rt_exe: in std_logic_vector(4 downto 0);
 
 			-- exe stage outputs
 
@@ -112,7 +116,7 @@ architecture test of tb_cu is
 	    	
 	    	en_output_exe: out std_logic;
 			en_rd_exe: out std_logic;
-			en_npc_exe: out std_logic;
+			--en_npc_exe: out std_logic;
 			en_b_exe: out std_logic;
 	-- 43
 	    	-- mem stage inputs
@@ -168,8 +172,10 @@ architecture test of tb_cu is
 	signal rs_id, rt_id: std_logic_vector(4 downto 0);
 	signal i_instr_id, j_instr_id, is_signed_id, sign_ext_sel_id, a_selector_id, b_selector_id, data_tbs_selector_id, en_add_id, en_mul_id, en_shift_id, en_a_neg_id, shift_reg_id, en_shift_reg_id, en_rd_id, en_npc_id, en_imm_id, en_b_id: std_logic;
 	signal rp1_out_sel_id, rp2_out_sel_id: std_logic_vector(1 downto 0);
+	signal rd_idexe: std_logic_vector(4 downto 0);
 
-	signal taken_exe, sub_add_exe, op_sign_exe, neg_exe, btb_taken_exe, en_output_exe, en_rd_exe, en_npc_exe, en_b_exe: std_logic;
+	signal rs_exe, rt_exe: std_logic_vector(4 downto 0);
+	signal taken_exe, sub_add_exe, op_sign_exe, neg_exe, btb_taken_exe, en_output_exe, en_rd_exe, en_b_exe: std_logic;
 	signal shift_type_exe, log_type_exe, it_exe: std_logic_vector(3 downto 0);
 	signal op_type_exe, btb_update_exe, fw_a, fw_b: std_logic_vector(1 downto 0);
 	signal cond_sel_exe, alu_comp_sel: std_logic_vector(2 downto 0);
@@ -207,6 +213,7 @@ begin
 			b_selector_id => b_selector_id,
 			data_tbs_selector_id => data_tbs_selector_id,
 
+			rd_idexe => rd_idexe,
 			en_add_id => en_add_id,
 		    en_mul_id => en_mul_id,
 		    en_shift_id => en_shift_id,
@@ -218,6 +225,8 @@ begin
 		    en_imm_id => en_imm_id,
 		    en_b_id => en_b_id,
 
+		    rs_exe => rs_exe,
+		    rt_exe => rt_exe,
 			taken_exe => taken_exe,
 			sub_add_exe => sub_add_exe,
 	    	shift_type_exe => shift_type_exe,
@@ -236,7 +245,7 @@ begin
 	    	rd_exemem => rd_exemem,
 	    	en_output_exe => en_output_exe,
 			en_rd_exe => en_rd_exe,
-			en_npc_exe => en_npc_exe,
+			--en_npc_exe => en_npc_exe,
 			en_b_exe => en_b_exe,
 	    	
 			cu_resume_mem => cu_resume_mem,
@@ -276,7 +285,7 @@ begin
 		--clock 1.5 -> disable reset
 		rst <= '1';
 		wait for period/2;
-		-- clock 2
+
 		-- F: add r1, r2, r3
 		-- D: nop
 		-- E: nop
@@ -289,6 +298,10 @@ begin
 		rs_id <= "00000";
 		rt_id <= "00000";
 
+		rd_idexe <= "00000";
+
+		rs_exe <= "00000";
+		rt_exe <= "00000";
 		taken_exe <= '0';
 
 		rd_exemem <= "00000";
@@ -299,7 +312,6 @@ begin
 
 		wait for period;
 
-		-- clock 3
 		-- F: mult r4, r1
 		-- D: add r1, r2, r3
 		-- E: nop
@@ -312,6 +324,11 @@ begin
 		rs_id <= "00010";
 		rt_id <= "00011";
 
+		rd_idexe <= "00000";
+
+		rs_exe <= "00000";
+		rt_exe <= "00000";
+
 		taken_exe <= '0';
 
 		rd_exemem <= "00000";
@@ -322,7 +339,6 @@ begin
 
 		wait for period;
 
-		-- clock 4
 		-- F: mflo r5
 		-- D: mult r4, r1
 		-- E: add r1, r2, r3
@@ -335,6 +351,11 @@ begin
 		rs_id <= "00100";
 		rt_id <= "00001";
 
+		rd_idexe <= "00001";
+
+		rs_exe <= "00010";
+		rt_exe <= "00011";
+
 		taken_exe <= '0';
 
 		rd_exemem <= "00000";
@@ -345,11 +366,91 @@ begin
 
 		wait for period;
 
-		-- clock 5
+		-- F: mflo r5
+		-- D: mult r4, r1
+		-- E: nop
+		-- M: add r1, r2, r3
+		-- W: nop
+		btb_addr_known_if <= '0';
+		btb_predicted_taken_if <= '0';
+		instr_if <= X"00002812";
+
+		rs_id <= "00100";
+		rt_id <= "00001";
+
+		rd_idexe <= "00000";
+
+		rs_exe <= "00000";
+		rt_exe <= "00000";
+
+		taken_exe <= '0';
+
+		rd_exemem <= "00100";
+		cu_resume_mem <= '1';
+		hit_mem <= '0';
+
+		rd_memwb <= "00000";
+
+		wait for period;
+
+		-- F: mflo r5
+		-- D: mult r4, r1
+		-- E: nop
+		-- M: nop
+		-- W: add r1, r2, r3
+		btb_addr_known_if <= '0';
+		btb_predicted_taken_if <= '0';
+		instr_if <= X"00002812";
+
+		rs_id <= "00100";
+		rt_id <= "00001";
+
+		rd_idexe <= "00000";
+
+		rs_exe <= "00000";
+		rt_exe <= "00000";
+
+		taken_exe <= '0';
+
+		rd_exemem <= "00000";
+		cu_resume_mem <= '1';
+		hit_mem <= '0';
+
+		rd_memwb <= "00100";
+
+		wait for period;
+
+		-- F: mflo r5
+		-- D: mult r4, r1
+		-- E: nop
+		-- M: nop
+		-- W: nop
+		btb_addr_known_if <= '0';
+		btb_predicted_taken_if <= '0';
+		instr_if <= X"00002812";
+
+		rs_id <= "00100";
+		rt_id <= "00001";
+
+		rd_idexe <= "00000";
+
+		rs_exe <= "00000";
+		rt_exe <= "00000";
+
+		taken_exe <= '0';
+
+		rd_exemem <= "00000";
+		cu_resume_mem <= '1';
+		hit_mem <= '0';
+
+		rd_memwb <= "00000";
+
+		wait for period;
+
 		-- F: slli r6, r7, 4
 		-- D: mflo r5
 		-- E: mult r4, r1
-		-- M: add r1, r2, r3
+		-- M: nop
 		-- W: nop
 		btb_addr_known_if <= '0';
 		btb_predicted_taken_if <= '0';
@@ -358,9 +459,14 @@ begin
 		rs_id <= "00000";
 		rt_id <= "00000";
 
+		rd_idexe <= "00000";
+
+		rs_exe <= "00100";
+		rt_exe <= "00001";
+
 		taken_exe <= '0';
 
-		rd_exemem <= "00001";
+		rd_exemem <= "00000";
 		cu_resume_mem <= '1';
 		hit_mem <= '0';
 
@@ -368,12 +474,11 @@ begin
 
 		wait for period;
 
-		-- clock 6
 		-- F: slli r6, r7, 4
 		-- D: mflo r5
 		-- E: mult r4, r1
-		-- M: ???
-		-- W: add r1, r2, r3
+		-- M: nop
+		-- W: nop
 		btb_addr_known_if <= '0';
 		btb_predicted_taken_if <= '0';
 		instr_if <= X"50e60004";
@@ -381,28 +486,37 @@ begin
 		rs_id <= "00000";
 		rt_id <= "00000";
 
+		rd_idexe <= "00000";
+
+		rs_exe <= "00100";
+		rt_exe <= "00001";
+
 		taken_exe <= '0';
 
 		rd_exemem <= "00000";
 		cu_resume_mem <= '1';
 		hit_mem <= '0';
 
-		rd_memwb <= "00001";
+		rd_memwb <= "00000";
 
 		wait for period;
 
-		-- clock 6
 		-- F: slli r6, r7, 4
 		-- D: mflo r5
 		-- E: mult r4, r1
-		-- M: ???
-		-- W: ???
+		-- M: nop
+		-- W: nop
 		btb_addr_known_if <= '0';
 		btb_predicted_taken_if <= '0';
 		instr_if <= X"50e60004";
 
 		rs_id <= "00000";
-		rt_id <= "00001";
+		rt_id <= "00000";
+
+		rd_idexe <= "00000";
+
+		rs_exe <= "00100";
+		rt_exe <= "00001";
 
 		taken_exe <= '0';
 
@@ -410,16 +524,26 @@ begin
 		cu_resume_mem <= '1';
 		hit_mem <= '0';
 
-		rd_memwb <= "00001";
+		rd_memwb <= "00000";
 
 		wait until pc_en_if = '1';
 		
+		-- F: slli r6, r7, 4
+		-- D: mflo r5
+		-- E: nop
+		-- M: nop
+		-- W: nop
 		btb_addr_known_if <= '0';
 		btb_predicted_taken_if <= '0';
 		instr_if <= X"50e60004";
 
 		rs_id <= "00000";
-		rt_id <= "00001";
+		rt_id <= "00000";
+
+		rd_idexe <= "00000";
+
+		rs_exe <= "00000";
+		rt_exe <= "00000";
 
 		taken_exe <= '0';
 
@@ -427,18 +551,15 @@ begin
 		cu_resume_mem <= '1';
 		hit_mem <= '0';
 
-		rd_memwb <= "00001";
+		rd_memwb <= "00000";
 		
 		wait for period;
 
-		-- cycle N
 		-- F: beqz r5, 100
 		-- D: slli r6, r7, 4
 		-- E: mflo r5
-		-- M: ???
-		-- W: ???
-
-		-- THE MFLO AND SLLI ARE SKIPPED BY THE CU
+		-- M: nop
+		-- W: nop
 
 		btb_addr_known_if <= '0';
 		btb_predicted_taken_if <= '0';
@@ -447,22 +568,26 @@ begin
 		rs_id <= "00111";
 		rt_id <= "00000";
 
+		rd_idexe <= "00101";
+
+		rs_exe <= "00000";
+		rt_exe <= "00000";
+
 		taken_exe <= '0';
 
-		rd_exemem <= "00001";
+		rd_exemem <= "00000";
 		cu_resume_mem <= '1';
 		hit_mem <= '0';
 
-		rd_memwb <= "00001";
+		rd_memwb <= "00000";
 
 		wait for period;
 
-		-- cycle N+1
 		-- F: nop
 		-- D: beqz r5, 100
 		-- E: slli r6, r7, 4
 		-- M: mflo r5
-		-- W: ???
+		-- W: nop
 
 		btb_addr_known_if <= '0';
 		btb_predicted_taken_if <= '0';
@@ -471,17 +596,21 @@ begin
 		rs_id <= "00101";
 		rt_id <= "00000";
 
+		rd_idexe <= "00110";
+
+		rs_exe <= "00111";
+		rt_exe <= "00000";
+
 		taken_exe <= '0';
 
 		rd_exemem <= "00101";
 		cu_resume_mem <= '1';
 		hit_mem <= '0';
 
-		rd_memwb <= "00001";
+		rd_memwb <= "00000";
 
 		wait for period;
 
-		-- cycle N+2
 		-- F: nop
 		-- D: nop
 		-- E: beqz r5, 100
@@ -495,6 +624,11 @@ begin
 		rs_id <= "00000";
 		rt_id <= "00000";
 
+		rd_idexe <= "00000";
+
+		rs_exe <= "00101";
+		rt_exe <= "00000";
+
 		taken_exe <= '1';
 
 		rd_exemem <= "00110";
@@ -505,7 +639,6 @@ begin
 
 		wait for period;
 
-		-- cycle N+3
 		-- F: nop
 		-- D: nop
 		-- E: nop
@@ -519,6 +652,11 @@ begin
 		rs_id <= "00000";
 		rt_id <= "00000";
 
+		rd_idexe <= "00000";
+
+		rs_exe <= "00000";
+		rt_exe <= "00000";
+
 		taken_exe <= '0';
 
 		rd_exemem <= "00101";
@@ -529,7 +667,6 @@ begin
 
 		wait for period;
 
-		-- cycle N+4
 		-- F: nop
 		-- D: nop
 		-- E: nop
@@ -543,6 +680,11 @@ begin
 		rs_id <= "00000";
 		rt_id <= "00000";
 
+		rd_idexe <= "00000";
+
+		rs_exe <= "00000";
+		rt_exe <= "00000";
+
 		taken_exe <= '0';
 
 		rd_exemem <= "00000";
@@ -553,7 +695,6 @@ begin
 
 		wait for period;
 
-		-- cycle N+4
 		-- F: nop
 		-- D: nop
 		-- E: nop
@@ -566,6 +707,11 @@ begin
 
 		rs_id <= "00000";
 		rt_id <= "00000";
+
+		rd_idexe <= "00000";
+
+		rs_exe <= "00000";
+		rt_exe <= "00000";
 
 		taken_exe <= '0';
 

@@ -62,6 +62,8 @@ entity cu is
 -- 11
 		-- id/exe regs
 
+		rd_idexe: in std_logic_vector(4 downto 0);
+
 		en_add_id: out std_logic;
 	    en_mul_id: out std_logic;
 	    en_shift_id: out std_logic;
@@ -76,6 +78,8 @@ entity cu is
 		-- exe stage inputs
 
 		taken_exe: in std_logic;
+		rs_exe: in std_logic_vector(4 downto 0);
+		rt_exe: in std_logic_vector(4 downto 0);
 
 		-- exe stage outputs
 
@@ -166,10 +170,13 @@ architecture behavioral of cu is
 		port (
 			mul_stall: in std_logic; -- 1 if a mul is in progress
 			cache_miss: in std_logic; -- 1 if a cache miss is in progress
+			rd_idexe: in std_logic_vector(4 downto 0); -- the rd stored in id/exe regs
 			rd_exemem: in std_logic_vector(4 downto 0); -- the rd stored in exe/mem regs
 			rd_memwb: in std_logic_vector(4 downto 0); -- the rd stored in mem/wb regs
-			rs: in std_logic_vector(4 downto 0); -- the rs reg in the id stage
-			rt: in std_logic_vector(4 downto 0); -- the rt reg in the id stage
+			rs_exe: in std_logic_vector(4 downto 0); -- the rs reg in the exe stage
+			rt_exe: in std_logic_vector(4 downto 0); -- the rt reg in the exe stage
+			rs_id: in std_logic_vector(4 downto 0); -- the rs reg in the id stage
+			rt_id: in std_logic_vector(4 downto 0); -- the rt reg in the id stage
 
 			cpu_is_reading: in std_logic; -- 1 if the CPU is performing a load
 
@@ -179,10 +186,20 @@ architecture behavioral of cu is
 			-- "10": rs-rt forwarding (ex. add)
 			-- "11": reserved
 			id_fw_type: in std_logic_vector(1 downto 0);
+			mul_id: in std_logic; -- 1 if a mul is detected in the ID stage, 0 otherwise
 
+			rd_idexe_valid: in std_logic; -- the value in the id/ex regs corresponds to the rd stored in it
 			rd_exemem_valid: in std_logic; -- the value in the ex/mem regs corresponds to the rd stored in it
 			rd_memwb_valid: in std_logic; -- the value in the mem/wb regs corresponds to the rd stored in it
 
+			curr_id: in std_logic_vector(61 downto 0);
+			curr_exe: in std_logic_vector(38 downto 0);
+			curr_mem: in std_logic_vector(14 downto 0);
+			curr_wb: in std_logic_vector(3 downto 0);
+
+			next_exe: out std_logic_vector(38 downto 0);
+			next_mem: out std_logic_vector(14 downto 0);
+			next_wb: out std_logic_vector(3 downto 0);
 			fw_a: out std_logic_vector(1 downto 0);
 			fw_b: out std_logic_vector(1 downto 0);
 			en_npc_if: out std_logic;
@@ -358,7 +375,7 @@ architecture behavioral of cu is
 	signal curr_id, next_id: std_logic_vector(61 downto 0);
 	signal curr_exe, next_exe: std_logic_vector(38 downto 0);
 	signal curr_mem, next_mem: std_logic_vector(14 downto 0);
-	signal curr_wb, next_wb: std_logic_vector(2 downto 0);
+	signal curr_wb, next_wb: std_logic_vector(3 downto 0);
 	signal curr_mul_in_prog, next_mul_in_prog: std_logic; -- tells to the ID stage to not drive some signals while a multiplication is in progress. SOURCE OF STALL	
 	signal mul_stall: std_logic; -- used by the exe's fsm to ask to the stall unit to stall
 	signal curr_it, next_it: std_logic_vector(3 downto 0);
@@ -368,6 +385,7 @@ architecture behavioral of cu is
 	signal exe_unlock_pipeline: std_logic; -- raised by the WB stage when 'curr_mul_end_wb' = '1': the exe can unlock the pipeline
 	signal flush_id, flush_exe: std_logic;
 	signal rst_id, rst_exe: std_logic;
+	signal curr_mul_id, next_mul_id: std_logic;
 
 begin
 	rst_id <= rst and flush_id;
@@ -380,11 +398,13 @@ begin
 				curr_id <= nop_fw;
 				curr_ak_id <= '0';
 				curr_pt_id <= '0';
+				curr_mul_id <= '0';
 			else
 				if (id_en = '1') then
 					curr_id <= next_id;
 					curr_ak_id <= next_ak_id;
 					curr_pt_id <= next_pt_id;
+					curr_mul_id <= next_mul_id;
 				end if;
 			end if;
 
@@ -408,7 +428,7 @@ begin
 
 			if (rst = '0') then
 				curr_mem <= nop_fw(14 downto 0);
-				curr_wb <= nop_fw(2 downto 0);
+				curr_wb <= nop_fw(3 downto 0);
 				curr_ms <= NORMAL_OP_MEM;
 				curr_cache_miss <= '0';
 				curr_mul_end_mem <= '1';
@@ -433,14 +453,26 @@ begin
 		port map (
 			mul_stall => mul_stall,
 			cache_miss => curr_cache_miss,
+			rd_idexe => rd_idexe,
 			rd_exemem => rd_exemem,
 			rd_memwb => rd_memwb,
-			rs => rs_id,
-			rt => rt_id,
+			rs_id => rs_id,
+			rt_id => rt_id,
+			rs_exe => rs_exe,
+			rt_exe => rt_exe,
 			cpu_is_reading => curr_mem(13),
 			id_fw_type => curr_id(40 downto 39),
-			rd_exemem_valid => curr_exe(15),
-			rd_memwb_valid => curr_mem(3),
+			mul_id => next_mul_id,
+			rd_idexe_valid => curr_exe(15),
+			rd_exemem_valid => curr_mem(3),
+			rd_memwb_valid => curr_wb(3),
+			curr_id => curr_id,
+			curr_exe => curr_exe,
+			curr_mem => curr_mem,
+			curr_wb => curr_wb,
+			next_exe => next_exe,
+			next_mem => next_mem,
+			next_wb => next_wb,
 			fw_a => fw_a,
 			fw_b => fw_b,
 			en_npc_if => en_npc_if,
@@ -517,13 +549,6 @@ begin
 	-- ID stage logic
 	id_comblogic: process(curr_id, curr_exe, curr_ak_id, curr_pt_id, curr_mul_in_prog, id_stall)
 	begin
-		-- in case of an ID stall this must not be propagated
-		if (id_stall = '1') then
-			next_exe <= curr_exe;
-		else
-			next_exe <= curr_id(38 downto 0); -- pass to the EXE stage its control signals
-		end if;
-
 		i_instr_id <= curr_id(61);
 		j_instr_id <= curr_id(60);
 		rp1_out_sel_id <= curr_id(59 downto 58);
@@ -558,11 +583,17 @@ begin
 	    	en_b_id <= 'Z';
 	    end if;
 	    
+	    if (curr_id(18 downto 16) = "100") then -- workaround to detect the start of a multiplication
+	    	next_mul_id <= '1';
+	    else
+	    	next_mul_id <= '0';
+	    end if;
+
 	    next_ak_exe <= curr_ak_id; -- propagate "addr_known" to the exe
 	    next_pt_exe <= curr_pt_id; -- propagate "predicted_taken" to the exe
 	end process id_comblogic;
 
-	exe_comblogic: process(curr_exe, curr_mem, curr_mul_in_prog, curr_es, curr_ak_exe, curr_pt_exe, curr_it, taken_exe, exe_stall, exe_unlock_pipeline)
+	exe_comblogic: process(curr_exe, curr_mem, curr_mul_in_prog, curr_es, curr_ak_exe, curr_pt_exe, curr_it, curr_mul_id, taken_exe, exe_stall, exe_unlock_pipeline)
 	begin
 		next_mul_in_prog <= curr_mul_in_prog;
 		mul_stall <= '0';
@@ -599,17 +630,17 @@ begin
 		--en_npc_exe <= curr_exe(17);
 		en_b_exe <= curr_exe(16);
 		
-		if (exe_stall = '1') then
-			next_mem <= curr_mem;
-		else
-			next_mem <= curr_exe(14 downto 0); -- propagate the remaining control signals to the MEM stage
-		end if;
+		--if (exe_stall = '1') then
+		--	next_mem <= curr_mem;
+		--else
+		--	next_mem <= curr_exe(14 downto 0); -- propagate the remaining control signals to the MEM stage
+		--end if;
     	
     	-- FSM to handle normal ops and multiplication 
 		case (curr_es) is
 			when NORMAL_OP_EXE => -- anything but a mul
 				next_it <= (others => '0');
-				if (curr_exe(18 downto 16) = "100") then -- workaround to detect the start of a multiplication
+				if (curr_mul_id = '1') then -- a mul has entered the exe stage
 					next_mul_in_prog <= '1';
 					mul_stall <= '1';
 					next_es <= A_NEG_SAMPLE;
@@ -723,10 +754,10 @@ begin
 		next_ms <= curr_ms;
 
 		if (mem_stall = '1') then
-			next_wb <= curr_wb;
+			--next_wb <= curr_wb;
 			next_mul_end_wb <= curr_mul_end_wb;
 		else
-			next_wb <= curr_mem(2 downto 0);
+			--next_wb <= curr_mem(2 downto 0);
 			next_mul_end_wb <= curr_mul_end_mem;
 		end if;
 
