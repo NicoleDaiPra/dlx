@@ -621,6 +621,8 @@ begin
 							-- the branch was mispredicted, flush everything
 							flush_id <= '0';
 							flush_exe <= '0';
+						else
+							pc_exe <= "00"; -- the prediction was correct, keep fetching instruction as usual
 						end if;
 					else
 						if (taken_exe = '1') then
@@ -629,6 +631,8 @@ begin
 							btb_update_exe <= "10";
 							flush_id <= '0';
 							flush_exe <= '0';
+						else
+							pc_exe <= "00"; -- if the instruction was a branch and has not been taken: fetch instructions as usual
 						end if;
 					end if;
 				end if;
