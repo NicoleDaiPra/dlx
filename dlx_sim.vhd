@@ -1,13 +1,17 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.math_real.all;
+use work.fun_pack.all;
 
 entity dlx_sim is
 	generic (
-		F: string := "/home/ms20.9/dlx"
+		F: string := "C:\Users\leona\dlx\test\test.asm.exe"
 	);
 	port (
 		clk: in std_logic;
 		rst: in std_logic;
+
+		data_out: out std_logic_vector(31 downto 0)
 	);
 end dlx_sim;
 
@@ -132,11 +136,15 @@ architecture structural of dlx_sim is
 	end component rom;
 
 	signal pc_out: std_logic_vector(29 downto 0);
-	signal instr_if: std_logic_vector(29 downto 0);
+	signal instr_if: std_logic_vector(31 downto 0);
 
 	signal btb_cache_update_line, btb_cache_update_data, btb_cache_hit_read, btb_cache_hit_rw: std_logic;
-	signal btb_cache_rw_address: std_logic_vector(29 downto 0);
-	signal btb_cache_data_in, btb_cache_data_out_read, btb_cache_data_out_rw: std_logic_vector(31 downto 0); 
+	signal btb_cache_read_address, btb_cache_rw_address: std_logic_vector(29 downto 0);
+	signal btb_cache_data_in, btb_cache_data_out_read, btb_cache_data_out_rw: std_logic_vector(31 downto 0);
+
+	signal cu_resume_mem, hit_mem, cpu_is_reading, wr_mem, dcache_update, ld_sign_mem, alu_data_tbs_selector: std_logic;
+	signal update_type_mem, ld_type_mem: std_logic_vector(1 downto 0);
+	signal dcache_data_in, dcache_data_out, dcache_address: std_logic_vector(31 downto 0);
 
 	-- dcache signals
 	signal ram_update: std_logic;
@@ -170,28 +178,43 @@ begin
 			instr_if => instr_if,
 
 			-- dcache interface
-			dcache_hit: in std_logic;
-			dcache_update: out std_logic;
-			dcache_update_type: out std_logic_vector(1 downto 0);
-			dcache_data_in: in std_logic_vector(31 downto 0); -- data coming from the dcache
-			dcache_address: out std_logic_vector(31 downto 0); -- address used by the dcache
-			dcache_data_out: out std_logic_vector(31 downto 0); -- data going to the cache
-			ram_update: in std_logic; -- raised by the cache, signals the need of an eviction
-			ram_to_cache_data: out std_logic_vector(31 downto 0);
-			cache_to_ram_data: in std_logic_vector(31 downto 0);
-			cpu_cache_address: in std_logic_vector(31 downto 0); -- address currently used to access the dcache propagated to the memory controller
-			evicted_cache_address: in std_logic_vector(31 downto 0); -- memory address where to write the evicted data
+			dcache_hit => hit_mem,
+			dcache_update => dcache_update,
+			dcache_update_type => update_type_mem,
+			dcache_data_in => dcache_data_in,
+			dcache_address => dcache_address,
+			dcache_data_out => dcache_data_out,
+			ram_update => ram_update,
+			ram_to_cache_data => ram_to_cache_data,
+			cache_to_ram_data => cache_to_ram_data,
+			cpu_cache_address => cpu_cache_address,
+			evicted_cache_address => evicted_cache_address,
 			
 			-- RAM interface
-			ram_rw: out std_logic;
-			ram_address: out std_logic_vector(7 downto 0);
-			ram_data_in: out std_logic_vector(31 downto 0);
-			ram_data_out: in std_logic_vector(31 downto 0)
+			ram_rw => ram_rw,
+			ram_address => ram_address,
+			ram_data_in => ram_data_in,
+			ram_data_out => ram_data_out
+		);
+
+	data_out <= dcache_data_out;
+
+	irom: rom
+		generic map (
+			N => 32,
+	        M => 256,
+	        F =>  F,
+	        T => 0 ns
+		)
+		port map (
+			rst => rst,
+	        addr => pc_out(7 downto 0),
+	        data_out => instr_if
 		);
 
 	btb_cache: btb_fully_associative_cache
 		generic map (
-			T => 32,
+			T => 30,
 			L => 32
 		)
 		port map (
@@ -199,7 +222,7 @@ begin
 			rst => rst,
 			update_line => btb_cache_update_line,
 			update_data => btb_cache_update_data,
-			read_address => pc_out,
+			read_address => btb_cache_read_address,
 			rw_address => btb_cache_rw_address,
 			data_in => btb_cache_data_in,
 			hit_miss_read => btb_cache_hit_read,

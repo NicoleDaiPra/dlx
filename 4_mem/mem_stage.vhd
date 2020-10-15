@@ -66,8 +66,8 @@ begin
 			N => 32
 		)
 		port map (
-			a => alu_out_low_in,
-			b => op_b_in,
+			a => op_b_in,
+			b => alu_out_low_in,
 			sel => alu_data_tbs_selector,
 			o => data_tbs
 		);

@@ -217,8 +217,8 @@ begin
 			N => 32
 		)
 		port map (
-			a => rp2,
-			b => pc,
+			a => pc,
+			b => rp2,
 			sel => data_tbs_selector,
 			o => data_tbs
 		);

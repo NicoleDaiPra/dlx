@@ -29,8 +29,8 @@ begin
 			N => 32
 		)
 		port map (
-			a => data_tbs_in,
-			b => data_cache_in,
+			a => data_cache_in,
+			b => data_tbs_in,
 			sel => store_sel,
 			o => data_rf
 		);

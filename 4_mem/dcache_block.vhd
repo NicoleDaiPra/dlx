@@ -92,7 +92,7 @@ begin
 			);
 	end generate lines_gen;
 
-	comblogic: process(address, update, valid_arr, ram_data_out_arr, cpu_data_out_arr, tag_out_arr)
+	comblogic: process(address, update, valid_arr, dirty_arr, ram_data_out_arr, cpu_data_out_arr, tag_out_arr)
 	begin
 		update_arr <= (others  => '0');
 
