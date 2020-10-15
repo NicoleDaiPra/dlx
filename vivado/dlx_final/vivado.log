@@ -1,0 +1,1961 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Thu Oct 15 19:19:06 2020
+# Process ID: 6964
+# Current directory: C:/Users/Nicole/Desktop/dlx/vivado/dlx_final
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent4628 C:\Users\Nicole\Desktop\dlx\vivado\dlx_final\dlx_final.xpr
+# Log file: C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/vivado.log
+# Journal file: C:/Users/Nicole/Desktop/dlx/vivado/dlx_final\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.xpr
+INFO: [Project 1-313] Project file moved from 'C:/Users/leona/Desktop/ms/dlx_final' since last save.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.2/data/ip'.
+open_project: Time (s): cpu = 00:00:20 ; elapsed = 00:00:11 . Memory (MB): peak = 692.906 ; gain = 53.875
+update_compile_order -fileset sources_1
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_arith' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xvhdl --incr --relax -prj tb_arith_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/multiplier/a_generator.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'a_generator'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'alu'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'alu_out_selector'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/and2.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'and2'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/beh_adder.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'beh_hadder'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/multiplier/booth_encoder.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'booth_encoder'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/btb/btb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'btb'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/btb/btb_cache_line.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'btb_cache_line'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/btb/btb_cache_replacement_logic.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'btb_cache_replacement_logic'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/fun/fun_pack.vhd" into library xil_defaultlib
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/btb/btb_fully_associative_cache.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'btb_fully_associative_cache'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/fun/fun_pack_adder.vhd" into library xil_defaultlib
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/carry_generator.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'carry_generator'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/carry_select_block.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'carry_select_block'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/comparator.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'comparator'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/control_words.vhd" into library xil_defaultlib
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/func_words.vhd" into library xil_defaultlib
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/opcodes.vhd" into library xil_defaultlib
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/cu.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'cu'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/datapath.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'datapath'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/4_mem/dcache_block.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'dcache_block'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/4_mem/dcache_line.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'dcache_line'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/4_mem/dcache_replacement_logic.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'dcache_replacement_logic'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/dlx_sim.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'dlx_sim'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/dlx_syn.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'dlx_syn'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/encoder_32x5.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'encoder_32x5'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/encoder_4to2.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'encoder_4to2'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/equality_comparator.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'equality_comparator'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/ex_mem_reg.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'ex_mem_reg'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/ex_stage.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'ex_stage'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/f_id_reg.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'if_id_reg'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'fa'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/4_mem/four_way_dcache.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'four_way_dcache'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/g_unit.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'g_unit'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/id_ex_reg.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'id_ex_reg'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/id_stage.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'id_stage'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/if_stage.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'if_stage'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/nand3.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'nand3'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/nand4.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'nand4'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/logicals/logicals.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'logicals'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/4_mem/mem_sign_extender.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'mem_sign_extender'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/4_mem/mem_stage.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'mem_stage'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/mem_wb_reg.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'mem_wb_reg'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/memory_controller.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'memory_controller'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/multiplier/mul.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'mul'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_2x1.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'mux_2x1'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_32x1.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'mux_32x1'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_4x1.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'mux_4x1'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_6x1.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'mux_6x1'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_7x1.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'mux_7x1'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_7x1_single_bit.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'mux_7x1_single_bit'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/p4_adder.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'p4_adder'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/pg_net_block.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'pg_net_block'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/pg_network.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'pg_network'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/pg_unit.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'pg_unit'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/priority_encoder_4to2.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'priority_encoder_4to2'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/ram.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'ram'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'rca_generic_struct'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'reg_en'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'rf'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/rom.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'rom'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/rshift_reg.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'rshift_reg'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/shifter/stype.vhd" into library xil_defaultlib
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/shifter/shifter_t2.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'shifter_t2'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/sign_extender.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'sign_extender'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/stall_unit.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'stall_unit'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/sum_generator.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'sum_generator'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/5_wb/wb_stage.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'wb_stage'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'tb_arith'
+run_program: Time (s): cpu = 00:00:02 ; elapsed = 00:00:08 . Memory (MB): peak = 766.297 ; gain = 0.000
+INFO: [USF-XSim-69] 'compile' step finished in '8' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xelab -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log"
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.math_real
+Compiling package ieee.numeric_std
+Compiling package xil_defaultlib.fun_pack
+Compiling package xil_defaultlib.fun_pack_adder
+Compiling package synopsys.attributes
+Compiling package ieee.std_logic_misc
+Compiling package xil_defaultlib.stype
+Compiling package xil_defaultlib.control_words
+Compiling package xil_defaultlib.func_words
+Compiling package xil_defaultlib.opcodes
+Compiling package ieee.std_logic_textio
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [\mux_2x1(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.beh_hadder [\beh_hadder(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.btb [\btb(a=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.if_stage [if_stage_default]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=26)\]
+Compiling architecture struct of entity xil_defaultlib.if_id_reg [if_id_reg_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=5)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [reg_en_default]
+Compiling architecture behavioral of entity xil_defaultlib.rf [rf_default]
+Compiling architecture behavioral of entity xil_defaultlib.sign_extender [sign_extender_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [mux_2x1_default]
+Compiling architecture behavioral of entity xil_defaultlib.id_stage [id_stage_default]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=5)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=64)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=3)\]
+Compiling architecture behavioral of entity xil_defaultlib.rshift_reg [\rshift_reg(n=31)\]
+Compiling architecture struct of entity xil_defaultlib.id_ex_reg [id_ex_reg_default]
+Compiling architecture behavioral of entity xil_defaultlib.fa [fa_default]
+Compiling architecture structural of entity xil_defaultlib.rca_generic_struct [\rca_generic_struct(n=32)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_7x1_single_bit [mux_7x1_single_bit_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=32)\]
+Compiling architecture behavioral of entity xil_defaultlib.pg_unit [pg_unit_default]
+Compiling architecture behavioral of entity xil_defaultlib.pg_net_block [pg_net_block_default]
+Compiling architecture struct of entity xil_defaultlib.pg_network [pg_network_default]
+Compiling architecture behavioral of entity xil_defaultlib.g_unit [g_unit_default]
+Compiling architecture struct of entity xil_defaultlib.carry_generator [carry_generator_default]
+Compiling architecture structural of entity xil_defaultlib.rca_generic_struct [\rca_generic_struct(n=4)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [\mux_2x1(n=4)\]
+Compiling architecture structural of entity xil_defaultlib.carry_select_block [carry_select_block_default]
+Compiling architecture structural of entity xil_defaultlib.sum_generator [sum_generator_default]
+Compiling architecture struct of entity xil_defaultlib.p4_adder [p4_adder_default]
+Compiling architecture behavioral of entity xil_defaultlib.a_generator [a_generator_default]
+Compiling architecture behavioral of entity xil_defaultlib.booth_encoder [booth_encoder_default]
+Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=4)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=3)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_6x1 [\mux_6x1(nbit=64)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [\mux_2x1(n=3)\]
+Compiling architecture structural of entity xil_defaultlib.rca_generic_struct [\rca_generic_struct(n=64)\]
+Compiling architecture structural of entity xil_defaultlib.mul [mul_default]
+Compiling architecture beh of entity xil_defaultlib.shifter_t2 [shifter_t2_default]
+Compiling architecture behavioral of entity xil_defaultlib.nand3 [nand3_default]
+Compiling architecture behavioral of entity xil_defaultlib.nand4 [nand4_default]
+Compiling architecture structural of entity xil_defaultlib.logicals [logicals_default]
+Compiling architecture behavioral of entity xil_defaultlib.alu_out_selector [alu_out_selector_default]
+Compiling architecture behavioral of entity xil_defaultlib.comparator [comparator_default]
+Compiling architecture beh of entity xil_defaultlib.alu [alu_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_7x1 [\mux_7x1(n=32)\]
+Compiling architecture struct of entity xil_defaultlib.ex_stage [ex_stage_default]
+Compiling architecture struct of entity xil_defaultlib.ex_mem_reg [ex_mem_reg_default]
+Compiling architecture behavioral of entity xil_defaultlib.mem_sign_extender [mem_sign_extender_default]
+Compiling architecture structural of entity xil_defaultlib.mem_stage [mem_stage_default]
+Compiling architecture struct of entity xil_defaultlib.mem_wb_reg [mem_wb_reg_default]
+Compiling architecture structural of entity xil_defaultlib.wb_stage [wb_stage_default]
+Compiling architecture structural of entity xil_defaultlib.datapath [datapath_default]
+Compiling architecture behavioral of entity xil_defaultlib.stall_unit [stall_unit_default]
+Compiling architecture behavioral of entity xil_defaultlib.cu [cu_default]
+Compiling architecture behavioral of entity xil_defaultlib.memory_controller [memory_controller_default]
+Compiling architecture structural of entity xil_defaultlib.dlx_syn [dlx_syn_default]
+Compiling architecture beh of entity xil_defaultlib.rom [\rom(m=256,f="C:\\Users\\Nicole\...]
+Compiling architecture behavioral of entity xil_defaultlib.btb_cache_line [\btb_cache_line(t=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.and2 [and2_default]
+Compiling architecture behavioral of entity xil_defaultlib.btb_cache_replacement_logic [\btb_cache_replacement_logic(nl=...]
+Compiling architecture behavioral of entity xil_defaultlib.encoder_32x5 [encoder_32x5_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_32x1 [mux_32x1_default]
+Compiling architecture structural of entity xil_defaultlib.btb_fully_associative_cache [\btb_fully_associative_cache(t=3...]
+Compiling architecture behavioral of entity xil_defaultlib.dcache_line [\dcache_line(t=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.dcache_block [\dcache_block(t=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.priority_encoder_4to2 [priority_encoder_4to2_default]
+Compiling architecture behavioral of entity xil_defaultlib.dcache_replacement_logic [dcache_replacement_logic_default]
+Compiling architecture behavioral of entity xil_defaultlib.encoder_4to2 [encoder_4to2_default]
+Compiling architecture behavioral of entity xil_defaultlib.four_way_dcache [\four_way_dcache(t=28,nlines=64)...]
+Compiling architecture beh of entity xil_defaultlib.ram [\ram(m=256)\]
+Compiling architecture structural of entity xil_defaultlib.dlx_sim [\dlx_sim(f="C:\\Users\\Nicole\\D...]
+Compiling architecture test of entity xil_defaultlib.tb_arith
+INFO: [Common 17-41] Interrupt caught. Command should exit soon.
+Built simulation snapshot tb_arith_behav
+run_program: Time (s): cpu = 00:00:01 ; elapsed = 00:00:11 . Memory (MB): peak = 766.297 ; gain = 0.000
+INFO: [Common 17-344] 'run_program' was cancelled
+INFO: [Vivado 12-5357] 'elaborate' step aborted
+launch_simulation: Time (s): cpu = 00:00:04 ; elapsed = 00:00:21 . Memory (MB): peak = 766.297 ; gain = 0.000
+INFO: [Common 17-344] 'launch_simulation' was cancelled
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_arith' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xvhdl --incr --relax -prj tb_arith_vhdl.prj"
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xelab -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log"
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+INFO: [USF-XSim-69] 'elaborate' step finished in '3' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "tb_arith_behav -key {Behavioral:sim_1:Functional:tb_arith} -tclbatch {tb_arith.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2019.2
+Time resolution is 1 ps
+source tb_arith.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+Error: STD_LOGIC_1164.HREAD End of string encountered
+Time: 0 ps  Iteration: 1  Process: /tb_arith/dut/irom/fill_mem_p  File: C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/rom.vhd
+xsim: Time (s): cpu = 00:00:11 ; elapsed = 00:00:05 . Memory (MB): peak = 805.457 ; gain = 23.141
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'tb_arith_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:13 ; elapsed = 00:00:11 . Memory (MB): peak = 805.457 ; gain = 39.160
+add_bp {C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd} 44
+relaunch_sim
+Command: launch_simulation -simset sim_1 -mode behavioral
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_arith' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xvhdl --incr --relax -prj tb_arith_vhdl.prj"
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+Command: launch_simulation -simset sim_1 -mode behavioral
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xelab -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log"
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+INFO: [USF-XSim-69] 'elaborate' step finished in '3' seconds
+Vivado Simulator 2019.2
+Time resolution is 1 ps
+Stopped at time : 0 fs : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+relaunch_sim: Time (s): cpu = 00:00:04 ; elapsed = 00:00:11 . Memory (MB): peak = 806.898 ; gain = 0.000
+run 1 ns
+Stopped at time : 0 fs : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Error: STD_LOGIC_1164.HREAD End of string encountered
+Time: 0 ps  Iteration: 1  Process: /tb_arith/dut/irom/fill_mem_p  File: C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/rom.vhd
+Stopped at time : 0 fs : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 1 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 1 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 1 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+run 1 ns
+Stopped at time : 3 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 3 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 4 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 4 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 4 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 5 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 5 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 5 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 5 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 6 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 6 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 6 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 6 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 6 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 7 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 7 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 7 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 7 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 7 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+relaunch_sim
+Command: launch_simulation -simset sim_1 -mode behavioral
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_arith' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xvhdl --incr --relax -prj tb_arith_vhdl.prj"
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+Command: launch_simulation -simset sim_1 -mode behavioral
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xelab -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log"
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+INFO: [USF-XSim-69] 'elaborate' step finished in '3' seconds
+Vivado Simulator 2019.2
+Time resolution is 1 ps
+Stopped at time : 0 fs : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+relaunch_sim: Time (s): cpu = 00:00:03 ; elapsed = 00:00:11 . Memory (MB): peak = 806.898 ; gain = 0.000
+run 1 ns
+Stopped at time : 0 fs : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Error: STD_LOGIC_1164.HREAD End of string encountered
+Time: 0 ps  Iteration: 1  Process: /tb_arith/dut/irom/fill_mem_p  File: C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/rom.vhd
+Stopped at time : 0 fs : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 1 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 1 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 1 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+run 1 ns
+Stopped at time : 3 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 3 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 4 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 4 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 4 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+remove_bps -file {C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd} -line 44
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_arith' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xvhdl --incr --relax -prj tb_arith_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/id_stage.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'id_stage'
+INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xelab -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log"
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.math_real
+Compiling package ieee.numeric_std
+Compiling package xil_defaultlib.fun_pack
+Compiling package xil_defaultlib.fun_pack_adder
+Compiling package synopsys.attributes
+Compiling package ieee.std_logic_misc
+Compiling package xil_defaultlib.stype
+Compiling package xil_defaultlib.control_words
+Compiling package xil_defaultlib.func_words
+Compiling package xil_defaultlib.opcodes
+Compiling package ieee.std_logic_textio
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [\mux_2x1(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.beh_hadder [\beh_hadder(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.btb [\btb(a=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.if_stage [if_stage_default]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=26)\]
+Compiling architecture struct of entity xil_defaultlib.if_id_reg [if_id_reg_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=5)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [reg_en_default]
+Compiling architecture behavioral of entity xil_defaultlib.rf [rf_default]
+Compiling architecture behavioral of entity xil_defaultlib.sign_extender [sign_extender_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [mux_2x1_default]
+Compiling architecture behavioral of entity xil_defaultlib.id_stage [id_stage_default]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=5)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=64)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=3)\]
+Compiling architecture behavioral of entity xil_defaultlib.rshift_reg [\rshift_reg(n=31)\]
+Compiling architecture struct of entity xil_defaultlib.id_ex_reg [id_ex_reg_default]
+Compiling architecture behavioral of entity xil_defaultlib.fa [fa_default]
+Compiling architecture structural of entity xil_defaultlib.rca_generic_struct [\rca_generic_struct(n=32)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_7x1_single_bit [mux_7x1_single_bit_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=32)\]
+Compiling architecture behavioral of entity xil_defaultlib.pg_unit [pg_unit_default]
+Compiling architecture behavioral of entity xil_defaultlib.pg_net_block [pg_net_block_default]
+Compiling architecture struct of entity xil_defaultlib.pg_network [pg_network_default]
+Compiling architecture behavioral of entity xil_defaultlib.g_unit [g_unit_default]
+Compiling architecture struct of entity xil_defaultlib.carry_generator [carry_generator_default]
+Compiling architecture structural of entity xil_defaultlib.rca_generic_struct [\rca_generic_struct(n=4)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [\mux_2x1(n=4)\]
+Compiling architecture structural of entity xil_defaultlib.carry_select_block [carry_select_block_default]
+Compiling architecture structural of entity xil_defaultlib.sum_generator [sum_generator_default]
+Compiling architecture struct of entity xil_defaultlib.p4_adder [p4_adder_default]
+Compiling architecture behavioral of entity xil_defaultlib.a_generator [a_generator_default]
+Compiling architecture behavioral of entity xil_defaultlib.booth_encoder [booth_encoder_default]
+Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=4)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=3)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_6x1 [\mux_6x1(nbit=64)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [\mux_2x1(n=3)\]
+Compiling architecture structural of entity xil_defaultlib.rca_generic_struct [\rca_generic_struct(n=64)\]
+Compiling architecture structural of entity xil_defaultlib.mul [mul_default]
+Compiling architecture beh of entity xil_defaultlib.shifter_t2 [shifter_t2_default]
+Compiling architecture behavioral of entity xil_defaultlib.nand3 [nand3_default]
+Compiling architecture behavioral of entity xil_defaultlib.nand4 [nand4_default]
+Compiling architecture structural of entity xil_defaultlib.logicals [logicals_default]
+Compiling architecture behavioral of entity xil_defaultlib.alu_out_selector [alu_out_selector_default]
+Compiling architecture behavioral of entity xil_defaultlib.comparator [comparator_default]
+Compiling architecture beh of entity xil_defaultlib.alu [alu_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_7x1 [\mux_7x1(n=32)\]
+Compiling architecture struct of entity xil_defaultlib.ex_stage [ex_stage_default]
+Compiling architecture struct of entity xil_defaultlib.ex_mem_reg [ex_mem_reg_default]
+Compiling architecture behavioral of entity xil_defaultlib.mem_sign_extender [mem_sign_extender_default]
+Compiling architecture structural of entity xil_defaultlib.mem_stage [mem_stage_default]
+Compiling architecture struct of entity xil_defaultlib.mem_wb_reg [mem_wb_reg_default]
+Compiling architecture structural of entity xil_defaultlib.wb_stage [wb_stage_default]
+Compiling architecture structural of entity xil_defaultlib.datapath [datapath_default]
+Compiling architecture behavioral of entity xil_defaultlib.stall_unit [stall_unit_default]
+Compiling architecture behavioral of entity xil_defaultlib.cu [cu_default]
+Compiling architecture behavioral of entity xil_defaultlib.memory_controller [memory_controller_default]
+Compiling architecture structural of entity xil_defaultlib.dlx_syn [dlx_syn_default]
+Compiling architecture beh of entity xil_defaultlib.rom [\rom(m=256,f="C:\\Users\\Nicole\...]
+Compiling architecture behavioral of entity xil_defaultlib.btb_cache_line [\btb_cache_line(t=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.and2 [and2_default]
+Compiling architecture behavioral of entity xil_defaultlib.btb_cache_replacement_logic [\btb_cache_replacement_logic(nl=...]
+Compiling architecture behavioral of entity xil_defaultlib.encoder_32x5 [encoder_32x5_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_32x1 [mux_32x1_default]
+Compiling architecture structural of entity xil_defaultlib.btb_fully_associative_cache [\btb_fully_associative_cache(t=3...]
+Compiling architecture behavioral of entity xil_defaultlib.dcache_line [\dcache_line(t=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.dcache_block [\dcache_block(t=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.priority_encoder_4to2 [priority_encoder_4to2_default]
+Compiling architecture behavioral of entity xil_defaultlib.dcache_replacement_logic [dcache_replacement_logic_default]
+Compiling architecture behavioral of entity xil_defaultlib.encoder_4to2 [encoder_4to2_default]
+Compiling architecture behavioral of entity xil_defaultlib.four_way_dcache [\four_way_dcache(t=28,nlines=64)...]
+Compiling architecture beh of entity xil_defaultlib.ram [\ram(m=256)\]
+Compiling architecture structural of entity xil_defaultlib.dlx_sim [\dlx_sim(f="C:\\Users\\Nicole\\D...]
+Compiling architecture test of entity xil_defaultlib.tb_arith
+Built simulation snapshot tb_arith_behav
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:07 . Memory (MB): peak = 823.023 ; gain = 0.000
+INFO: [USF-XSim-69] 'elaborate' step finished in '6' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "tb_arith_behav -key {Behavioral:sim_1:Functional:tb_arith} -tclbatch {tb_arith.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2019.2
+Time resolution is 1 ps
+source tb_arith.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+Error: STD_LOGIC_1164.HREAD End of string encountered
+Time: 0 ps  Iteration: 1  Process: /tb_arith/dut/irom/fill_mem_p  File: C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/rom.vhd
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'tb_arith_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:11 ; elapsed = 00:00:15 . Memory (MB): peak = 826.598 ; gain = 3.574
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_arith' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xvhdl --incr --relax -prj tb_arith_vhdl.prj"
+INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xelab -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log"
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+INFO: [USF-XSim-69] 'elaborate' step finished in '3' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "tb_arith_behav -key {Behavioral:sim_1:Functional:tb_arith} -tclbatch {tb_arith.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2019.2
+Time resolution is 1 ps
+source tb_arith.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+Error: STD_LOGIC_1164.HREAD End of string encountered
+Time: 0 ps  Iteration: 1  Process: /tb_arith/dut/irom/fill_mem_p  File: C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/rom.vhd
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'tb_arith_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:08 ; elapsed = 00:00:11 . Memory (MB): peak = 826.598 ; gain = 0.000
+add_bp {C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd} 44
+relaunch_sim
+Command: launch_simulation -simset sim_1 -mode behavioral
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_arith' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xvhdl --incr --relax -prj tb_arith_vhdl.prj"
+INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
+Command: launch_simulation -simset sim_1 -mode behavioral
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xelab -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log"
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+INFO: [USF-XSim-69] 'elaborate' step finished in '3' seconds
+Vivado Simulator 2019.2
+Time resolution is 1 ps
+Stopped at time : 0 fs : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+relaunch_sim: Time (s): cpu = 00:00:03 ; elapsed = 00:00:11 . Memory (MB): peak = 826.598 ; gain = 0.000
+run 1 ns
+Stopped at time : 0 fs : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Error: STD_LOGIC_1164.HREAD End of string encountered
+Time: 0 ps  Iteration: 1  Process: /tb_arith/dut/irom/fill_mem_p  File: C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/rom.vhd
+Stopped at time : 0 fs : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 1 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 1 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 1 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+run 1 ns
+Stopped at time : 3 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 3 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 4 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 4 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 4 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 4 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 5 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 5 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 5 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 6 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 6 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 7 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 7 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 8 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 8 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 8 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 8 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 8 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 8 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 8 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 8 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 9 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 9 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 9 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+step
+Stopped at time : 9 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 46
+step
+Stopped at time : 9 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/comparator.vhd" Line 30
+run 1 ns
+Stopped at time : 9 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 9 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 10 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 10 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 10 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 10 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 11 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 11 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 11 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 11 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 11 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 12 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 12 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 12 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 12 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 12 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 12 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+relaunch_sim
+Command: launch_simulation -simset sim_1 -mode behavioral
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_arith' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xvhdl --incr --relax -prj tb_arith_vhdl.prj"
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+Command: launch_simulation -simset sim_1 -mode behavioral
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xelab -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log"
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+INFO: [USF-XSim-69] 'elaborate' step finished in '3' seconds
+Vivado Simulator 2019.2
+Time resolution is 1 ps
+Stopped at time : 0 fs : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+relaunch_sim: Time (s): cpu = 00:00:02 ; elapsed = 00:00:11 . Memory (MB): peak = 826.598 ; gain = 0.000
+run 1 ns
+Stopped at time : 0 fs : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Error: STD_LOGIC_1164.HREAD End of string encountered
+Time: 0 ps  Iteration: 1  Process: /tb_arith/dut/irom/fill_mem_p  File: C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/rom.vhd
+Stopped at time : 0 fs : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 1 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 1 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 1 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+run 1 ns
+Stopped at time : 3 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 3 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 4 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 4 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 4 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 4 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 5 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 5 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 5 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 6 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 6 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 7 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 7 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 8 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 8 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 8 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 8 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 8 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 8 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 8 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 8 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 9 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 9 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 9 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 9 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 9 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 10 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 10 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 10 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 10 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 11 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 11 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 11 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 11 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 11 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 12 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 12 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 12 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 12 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 12 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 12 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 13 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 13 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+relaunch_sim
+Command: launch_simulation -simset sim_1 -mode behavioral
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_arith' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xvhdl --incr --relax -prj tb_arith_vhdl.prj"
+INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
+Command: launch_simulation -simset sim_1 -mode behavioral
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xelab -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log"
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+INFO: [USF-XSim-69] 'elaborate' step finished in '3' seconds
+Vivado Simulator 2019.2
+Time resolution is 1 ps
+Stopped at time : 0 fs : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+relaunch_sim: Time (s): cpu = 00:00:03 ; elapsed = 00:00:11 . Memory (MB): peak = 826.598 ; gain = 0.000
+relaunch_sim
+Command: launch_simulation -simset sim_1 -mode behavioral
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_arith' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xvhdl --incr --relax -prj tb_arith_vhdl.prj"
+INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
+Command: launch_simulation -simset sim_1 -mode behavioral
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xelab -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log"
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+INFO: [USF-XSim-69] 'elaborate' step finished in '3' seconds
+Vivado Simulator 2019.2
+Time resolution is 1 ps
+Stopped at time : 0 fs : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+relaunch_sim: Time (s): cpu = 00:00:02 ; elapsed = 00:00:11 . Memory (MB): peak = 826.598 ; gain = 0.000
+run 1 ns
+Stopped at time : 0 fs : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Error: STD_LOGIC_1164.HREAD End of string encountered
+Time: 0 ps  Iteration: 1  Process: /tb_arith/dut/irom/fill_mem_p  File: C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/rom.vhd
+Stopped at time : 0 fs : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 1 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 1 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 1 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+run 1 ns
+Stopped at time : 3 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 3 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 4 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 4 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 4 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 4 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 5 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 5 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 5 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 6 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 6 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 7 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 7 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 8 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 8 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 8 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 8 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 8 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 8 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 8 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 8 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 9 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 9 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 9 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 9 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 9 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 10 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 10 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 10 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 10 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 11 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 11 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 11 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 11 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 11 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+run 1 ns
+Stopped at time : 12 ns : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_arith' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xvhdl --incr --relax -prj tb_arith_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'rf'
+INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xelab -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log"
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.math_real
+Compiling package ieee.numeric_std
+Compiling package xil_defaultlib.fun_pack
+Compiling package xil_defaultlib.fun_pack_adder
+Compiling package synopsys.attributes
+Compiling package ieee.std_logic_misc
+Compiling package xil_defaultlib.stype
+Compiling package xil_defaultlib.control_words
+Compiling package xil_defaultlib.func_words
+Compiling package xil_defaultlib.opcodes
+Compiling package ieee.std_logic_textio
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [\mux_2x1(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.beh_hadder [\beh_hadder(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.btb [\btb(a=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.if_stage [if_stage_default]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=26)\]
+Compiling architecture struct of entity xil_defaultlib.if_id_reg [if_id_reg_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=5)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [reg_en_default]
+Compiling architecture behavioral of entity xil_defaultlib.rf [rf_default]
+Compiling architecture behavioral of entity xil_defaultlib.sign_extender [sign_extender_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [mux_2x1_default]
+Compiling architecture behavioral of entity xil_defaultlib.id_stage [id_stage_default]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=5)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=64)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=3)\]
+Compiling architecture behavioral of entity xil_defaultlib.rshift_reg [\rshift_reg(n=31)\]
+Compiling architecture struct of entity xil_defaultlib.id_ex_reg [id_ex_reg_default]
+Compiling architecture behavioral of entity xil_defaultlib.fa [fa_default]
+Compiling architecture structural of entity xil_defaultlib.rca_generic_struct [\rca_generic_struct(n=32)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_7x1_single_bit [mux_7x1_single_bit_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=32)\]
+Compiling architecture behavioral of entity xil_defaultlib.pg_unit [pg_unit_default]
+Compiling architecture behavioral of entity xil_defaultlib.pg_net_block [pg_net_block_default]
+Compiling architecture struct of entity xil_defaultlib.pg_network [pg_network_default]
+Compiling architecture behavioral of entity xil_defaultlib.g_unit [g_unit_default]
+Compiling architecture struct of entity xil_defaultlib.carry_generator [carry_generator_default]
+Compiling architecture structural of entity xil_defaultlib.rca_generic_struct [\rca_generic_struct(n=4)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [\mux_2x1(n=4)\]
+Compiling architecture structural of entity xil_defaultlib.carry_select_block [carry_select_block_default]
+Compiling architecture structural of entity xil_defaultlib.sum_generator [sum_generator_default]
+Compiling architecture struct of entity xil_defaultlib.p4_adder [p4_adder_default]
+Compiling architecture behavioral of entity xil_defaultlib.a_generator [a_generator_default]
+Compiling architecture behavioral of entity xil_defaultlib.booth_encoder [booth_encoder_default]
+Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=4)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=3)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_6x1 [\mux_6x1(nbit=64)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [\mux_2x1(n=3)\]
+Compiling architecture structural of entity xil_defaultlib.rca_generic_struct [\rca_generic_struct(n=64)\]
+Compiling architecture structural of entity xil_defaultlib.mul [mul_default]
+Compiling architecture beh of entity xil_defaultlib.shifter_t2 [shifter_t2_default]
+Compiling architecture behavioral of entity xil_defaultlib.nand3 [nand3_default]
+Compiling architecture behavioral of entity xil_defaultlib.nand4 [nand4_default]
+Compiling architecture structural of entity xil_defaultlib.logicals [logicals_default]
+Compiling architecture behavioral of entity xil_defaultlib.alu_out_selector [alu_out_selector_default]
+Compiling architecture behavioral of entity xil_defaultlib.comparator [comparator_default]
+Compiling architecture beh of entity xil_defaultlib.alu [alu_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_7x1 [\mux_7x1(n=32)\]
+Compiling architecture struct of entity xil_defaultlib.ex_stage [ex_stage_default]
+Compiling architecture struct of entity xil_defaultlib.ex_mem_reg [ex_mem_reg_default]
+Compiling architecture behavioral of entity xil_defaultlib.mem_sign_extender [mem_sign_extender_default]
+Compiling architecture structural of entity xil_defaultlib.mem_stage [mem_stage_default]
+Compiling architecture struct of entity xil_defaultlib.mem_wb_reg [mem_wb_reg_default]
+Compiling architecture structural of entity xil_defaultlib.wb_stage [wb_stage_default]
+Compiling architecture structural of entity xil_defaultlib.datapath [datapath_default]
+Compiling architecture behavioral of entity xil_defaultlib.stall_unit [stall_unit_default]
+Compiling architecture behavioral of entity xil_defaultlib.cu [cu_default]
+Compiling architecture behavioral of entity xil_defaultlib.memory_controller [memory_controller_default]
+Compiling architecture structural of entity xil_defaultlib.dlx_syn [dlx_syn_default]
+Compiling architecture beh of entity xil_defaultlib.rom [\rom(m=256,f="C:\\Users\\Nicole\...]
+Compiling architecture behavioral of entity xil_defaultlib.btb_cache_line [\btb_cache_line(t=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.and2 [and2_default]
+Compiling architecture behavioral of entity xil_defaultlib.btb_cache_replacement_logic [\btb_cache_replacement_logic(nl=...]
+Compiling architecture behavioral of entity xil_defaultlib.encoder_32x5 [encoder_32x5_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_32x1 [mux_32x1_default]
+Compiling architecture structural of entity xil_defaultlib.btb_fully_associative_cache [\btb_fully_associative_cache(t=3...]
+Compiling architecture behavioral of entity xil_defaultlib.dcache_line [\dcache_line(t=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.dcache_block [\dcache_block(t=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.priority_encoder_4to2 [priority_encoder_4to2_default]
+Compiling architecture behavioral of entity xil_defaultlib.dcache_replacement_logic [dcache_replacement_logic_default]
+Compiling architecture behavioral of entity xil_defaultlib.encoder_4to2 [encoder_4to2_default]
+Compiling architecture behavioral of entity xil_defaultlib.four_way_dcache [\four_way_dcache(t=28,nlines=64)...]
+Compiling architecture beh of entity xil_defaultlib.ram [\ram(m=256)\]
+Compiling architecture structural of entity xil_defaultlib.dlx_sim [\dlx_sim(f="C:\\Users\\Nicole\\D...]
+Compiling architecture test of entity xil_defaultlib.tb_arith
+Built simulation snapshot tb_arith_behav
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:07 . Memory (MB): peak = 847.938 ; gain = 0.000
+INFO: [USF-XSim-69] 'elaborate' step finished in '6' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "tb_arith_behav -key {Behavioral:sim_1:Functional:tb_arith} -tclbatch {tb_arith.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2019.2
+Time resolution is 1 ps
+source tb_arith.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+Stopped at time : 0 fs : File "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd" Line 44
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'tb_arith_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:07 ; elapsed = 00:00:15 . Memory (MB): peak = 858.660 ; gain = 10.883
+remove_bps -file {C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd} -line 44
+relaunch_sim
+Command: launch_simulation -simset sim_1 -mode behavioral
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_arith' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xvhdl --incr --relax -prj tb_arith_vhdl.prj"
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+Command: launch_simulation -simset sim_1 -mode behavioral
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xelab -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log"
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+INFO: [USF-XSim-69] 'elaborate' step finished in '3' seconds
+Vivado Simulator 2019.2
+Time resolution is 1 ps
+Error: STD_LOGIC_1164.HREAD End of string encountered
+Time: 0 ps  Iteration: 1  Process: /tb_arith/dut/irom/fill_mem_p  File: C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/rom.vhd
+relaunch_sim: Time (s): cpu = 00:00:02 ; elapsed = 00:00:10 . Memory (MB): peak = 858.660 ; gain = 0.000
+relaunch_sim
+Command: launch_simulation -simset sim_1 -mode behavioral
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_arith' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xvhdl --incr --relax -prj tb_arith_vhdl.prj"
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+Command: launch_simulation -simset sim_1 -mode behavioral
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xelab -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log"
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+INFO: [USF-XSim-69] 'elaborate' step finished in '3' seconds
+Vivado Simulator 2019.2
+Time resolution is 1 ps
+Error: STD_LOGIC_1164.HREAD End of string encountered
+Time: 0 ps  Iteration: 1  Process: /tb_arith/dut/irom/fill_mem_p  File: C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/rom.vhd
+relaunch_sim: Time (s): cpu = 00:00:02 ; elapsed = 00:00:11 . Memory (MB): peak = 858.918 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_arith' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xvhdl --incr --relax -prj tb_arith_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'rf'
+INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xelab -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log"
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.math_real
+Compiling package ieee.numeric_std
+Compiling package xil_defaultlib.fun_pack
+Compiling package xil_defaultlib.fun_pack_adder
+Compiling package synopsys.attributes
+Compiling package ieee.std_logic_misc
+Compiling package xil_defaultlib.stype
+Compiling package xil_defaultlib.control_words
+Compiling package xil_defaultlib.func_words
+Compiling package xil_defaultlib.opcodes
+Compiling package ieee.std_logic_textio
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [\mux_2x1(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.beh_hadder [\beh_hadder(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.btb [\btb(a=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.if_stage [if_stage_default]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=26)\]
+Compiling architecture struct of entity xil_defaultlib.if_id_reg [if_id_reg_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=5)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [reg_en_default]
+Compiling architecture behavioral of entity xil_defaultlib.rf [rf_default]
+Compiling architecture behavioral of entity xil_defaultlib.sign_extender [sign_extender_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [mux_2x1_default]
+Compiling architecture behavioral of entity xil_defaultlib.id_stage [id_stage_default]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=5)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=64)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=3)\]
+Compiling architecture behavioral of entity xil_defaultlib.rshift_reg [\rshift_reg(n=31)\]
+Compiling architecture struct of entity xil_defaultlib.id_ex_reg [id_ex_reg_default]
+Compiling architecture behavioral of entity xil_defaultlib.fa [fa_default]
+Compiling architecture structural of entity xil_defaultlib.rca_generic_struct [\rca_generic_struct(n=32)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_7x1_single_bit [mux_7x1_single_bit_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=32)\]
+Compiling architecture behavioral of entity xil_defaultlib.pg_unit [pg_unit_default]
+Compiling architecture behavioral of entity xil_defaultlib.pg_net_block [pg_net_block_default]
+Compiling architecture struct of entity xil_defaultlib.pg_network [pg_network_default]
+Compiling architecture behavioral of entity xil_defaultlib.g_unit [g_unit_default]
+Compiling architecture struct of entity xil_defaultlib.carry_generator [carry_generator_default]
+Compiling architecture structural of entity xil_defaultlib.rca_generic_struct [\rca_generic_struct(n=4)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [\mux_2x1(n=4)\]
+Compiling architecture structural of entity xil_defaultlib.carry_select_block [carry_select_block_default]
+Compiling architecture structural of entity xil_defaultlib.sum_generator [sum_generator_default]
+Compiling architecture struct of entity xil_defaultlib.p4_adder [p4_adder_default]
+Compiling architecture behavioral of entity xil_defaultlib.a_generator [a_generator_default]
+Compiling architecture behavioral of entity xil_defaultlib.booth_encoder [booth_encoder_default]
+Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=4)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=3)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_6x1 [\mux_6x1(nbit=64)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [\mux_2x1(n=3)\]
+Compiling architecture structural of entity xil_defaultlib.rca_generic_struct [\rca_generic_struct(n=64)\]
+Compiling architecture structural of entity xil_defaultlib.mul [mul_default]
+Compiling architecture beh of entity xil_defaultlib.shifter_t2 [shifter_t2_default]
+Compiling architecture behavioral of entity xil_defaultlib.nand3 [nand3_default]
+Compiling architecture behavioral of entity xil_defaultlib.nand4 [nand4_default]
+Compiling architecture structural of entity xil_defaultlib.logicals [logicals_default]
+Compiling architecture behavioral of entity xil_defaultlib.alu_out_selector [alu_out_selector_default]
+Compiling architecture behavioral of entity xil_defaultlib.comparator [comparator_default]
+Compiling architecture beh of entity xil_defaultlib.alu [alu_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_7x1 [\mux_7x1(n=32)\]
+Compiling architecture struct of entity xil_defaultlib.ex_stage [ex_stage_default]
+Compiling architecture struct of entity xil_defaultlib.ex_mem_reg [ex_mem_reg_default]
+Compiling architecture behavioral of entity xil_defaultlib.mem_sign_extender [mem_sign_extender_default]
+Compiling architecture structural of entity xil_defaultlib.mem_stage [mem_stage_default]
+Compiling architecture struct of entity xil_defaultlib.mem_wb_reg [mem_wb_reg_default]
+Compiling architecture structural of entity xil_defaultlib.wb_stage [wb_stage_default]
+Compiling architecture structural of entity xil_defaultlib.datapath [datapath_default]
+Compiling architecture behavioral of entity xil_defaultlib.stall_unit [stall_unit_default]
+Compiling architecture behavioral of entity xil_defaultlib.cu [cu_default]
+Compiling architecture behavioral of entity xil_defaultlib.memory_controller [memory_controller_default]
+Compiling architecture structural of entity xil_defaultlib.dlx_syn [dlx_syn_default]
+Compiling architecture beh of entity xil_defaultlib.rom [\rom(m=256,f="C:\\Users\\Nicole\...]
+Compiling architecture behavioral of entity xil_defaultlib.btb_cache_line [\btb_cache_line(t=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.and2 [and2_default]
+Compiling architecture behavioral of entity xil_defaultlib.btb_cache_replacement_logic [\btb_cache_replacement_logic(nl=...]
+Compiling architecture behavioral of entity xil_defaultlib.encoder_32x5 [encoder_32x5_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_32x1 [mux_32x1_default]
+Compiling architecture structural of entity xil_defaultlib.btb_fully_associative_cache [\btb_fully_associative_cache(t=3...]
+Compiling architecture behavioral of entity xil_defaultlib.dcache_line [\dcache_line(t=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.dcache_block [\dcache_block(t=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.priority_encoder_4to2 [priority_encoder_4to2_default]
+Compiling architecture behavioral of entity xil_defaultlib.dcache_replacement_logic [dcache_replacement_logic_default]
+Compiling architecture behavioral of entity xil_defaultlib.encoder_4to2 [encoder_4to2_default]
+Compiling architecture behavioral of entity xil_defaultlib.four_way_dcache [\four_way_dcache(t=28,nlines=64)...]
+Compiling architecture beh of entity xil_defaultlib.ram [\ram(m=256)\]
+Compiling architecture structural of entity xil_defaultlib.dlx_sim [\dlx_sim(f="C:\\Users\\Nicole\\D...]
+Compiling architecture test of entity xil_defaultlib.tb_arith
+Built simulation snapshot tb_arith_behav
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:07 . Memory (MB): peak = 858.918 ; gain = 0.000
+INFO: [USF-XSim-69] 'elaborate' step finished in '7' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "tb_arith_behav -key {Behavioral:sim_1:Functional:tb_arith} -tclbatch {tb_arith.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2019.2
+Time resolution is 1 ps
+source tb_arith.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+Error: STD_LOGIC_1164.HREAD End of string encountered
+Time: 0 ps  Iteration: 1  Process: /tb_arith/dut/irom/fill_mem_p  File: C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/rom.vhd
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'tb_arith_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:06 ; elapsed = 00:00:15 . Memory (MB): peak = 859.445 ; gain = 0.527
+relaunch_sim
+Command: launch_simulation -simset sim_1 -mode behavioral
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_arith' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xvhdl --incr --relax -prj tb_arith_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'rf'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'tb_arith'
+ERROR: [VRFC 10-724] found '0' definitions of operator "-", cannot determine exact overloaded matching definition for "-" [C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd:93]
+ERROR: [VRFC 10-3782] unit 'test' ignored due to previous errors [C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd:8]
+INFO: [VRFC 10-3070] VHDL file 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd' ignored due to errors
+INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
+INFO: [USF-XSim-99] Step results log file:'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim/xvhdl.log'
+ERROR: [USF-XSim-62] 'compile' step failed with error(s). Please check the Tcl console output or 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim/xvhdl.log' file for more information.
+ERROR: [Vivado 12-4473] Detected error while running simulation. Please correct the issue and retry this operation.
+ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.
+ERROR: [Common 17-69] Command failed: ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.
+
+relaunch_sim
+Command: launch_simulation -simset sim_1 -mode behavioral
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_arith' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xvhdl --incr --relax -prj tb_arith_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'rf'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'tb_arith'
+ERROR: [VRFC 10-724] found '0' definitions of operator "-", cannot determine exact overloaded matching definition for "-" [C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd:94]
+ERROR: [VRFC 10-3782] unit 'test' ignored due to previous errors [C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd:9]
+INFO: [VRFC 10-3070] VHDL file 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd' ignored due to errors
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-99] Step results log file:'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim/xvhdl.log'
+ERROR: [USF-XSim-62] 'compile' step failed with error(s). Please check the Tcl console output or 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim/xvhdl.log' file for more information.
+ERROR: [Vivado 12-4473] Detected error while running simulation. Please correct the issue and retry this operation.
+ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.
+ERROR: [Common 17-69] Command failed: ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.
+
+relaunch_sim
+Command: launch_simulation -simset sim_1 -mode behavioral
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_arith' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xvhdl --incr --relax -prj tb_arith_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'rf'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'tb_arith'
+ERROR: [VRFC 10-3564] near string '"00000000000000000010000000000000"' ; 6 visible types match here [C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd:94]
+ERROR: [VRFC 10-298] ambiguous type: 'std_logic_vector_93' or 'std_ulogic_vector' [C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd:94]
+ERROR: [VRFC 10-3559] near 'unsigned' ; type conversion expression type cannot be determined uniquely [C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd:94]
+ERROR: [VRFC 10-1470] type conversion (to unresolved_unsigned) cannot have string literal operand [C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd:94]
+ERROR: [VRFC 10-724] found '0' definitions of operator "-", cannot determine exact overloaded matching definition for "-" [C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd:94]
+ERROR: [VRFC 10-3782] unit 'test' ignored due to previous errors [C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd:9]
+INFO: [VRFC 10-3070] VHDL file 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd' ignored due to errors
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-99] Step results log file:'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim/xvhdl.log'
+ERROR: [USF-XSim-62] 'compile' step failed with error(s). Please check the Tcl console output or 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim/xvhdl.log' file for more information.
+ERROR: [Vivado 12-4473] Detected error while running simulation. Please correct the issue and retry this operation.
+ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.
+ERROR: [Common 17-69] Command failed: ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.
+
+relaunch_sim
+Command: launch_simulation -simset sim_1 -mode behavioral
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_arith' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xvhdl --incr --relax -prj tb_arith_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'rf'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'tb_arith'
+ERROR: [VRFC 10-3564] near string '"00000000000000000010000000000000"' ; 6 visible types match here [C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd:94]
+ERROR: [VRFC 10-298] ambiguous type: 'std_logic_vector_93' or 'std_ulogic_vector' [C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd:94]
+ERROR: [VRFC 10-3559] near 'unsigned' ; type conversion expression type cannot be determined uniquely [C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd:94]
+ERROR: [VRFC 10-1470] type conversion (to unresolved_unsigned) cannot have string literal operand [C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd:94]
+ERROR: [VRFC 10-3782] unit 'test' ignored due to previous errors [C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd:9]
+INFO: [VRFC 10-3070] VHDL file 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd' ignored due to errors
+INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
+INFO: [USF-XSim-99] Step results log file:'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim/xvhdl.log'
+ERROR: [USF-XSim-62] 'compile' step failed with error(s). Please check the Tcl console output or 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim/xvhdl.log' file for more information.
+ERROR: [Vivado 12-4473] Detected error while running simulation. Please correct the issue and retry this operation.
+ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.
+ERROR: [Common 17-69] Command failed: ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.
+
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_arith' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xvhdl --incr --relax -prj tb_arith_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'rf'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'tb_arith'
+ERROR: [VRFC 10-3564] near string '"00000000000000000010000000000000"' ; 6 visible types match here [C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd:89]
+ERROR: [VRFC 10-298] ambiguous type: 'std_logic_vector_93' or 'std_ulogic_vector' [C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd:89]
+ERROR: [VRFC 10-3559] near 'unsigned' ; type conversion expression type cannot be determined uniquely [C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd:89]
+ERROR: [VRFC 10-1470] type conversion (to unresolved_unsigned) cannot have string literal operand [C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd:89]
+ERROR: [VRFC 10-3782] unit 'test' ignored due to previous errors [C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd:9]
+INFO: [VRFC 10-3070] VHDL file 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd' ignored due to errors
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-99] Step results log file:'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim/xvhdl.log'
+ERROR: [USF-XSim-62] 'compile' step failed with error(s). Please check the Tcl console output or 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim/xvhdl.log' file for more information.
+ERROR: [Vivado 12-4473] Detected error while running simulation. Please correct the issue and retry this operation.
+ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_arith' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xvhdl --incr --relax -prj tb_arith_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'rf'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'tb_arith'
+INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xelab -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log"
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package ieee.math_real
+Compiling package xil_defaultlib.fun_pack
+Compiling package xil_defaultlib.fun_pack_adder
+Compiling package synopsys.attributes
+Compiling package ieee.std_logic_misc
+Compiling package xil_defaultlib.stype
+Compiling package xil_defaultlib.control_words
+Compiling package xil_defaultlib.func_words
+Compiling package xil_defaultlib.opcodes
+Compiling package ieee.std_logic_textio
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [\mux_2x1(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.beh_hadder [\beh_hadder(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.btb [\btb(a=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.if_stage [if_stage_default]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=26)\]
+Compiling architecture struct of entity xil_defaultlib.if_id_reg [if_id_reg_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=5)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [reg_en_default]
+Compiling architecture behavioral of entity xil_defaultlib.rf [rf_default]
+Compiling architecture behavioral of entity xil_defaultlib.sign_extender [sign_extender_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [mux_2x1_default]
+Compiling architecture behavioral of entity xil_defaultlib.id_stage [id_stage_default]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=5)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=64)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=3)\]
+Compiling architecture behavioral of entity xil_defaultlib.rshift_reg [\rshift_reg(n=31)\]
+Compiling architecture struct of entity xil_defaultlib.id_ex_reg [id_ex_reg_default]
+Compiling architecture behavioral of entity xil_defaultlib.fa [fa_default]
+Compiling architecture structural of entity xil_defaultlib.rca_generic_struct [\rca_generic_struct(n=32)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_7x1_single_bit [mux_7x1_single_bit_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=32)\]
+Compiling architecture behavioral of entity xil_defaultlib.pg_unit [pg_unit_default]
+Compiling architecture behavioral of entity xil_defaultlib.pg_net_block [pg_net_block_default]
+Compiling architecture struct of entity xil_defaultlib.pg_network [pg_network_default]
+Compiling architecture behavioral of entity xil_defaultlib.g_unit [g_unit_default]
+Compiling architecture struct of entity xil_defaultlib.carry_generator [carry_generator_default]
+Compiling architecture structural of entity xil_defaultlib.rca_generic_struct [\rca_generic_struct(n=4)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [\mux_2x1(n=4)\]
+Compiling architecture structural of entity xil_defaultlib.carry_select_block [carry_select_block_default]
+Compiling architecture structural of entity xil_defaultlib.sum_generator [sum_generator_default]
+Compiling architecture struct of entity xil_defaultlib.p4_adder [p4_adder_default]
+Compiling architecture behavioral of entity xil_defaultlib.a_generator [a_generator_default]
+Compiling architecture behavioral of entity xil_defaultlib.booth_encoder [booth_encoder_default]
+Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=4)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=3)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_6x1 [\mux_6x1(nbit=64)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [\mux_2x1(n=3)\]
+Compiling architecture structural of entity xil_defaultlib.rca_generic_struct [\rca_generic_struct(n=64)\]
+Compiling architecture structural of entity xil_defaultlib.mul [mul_default]
+Compiling architecture beh of entity xil_defaultlib.shifter_t2 [shifter_t2_default]
+Compiling architecture behavioral of entity xil_defaultlib.nand3 [nand3_default]
+Compiling architecture behavioral of entity xil_defaultlib.nand4 [nand4_default]
+Compiling architecture structural of entity xil_defaultlib.logicals [logicals_default]
+Compiling architecture behavioral of entity xil_defaultlib.alu_out_selector [alu_out_selector_default]
+Compiling architecture behavioral of entity xil_defaultlib.comparator [comparator_default]
+Compiling architecture beh of entity xil_defaultlib.alu [alu_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_7x1 [\mux_7x1(n=32)\]
+Compiling architecture struct of entity xil_defaultlib.ex_stage [ex_stage_default]
+Compiling architecture struct of entity xil_defaultlib.ex_mem_reg [ex_mem_reg_default]
+Compiling architecture behavioral of entity xil_defaultlib.mem_sign_extender [mem_sign_extender_default]
+Compiling architecture structural of entity xil_defaultlib.mem_stage [mem_stage_default]
+Compiling architecture struct of entity xil_defaultlib.mem_wb_reg [mem_wb_reg_default]
+Compiling architecture structural of entity xil_defaultlib.wb_stage [wb_stage_default]
+Compiling architecture structural of entity xil_defaultlib.datapath [datapath_default]
+Compiling architecture behavioral of entity xil_defaultlib.stall_unit [stall_unit_default]
+Compiling architecture behavioral of entity xil_defaultlib.cu [cu_default]
+Compiling architecture behavioral of entity xil_defaultlib.memory_controller [memory_controller_default]
+Compiling architecture structural of entity xil_defaultlib.dlx_syn [dlx_syn_default]
+Compiling architecture beh of entity xil_defaultlib.rom [\rom(m=256,f="C:\\Users\\Nicole\...]
+Compiling architecture behavioral of entity xil_defaultlib.btb_cache_line [\btb_cache_line(t=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.and2 [and2_default]
+Compiling architecture behavioral of entity xil_defaultlib.btb_cache_replacement_logic [\btb_cache_replacement_logic(nl=...]
+Compiling architecture behavioral of entity xil_defaultlib.encoder_32x5 [encoder_32x5_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_32x1 [mux_32x1_default]
+Compiling architecture structural of entity xil_defaultlib.btb_fully_associative_cache [\btb_fully_associative_cache(t=3...]
+Compiling architecture behavioral of entity xil_defaultlib.dcache_line [\dcache_line(t=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.dcache_block [\dcache_block(t=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.priority_encoder_4to2 [priority_encoder_4to2_default]
+Compiling architecture behavioral of entity xil_defaultlib.dcache_replacement_logic [dcache_replacement_logic_default]
+Compiling architecture behavioral of entity xil_defaultlib.encoder_4to2 [encoder_4to2_default]
+Compiling architecture behavioral of entity xil_defaultlib.four_way_dcache [\four_way_dcache(t=28,nlines=64)...]
+Compiling architecture beh of entity xil_defaultlib.ram [\ram(m=256)\]
+Compiling architecture structural of entity xil_defaultlib.dlx_sim [\dlx_sim(f="C:\\Users\\Nicole\\D...]
+Compiling architecture test of entity xil_defaultlib.tb_arith
+Built simulation snapshot tb_arith_behav
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:07 . Memory (MB): peak = 878.715 ; gain = 0.000
+INFO: [USF-XSim-69] 'elaborate' step finished in '6' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "tb_arith_behav -key {Behavioral:sim_1:Functional:tb_arith} -tclbatch {tb_arith.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2019.2
+Time resolution is 1 ps
+source tb_arith.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+Error: STD_LOGIC_1164.HREAD End of string encountered
+Time: 0 ps  Iteration: 1  Process: /tb_arith/dut/irom/fill_mem_p  File: C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/rom.vhd
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'tb_arith_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:06 ; elapsed = 00:00:15 . Memory (MB): peak = 878.715 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_arith' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xvhdl --incr --relax -prj tb_arith_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/cu.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'cu'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'tb_arith'
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xelab -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log"
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package ieee.math_real
+Compiling package xil_defaultlib.fun_pack
+Compiling package xil_defaultlib.fun_pack_adder
+Compiling package synopsys.attributes
+Compiling package ieee.std_logic_misc
+Compiling package xil_defaultlib.stype
+Compiling package xil_defaultlib.control_words
+Compiling package xil_defaultlib.func_words
+Compiling package xil_defaultlib.opcodes
+Compiling package ieee.std_logic_textio
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [\mux_2x1(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.beh_hadder [\beh_hadder(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.btb [\btb(a=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.if_stage [if_stage_default]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=26)\]
+Compiling architecture struct of entity xil_defaultlib.if_id_reg [if_id_reg_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=5)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [reg_en_default]
+Compiling architecture behavioral of entity xil_defaultlib.rf [rf_default]
+Compiling architecture behavioral of entity xil_defaultlib.sign_extender [sign_extender_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [mux_2x1_default]
+Compiling architecture behavioral of entity xil_defaultlib.id_stage [id_stage_default]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=5)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=64)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=3)\]
+Compiling architecture behavioral of entity xil_defaultlib.rshift_reg [\rshift_reg(n=31)\]
+Compiling architecture struct of entity xil_defaultlib.id_ex_reg [id_ex_reg_default]
+Compiling architecture behavioral of entity xil_defaultlib.fa [fa_default]
+Compiling architecture structural of entity xil_defaultlib.rca_generic_struct [\rca_generic_struct(n=32)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_7x1_single_bit [mux_7x1_single_bit_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=32)\]
+Compiling architecture behavioral of entity xil_defaultlib.pg_unit [pg_unit_default]
+Compiling architecture behavioral of entity xil_defaultlib.pg_net_block [pg_net_block_default]
+Compiling architecture struct of entity xil_defaultlib.pg_network [pg_network_default]
+Compiling architecture behavioral of entity xil_defaultlib.g_unit [g_unit_default]
+Compiling architecture struct of entity xil_defaultlib.carry_generator [carry_generator_default]
+Compiling architecture structural of entity xil_defaultlib.rca_generic_struct [\rca_generic_struct(n=4)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [\mux_2x1(n=4)\]
+Compiling architecture structural of entity xil_defaultlib.carry_select_block [carry_select_block_default]
+Compiling architecture structural of entity xil_defaultlib.sum_generator [sum_generator_default]
+Compiling architecture struct of entity xil_defaultlib.p4_adder [p4_adder_default]
+Compiling architecture behavioral of entity xil_defaultlib.a_generator [a_generator_default]
+Compiling architecture behavioral of entity xil_defaultlib.booth_encoder [booth_encoder_default]
+Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=4)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=3)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_6x1 [\mux_6x1(nbit=64)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [\mux_2x1(n=3)\]
+Compiling architecture structural of entity xil_defaultlib.rca_generic_struct [\rca_generic_struct(n=64)\]
+Compiling architecture structural of entity xil_defaultlib.mul [mul_default]
+Compiling architecture beh of entity xil_defaultlib.shifter_t2 [shifter_t2_default]
+Compiling architecture behavioral of entity xil_defaultlib.nand3 [nand3_default]
+Compiling architecture behavioral of entity xil_defaultlib.nand4 [nand4_default]
+Compiling architecture structural of entity xil_defaultlib.logicals [logicals_default]
+Compiling architecture behavioral of entity xil_defaultlib.alu_out_selector [alu_out_selector_default]
+Compiling architecture behavioral of entity xil_defaultlib.comparator [comparator_default]
+Compiling architecture beh of entity xil_defaultlib.alu [alu_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_7x1 [\mux_7x1(n=32)\]
+Compiling architecture struct of entity xil_defaultlib.ex_stage [ex_stage_default]
+Compiling architecture struct of entity xil_defaultlib.ex_mem_reg [ex_mem_reg_default]
+Compiling architecture behavioral of entity xil_defaultlib.mem_sign_extender [mem_sign_extender_default]
+Compiling architecture structural of entity xil_defaultlib.mem_stage [mem_stage_default]
+Compiling architecture struct of entity xil_defaultlib.mem_wb_reg [mem_wb_reg_default]
+Compiling architecture structural of entity xil_defaultlib.wb_stage [wb_stage_default]
+Compiling architecture structural of entity xil_defaultlib.datapath [datapath_default]
+Compiling architecture behavioral of entity xil_defaultlib.stall_unit [stall_unit_default]
+Compiling architecture behavioral of entity xil_defaultlib.cu [cu_default]
+Compiling architecture behavioral of entity xil_defaultlib.memory_controller [memory_controller_default]
+Compiling architecture structural of entity xil_defaultlib.dlx_syn [dlx_syn_default]
+Compiling architecture beh of entity xil_defaultlib.rom [\rom(m=256,f="C:\\Users\\Nicole\...]
+Compiling architecture behavioral of entity xil_defaultlib.btb_cache_line [\btb_cache_line(t=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.and2 [and2_default]
+Compiling architecture behavioral of entity xil_defaultlib.btb_cache_replacement_logic [\btb_cache_replacement_logic(nl=...]
+Compiling architecture behavioral of entity xil_defaultlib.encoder_32x5 [encoder_32x5_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_32x1 [mux_32x1_default]
+Compiling architecture structural of entity xil_defaultlib.btb_fully_associative_cache [\btb_fully_associative_cache(t=3...]
+Compiling architecture behavioral of entity xil_defaultlib.dcache_line [\dcache_line(t=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.dcache_block [\dcache_block(t=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.priority_encoder_4to2 [priority_encoder_4to2_default]
+Compiling architecture behavioral of entity xil_defaultlib.dcache_replacement_logic [dcache_replacement_logic_default]
+Compiling architecture behavioral of entity xil_defaultlib.encoder_4to2 [encoder_4to2_default]
+Compiling architecture behavioral of entity xil_defaultlib.four_way_dcache [\four_way_dcache(t=28,nlines=64)...]
+Compiling architecture beh of entity xil_defaultlib.ram [\ram(m=256)\]
+Compiling architecture structural of entity xil_defaultlib.dlx_sim [\dlx_sim(f="C:\\Users\\Nicole\\D...]
+Compiling architecture test of entity xil_defaultlib.tb_arith
+Built simulation snapshot tb_arith_behav
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:07 . Memory (MB): peak = 883.832 ; gain = 0.000
+INFO: [USF-XSim-69] 'elaborate' step finished in '7' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "tb_arith_behav -key {Behavioral:sim_1:Functional:tb_arith} -tclbatch {tb_arith.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2019.2
+Time resolution is 1 ps
+source tb_arith.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+Error: STD_LOGIC_1164.HREAD End of string encountered
+Time: 0 ps  Iteration: 1  Process: /tb_arith/dut/irom/fill_mem_p  File: C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/rom.vhd
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'tb_arith_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:06 ; elapsed = 00:00:14 . Memory (MB): peak = 883.832 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_arith' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xvhdl --incr --relax -prj tb_arith_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'tb_arith'
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+"xelab -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log"
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package ieee.math_real
+Compiling package xil_defaultlib.fun_pack
+Compiling package xil_defaultlib.fun_pack_adder
+Compiling package synopsys.attributes
+Compiling package ieee.std_logic_misc
+Compiling package xil_defaultlib.stype
+Compiling package xil_defaultlib.control_words
+Compiling package xil_defaultlib.func_words
+Compiling package xil_defaultlib.opcodes
+Compiling package ieee.std_logic_textio
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [\mux_2x1(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.beh_hadder [\beh_hadder(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.btb [\btb(a=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.if_stage [if_stage_default]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=26)\]
+Compiling architecture struct of entity xil_defaultlib.if_id_reg [if_id_reg_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=5)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [reg_en_default]
+Compiling architecture behavioral of entity xil_defaultlib.rf [rf_default]
+Compiling architecture behavioral of entity xil_defaultlib.sign_extender [sign_extender_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [mux_2x1_default]
+Compiling architecture behavioral of entity xil_defaultlib.id_stage [id_stage_default]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=5)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=64)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=3)\]
+Compiling architecture behavioral of entity xil_defaultlib.rshift_reg [\rshift_reg(n=31)\]
+Compiling architecture struct of entity xil_defaultlib.id_ex_reg [id_ex_reg_default]
+Compiling architecture behavioral of entity xil_defaultlib.fa [fa_default]
+Compiling architecture structural of entity xil_defaultlib.rca_generic_struct [\rca_generic_struct(n=32)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_7x1_single_bit [mux_7x1_single_bit_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=32)\]
+Compiling architecture behavioral of entity xil_defaultlib.pg_unit [pg_unit_default]
+Compiling architecture behavioral of entity xil_defaultlib.pg_net_block [pg_net_block_default]
+Compiling architecture struct of entity xil_defaultlib.pg_network [pg_network_default]
+Compiling architecture behavioral of entity xil_defaultlib.g_unit [g_unit_default]
+Compiling architecture struct of entity xil_defaultlib.carry_generator [carry_generator_default]
+Compiling architecture structural of entity xil_defaultlib.rca_generic_struct [\rca_generic_struct(n=4)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [\mux_2x1(n=4)\]
+Compiling architecture structural of entity xil_defaultlib.carry_select_block [carry_select_block_default]
+Compiling architecture structural of entity xil_defaultlib.sum_generator [sum_generator_default]
+Compiling architecture struct of entity xil_defaultlib.p4_adder [p4_adder_default]
+Compiling architecture behavioral of entity xil_defaultlib.a_generator [a_generator_default]
+Compiling architecture behavioral of entity xil_defaultlib.booth_encoder [booth_encoder_default]
+Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=4)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=3)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_6x1 [\mux_6x1(nbit=64)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [\mux_2x1(n=3)\]
+Compiling architecture structural of entity xil_defaultlib.rca_generic_struct [\rca_generic_struct(n=64)\]
+Compiling architecture structural of entity xil_defaultlib.mul [mul_default]
+Compiling architecture beh of entity xil_defaultlib.shifter_t2 [shifter_t2_default]
+Compiling architecture behavioral of entity xil_defaultlib.nand3 [nand3_default]
+Compiling architecture behavioral of entity xil_defaultlib.nand4 [nand4_default]
+Compiling architecture structural of entity xil_defaultlib.logicals [logicals_default]
+Compiling architecture behavioral of entity xil_defaultlib.alu_out_selector [alu_out_selector_default]
+Compiling architecture behavioral of entity xil_defaultlib.comparator [comparator_default]
+Compiling architecture beh of entity xil_defaultlib.alu [alu_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_7x1 [\mux_7x1(n=32)\]
+Compiling architecture struct of entity xil_defaultlib.ex_stage [ex_stage_default]
+Compiling architecture struct of entity xil_defaultlib.ex_mem_reg [ex_mem_reg_default]
+Compiling architecture behavioral of entity xil_defaultlib.mem_sign_extender [mem_sign_extender_default]
+Compiling architecture structural of entity xil_defaultlib.mem_stage [mem_stage_default]
+Compiling architecture struct of entity xil_defaultlib.mem_wb_reg [mem_wb_reg_default]
+Compiling architecture structural of entity xil_defaultlib.wb_stage [wb_stage_default]
+Compiling architecture structural of entity xil_defaultlib.datapath [datapath_default]
+Compiling architecture behavioral of entity xil_defaultlib.stall_unit [stall_unit_default]
+Compiling architecture behavioral of entity xil_defaultlib.cu [cu_default]
+Compiling architecture behavioral of entity xil_defaultlib.memory_controller [memory_controller_default]
+Compiling architecture structural of entity xil_defaultlib.dlx_syn [dlx_syn_default]
+Compiling architecture beh of entity xil_defaultlib.rom [\rom(m=256,f="C:\\Users\\Nicole\...]
+Compiling architecture behavioral of entity xil_defaultlib.btb_cache_line [\btb_cache_line(t=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.and2 [and2_default]
+Compiling architecture behavioral of entity xil_defaultlib.btb_cache_replacement_logic [\btb_cache_replacement_logic(nl=...]
+Compiling architecture behavioral of entity xil_defaultlib.encoder_32x5 [encoder_32x5_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_32x1 [mux_32x1_default]
+Compiling architecture structural of entity xil_defaultlib.btb_fully_associative_cache [\btb_fully_associative_cache(t=3...]
+Compiling architecture behavioral of entity xil_defaultlib.dcache_line [\dcache_line(t=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.dcache_block [\dcache_block(t=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.priority_encoder_4to2 [priority_encoder_4to2_default]
+Compiling architecture behavioral of entity xil_defaultlib.dcache_replacement_logic [dcache_replacement_logic_default]
+Compiling architecture behavioral of entity xil_defaultlib.encoder_4to2 [encoder_4to2_default]
+Compiling architecture behavioral of entity xil_defaultlib.four_way_dcache [\four_way_dcache(t=28,nlines=64)...]
+Compiling architecture beh of entity xil_defaultlib.ram [\ram(m=256)\]
+Compiling architecture structural of entity xil_defaultlib.dlx_sim [\dlx_sim(f="C:\\Users\\Nicole\\D...]
+Compiling architecture test of entity xil_defaultlib.tb_arith
+Built simulation snapshot tb_arith_behav
+run_program: Time (s): cpu = 00:00:01 ; elapsed = 00:00:07 . Memory (MB): peak = 885.883 ; gain = 0.000
+INFO: [USF-XSim-69] 'elaborate' step finished in '7' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "tb_arith_behav -key {Behavioral:sim_1:Functional:tb_arith} -tclbatch {tb_arith.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2019.2
+Time resolution is 1 ps
+source tb_arith.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+Error: STD_LOGIC_1164.HREAD End of string encountered
+Time: 0 ps  Iteration: 1  Process: /tb_arith/dut/irom/fill_mem_p  File: C:/Users/Nicole/Desktop/dlx/vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/rom.vhd
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'tb_arith_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:06 ; elapsed = 00:00:14 . Memory (MB): peak = 885.883 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+exit
+INFO: [Common 17-206] Exiting Vivado at Thu Oct 15 21:28:19 2020...
