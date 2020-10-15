@@ -38,7 +38,16 @@ entity dlx_syn is
 		ram_rw: out std_logic;
 		ram_address: out std_logic_vector(7 downto 0);
 		ram_data_in: out std_logic_vector(31 downto 0);
-		ram_data_out: in std_logic_vector(31 downto 0)
+		ram_data_out: in std_logic_vector(31 downto 0);
+
+		-- output interface (used to evaluate execution when simulating)
+		pc_en: out std_logic; -- shows if the processor is stalling
+		predicted_taken: out std_logic; -- shows if the current PC is a branch or jump has been predicted as taken
+		taken: out std_logic; -- shows if a branch (or jump) has been taken or not
+		wp_en: out std_logic; -- shows if the dlx is writing in the output port
+		hilo_wr_en: out std_logic; -- shows if the dlx is storing the res of a mul 
+		wp_data: out std_logic_vector(31 downto 0); -- the value being written in the RF
+		wp_alu_data_high: out std_logic_vector(31 downto 0) -- the highest part of the mul
 	);
 end dlx_syn;
 
@@ -189,9 +198,11 @@ architecture structural of dlx_syn is
 
 			wp_en_id: in std_logic; -- write port enable
 			store_sel: in std_logic; -- 0 to select ALU output, 1 to select memory output
-			hilo_wr_en_id: in std_logic -- 1 if the HI and LO register must be write
+			hilo_wr_en_id: in std_logic; -- 1 if the HI and LO register must be write
 
 			-- WB stage outputs
+			wp_data: out std_logic_vector(31 downto 0); -- the value being written in the RF
+			wp_alu_data_high: out std_logic_vector(31 downto 0) -- the highest part of the mul
 		);
 	end component datapath;
 
@@ -416,8 +427,18 @@ architecture structural of dlx_syn is
 
 	-- WB signals
 	signal wp_en_id, store_sel, hilo_wr_en_id: std_logic;
+	signal wp_data_wb, wp_alu_data_high_wb: std_logic_vector(31 downto 0);
 
 begin
+
+	pc_en <= pc_en_if;
+	predicted_taken <= btb_predicted_taken_if;
+	taken <= taken_exe;
+	wp_en <= wp_en_id;
+	hilo_wr_en <= hilo_wr_en_id;
+	wp_data <= wp_data_wb;
+	wp_alu_data_high <= wp_alu_data_high_wb;
+
 	dp: datapath
 		port map (
 			clk => clk,
@@ -502,7 +523,9 @@ begin
 
 			wp_en_id => wp_en_id,
 			store_sel => store_sel,
-			hilo_wr_en_id => hilo_wr_en_id
+			hilo_wr_en_id => hilo_wr_en_id,
+			wp_data => wp_data_wb,
+			wp_alu_data_high => wp_alu_data_high_wb
 		);
 
 	btb_cache_read_address <= pc_out_int;

@@ -146,9 +146,11 @@ entity datapath is
 
 		wp_en_id: in std_logic; -- write port enable
 		store_sel: in std_logic; -- 0 to select ALU output, 1 to select memory output
-		hilo_wr_en_id: in std_logic -- 1 if the HI and LO register must be write
+		hilo_wr_en_id: in std_logic; -- 1 if the HI and LO register must be write
 
 		-- WB stage outputs
+		wp_data: out std_logic_vector(31 downto 0); -- the value being written in the RF
+		wp_alu_data_high: out std_logic_vector(31 downto 0) -- the highest part of the mul
 	);
 end datapath;
 
@@ -673,4 +675,7 @@ begin
 			data_cache_in => cache_data_mem_wb_int,
 			data_rf => wp_wb_int
 		);
+
+	wp_data <= wp_wb_int;
+	wp_alu_data_high <= alu_out_high_mem_wb_int;
 end structural;

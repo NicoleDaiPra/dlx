@@ -11,7 +11,14 @@ entity dlx_sim is
 		clk: in std_logic;
 		rst: in std_logic;
 
-		data_out: out std_logic_vector(31 downto 0)
+		-- output interface (used to evaluate execution when simulating)
+		pc_en: out std_logic; -- shows if the processor is stalling
+		predicted_taken: out std_logic; -- shows if the current PC is a branch or jump has been predicted as taken
+		taken: out std_logic; -- shows if a branch (or jump) has been taken or not
+		wp_en: out std_logic; -- shows if the dlx is writing in the output port
+		hilo_wr_en: out std_logic; -- shows if the dlx is storing the res of a mul 
+		wp_data: out std_logic_vector(31 downto 0); -- the value being written in the RF
+		wp_alu_data_high: out std_logic_vector(31 downto 0) -- the highest part of the mul
 	);
 end dlx_sim;
 
@@ -53,7 +60,16 @@ architecture structural of dlx_sim is
 			ram_rw: out std_logic;
 			ram_address: out std_logic_vector(7 downto 0);
 			ram_data_in: out std_logic_vector(31 downto 0);
-			ram_data_out: in std_logic_vector(31 downto 0)
+			ram_data_out: in std_logic_vector(31 downto 0);
+
+			-- output interface (used to evaluate execution when simulating)
+			pc_en: out std_logic; -- shows if the processor is stalling
+			predicted_taken: out std_logic; -- shows if the current PC is a branch or jump has been predicted as taken
+			taken: out std_logic; -- shows if a branch (or jump) has been taken or not
+			wp_en: out std_logic; -- shows if the dlx is writing in the output port
+			hilo_wr_en: out std_logic; -- shows if the dlx is storing the res of a mul 
+			wp_data: out std_logic_vector(31 downto 0); -- the value being written in the RF
+			wp_alu_data_high: out std_logic_vector(31 downto 0) -- the highest part of the mul
 		);
 	end component dlx_syn;
 
@@ -194,10 +210,17 @@ begin
 			ram_rw => ram_rw,
 			ram_address => ram_address,
 			ram_data_in => ram_data_in,
-			ram_data_out => ram_data_out
-		);
+			ram_data_out => ram_data_out,
 
-	data_out <= dcache_data_out;
+			-- output interface (used to evaluate execution when simulating)
+			pc_en => pc_en,
+			predicted_taken => predicted_taken,
+			taken => taken,
+			wp_en => wp_en,
+			hilo_wr_en => hilo_wr_en,
+			wp_data => wp_data,
+			wp_alu_data_high => wp_alu_data_high
+		);
 
 	irom: rom
 		generic map (
