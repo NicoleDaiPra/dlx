@@ -30,11 +30,11 @@ entity stall_unit is
 		rd_memwb_valid: in std_logic; -- the value in the mem/wb regs corresponds to the rd stored in it
 
 		curr_id: in std_logic_vector(61 downto 0);
-		curr_exe: in std_logic_vector(38 downto 0);
+		curr_exe: in std_logic_vector(40 downto 0);
 		curr_mem: in std_logic_vector(14 downto 0);
 		curr_wb: in std_logic_vector(3 downto 0);
 
-		next_exe: out std_logic_vector(38 downto 0);
+		next_exe: out std_logic_vector(40 downto 0);
 		next_mem: out std_logic_vector(14 downto 0);
 		next_wb: out std_logic_vector(3 downto 0);
 		fw_a: out std_logic_vector(1 downto 0);
@@ -118,7 +118,7 @@ begin
 		fw_a <= "00";
 		fw_b <= "00";
 
-		next_exe <= curr_id(38 downto 0);
+		next_exe <= curr_id(40 downto 0);
 		next_mem <= curr_exe(14 downto 0); -- propagate the control signals to the MEM stage
 		next_wb <= curr_mem(3)&curr_mem(2 downto 0); -- concatenate rd valid bit with control word
 
@@ -153,7 +153,7 @@ begin
 				id_en <= '0';
 				if_stall <= '1';
 				id_stall <= '1';
-				next_exe <= nop_fw(38 downto 0); -- force nop operation
+				next_exe <= nop_fw(40 downto 0); -- force nop operation
 			end if;
 		else
 			case (id_fw_type) is

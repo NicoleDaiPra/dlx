@@ -195,11 +195,11 @@ architecture behavioral of cu is
 			rd_memwb_valid: in std_logic; -- the value in the mem/wb regs corresponds to the rd stored in it
 
 			curr_id: in std_logic_vector(61 downto 0);
-			curr_exe: in std_logic_vector(38 downto 0);
+			curr_exe: in std_logic_vector(40 downto 0);
 			curr_mem: in std_logic_vector(14 downto 0);
 			curr_wb: in std_logic_vector(3 downto 0);
 
-			next_exe: out std_logic_vector(38 downto 0);
+			next_exe: out std_logic_vector(40 downto 0);
 			next_mem: out std_logic_vector(14 downto 0);
 			next_wb: out std_logic_vector(3 downto 0);
 			fw_a: out std_logic_vector(1 downto 0);
@@ -375,7 +375,7 @@ architecture behavioral of cu is
 	signal curr_ak_id, next_ak_id, curr_ak_exe, next_ak_exe: std_logic; -- propagate addr_known from the IF to the EXE stage
 	signal curr_pt_id, next_pt_id, curr_pt_exe, next_pt_exe: std_logic; -- propagate predicted_taken from the IF to the EXE stage
 	signal curr_id, next_id: std_logic_vector(61 downto 0);
-	signal curr_exe, next_exe: std_logic_vector(38 downto 0);
+	signal curr_exe, next_exe: std_logic_vector(40 downto 0);
 	signal curr_mem, next_mem: std_logic_vector(14 downto 0);
 	signal curr_wb, next_wb: std_logic_vector(3 downto 0);
 	signal curr_mul_in_prog, next_mul_in_prog: std_logic; -- tells to the ID stage to not drive some signals while a multiplication is in progress. SOURCE OF STALL	
@@ -411,7 +411,7 @@ begin
 			end if;
 
 			if (rst_exe = '0') then
-				curr_exe <= nop_fw(38 downto 0);
+				curr_exe <= nop_fw(40 downto 0);
 				curr_ak_exe <= '0';
 				curr_pt_exe <= '0';
 				curr_mul_in_prog <= '0';
@@ -463,7 +463,7 @@ begin
 			rs_exe => rs_exe,
 			rt_exe => rt_exe,
 			cpu_is_reading => curr_mem(13),
-			id_fw_type => curr_id(40 downto 39),
+			id_fw_type => curr_exe(40 downto 39),
 			mul_id => next_mul_id,
 			rd_idexe_valid => curr_exe(15),
 			rd_exemem_valid => curr_mem(3),
@@ -591,7 +591,7 @@ begin
 	    	next_mul_id <= '0';
 	    end if;
 
-	    en_rs_rt_id <= id_stall;
+	    en_rs_rt_id <= not id_stall;
 	    next_ak_exe <= curr_ak_id; -- propagate "addr_known" to the exe
 	    next_pt_exe <= curr_pt_id; -- propagate "predicted_taken" to the exe
 	end process id_comblogic;

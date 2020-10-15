@@ -33,7 +33,7 @@ architecture test of tb_arith is
 		);
 	end component dlx_sim;
 
-	constant F : string := "C:\Users\Nicole\Desktop\dlx\test_assembly\test_arith\test_arith.mem";
+	constant F : string := "C:\Users\leona\dlx\test_assembly\test_arith\test_arith.mem";
 	constant period : time := 1 ns; 
 
 	signal clk, rst, pc_en, predicted_taken, taken, wp_en, hilo_wr_en: std_logic;
