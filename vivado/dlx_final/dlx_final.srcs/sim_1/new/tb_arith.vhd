@@ -33,7 +33,7 @@ architecture test of tb_arith is
 		);
 	end component dlx_sim;
 
-	constant F : string := "C:\Users\leona\dlx\test_assembly\test_arith\test_arith.mem";
+	constant F : string := "C:\Users\Nicole\Desktop\dlx\test_assembly\test_arith_new\test_arith.mem";
 	constant period : time := 1 ns; 
 
 	signal clk, rst, pc_en, predicted_taken, taken, wp_en, hilo_wr_en: std_logic;
@@ -43,8 +43,6 @@ architecture test of tb_arith is
 	signal btb_cache_update_line, btb_cache_update_data, btb_cache_hit_read, btb_cache_hit_rw: std_logic;
 	signal btb_cache_read_address, btb_cache_rw_address: std_logic_vector(29 downto 0);
 	signal btb_cache_data_in, btb_cache_data_out_read, btb_cache_data_out_rw: std_logic_vector(31 downto 0);
-
-	signal boh: std_logic_vector(31 downto 0);
 	
 begin
 	dut: dlx_sim
@@ -84,13 +82,7 @@ begin
 	end process clk_proc;
 
 	test_proc: process
-		variable tmp,a,b: std_logic_vector(31 downto 0);
 	begin
-		--r3-r4
-		a:= X"00002000";
-		b:= X"fffffff1";
-		tmp := std_logic_vector(unsigned(a) - unsigned(b));
-		boh <= tmp;
 		rst <= '0';
 		wait for period + period/2;
 		rst <= '1';

@@ -194,12 +194,12 @@ architecture behavioral of cu is
 			rd_exemem_valid: in std_logic; -- the value in the ex/mem regs corresponds to the rd stored in it
 			rd_memwb_valid: in std_logic; -- the value in the mem/wb regs corresponds to the rd stored in it
 
-			curr_id: in std_logic_vector(61 downto 0);
-			curr_exe: in std_logic_vector(40 downto 0);
+			curr_id: in std_logic_vector(62 downto 0);
+			curr_exe: in std_logic_vector(41 downto 0);
 			curr_mem: in std_logic_vector(14 downto 0);
 			curr_wb: in std_logic_vector(3 downto 0);
 
-			next_exe: out std_logic_vector(40 downto 0);
+			next_exe: out std_logic_vector(41 downto 0);
 			next_mem: out std_logic_vector(14 downto 0);
 			next_wb: out std_logic_vector(3 downto 0);
 			fw_a: out std_logic_vector(1 downto 0);
@@ -374,8 +374,8 @@ architecture behavioral of cu is
 
 	signal curr_ak_id, next_ak_id, curr_ak_exe, next_ak_exe: std_logic; -- propagate addr_known from the IF to the EXE stage
 	signal curr_pt_id, next_pt_id, curr_pt_exe, next_pt_exe: std_logic; -- propagate predicted_taken from the IF to the EXE stage
-	signal curr_id, next_id: std_logic_vector(61 downto 0);
-	signal curr_exe, next_exe: std_logic_vector(40 downto 0);
+	signal curr_id, next_id: std_logic_vector(62 downto 0);
+	signal curr_exe, next_exe: std_logic_vector(41 downto 0);
 	signal curr_mem, next_mem: std_logic_vector(14 downto 0);
 	signal curr_wb, next_wb: std_logic_vector(3 downto 0);
 	signal curr_mul_in_prog, next_mul_in_prog: std_logic; -- tells to the ID stage to not drive some signals while a multiplication is in progress. SOURCE OF STALL	
@@ -411,7 +411,7 @@ begin
 			end if;
 
 			if (rst_exe = '0') then
-				curr_exe <= nop_fw(40 downto 0);
+				curr_exe <= nop_fw(41 downto 0);
 				curr_ak_exe <= '0';
 				curr_pt_exe <= '0';
 				curr_mul_in_prog <= '0';
@@ -508,10 +508,10 @@ begin
 			when bgez_opc => 
 				if (instr_if(20 downto 16) = "00001") then
 					-- BGEZ
-					next_id <= cw_mem(to_integer(unsigned(instr_if(31 downto 26))))(61 downto 27)&"010"&cw_mem(to_integer(unsigned(instr_if(31 downto 26))))(23 downto 0);
+					next_id <= cw_mem(to_integer(unsigned(instr_if(31 downto 26))))(62 downto 27)&"010"&cw_mem(to_integer(unsigned(instr_if(31 downto 26))))(23 downto 0);
 				elsif (instr_if(20 downto 16) = "00000") then
 					-- BLTZ
-					next_id <= cw_mem(to_integer(unsigned(instr_if(31 downto 26))))(61 downto 27)&"001"&cw_mem(to_integer(unsigned(instr_if(31 downto 26))))(23 downto 0);
+					next_id <= cw_mem(to_integer(unsigned(instr_if(31 downto 26))))(62 downto 27)&"001"&cw_mem(to_integer(unsigned(instr_if(31 downto 26))))(23 downto 0);
 				else
 					-- unkown instruction: schedule a nop
 					next_id <= nop_fw;
@@ -551,27 +551,27 @@ begin
 	-- ID stage logic
 	id_comblogic: process(curr_id, curr_exe, curr_ak_id, curr_pt_id, curr_mul_in_prog, id_stall)
 	begin
-		i_instr_id <= curr_id(61);
-		j_instr_id <= curr_id(60);
-		rp1_out_sel_id <= curr_id(59 downto 58);
-		rp2_out_sel_id <= curr_id(57 downto 56);
-		is_signed_id <= curr_id(55);
-		sign_ext_sel_id <= curr_id(54);
-		a_selector_id <= curr_id(53);
-		b_selector_id <= curr_id(52);
-		data_tbs_selector_id <= curr_id(51);
+		i_instr_id <= curr_id(62);
+		j_instr_id <= curr_id(61);
+		rp1_out_sel_id <= curr_id(60 downto 59);
+		rp2_out_sel_id <= curr_id(58 downto 57);
+		is_signed_id <= curr_id(56);
+		sign_ext_sel_id <= curr_id(55);
+		a_selector_id <= curr_id(54);
+		b_selector_id <= curr_id(53);
+		data_tbs_selector_id <= curr_id(52);
 	    
 	    if (curr_mul_in_prog = '0') then
-	    	en_add_id <= curr_id(50);
-	    	en_shift_id <= curr_id(48);
-	    	en_mul_id <= curr_id(49);
-	    	en_a_neg_id <= curr_id(47);
-	    	shift_reg_id <= curr_id(46);
-	    	en_shift_reg_id <= curr_id(45);
-	    	en_rd_id <= curr_id(44);
-	    	en_npc_id <= curr_id(43);
-	    	en_imm_id <= curr_id(42);
-	    	en_b_id <= curr_id(41);
+	    	en_add_id <= curr_id(51);
+	    	en_shift_id <= curr_id(49);
+	    	en_mul_id <= curr_id(50);
+	    	en_a_neg_id <= curr_id(48);
+	    	shift_reg_id <= curr_id(47);
+	    	en_shift_reg_id <= curr_id(46);
+	    	en_rd_id <= curr_id(45);
+	    	en_npc_id <= curr_id(44);
+	    	en_imm_id <= curr_id(43);
+	    	en_b_id <= curr_id(42);
 	    else
 	    	en_add_id <= 'Z';
 	    	en_shift_id <= 'Z';
@@ -659,7 +659,7 @@ begin
 							pc_exe <= "00"; -- the prediction was correct, keep fetching instruction as usual
 						end if;
 					else
-						if (taken_exe = '1') then
+						if (taken_exe = '1' and curr_exe(41) = '1') then -- curr_exe(41) indicates if the instruction is actually a branch or a jump
 							-- a new branch (or jump) has been discovered: add it to the BTB
 							btb_taken_exe <= taken_exe;
 							btb_update_exe <= "10";

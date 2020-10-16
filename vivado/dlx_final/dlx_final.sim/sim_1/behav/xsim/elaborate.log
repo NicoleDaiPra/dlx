@@ -1,6 +1,6 @@
 Vivado Simulator 2019.2
 Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
-Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_arith_behav xil_defaultlib.tb_arith -log elaborate.log 
+Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_r_behav xil_defaultlib.tb_r -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
 Completed static elaboration
@@ -81,7 +81,7 @@ Compiling architecture behavioral of entity xil_defaultlib.stall_unit [stall_uni
 Compiling architecture behavioral of entity xil_defaultlib.cu [cu_default]
 Compiling architecture behavioral of entity xil_defaultlib.memory_controller [memory_controller_default]
 Compiling architecture structural of entity xil_defaultlib.dlx_syn [dlx_syn_default]
-Compiling architecture beh of entity xil_defaultlib.rom [\rom(m=256,f="C:\\Users\\leona\\...]
+Compiling architecture beh of entity xil_defaultlib.rom [\rom(m=256,f="C:\\Users\\Nicole\...]
 Compiling architecture behavioral of entity xil_defaultlib.btb_cache_line [\btb_cache_line(t=30)\]
 Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=30)\]
 Compiling architecture behavioral of entity xil_defaultlib.and2 [and2_default]
@@ -97,6 +97,6 @@ Compiling architecture behavioral of entity xil_defaultlib.dcache_replacement_lo
 Compiling architecture behavioral of entity xil_defaultlib.encoder_4to2 [encoder_4to2_default]
 Compiling architecture behavioral of entity xil_defaultlib.four_way_dcache [\four_way_dcache(t=28,nlines=64)...]
 Compiling architecture beh of entity xil_defaultlib.ram [\ram(m=256)\]
-Compiling architecture structural of entity xil_defaultlib.dlx_sim [\dlx_sim(f="C:\\Users\\leona\\dl...]
-Compiling architecture test of entity xil_defaultlib.tb_arith
-Built simulation snapshot tb_arith_behav
+Compiling architecture structural of entity xil_defaultlib.dlx_sim [\dlx_sim(f="C:\\Users\\Nicole\\D...]
+Compiling architecture test of entity xil_defaultlib.tb_r
+Built simulation snapshot tb_r_behav

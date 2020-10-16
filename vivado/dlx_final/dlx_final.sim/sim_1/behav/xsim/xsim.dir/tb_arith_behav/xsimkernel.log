@@ -1,6 +1,6 @@
-Running: xsim.dir/tb_arith_behav/xsimk.exe -simmode gui -wdb tb_arith_behav.wdb -simrunnum 0 -socket 56008
+Running: xsim.dir/tb_arith_behav/xsimk.exe -simmode gui -wdb tb_arith_behav.wdb -simrunnum 0 -socket 54792
 Design successfully loaded
-Design Loading Memory Usage: 6604 KB (Peak: 6604 KB)
+Design Loading Memory Usage: 6596 KB (Peak: 6596 KB)
 Design Loading CPU Usage: 15 ms
 Simulation completed
 Simulation Memory Usage: 8116 KB (Peak: 8116 KB)
