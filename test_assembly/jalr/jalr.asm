@@ -10,6 +10,6 @@ loop:
 addui $t4, $t4, #1
 bne $t4, $t3, loop
 add $v0, $zero, $t4 ; return value
-j $ra
+jr $ra
 stop:
 j stop

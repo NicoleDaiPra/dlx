@@ -186,38 +186,38 @@ if ($srcfile =~ /^(.*)\.dlx$/) {
 	"tlbentry" => 20,
 	"tlbvaddr" => 21,
 	"tlbpaddr" => 22,
-	"$zero" => 0,
-	"$at" => 1,
-	"$v0" => 2,
-	"$v1" => 3,
-	"$a0" => 4,
-	"$a1" => 5,
-	"$a2" => 6,
-	"$a3" => 7,
-	"$t0" => 8,
-	"$t1" => 9,
-	"$t2" => 10,
-	"$t3" => 11,
-	"$t4" => 12,
-	"$t5" => 13,
-	"$t6" => 14,
-	"$t7" => 15,
-	"$s0" => 16,
-	"$s1" => 17,
-	"$s2" => 18,
-	"$s3" => 19,
-	"$s4" => 20,
-	"$s5" => 21,
-	"$s6" => 22,
-	"$s7" => 23,
-	"$t8" => 24,
-	"$t9" => 25,
-	"$k0" => 26,
-	"$k1" => 27,
-	"$gp" => 28,
-	"$sp" => 29,
-	"$fp" => 30,
-	"$ra" => 31,
+	"\$zero" => 0,
+	"\$at" => 1,
+	"\$v0" => 2,
+	"\$v1" => 3,
+	"\$a0" => 4,
+	"\$a1" => 5,
+	"\$a2" => 6,
+	"\$a3" => 7,
+	"\$t0" => 8,
+	"\$t1" => 9,
+	"\$t2" => 10,
+	"\$t3" => 11,
+	"\$t4" => 12,
+	"\$t5" => 13,
+	"\$t6" => 14,
+	"\$t7" => 15,
+	"\$s0" => 16,
+	"\$s1" => 17,
+	"\$s2" => 18,
+	"\$s3" => 19,
+	"\$s4" => 20,
+	"\$s5" => 21,
+	"\$s6" => 22,
+	"\$s7" => 23,
+	"\$t8" => 24,
+	"\$t9" => 25,
+	"\$k0" => 26,
+	"\$k1" => 27,
+	"\$gp" => 28,
+	"\$sp" => 29,
+	"\$fp" => 30,
+	"\$ra" => 31,
 );
 
 # Do pass one.  In this pass, we just figure out label values.  To allow
@@ -437,11 +437,11 @@ exit;
 sub getreg {
 	my $r = lc (@_[0]);
 	my $rnum = -1;
-	if ($r =~ /^[f$r]([0-9]+)/) {
-		$rnum = $1;
-	} elsif (defined $specialreg{$r}) {
+	if (defined $specialreg{$r}) {
 		$rnum = $specialreg{$r};
-	}
+	} elsif ($r =~ /^[f$r]([0-9]+)/) {
+		$rnum = $1;
+	} 
 	if ($rnum == -1) {
 		warn "Illegal register number ($r) at line $lineno.\n";
 		$rnum = 0;
@@ -529,7 +529,7 @@ sub forminstr {
 			$src1 = $a[2];
 			$dst = &getreg($a[1]);
 		}
-		$src1 =~ /(.*)\((r[0-9]+)\)$/;
+		$src1 =~ /(.*)\(([a-z\$]+[0-9]*)\)$/;
 		if ($1 ne "") {
 			$src2 = &getimm ($1);
 		} else {
@@ -573,7 +573,7 @@ sub forminstr {
 		} else { # b2 - branches with register operands
 			$src1 = &getreg ($a[1]);
 			$src2 = &getreg ($a[2]);
-			$dst = &getreg ($a[3]);
+			$dst = &getimm ($a[3]);
 		}
 		$dst -= $addr{t} + 4;
 		$out = 0x00000000 | ($op << 26) | ($src1 << 21) | ($src2 << 16) | ($dst & 0xffff);

@@ -13,23 +13,23 @@ j stop
 proc: 
 add $fp, $zero, $sp ; save the stack pointer into the frame pointer
 subi $sp, $sp, #4 ; manually update of the stack pointer
-sw $gp, 0($sp) ; save the registers
+sw 0($sp), $gp ; save the registers
 subi $sp, $sp, #4
-sw $s0, 0($sp) 
+sw 0($sp), $s0  
 subi $sp, $sp, #4
-sw $s1, 0($sp) 
+sw 0($sp), $s1 
 subi $sp, $sp, #4
-sw $s2, 0($sp) 
+sw 0($sp), $s2  
 subi $sp, $sp, #4
-sw $s3, 0($sp) 
+sw 0($sp), $s3 
 subi $sp, $sp, #4
-sw $s4, 0($sp) 
+sw 0($sp), $s4 
 subi $sp, $sp, #4
-sw $s5, 0($sp) 
+sw 0($sp), $s5 
 subi $sp, $sp, #4
-sw $s6, 0($sp) 
+sw 0($sp), $s6  
 subi $sp, $sp, #4
-sw $s7, 0($sp) 
+sw 0($sp), $s7 
 loop:
 addui $t4, $t4, #1
 bne $t4, $t3, loop
