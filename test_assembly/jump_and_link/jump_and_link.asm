@@ -50,6 +50,6 @@ lw $s1, 0($sp)
 addi $sp, $sp, #4
 lw $s0, 0($sp)
 addi $sp, $sp, #4
-j $ra
+jr $ra
 stop:
 j stop
