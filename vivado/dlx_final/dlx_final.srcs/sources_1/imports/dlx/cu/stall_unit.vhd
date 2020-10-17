@@ -5,7 +5,8 @@ use ieee.std_logic_misc.all;
 
 entity stall_unit is
 	port (
-		mul_stall: in std_logic; -- 1 if a mul is in progress
+		curr_mul_in_prog: in std_logic; -- 1 if a mul is in progress
+		next_mul_in_prog: in std_logic;
 		mul_push: in std_logic; -- the mul has finished, push it through the pipeline
 		cache_miss: in std_logic; -- 1 if a cache miss is in progress
 		rd_idexe: in std_logic_vector(4 downto 0); -- the rd stored in id/exe regs
@@ -45,6 +46,7 @@ entity stall_unit is
 		en_ir_if: out std_logic;
 		pc_en_if: out std_logic;
 		id_en: out std_logic;
+		en_mul_id: out std_logic;
 		exe_en: out std_logic;
 		mem_en: out std_logic;
 		wb_en: out std_logic;
@@ -107,7 +109,7 @@ begin
 
 	end process hazard_check;
 
-	comblogic: process(curr_id, curr_exe, curr_mem, mul_stall, mul_push, mul_id, cache_miss, cpu_is_reading, id_fw_type, hazards)
+	comblogic: process(curr_id, curr_exe, curr_mem, curr_mul_in_prog, next_mul_in_prog, mul_push, mul_id, cache_miss, cpu_is_reading, id_fw_type, hazards)
 	begin
 		mul_exe_mem_rst <= '1';
 		cache_miss_mem_wb_rst <= '1';
@@ -115,6 +117,7 @@ begin
 		en_ir_if <= '1';
 		pc_en_if <= '1';
 		id_en <= '1';
+		en_mul_id <= '1';
 		exe_en <= '1';
 		mem_en <= '1';
 		wb_en <= '1';
@@ -136,6 +139,7 @@ begin
 			en_ir_if <= '0';
 			pc_en_if <= '0';
 			id_en <= '0';
+			en_mul_id <= '0';
 			exe_en <= '0';
 			if_stall <= '1';
 			id_stall <= '1';
@@ -146,7 +150,7 @@ begin
 			next_wb <= nop_fw(3 downto 0); -- force nop operation
 			cache_miss_mem_wb_rst <= '0'; 
 
-		elsif (mul_stall = '1') then
+		elsif (curr_mul_in_prog = '1' or next_mul_in_prog = '1') then
 			en_npc_if <= '0';
 			en_ir_if <= '0';
 			pc_en_if <= '0';
@@ -158,7 +162,9 @@ begin
 				next_mem <= nop_fw(14 downto 0); -- force nop operation
 				mul_exe_mem_rst <= '0';
 			else
+				--next_exe <= curr_exe;
 				next_exe <= nop_fw(41 downto 0); -- force nop operation
+				flush_mul <= '0';
 			end if;
 		elsif (mul_id = '1') then
 			if (or_reduce(hazards(9 downto 4)) = '1') then
@@ -166,6 +172,7 @@ begin
 				en_ir_if <= '0';
 				pc_en_if <= '0';
 				id_en <= '0';
+				en_mul_id <= '0';
 				if_stall <= '1';
 				id_stall <= '1';
 				next_exe <= nop_fw(41 downto 0); -- force nop operation
@@ -185,6 +192,7 @@ begin
 							en_ir_if <= '0';
 							pc_en_if <= '0';
 							id_en <= '0';
+							en_mul_id <= '0';
 							exe_en <= '0';
 							if_stall <= '1';
 							id_stall <= '1';
@@ -209,6 +217,7 @@ begin
 							en_ir_if <= '0';
 							pc_en_if <= '0';
 							id_en <= '0';
+							en_mul_id <= '0';
 							exe_en <= '0';
 							if_stall <= '1';
 							id_stall <= '1';
@@ -232,6 +241,7 @@ begin
 							en_ir_if <= '0';
 							pc_en_if <= '0';
 							id_en <= '0';
+							en_mul_id <= '0';
 							exe_en <= '0';
 							if_stall <= '1';
 							id_stall <= '1';
@@ -256,6 +266,7 @@ begin
 							en_ir_if <= '0';
 							pc_en_if <= '0';
 							id_en <= '0';
+							en_mul_id <= '0';
 							exe_en <= '0';
 							if_stall <= '1';
 							id_stall <= '1';
@@ -279,6 +290,7 @@ begin
 							en_ir_if <= '0';
 							pc_en_if <= '0';
 							id_en <= '0';
+							en_mul_id <= '0';
 							exe_en <= '0';
 							if_stall <= '1';
 							id_stall <= '1';

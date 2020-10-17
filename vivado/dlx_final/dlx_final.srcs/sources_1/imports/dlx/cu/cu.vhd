@@ -169,7 +169,8 @@ end cu;
 architecture behavioral of cu is
 	component stall_unit is
 		port (
-			mul_stall: in std_logic; -- 1 if a mul is in progress
+			curr_mul_in_prog: in std_logic; -- 1 if a mul is in progress
+			next_mul_in_prog: in std_logic;
 			mul_push: in std_logic; -- the mul has finished, push it through the pipeline
 			cache_miss: in std_logic; -- 1 if a cache miss is in progress
 			rd_idexe: in std_logic_vector(4 downto 0); -- the rd stored in id/exe regs
@@ -209,6 +210,7 @@ architecture behavioral of cu is
 			en_ir_if: out std_logic;
 			pc_en_if: out std_logic;
 			id_en: out std_logic;
+			en_mul_id: out std_logic;
 			exe_en: out std_logic;
 			mem_en: out std_logic;
 			wb_en: out std_logic;
@@ -383,7 +385,7 @@ architecture behavioral of cu is
 	signal curr_mem, next_mem: std_logic_vector(14 downto 0);
 	signal curr_wb, next_wb: std_logic_vector(3 downto 0);
 	signal curr_mul_in_prog, next_mul_in_prog: std_logic; -- tells to the ID stage to not drive some signals while a multiplication is in progress. SOURCE OF STALL	
-	signal mul_stall: std_logic; -- used by the exe's fsm to ask to the stall unit to stall
+	signal curr_mul_stall, next_mul_stall: std_logic; -- used by the exe's fsm to ask to the stall unit to stall
 	signal curr_it, next_it: std_logic_vector(3 downto 0);
 	--signal curr_cache_miss, next_cache_miss: std_logic;
 	signal cache_miss_mem: std_logic;
@@ -394,6 +396,7 @@ architecture behavioral of cu is
 	signal rst_id, rst_exe: std_logic;
 	signal curr_mul_id, next_mul_id: std_logic;
 	signal flush_exe_mem, flush_mem_wb, flush_mul, mul_push: std_logic;
+	signal en_mul_id_cu: std_logic;
 
 begin
 	rst_id <= rst and flush_id;
@@ -410,12 +413,18 @@ begin
 				curr_id <= nop_fw;
 				curr_ak_id <= '0';
 				curr_pt_id <= '0';
-				curr_mul_id <= '0';
 			else
 				if (id_en = '1') then
 					curr_id <= next_id;
 					curr_ak_id <= next_ak_id;
 					curr_pt_id <= next_pt_id;
+				end if;
+			end if;
+
+			if (rst_id = '0') then
+				curr_mul_id <= '0';
+			else
+				if (en_mul_id_cu = '1') then
 					curr_mul_id <= next_mul_id;
 				end if;
 			end if;
@@ -425,6 +434,7 @@ begin
 				curr_ak_exe <= '0';
 				curr_pt_exe <= '0';
 				curr_mul_in_prog <= '0';
+				--curr_mul_stall <= '0';
 				curr_es <= NORMAL_OP_EXE;
 				curr_it <= (others => '0');
 			else
@@ -463,7 +473,8 @@ begin
 
 	su: stall_unit
 		port map (
-			mul_stall => mul_stall,
+			curr_mul_in_prog => curr_mul_in_prog,
+			next_mul_in_prog => next_mul_in_prog,
 			mul_push => mul_push,
 			cache_miss => cache_miss_mem,
 			rd_idexe => rd_idexe,
@@ -493,6 +504,7 @@ begin
 			en_ir_if => en_ir_if,
 			pc_en_if => pc_en_if,
 			id_en => id_en,
+			en_mul_id => en_mul_id_cu,
 			exe_en => exe_en,
 			mem_en => mem_en,
 			wb_en => wb_en,
@@ -614,7 +626,7 @@ begin
 	exe_comblogic: process(curr_exe, curr_mem, curr_mul_in_prog, curr_es, curr_ak_exe, curr_pt_exe, curr_it, curr_mul_id, taken_exe, exe_stall, exe_unlock_pipeline)
 	begin
 		next_mul_in_prog <= curr_mul_in_prog;
-		mul_stall <= '0';
+		--mul_stall <= '0';
 		next_mul_end_mem <= '1';
 		next_es <= curr_es;
 		it_exe <= curr_it;
@@ -667,7 +679,7 @@ begin
 				next_it <= (others => '0');
 				if (curr_mul_id = '1') then -- a mul has entered the exe stage
 					next_mul_in_prog <= '1';
-					mul_stall <= '1';
+					--mul_stall <= '1';
 					next_es <= A_NEG_SAMPLE;
 				else
 					if (curr_ak_exe = '1') then -- we're executing a branch (or a jump) known by the BTB
@@ -710,7 +722,7 @@ begin
 	    		en_output_exe <= '1';
 	    		next_it <= (others => '0');
 	    		next_mul_end_mem <= '0';
-	    		mul_stall <= '1';
+	    		--mul_stall <= '1';
 	    		next_es <= MUL_IN_PROG;
 
 			when MUL_IN_PROG => -- calculate the partial results
@@ -728,7 +740,7 @@ begin
 	    		en_output_exe <= '1';
 	    		next_it <= std_logic_vector(unsigned(curr_it) + 1);
 	    		next_mul_end_mem <= '0';
-	    		mul_stall <= '1';
+	    		--mul_stall <= '1';
 	    		if (curr_it = "1110") then
 	    			next_es <= MUL_END;
 	    			next_it <= curr_it;
@@ -747,9 +759,9 @@ begin
 	    		shift_reg_id <= '0';
 	    		en_shift_reg_id <= '0';
 	    		next_mul_end_mem <= '1';
-	    		mul_stall <= '1';
+	    		--mul_stall <= '1';
 	    		mul_push <= '1';
-	    		flush_exe <= '0';
+	    		--flush_exe <= '0';
 	    		if (curr_it /= "0000") then
 	    			en_output_exe <= '1';
 	    		else
@@ -759,7 +771,7 @@ begin
 	    		if (exe_unlock_pipeline = '1') then
 	    			next_es <= NORMAL_OP_EXE;
 	    			next_mul_in_prog <= '0';
-	    			mul_stall <= '0';
+	    			--mul_stall <= '0';
 	    		end if;
 
 			when others => -- why are we even here?

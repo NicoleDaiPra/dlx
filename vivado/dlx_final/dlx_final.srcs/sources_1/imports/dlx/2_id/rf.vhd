@@ -91,7 +91,7 @@ begin
 		port map (
 			d => lo_in,
 			en => hilo_wr_en,
-			clk => clk,
+			clk => clk_inv,
 			rst => rst,
 			q => lo_out
 		);
@@ -104,7 +104,7 @@ begin
 		port map (
 			d => hi_in,
 			en => hilo_wr_en,
-			clk => clk,
+			clk => clk_inv,
 			rst => rst,
 			q => hi_out
 		);
