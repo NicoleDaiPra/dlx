@@ -2,6 +2,7 @@ addui $t1, $zero, 0xffff
 addui $t2, $zero, 0x2222
 addui $t3, $zero, 0xff00
 addui $t4, $zero, 0x0022
+slli $t1, $t1, #16
 and $t5, $t1, $t2
 or $t6, $t2, $t3
 xor $t7, $t3, $t4
