@@ -6,6 +6,7 @@ use ieee.std_logic_misc.all;
 entity stall_unit is
 	port (
 		mul_stall: in std_logic; -- 1 if a mul is in progress
+		mul_push: in std_logic; -- the mul has finished, push it through the pipeline
 		cache_miss: in std_logic; -- 1 if a cache miss is in progress
 		rd_idexe: in std_logic_vector(4 downto 0); -- the rd stored in id/exe regs
 		rd_exemem: in std_logic_vector(4 downto 0); -- the rd stored in exe/mem regs
@@ -39,6 +40,7 @@ entity stall_unit is
 		next_wb: out std_logic_vector(3 downto 0);
 		fw_a: out std_logic_vector(1 downto 0);
 		fw_b: out std_logic_vector(1 downto 0);
+		op_b_fw_sel: out std_logic_vector(1 downto 0);
 		en_npc_if: out std_logic;
 		en_ir_if: out std_logic;
 		pc_en_if: out std_logic;
@@ -49,7 +51,10 @@ entity stall_unit is
 		if_stall: out std_logic;
 		id_stall: out std_logic;
 		exe_stall: out std_logic;
-		mem_stall: out std_logic
+		mem_stall: out std_logic;
+		cache_miss_mem_wb_rst: out std_logic;
+		mul_exe_mem_rst: out std_logic;
+		flush_mul: out std_logic -- signal used to flush id/exe if there is a multiplication 
 	);
 end stall_unit;
 
@@ -102,8 +107,10 @@ begin
 
 	end process hazard_check;
 
-	comblogic: process(curr_id, curr_exe, curr_mem, mul_stall, mul_id, cache_miss, cpu_is_reading, id_fw_type, hazards)
+	comblogic: process(curr_id, curr_exe, curr_mem, mul_stall, mul_push, mul_id, cache_miss, cpu_is_reading, id_fw_type, hazards)
 	begin
+		mul_exe_mem_rst <= '1';
+		cache_miss_mem_wb_rst <= '1';
 		en_npc_if <= '1';
 		en_ir_if <= '1';
 		pc_en_if <= '1';
@@ -115,8 +122,10 @@ begin
 		id_stall <= '0';
 		exe_stall <= '0';
 		mem_stall <= '0';
+		flush_mul <= '1';
 		fw_a <= "00";
 		fw_b <= "00";
+		op_b_fw_sel <= "00";
 
 		next_exe <= curr_id(41 downto 0);
 		next_mem <= curr_exe(14 downto 0); -- propagate the control signals to the MEM stage
@@ -135,6 +144,7 @@ begin
 			next_exe <= curr_exe;
 			next_mem <= curr_mem;
 			next_wb <= nop_fw(3 downto 0); -- force nop operation
+			cache_miss_mem_wb_rst <= '0'; 
 
 		elsif (mul_stall = '1') then
 			en_npc_if <= '0';
@@ -143,8 +153,13 @@ begin
 			id_en <= '0';
 			if_stall <= '1';
 			id_stall <= '1';
-			next_exe <= curr_exe;
-			next_mem <= nop_fw(14 downto 0); -- force nop operation
+			if (mul_push = '0')  then
+				next_exe <= curr_exe;
+				next_mem <= nop_fw(14 downto 0); -- force nop operation
+				mul_exe_mem_rst <= '0';
+			else
+				next_exe <= nop_fw(41 downto 0); -- force nop operation
+			end if;
 		elsif (mul_id = '1') then
 			if (or_reduce(hazards(9 downto 4)) = '1') then
 				en_npc_if <= '0';
@@ -154,6 +169,7 @@ begin
 				if_stall <= '1';
 				id_stall <= '1';
 				next_exe <= nop_fw(41 downto 0); -- force nop operation
+				flush_mul <= '0';
 			end if;
 		else
 			case (id_fw_type) is
@@ -230,6 +246,53 @@ begin
 						-- hazard between id/exe and mem/wb
 						fw_b <= "10";
 					end if;
+
+				when "11"  => 
+					if (hazards(0) = '1') then
+						-- hazard between id/exe and exe/mem
+						if (cpu_is_reading = '1') then
+							-- the result should come from a load which hasn't finished yet
+							en_npc_if <= '0';
+							en_ir_if <= '0';
+							pc_en_if <= '0';
+							id_en <= '0';
+							exe_en <= '0';
+							if_stall <= '1';
+							id_stall <= '1';
+							exe_stall <= '1';
+							next_exe <= curr_exe;
+							next_mem <= nop_fw(14 downto 0); -- force nop operation
+						else
+							-- rs can be forwarded
+							fw_a <= "01";
+						end if;
+					elsif (hazards(2) = '1') then
+						-- hazard between id/exe and mem/wb
+						fw_a <= "10";
+					end if;
+
+					if (hazards(1) = '1') then
+						-- hazard between id/exe and exe/mem
+						if (cpu_is_reading = '1') then
+							-- the result should come from a load which hasn't finished yet
+							en_npc_if <= '0';
+							en_ir_if <= '0';
+							pc_en_if <= '0';
+							id_en <= '0';
+							exe_en <= '0';
+							if_stall <= '1';
+							id_stall <= '1';
+							exe_stall <= '1';
+							next_exe <= curr_exe;
+							next_mem <= nop_fw(14 downto 0); -- force nop operation
+						else
+							-- rt can be forwarded
+							op_b_fw_sel <= "01";
+						end if;
+					elsif (hazards(3) = '1') then
+						-- hazard between id/exe and mem/wb
+						op_b_fw_sel <= "10";
+					end if; 
 
 				when others =>
 					null;

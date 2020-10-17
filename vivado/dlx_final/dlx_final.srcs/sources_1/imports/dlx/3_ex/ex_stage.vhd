@@ -21,18 +21,21 @@ entity ex_stage is
     	mul_feedback: in std_logic_vector(63 downto 0); -- partial result of the multiplication 
     	npc_in: in std_logic_vector(31 downto 0); 
     	imm_in: in std_logic_vector(31 downto 0);
+    	op_b_in: in std_logic_vector(31 downto 0);
 
     	-- forwarded ex/mem operands
     	a_adder_fw_ex: in std_logic_vector(31 downto 0);
     	b_adder_fw_ex: in std_logic_vector(31 downto 0);
     	a_shift_fw_ex: in std_logic_vector(31 downto 0);
     	b_shift_fw_ex: in std_logic_vector(4 downto 0);
+    	op_b_fw_ex: in std_logic_vector(31 downto 0);
 
     	-- forwarded mem/wb operands
     	a_adder_fw_mem: in std_logic_vector(31 downto 0);
     	b_adder_fw_mem: in std_logic_vector(31 downto 0);
     	a_shift_fw_mem: in std_logic_vector(31 downto 0);
     	b_shift_fw_mem: in std_logic_vector(4 downto 0);
+    	op_b_fw_mem: in std_logic_vector(31 downto 0);
 
     	-- control signals
     	sub_add: in std_logic; -- 1 if it is a subtraction, 0 otherwise
@@ -51,6 +54,7 @@ entity ex_stage is
     	fw_op_b: in std_logic_vector(1 downto 0);
     	cond_sel: in std_logic_vector(2 downto 0); -- used to identify the condition of the branch instruction	
     	alu_comp_sel: in std_logic_vector(2 downto 0); -- used to select the output to be stored in the alu out register
+    	op_b_fw_sel: in std_logic_vector(1 downto 0);
 
     	-- outputs
     	npc_jr: out std_logic_vector(31 downto 0); -- used by jalr and jr
@@ -58,7 +62,8 @@ entity ex_stage is
     	alu_out_low: out std_logic_vector(31 downto 0);
     	a_neg_out: out std_logic_vector(63 downto 0); -- negated a that goes back to the multiplier
     	npc_jump: out std_logic_vector(31 downto 0); -- used by j instructions and branches
-    	taken: out std_logic
+    	taken: out std_logic;
+    	op_b: out std_logic_vector(31 downto 0)
     );
 end ex_stage;
 
@@ -113,21 +118,6 @@ architecture struct of ex_stage is
 			o: out std_logic_vector(N-1 downto 0)
 		);
 	end component mux_4x1;
-
-	--component mux_5x1 is
-	--	generic (
-	--		NBIT: integer := 4
-	--	);
-	--	port (
-	--        a: in std_logic_vector(NBIT-1 downto 0);
-	--        b: in std_logic_vector(NBIT-1 downto 0);
-	--        c: in std_logic_vector(NBIT-1 downto 0);
-	--        d: in std_logic_vector(NBIT-1 downto 0);
-	--        e: in std_logic_vector(NBIT-1 downto 0);
-	--        sel: in std_logic_vector(2 downto 0);
-	--        y: out std_logic_vector(NBIT-1 downto 0)
-	--	);
-	--end component mux_5x1;
 
 	component rca_generic_struct is
 		generic (
@@ -292,6 +282,19 @@ begin
 			sel => fw_op_b,
 			o => b_shift_int
 	);
+
+	op_b_selector: mux_4x1
+		generic map (
+			N => 32
+		)
+		port map (
+			a => op_b_in,
+			b => op_b_fw_ex,
+			c => op_b_fw_mem,
+			d => (others => '0'),
+			sel => op_b_fw_sel,
+			o => op_b
+		);
 
 	alu_unit: alu
 		port map ( 

@@ -46,6 +46,7 @@ entity dlx_syn is
 		taken: out std_logic; -- shows if a branch (or jump) has been taken or not
 		wp_en: out std_logic; -- shows if the dlx is writing in the output port
 		hilo_wr_en: out std_logic; -- shows if the dlx is storing the res of a mul 
+		rd: out std_logic_vector(4 downto 0); -- shows the register where the data is going to be written
 		wp_data: out std_logic_vector(31 downto 0); -- the value being written in the RF
 		wp_alu_data_high: out std_logic_vector(31 downto 0) -- the highest part of the mul
 	);
@@ -73,6 +74,7 @@ architecture structural of dlx_syn is
 			
 			en_npc_if: in std_logic;
 			en_ir_if: in std_logic;
+			rst_if_regs: in std_logic;
 
 			-- IF stage cache interface
 			
@@ -126,6 +128,7 @@ architecture structural of dlx_syn is
 		    en_npc_id: in std_logic;
 		    en_imm_id: in std_logic;
 		    en_b_id: in std_logic;
+		    rst_id_regs: in std_logic;
 
 			-- EXE stage inputs
 			
@@ -155,6 +158,7 @@ architecture structural of dlx_syn is
 			btb_taken_exe: in std_logic; -- when an address is being added to the BTB tells if it was taken or not
 			fw_a: in std_logic_vector(1 downto 0); -- selection of operand a
 			fw_b: in std_logic_vector(1 downto 0); -- selection of operand b
+			op_b_fw_sel: in std_logic_vector(1 downto 0);
 
 			-- EXE stage outputs
 
@@ -167,6 +171,7 @@ architecture structural of dlx_syn is
 			en_output_exe: in std_logic;
 			en_rd_exe: in std_logic;
 			en_b_exe: in std_logic;
+			rst_exe_mem_regs: in std_logic;
 
 			rd_exemem: out std_logic_vector(4 downto 0);
 
@@ -192,6 +197,7 @@ architecture structural of dlx_syn is
 			en_alu_mem: in std_logic;
 			en_cache_mem: in std_logic;
 			en_rd_mem: in std_logic;
+			rst_mem_wb_regs: in std_logic;
 
 			rd_memwb: out std_logic_vector(4 downto 0);
 
@@ -209,158 +215,159 @@ architecture structural of dlx_syn is
 
 	component cu is
 		port (
-		clk: in std_logic;
-		rst: in std_logic;
+			clk: in std_logic;
+			rst: in std_logic;
 
-		-- if stage inputs
+			-- if stage inputs
 
-		btb_addr_known_if: in std_logic; -- tells if the BTB has recognized or not the current PC address
-		btb_predicted_taken_if: in std_logic; -- the BTB has predicted the branch to be taken
-		instr_if: in std_logic_vector(31 downto 0); -- the fetched instruction
+			btb_addr_known_if: in std_logic; -- tells if the BTB has recognized or not the current PC address
+			btb_predicted_taken_if: in std_logic; -- the BTB has predicted the branch to be taken
+			instr_if: in std_logic_vector(31 downto 0); -- the fetched instruction
 
-		-- if stage outputs
+			-- if stage outputs
 
-		pc_en_if: out std_logic; -- enable the PC register
-		-- "00" if the next pc must me pc+4
-		-- "01" if the next pc must be the one coming out from the BTB
-		-- "10" if the next PC is the one coming out from the main adder
-		-- "11" if the next PC is the one coming out from the secondary adder
-		pc_sel_if: out std_logic_vector(1 downto 0);
-		--btb_target_addr_if: out std_logic_vector(29 downto 0); -- address to be added to the BTB
-		-- if/id regs
+			pc_en_if: out std_logic; -- enable the PC register
+			-- "00" if the next pc must me pc+4
+			-- "01" if the next pc must be the one coming out from the BTB
+			-- "10" if the next PC is the one coming out from the main adder
+			-- "11" if the next PC is the one coming out from the secondary adder
+			pc_sel_if: out std_logic_vector(1 downto 0);
 
-		en_npc_if: out std_logic;
-		en_ir_if: out std_logic;
-		
-		-- id stage inputs
+			-- if/id regs
 
-		rs_id: in std_logic_vector(4 downto 0);
-		rt_id: in std_logic_vector(4 downto 0);
+			en_npc_if: out std_logic;
+			en_ir_if: out std_logic;
+			rst_if_regs: out std_logic;
 
-		-- id stage outputs
+			-- id stage inputs
 
-		i_instr_id: out std_logic; -- 1 if the istruction is of type I, 0 otherwise
-		j_instr_id: out std_logic; -- 1 if the instruction is of type J, o otherwise
-		-- rp1_out_sel values:
-		-- 		00 for an arch register
-		-- 		01 for the LO register
-		-- 		10 for the HI register
-		-- 		11 output all 0s
-		rp1_out_sel_id: out std_logic_vector(1 downto 0);
-		-- rp2_out_sel values:
-		-- 		00 for an arch register
-		-- 		01 for the LO register
-		-- 		10 for the HI register
-		-- 		11 output all 0s
-		rp2_out_sel_id: out std_logic_vector(1 downto 0);
-		is_signed_id: out std_logic; -- 1 if extension is signed, 0 if unsigned
-		sign_ext_sel_id: out std_logic; -- 1 if the 16 bits input must be used, 0 if the 26 bits input must be used
-		a_selector_id: out std_logic; -- 0 to select the PC as output, 1 to select the read port 1
-		b_selector_id: out std_logic; -- 0 to select the immediate as output, 1 to select the read port 2
-		data_tbs_selector_id: out std_logic; -- 0 to select the output of rp2, 1 to select the npc
-		
-		-- id/exe regs
+			rs_id: in std_logic_vector(4 downto 0);
+			rt_id: in std_logic_vector(4 downto 0);
 
-		rd_idexe: in std_logic_vector(4 downto 0);
+			-- id stage outputs
 
-		en_rs_rt_id: out std_logic;
-		en_add_id: out std_logic;
-	    en_mul_id: out std_logic;
-	    en_shift_id: out std_logic;
-	    en_a_neg_id: out std_logic;
-	    shift_reg_id: out std_logic; -- signal that controls the shift register
-	    en_shift_reg_id: out std_logic;
-	    en_rd_id: out std_logic;
-	    en_npc_id: out std_logic;
-	    en_imm_id: out std_logic;
-	    en_b_id: out std_logic;
+			i_instr_id: out std_logic; -- 1 if the istruction is of type I, 0 otherwise
+			j_instr_id: out std_logic; -- 1 if the instruction is of type J, o otherwise
+			-- rp1_out_sel values:
+			-- 		00 for an arch register
+			-- 		01 for the LO register
+			-- 		10 for the HI register
+			-- 		11 output all 0s
+			rp1_out_sel_id: out std_logic_vector(1 downto 0);
+			-- rp2_out_sel values:
+			-- 		00 for an arch register
+			-- 		01 for the LO register
+			-- 		10 for the HI register
+			-- 		11 output all 0s
+			rp2_out_sel_id: out std_logic_vector(1 downto 0);
+			is_signed_id: out std_logic; -- 1 if extension is signed, 0 if unsigned
+			sign_ext_sel_id: out std_logic; -- 1 if the 16 bits input must be used, 0 if the 26 bits input must be used
+			a_selector_id: out std_logic; -- 0 to select the PC as output, 1 to select the read port 1
+			b_selector_id: out std_logic; -- 0 to select the immediate as output, 1 to select the read port 2
+			data_tbs_selector_id: out std_logic; -- 0 to select the output of rp2, 1 to select the npc
 
-		-- exe stage inputs
+			-- id/exe regs
 
-		taken_exe: in std_logic;
-		rs_exe: in std_logic_vector(4 downto 0);
-		rt_exe: in std_logic_vector(4 downto 0);
+			rd_idexe: in std_logic_vector(4 downto 0);
 
-		-- exe stage outputs
+			en_rs_rt_id: out std_logic;
+			en_add_id: out std_logic;
+		    en_mul_id: out std_logic;
+		    en_shift_id: out std_logic;
+		    en_a_neg_id: out std_logic;
+		    shift_reg_id: out std_logic; -- signal that controls the shift register
+		    en_shift_reg_id: out std_logic;
+		    en_rd_id: out std_logic;
+		    en_npc_id: out std_logic;
+		    en_imm_id: out std_logic;
+		    en_b_id: out std_logic;
+		    rst_id_regs: out std_logic;
 
-		sub_add_exe: out std_logic;						-- 1 if it is a subtraction, 0 otherwise
-    	shift_type_exe: out std_logic_vector(3 downto 0);
-    	log_type_exe: out std_logic_vector(3 downto 0);
-    	op_type_exe: out std_logic_vector(1 downto 0);	-- 00: add/sub, 01: mul, 10: shift/rot, 11: log
-    	op_sign_exe: out std_logic; 						-- 1 if the operands are signed, 0 otherwise
-    	it_exe: out std_logic_vector(3 downto 0);		-- iterations of the multiplier
-    	neg_exe: out std_logic;							-- used to negate a before actually multiplying
-    	--fw_op_a_exe: out std_logic_vector(2 downto 0);	-- used to choose between the forwarded operands and the other ones
-    	--fw_op_b_exe: out std_logic_vector(1 downto 0);
-    	cond_sel_exe: out std_logic_vector(2 downto 0);  -- used to identify the condition of the branch instruction
-    	-- select if in the alu register goes the alu output or a comparison output
-		-- "000" if le
-		-- "001" if lt
-		-- "010" if ge
-		-- "011" if gt
-		-- "100" if eq
-		-- "101" if ne
-		-- "110" if alu
-		-- "111" reserved
-		alu_comp_sel: out std_logic_vector(2 downto 0); 
-    	-- "00" if nothing has to be done
-		-- "01" if an already known instruction has to be updated (taken/not taken)
-		-- "10" if a new instruction must be added
-		-- "11" reserved
-		btb_update_exe: out std_logic_vector(1 downto 0);
-		btb_taken_exe: out std_logic; -- when an address is being added to the BTB tells if it was taken or not
-		fw_a: out std_logic_vector(1 downto 0); -- selection of operand a
-		fw_b: out std_logic_vector(1 downto 0); -- selection of operand b
+			-- exe stage inputs
 
-    	-- exe/mem regs
+			taken_exe: in std_logic;
+			rs_exe: in std_logic_vector(4 downto 0);
+			rt_exe: in std_logic_vector(4 downto 0);
 
-    	rd_exemem: in std_logic_vector(4 downto 0);
-    	
-    	en_output_exe: out std_logic;
-		en_rd_exe: out std_logic;
-		--en_npc_exe: out std_logic;
-		en_b_exe: out std_logic;
+			-- exe stage outputs
 
-    	-- mem stage inputs
-    	
-		cu_resume_mem: in std_logic; -- raised by the memory controller when a cache miss has been solved
-		hit_mem: in std_logic; -- if 1 the read operation was a hit, 0 otherwise
-    	
-    	-- mem stage outputs
+			sub_add_exe: out std_logic;						-- 1 if it is a subtraction, 0 otherwise
+	    	shift_type_exe: out std_logic_vector(3 downto 0);
+	    	log_type_exe: out std_logic_vector(3 downto 0);
+	    	op_type_exe: out std_logic_vector(1 downto 0);	-- 00: add/sub, 01: mul, 10: shift/rot, 11: log
+	    	op_sign_exe: out std_logic; 						-- 1 if the operands are signed, 0 otherwise
+	    	it_exe: out std_logic_vector(3 downto 0);		-- iterations of the multiplier
+	    	neg_exe: out std_logic;							-- used to negate a before actually multiplying
+	    	cond_sel_exe: out std_logic_vector(2 downto 0);  -- used to identify the condition of the branch instruction
+	    	-- select if in the alu register goes the alu output or a comparison output
+			-- "000" if le
+			-- "001" if lt
+			-- "010" if ge
+			-- "011" if gt
+			-- "100" if eq
+			-- "101" if ne
+			-- "110" if alu
+			-- "111" reserved
+			alu_comp_sel: out std_logic_vector(2 downto 0); 
+	    	-- "00" if nothing has to be done
+			-- "01" if an already known instruction has to be updated (taken/not taken)
+			-- "10" if a new instruction must be added
+			-- "11" reserved
+			btb_update_exe: out std_logic_vector(1 downto 0);
+			btb_taken_exe: out std_logic; -- when an address is being added to the BTB tells if it was taken or not
+			fw_a: out std_logic_vector(1 downto 0); -- selection of operand a
+			fw_b: out std_logic_vector(1 downto 0); -- selection of operand b
+			op_b_fw_sel: out std_logic_vector(1 downto 0);
 
-    	cpu_is_reading: out std_logic; -- used to discriminate by the memory controller false-positive cache misses when the CPU is not using at all the cache.
-    	wr_mem: out std_logic; -- 1 for writing to the cache, 0 for reading (this goes inside the memory controller).
-    	dcache_update: out std_logic; -- 1 for writing to the cache, 0 for reading. In case of a cache miss it goes in high impedance
-		-- controls how the data is added to the line. In case of a cache miss it goes in high impedance
-		-- 00: stores N bits coming from the RAM
-		-- 01: stores N bits coming from the CPU
-		-- 10: stores N/2 bits coming from the CPU
-		-- 11: stores N/4 bits coming from the CPU
-		update_type_mem: out std_logic_vector(1 downto 0);
-		ld_sign_mem: out std_logic; -- 1 if load is signed, 0 if unsigned
-		-- controls how many bits of the word are kept after a load
-		-- 00: load N bits
-		-- 01: load N/2 bits
-		-- 10: load N/4 bits
-		-- 11: reserved
-		ld_type_mem: out std_logic_vector(1 downto 0);
-		alu_data_tbs_selector: out std_logic; -- 0 to select the output of the ALU, 1 to select the data_tbs
+	    	-- exe/mem regs
 
-		-- mem/wb regs
+	    	rd_exemem: in std_logic_vector(4 downto 0);
+	    	
+	    	en_output_exe: out std_logic;
+			en_rd_exe: out std_logic;
+			en_b_exe: out std_logic;
+			rst_exe_mem_regs: out std_logic;
 
-		rd_memwb: in std_logic_vector(4 downto 0);
+	    	-- mem stage inputs
+	    	
+			cu_resume_mem: in std_logic; -- raised by the memory controller when a cache miss has been solved
+			hit_mem: in std_logic; -- if 1 the read operation was a hit, 0 otherwise
+	    	
+	    	-- mem stage outputs
 
-		en_alu_mem: out std_logic;
-		en_cache_mem: out std_logic;
-		en_rd_mem: out std_logic;
+	    	cpu_is_reading: out std_logic; -- used to discriminate by the memory controller false-positive cache misses when the CPU is not using at all the cache.
+	    	wr_mem: out std_logic; -- 1 for writing to the cache, 0 for reading (this goes inside the memory controller).
+	    	dcache_update: out std_logic; -- 1 for writing to the cache, 0 for reading. In case of a cache miss it goes in high impedance
+			-- controls how the data is added to the line. In case of a cache miss it goes in high impedance
+			-- 00: stores N bits coming from the RAM
+			-- 01: stores N bits coming from the CPU
+			-- 10: stores N/2 bits coming from the CPU
+			-- 11: stores N/4 bits coming from the CPU
+			update_type_mem: out std_logic_vector(1 downto 0);
+			ld_sign_mem: out std_logic; -- 1 if load is signed, 0 if unsigned
+			-- controls how many bits of the word are kept after a load
+			-- 00: load N bits
+			-- 01: load N/2 bits
+			-- 10: load N/4 bits
+			-- 11: reserved
+			ld_type_mem: out std_logic_vector(1 downto 0);
+			alu_data_tbs_selector: out std_logic; -- 0 to select the output of the ALU, 1 to select the data_tbs
 
-		-- wb stage inputs
+			-- mem/wb regs
 
-		-- wb stage outputs
-		wp_en_id: out std_logic; -- write port enable
-		store_sel: out std_logic; -- 0 to select ALU output, 1 to select memory output
-		hilo_wr_en_id: out std_logic -- 1 if the HI and LO register must be write
-	);
+			rd_memwb: in std_logic_vector(4 downto 0);
+
+			en_alu_mem: out std_logic;
+			en_cache_mem: out std_logic;
+			en_rd_mem: out std_logic;
+			rst_mem_wb_regs: out std_logic;
+			-- wb stage inputs
+
+			-- wb stage outputs
+			wp_en_id: out std_logic; -- write port enable
+			store_sel: out std_logic; -- 0 to select ALU output, 1 to select memory output
+			hilo_wr_en_id: out std_logic -- 1 if the HI and LO register must be write
+		);
 	end component cu;
 
 	component memory_controller is
@@ -397,6 +404,7 @@ architecture structural of dlx_syn is
 
 	-- IF/ID signals
 	signal en_npc_if, en_ir_if: std_logic;
+	signal rst_if_regs: std_logic;
 
 	-- ID stage signals
 	signal i_instr_id, j_instr_id, is_signed_id, sign_ext_sel_id, a_selector_id, b_selector_id, data_tbs_selector_id: std_logic;
@@ -406,10 +414,11 @@ architecture structural of dlx_syn is
 	-- ID/EXE signals
 	signal en_rs_rt_id, en_add_id, en_mul_id, en_shift_id, en_a_neg_id, shift_reg_id, en_shift_reg_id, en_rd_id, en_npc_id, en_imm_id, en_b_id: std_logic;
 	signal rd_idexe: std_logic_vector(4 downto 0);
+	signal rst_id_regs: std_logic;
 
 	-- EXE signals
 	signal taken_exe, sub_add_exe, op_sign_exe, neg_exe, btb_taken_exe: std_logic;
-	signal op_type_exe, btb_update_exe, fw_a, fw_b: std_logic_vector(1 downto 0);
+	signal op_type_exe, btb_update_exe, fw_a, fw_b, op_b_fw_sel_exe: std_logic_vector(1 downto 0);
 	signal cond_sel_exe, alu_comp_sel: std_logic_vector(2 downto 0);
 	signal shift_type_exe, log_type_exe, it_exe: std_logic_vector(3 downto 0);
 	signal rs_exe, rt_exe: std_logic_vector(4 downto 0);
@@ -417,6 +426,7 @@ architecture structural of dlx_syn is
 	-- EXE/MEM signals
 	signal en_output_exe, en_rd_exe, en_b_exe: std_logic;
 	signal rd_exemem: std_logic_vector(4 downto 0);
+	signal rst_exe_mem_regs: std_logic;
 
 	-- MEM stage signals
 	signal cu_resume_mem, cpu_is_reading, wr_mem, ld_sign_mem, alu_data_tbs_selector: std_logic;
@@ -426,6 +436,7 @@ architecture structural of dlx_syn is
 	-- MEM/WB signals
 	signal en_alu_mem, en_cache_mem, en_rd_mem: std_logic;
 	signal rd_memwb: std_logic_vector(4 downto 0);
+	signal rst_mem_wb_regs: std_logic;
 
 	-- WB signals
 	signal wp_en_id, store_sel, hilo_wr_en_id: std_logic;
@@ -455,6 +466,7 @@ begin
 			
 			en_npc_if => en_npc_if,
 			en_ir_if => en_ir_if,
+			rst_if_regs => rst_if_regs,
 			
 			cache_rw_address => btb_cache_rw_address,
 			cache_update_line => btb_cache_update_line,
@@ -489,6 +501,7 @@ begin
 		    en_npc_id => en_npc_id,
 		    en_imm_id => en_imm_id,
 		    en_b_id => en_b_id,
+		    rst_id_regs => rst_id_regs,
 			
 			sub_add_exe => sub_add_exe,
 	    	shift_type_exe => shift_type_exe,
@@ -503,6 +516,7 @@ begin
 			btb_taken_exe => btb_taken_exe,
 			fw_a => fw_a,
 			fw_b => fw_b,
+			op_b_fw_sel => op_b_fw_sel_exe,
 			taken_exe => taken_exe,
 			rs_exe => rs_exe,
 			rt_exe => rt_exe,
@@ -511,6 +525,7 @@ begin
 			en_rd_exe => en_rd_exe,
 			en_b_exe => en_b_exe,
 			rd_exemem => rd_exemem,
+			rst_exe_mem_regs => rst_exe_mem_regs,
 
 			ld_sign_mem => ld_sign_mem,
 			ld_type_mem => ld_type_mem,
@@ -523,6 +538,7 @@ begin
 			en_cache_mem => en_cache_mem,
 			en_rd_mem => en_rd_mem,
 			rd_memwb => rd_memwb,
+			rst_mem_wb_regs => rst_mem_wb_regs,
 
 			wp_en_id => wp_en_id,
 			store_sel => store_sel,
@@ -547,6 +563,7 @@ begin
 			
 			en_npc_if => en_npc_if,
 			en_ir_if => en_ir_if,
+			rst_if_regs => rst_if_regs,
 
 			i_instr_id => i_instr_id,
 			j_instr_id => j_instr_id,
@@ -572,6 +589,7 @@ begin
 		    en_npc_id => en_npc_id,
 		    en_imm_id => en_imm_id,
 		    en_b_id => en_b_id,
+		    rst_id_regs => rst_id_regs,
 			
 			sub_add_exe => sub_add_exe,
 	    	shift_type_exe => shift_type_exe,
@@ -586,6 +604,7 @@ begin
 			btb_taken_exe => btb_taken_exe,
 			fw_a => fw_a,
 			fw_b => fw_b,
+			op_b_fw_sel => op_b_fw_sel_exe,
 			taken_exe => taken_exe,
 			rs_exe => rs_exe,
 			rt_exe => rt_exe,
@@ -594,6 +613,7 @@ begin
 			en_rd_exe => en_rd_exe,
 			en_b_exe => en_b_exe,
 			rd_exemem => rd_exemem,
+			rst_exe_mem_regs => rst_exe_mem_regs,
 
 			cu_resume_mem => cu_resume_mem,
 			hit_mem => dcache_hit,
@@ -609,12 +629,14 @@ begin
 			en_cache_mem => en_cache_mem,
 			en_rd_mem => en_rd_mem,
 			rd_memwb => rd_memwb,
+			rst_mem_wb_regs => rst_mem_wb_regs,
 
 			wp_en_id => wp_en_id,
 			store_sel => store_sel,
 			hilo_wr_en_id => hilo_wr_en_id
 		);
 		
+	rd <= rd_memwb;
 	dcache_update_type <= update_type_mem_int;
 
 	mc: memory_controller

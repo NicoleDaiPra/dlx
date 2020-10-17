@@ -11,6 +11,7 @@ entity ex_mem_reg is
 	port(
 		clk: in std_logic;
 		rst: in std_logic;
+		rst_exe_mem_regs: in std_logic;
 		
 		op_b_in: in std_logic_vector(31 downto 0);
 		alu_out_high_in: in std_logic_vector(31 downto 0);
@@ -47,12 +48,16 @@ architecture struct of ex_mem_reg is
 
 	signal alu_out_high_int, alu_out_low_int: std_logic_vector(31 downto 0);
 	signal cmp_res_in, cmp_res_out: std_logic_vector(5 downto 0);
+	signal rst_exe_mul: std_logic;
 
 begin
 
 	-- feedback that goes to the multiplier
 	-- It is on 64 bits and it represent the partial product
 	mul_feedback <= alu_out_high_int & alu_out_low_int;
+
+	-- in case of a multiplication, this signal in used to reset all the registers except for the output
+	rst_exe_mul <= rst and rst_exe_mem_regs;
 
 	-- register used to take the value to be stored from the ID stage to the MEM
 	b_reg: reg_en
@@ -63,7 +68,7 @@ begin
 			d => op_b_in,
 			en => en_b,
 			clk => clk,
-			rst => rst,
+			rst => rst_exe_mul,
 			q => op_b
 		);
 
@@ -99,7 +104,7 @@ begin
 			d => Rd_in,
 			en => en_rd,
 			clk => clk,
-			rst => rst,
+			rst => rst_exe_mul,
 			q => Rd_out
 		);
 

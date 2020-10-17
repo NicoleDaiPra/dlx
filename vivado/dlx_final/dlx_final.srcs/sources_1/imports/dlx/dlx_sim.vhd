@@ -19,6 +19,7 @@ entity dlx_sim is
 		taken: out std_logic; -- shows if a branch (or jump) has been taken or not
 		wp_en: out std_logic; -- shows if the dlx is writing in the output port
 		hilo_wr_en: out std_logic; -- shows if the dlx is storing the res of a mul 
+		rd: out std_logic_vector(4 downto 0); -- shows the register where the data is going to be written
 		wp_data: out std_logic_vector(31 downto 0); -- the value being written in the RF
 		wp_alu_data_high: out std_logic_vector(31 downto 0); -- the highest part of the mul
 
@@ -75,6 +76,7 @@ architecture structural of dlx_sim is
 			taken: out std_logic; -- shows if a branch (or jump) has been taken or not
 			wp_en: out std_logic; -- shows if the dlx is writing in the output port
 			hilo_wr_en: out std_logic; -- shows if the dlx is storing the res of a mul 
+			rd: out std_logic_vector(4 downto 0); -- shows the register where the data is going to be written
 			wp_data: out std_logic_vector(31 downto 0); -- the value being written in the RF
 			wp_alu_data_high: out std_logic_vector(31 downto 0) -- the highest part of the mul
 		);
@@ -235,6 +237,7 @@ begin
 			taken => taken,
 			wp_en => wp_en,
 			hilo_wr_en => hilo_wr_en,
+			rd => rd,
 			wp_data => wp_data,
 			wp_alu_data_high => wp_alu_data_high
 		);

@@ -22,6 +22,7 @@ entity datapath is
 		
 		en_npc_if: in std_logic;
 		en_ir_if: in std_logic;
+		rst_if_regs: in std_logic;
 
 		-- IF stage cache interface
 		
@@ -75,6 +76,7 @@ entity datapath is
 	    en_npc_id: in std_logic;
 	    en_imm_id: in std_logic;
 	    en_b_id: in std_logic;
+	    rst_id_regs: in std_logic;
 
 		-- EXE stage inputs
 		
@@ -104,6 +106,7 @@ entity datapath is
 		btb_taken_exe: in std_logic; -- when an address is being added to the BTB tells if it was taken or not
 		fw_a: in std_logic_vector(1 downto 0); -- selection of operand a
 		fw_b: in std_logic_vector(1 downto 0); -- selection of operand b
+		op_b_fw_sel: in std_logic_vector(1 downto 0);
 
 		-- EXE stage outputs
 
@@ -116,6 +119,7 @@ entity datapath is
 		en_output_exe: in std_logic;
 		en_rd_exe: in std_logic;
 		en_b_exe: in std_logic;
+		rst_exe_mem_regs: in std_logic;
 
 		rd_exemem: out std_logic_vector(4 downto 0);
 
@@ -140,6 +144,7 @@ entity datapath is
 		en_alu_mem: in std_logic;
 		en_cache_mem: in std_logic;
 		en_rd_mem: in std_logic;
+		rst_mem_wb_regs: in std_logic;
 
 		rd_memwb: out std_logic_vector(4 downto 0);
 
@@ -323,18 +328,21 @@ architecture structural of datapath is
 	    	mul_feedback: in std_logic_vector(63 downto 0); -- partial result of the multiplication 
 	    	npc_in: in std_logic_vector(31 downto 0); 
 	    	imm_in: in std_logic_vector(31 downto 0);
+	    	op_b_in: in std_logic_vector(31 downto 0);
 
 	    	-- forwarded ex/mem operands
 	    	a_adder_fw_ex: in std_logic_vector(31 downto 0);
 	    	b_adder_fw_ex: in std_logic_vector(31 downto 0);
 	    	a_shift_fw_ex: in std_logic_vector(31 downto 0);
 	    	b_shift_fw_ex: in std_logic_vector(4 downto 0);
+	    	op_b_fw_ex: in std_logic_vector(31 downto 0);
 
 	    	-- forwarded mem/wb operands
 	    	a_adder_fw_mem: in std_logic_vector(31 downto 0);
 	    	b_adder_fw_mem: in std_logic_vector(31 downto 0);
 	    	a_shift_fw_mem: in std_logic_vector(31 downto 0);
 	    	b_shift_fw_mem: in std_logic_vector(4 downto 0);
+	    	op_b_fw_mem: in std_logic_vector(31 downto 0);
 
 	    	-- control signals
 	    	sub_add: in std_logic; -- 1 if it is a subtraction, 0 otherwise
@@ -353,6 +361,7 @@ architecture structural of datapath is
 	    	fw_op_b: in std_logic_vector(1 downto 0);
 	    	cond_sel: in std_logic_vector(2 downto 0); -- used to identify the condition of the branch instruction	
 	    	alu_comp_sel: in std_logic_vector(2 downto 0); -- used to select the output to be stored in the alu out register
+	    	op_b_fw_sel: in std_logic_vector(1 downto 0);
 
 	    	-- outputs
 	    	npc_jr: out std_logic_vector(31 downto 0); -- used by jalr and jr
@@ -360,7 +369,8 @@ architecture structural of datapath is
 	    	alu_out_low: out std_logic_vector(31 downto 0);
 	    	a_neg_out: out std_logic_vector(63 downto 0); -- negated a that goes back to the multiplier
 	    	npc_jump: out std_logic_vector(31 downto 0); -- used by j instructions and branches
-	    	taken: out std_logic
+	    	taken: out std_logic;
+	    	op_b: out std_logic_vector(31 downto 0)
 	    );
 	end component ex_stage;
 
@@ -368,6 +378,7 @@ architecture structural of datapath is
 		port(
 			clk: in std_logic;
 			rst: in std_logic;
+			rst_exe_mem_regs: in std_logic;
 			
 			op_b_in: in std_logic_vector(31 downto 0);
 			alu_out_high_in: in std_logic_vector(31 downto 0);
@@ -448,7 +459,7 @@ architecture structural of datapath is
 
 	signal b_mult_id_exe_int, b10_1_mult_id_exe_int: std_logic_vector(2 downto 0);
 	signal rd_out_id_exe_int, b_shift_id_exe_int: std_logic_vector(4 downto 0);
-	signal op_b_id_exe_int, npc_id_exe_int, imm_id_exe_int, a_adder_id_exe_int, b_adder_id_exe_int, a_shift_id_exe_int: std_logic_vector(31 downto 0);
+	signal op_b_id_ex_int, op_b_ex_exe_int, npc_id_exe_int, imm_id_exe_int, a_adder_id_exe_int, b_adder_id_exe_int, a_shift_id_exe_int: std_logic_vector(31 downto 0);
 	signal a_mult_id_exe_int, a_neg_mult_id_exe_int: std_logic_vector(63 downto 0);
 	
 	signal npc_jr_exe_int, alu_out_high_exe_int, alu_out_low_exe_int, npc_jump_exe_int: std_logic_vector(31 downto 0);
@@ -493,7 +504,7 @@ begin
 	if_id_regs: if_id_reg
 		port map (
 			clk => clk,
-			rst => rst,
+			rst => rst_if_regs,
 			npc_in => pc_plus4_out_if_int,
 			ir_in => instr_if,
 			en_npc => en_npc_if,
@@ -535,12 +546,11 @@ begin
 
 	rs_id <= rs_id_int;
 	rt_id <= rt_id_int;
-	rd_id <= dest_reg_id_int;
 
 	id_exe_regs: id_ex_reg
 		port map (
 			clk => clk,
-			rst => rst,
+			rst => rst_id_regs,
 			a => a_id_int,
 			b => b_id_int,
 			en_rs_rt_id => en_rs_rt_id,
@@ -561,7 +571,7 @@ begin
 		    en_npc => en_npc_id,
 		    en_imm => en_imm_id,
 		    en_b => en_b_id,
-			op_b => op_b_id_exe_int,
+			op_b => op_b_id_ex_int,
 			npc => npc_id_exe_int,
 			imm => imm_id_exe_int,
 			rs_idexe => rs_exe,
@@ -577,6 +587,8 @@ begin
 			b_shift => b_shift_id_exe_int
 		);
 
+	rd_id <= rd_out_id_exe_int;
+
 	exs: ex_stage
 		port map (
 	    	a_adder => a_adder_id_exe_int, 
@@ -590,14 +602,17 @@ begin
 	    	mul_feedback => mul_feedback_exe_mem_int,
 	    	npc_in => npc_id_exe_int,
 	    	imm_in => imm_id_exe_int,
+	    	op_b_in => op_b_id_ex_int,
 	    	a_adder_fw_ex => alu_out_low_exe_mem_int,
 	    	b_adder_fw_ex => alu_out_low_exe_mem_int,
 	    	a_shift_fw_ex => alu_out_low_exe_mem_int,
 	    	b_shift_fw_ex => alu_out_low_exe_mem_int(4 downto 0),
+	    	op_b_fw_ex => alu_out_low_exe_mem_int,
 	    	a_adder_fw_mem => wp_wb_int,
 	    	b_adder_fw_mem => wp_wb_int,
 	    	a_shift_fw_mem => wp_wb_int,
 	    	b_shift_fw_mem => wp_wb_int(4 downto 0),
+	    	op_b_fw_mem => wp_wb_int,
 	    	sub_add => sub_add_exe,
 	    	shift_type => shift_type_exe,
 	    	log_type => log_type_exe,
@@ -610,18 +625,21 @@ begin
 	    	cond_sel => cond_sel_exe,
 	    	alu_comp_sel => alu_comp_sel,
 	    	npc_jr => npc_jr_exe_int,
+	    	op_b_fw_sel => op_b_fw_sel,
 	    	alu_out_high => alu_out_high_exe_int,
 	    	alu_out_low => alu_out_low_exe_int,
 	    	a_neg_out => a_neg_out_exe_int,
 	    	npc_jump => npc_jump_exe_int,
-	    	taken => taken_exe
+	    	taken => taken_exe,
+	    	op_b => op_b_ex_exe_int
 		);
 
 	ex_mem_regs: ex_mem_reg
 		port map (
 			clk => clk,
 			rst => rst,
-			op_b_in => op_b_id_exe_int,
+			rst_exe_mem_regs => rst_exe_mem_regs,
+			op_b_in => op_b_ex_exe_int,
 			alu_out_high_in => alu_out_high_exe_int,
 	    	alu_out_low_in => alu_out_low_exe_int,
 			Rd_in => rd_out_id_exe_int,
@@ -655,7 +673,7 @@ begin
 	mem_wb_regs: mem_wb_reg
 		port map (
 			clk => clk,
-			rst => rst,
+			rst => rst_mem_wb_regs,
 			alu_out_high_in => alu_out_high_exe_mem_int,
 			alu_out_low_in => data_tbs_mem_int,
 			cache_in => cache_in_mem_int,

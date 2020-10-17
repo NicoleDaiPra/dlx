@@ -1,0 +1,1081 @@
+
+*** Running vivado
+    with args -log dlx_syn.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source dlx_syn.tcl
+
+
+****** Vivado v2019.2 (64-bit)
+  **** SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+  **** IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+source dlx_syn.tcl -notrace
+Command: synth_design -top dlx_syn -part xczu7ev-ffvf1517-1LV-i
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xczu7ev'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xczu7ev'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 6576 
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 530.414 ; gain = 228.402
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'dlx_syn' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/dlx_syn.vhd:55]
+INFO: [Synth 8-3491] module 'datapath' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/datapath.vhd:4' bound to instance 'dp' of component 'datapath' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/dlx_syn.vhd:455]
+INFO: [Synth 8-638] synthesizing module 'datapath' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/datapath.vhd:163]
+INFO: [Synth 8-3491] module 'if_stage' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/if_stage.vhd:7' bound to instance 'ifs' of component 'if_stage' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/datapath.vhd:479]
+INFO: [Synth 8-638] synthesizing module 'if_stage' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/if_stage.vhd:46]
+	Parameter N bound to: 30 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'pc' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/if_stage.vhd:136]
+INFO: [Synth 8-638] synthesizing module 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:17]
+	Parameter N bound to: 30 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'reg_en' (1#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:17]
+	Parameter N bound to: 30 - type: integer 
+INFO: [Synth 8-3491] module 'mux_2x1' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_2x1.vhd:4' bound to instance 'target_addr_sel' of component 'mux_2x1' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/if_stage.vhd:150]
+INFO: [Synth 8-638] synthesizing module 'mux_2x1' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_2x1.vhd:16]
+	Parameter N bound to: 30 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'mux_2x1' (2#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_2x1.vhd:16]
+	Parameter N bound to: 30 - type: integer 
+INFO: [Synth 8-3491] module 'beh_hadder' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/beh_adder.vhd:5' bound to instance 'btb_addr_sub' of component 'beh_hadder' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/if_stage.vhd:163]
+INFO: [Synth 8-638] synthesizing module 'beh_hadder' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/beh_adder.vhd:17]
+	Parameter N bound to: 30 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'beh_hadder' (3#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/beh_adder.vhd:17]
+	Parameter A bound to: 30 - type: integer 
+INFO: [Synth 8-3491] module 'btb' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/btb/btb.vhd:15' bound to instance 'branch_target_buffer' of component 'btb' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/if_stage.vhd:174]
+INFO: [Synth 8-638] synthesizing module 'btb' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/btb/btb.vhd:43]
+	Parameter A bound to: 30 - type: integer 
+INFO: [Synth 8-226] default block is never used [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/btb/btb.vhd:80]
+INFO: [Synth 8-226] default block is never used [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/btb/btb.vhd:101]
+INFO: [Synth 8-226] default block is never used [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/btb/btb.vhd:109]
+INFO: [Synth 8-256] done synthesizing module 'btb' (4#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/btb/btb.vhd:43]
+	Parameter N bound to: 30 - type: integer 
+INFO: [Synth 8-3491] module 'beh_hadder' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/beh_adder.vhd:5' bound to instance 'pc_adder' of component 'beh_hadder' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/if_stage.vhd:198]
+	Parameter N bound to: 30 - type: integer 
+INFO: [Synth 8-3491] module 'mux_4x1' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_4x1.vhd:5' bound to instance 'pc_selector' of component 'mux_4x1' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/if_stage.vhd:212]
+INFO: [Synth 8-638] synthesizing module 'mux_4x1' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_4x1.vhd:19]
+	Parameter N bound to: 30 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'mux_4x1' (5#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_4x1.vhd:19]
+INFO: [Synth 8-256] done synthesizing module 'if_stage' (6#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/1_if/if_stage.vhd:46]
+INFO: [Synth 8-3491] module 'if_id_reg' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/f_id_reg.vhd:4' bound to instance 'if_id_regs' of component 'if_id_reg' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/datapath.vhd:504]
+INFO: [Synth 8-638] synthesizing module 'if_id_reg' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/f_id_reg.vhd:23]
+	Parameter N bound to: 30 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'npc_reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/f_id_reg.vhd:39]
+	Parameter N bound to: 26 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'ir_reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/f_id_reg.vhd:53]
+INFO: [Synth 8-638] synthesizing module 'reg_en__parameterized2' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:17]
+	Parameter N bound to: 26 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'reg_en__parameterized2' (6#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:17]
+INFO: [Synth 8-256] done synthesizing module 'if_id_reg' (7#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/f_id_reg.vhd:23]
+INFO: [Synth 8-3491] module 'id_stage' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/id_stage.vhd:5' bound to instance 'ids' of component 'id_stage' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/datapath.vhd:516]
+INFO: [Synth 8-638] synthesizing module 'id_stage' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/id_stage.vhd:54]
+	Parameter N bound to: 5 - type: integer 
+INFO: [Synth 8-3491] module 'mux_4x1' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_4x1.vhd:5' bound to instance 'dest_selector' of component 'mux_4x1' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/id_stage.vhd:140]
+INFO: [Synth 8-638] synthesizing module 'mux_4x1__parameterized1' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_4x1.vhd:19]
+	Parameter N bound to: 5 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'mux_4x1__parameterized1' (7#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_4x1.vhd:19]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'rf' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:9' bound to instance 'reg_file' of component 'rf' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/id_stage.vhd:157]
+INFO: [Synth 8-638] synthesizing module 'rf' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:45]
+	Parameter N bound to: 32 - type: integer 
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+INFO: [Synth 8-638] synthesizing module 'reg_en__parameterized4' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:17]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'reg_en__parameterized4' (7#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:17]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:73]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'lo' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:87]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'hi' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:100]
+INFO: [Synth 8-256] done synthesizing module 'rf' (8#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/rf.vhd:45]
+INFO: [Synth 8-3491] module 'sign_extender' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/sign_extender.vhd:4' bound to instance 'sign_ext' of component 'sign_extender' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/id_stage.vhd:179]
+INFO: [Synth 8-638] synthesizing module 'sign_extender' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/sign_extender.vhd:14]
+INFO: [Synth 8-256] done synthesizing module 'sign_extender' (9#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/sign_extender.vhd:14]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'mux_2x1' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_2x1.vhd:4' bound to instance 'a_sel' of component 'mux_2x1' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/id_stage.vhd:191]
+INFO: [Synth 8-638] synthesizing module 'mux_2x1__parameterized1' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_2x1.vhd:16]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'mux_2x1__parameterized1' (9#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_2x1.vhd:16]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'mux_2x1' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_2x1.vhd:4' bound to instance 'b_sel' of component 'mux_2x1' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/id_stage.vhd:203]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'mux_2x1' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_2x1.vhd:4' bound to instance 'opb_sel' of component 'mux_2x1' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/id_stage.vhd:215]
+INFO: [Synth 8-256] done synthesizing module 'id_stage' (10#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/2_id/id_stage.vhd:54]
+INFO: [Synth 8-3491] module 'id_ex_reg' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/id_ex_reg.vhd:10' bound to instance 'id_exe_regs' of component 'id_ex_reg' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/datapath.vhd:550]
+INFO: [Synth 8-638] synthesizing module 'id_ex_reg' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/id_ex_reg.vhd:57]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'b_reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/id_ex_reg.vhd:95]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'npc_reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/id_ex_reg.vhd:107]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'imm_reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/id_ex_reg.vhd:119]
+	Parameter N bound to: 5 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'rs_reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/id_ex_reg.vhd:131]
+INFO: [Synth 8-638] synthesizing module 'reg_en__parameterized6' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:17]
+	Parameter N bound to: 5 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'reg_en__parameterized6' (10#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:17]
+	Parameter N bound to: 5 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'rt_reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/id_ex_reg.vhd:143]
+	Parameter N bound to: 5 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'rd_reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/id_ex_reg.vhd:155]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'a_add_reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/id_ex_reg.vhd:168]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'b_add_reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/id_ex_reg.vhd:180]
+	Parameter N bound to: 64 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'a_mult_reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/id_ex_reg.vhd:197]
+INFO: [Synth 8-638] synthesizing module 'reg_en__parameterized8' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:17]
+	Parameter N bound to: 64 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'reg_en__parameterized8' (10#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:17]
+	Parameter N bound to: 64 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'a_neg_mult_reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/id_ex_reg.vhd:209]
+	Parameter N bound to: 3 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'b10_1_reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/id_ex_reg.vhd:222]
+INFO: [Synth 8-638] synthesizing module 'reg_en__parameterized10' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:17]
+	Parameter N bound to: 3 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'reg_en__parameterized10' (10#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:17]
+	Parameter N bound to: 31 - type: integer 
+	Parameter S bound to: 2 - type: integer 
+INFO: [Synth 8-3491] module 'rshift_reg' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/rshift_reg.vhd:5' bound to instance 'b_mult_reg' of component 'rshift_reg' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/id_ex_reg.vhd:234]
+INFO: [Synth 8-638] synthesizing module 'rshift_reg' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/rshift_reg.vhd:20]
+	Parameter N bound to: 31 - type: integer 
+	Parameter S bound to: 2 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'rshift_reg' (11#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/rshift_reg.vhd:20]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'a_shift_reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/id_ex_reg.vhd:251]
+	Parameter N bound to: 5 - type: integer 
+INFO: [Synth 8-3491] module 'reg_en' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/reg_en.vhd:4' bound to instance 'b_shift_reg' of component 'reg_en' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/id_ex_reg.vhd:263]
+INFO: [Synth 8-256] done synthesizing module 'id_ex_reg' (12#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/id_ex_reg.vhd:57]
+INFO: [Synth 8-3491] module 'ex_stage' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/ex_stage.vhd:10' bound to instance 'exs' of component 'ex_stage' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/datapath.vhd:592]
+INFO: [Synth 8-638] synthesizing module 'ex_stage' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/ex_stage.vhd:70]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'rca_generic_struct' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:5' bound to instance 'rca_add' of component 'rca_generic_struct' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/ex_stage.vhd:195]
+INFO: [Synth 8-638] synthesizing module 'rca_generic_struct' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:20]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-638] synthesizing module 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:14]
+INFO: [Synth 8-256] done synthesizing module 'fa' (13#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:14]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Synth 8-3491] module 'fa' declared at 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/fa.vhd:4' bound to instance 'fai' of component 'fa' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:43]
+INFO: [Common 17-14] Message 'Synth 8-3491' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-256] done synthesizing module 'rca_generic_struct' (14#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:20]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'mux_7x1_single_bit' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_7x1_single_bit.vhd:20]
+INFO: [Synth 8-256] done synthesizing module 'mux_7x1_single_bit' (15#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_7x1_single_bit.vhd:20]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'mux_4x1__parameterized3' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_4x1.vhd:19]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'mux_4x1__parameterized3' (15#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_4x1.vhd:19]
+	Parameter N bound to: 32 - type: integer 
+	Parameter N bound to: 32 - type: integer 
+	Parameter N bound to: 5 - type: integer 
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'alu' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu.vhd:41]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'p4_adder' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/p4_adder.vhd:18]
+	Parameter N bound to: 32 - type: integer 
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'carry_generator' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/carry_generator.vhd:19]
+	Parameter N bound to: 32 - type: integer 
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'pg_network' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/pg_network.vhd:17]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'pg_net_block' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/pg_net_block.vhd:13]
+INFO: [Synth 8-256] done synthesizing module 'pg_net_block' (16#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/pg_net_block.vhd:13]
+INFO: [Synth 8-256] done synthesizing module 'pg_network' (17#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/pg_network.vhd:17]
+INFO: [Synth 8-638] synthesizing module 'g_unit' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/g_unit.vhd:13]
+INFO: [Synth 8-256] done synthesizing module 'g_unit' (18#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/g_unit.vhd:13]
+INFO: [Synth 8-638] synthesizing module 'pg_unit' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/pg_unit.vhd:15]
+INFO: [Synth 8-256] done synthesizing module 'pg_unit' (19#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/pg_unit.vhd:15]
+INFO: [Synth 8-256] done synthesizing module 'carry_generator' (20#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/carry_generator.vhd:19]
+	Parameter NBIT_PER_BLOCK bound to: 4 - type: integer 
+	Parameter NBLOCKS bound to: 8 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'sum_generator' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/sum_generator.vhd:18]
+	Parameter NBIT_PER_BLOCK bound to: 4 - type: integer 
+	Parameter NBLOCKS bound to: 8 - type: integer 
+	Parameter N bound to: 4 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'carry_select_block' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/carry_select_block.vhd:16]
+	Parameter N bound to: 4 - type: integer 
+	Parameter N bound to: 4 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'rca_generic_struct__parameterized1' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:20]
+	Parameter N bound to: 4 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'rca_generic_struct__parameterized1' (20#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:20]
+	Parameter N bound to: 4 - type: integer 
+	Parameter N bound to: 4 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'mux_2x1__parameterized3' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_2x1.vhd:16]
+	Parameter N bound to: 4 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'mux_2x1__parameterized3' (20#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_2x1.vhd:16]
+INFO: [Synth 8-256] done synthesizing module 'carry_select_block' (21#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/carry_select_block.vhd:16]
+	Parameter N bound to: 4 - type: integer 
+	Parameter N bound to: 4 - type: integer 
+	Parameter N bound to: 4 - type: integer 
+	Parameter N bound to: 4 - type: integer 
+	Parameter N bound to: 4 - type: integer 
+	Parameter N bound to: 4 - type: integer 
+	Parameter N bound to: 4 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'sum_generator' (22#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/sum_generator.vhd:18]
+INFO: [Synth 8-256] done synthesizing module 'p4_adder' (23#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/p4_adder.vhd:18]
+INFO: [Synth 8-638] synthesizing module 'mul' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/multiplier/mul.vhd:17]
+INFO: [Synth 8-638] synthesizing module 'a_generator' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/multiplier/a_generator.vhd:17]
+INFO: [Synth 8-256] done synthesizing module 'a_generator' (24#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/multiplier/a_generator.vhd:17]
+INFO: [Synth 8-638] synthesizing module 'booth_encoder' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/multiplier/booth_encoder.vhd:11]
+INFO: [Synth 8-226] default block is never used [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/multiplier/booth_encoder.vhd:14]
+INFO: [Synth 8-256] done synthesizing module 'booth_encoder' (25#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/multiplier/booth_encoder.vhd:11]
+	Parameter N bound to: 4 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'equality_comparator' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/equality_comparator.vhd:16]
+	Parameter N bound to: 4 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'equality_comparator' (26#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/equality_comparator.vhd:16]
+	Parameter N bound to: 3 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'mux_4x1__parameterized5' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_4x1.vhd:19]
+	Parameter N bound to: 3 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'mux_4x1__parameterized5' (26#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_4x1.vhd:19]
+	Parameter NBIT bound to: 64 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'mux_6x1' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_6x1.vhd:22]
+	Parameter NBIT bound to: 64 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'mux_6x1' (27#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_6x1.vhd:22]
+	Parameter N bound to: 3 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'mux_2x1__parameterized5' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_2x1.vhd:16]
+	Parameter N bound to: 3 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'mux_2x1__parameterized5' (27#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_2x1.vhd:16]
+	Parameter NBIT bound to: 64 - type: integer 
+	Parameter N bound to: 64 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'rca_generic_struct__parameterized3' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:20]
+	Parameter N bound to: 64 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'rca_generic_struct__parameterized3' (27#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/adder/rca_generic_struct.vhd:20]
+INFO: [Synth 8-256] done synthesizing module 'mul' (28#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/multiplier/mul.vhd:17]
+INFO: [Synth 8-638] synthesizing module 'shifter_t2' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/shifter/shifter_t2.vhd:19]
+INFO: [Synth 8-226] default block is never used [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/shifter/shifter_t2.vhd:89]
+INFO: [Synth 8-256] done synthesizing module 'shifter_t2' (29#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/shifter/shifter_t2.vhd:19]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'logicals' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/logicals/logicals.vhd:25]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'xil_defaultlib_nand3' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/nand3.vhd:13]
+INFO: [Synth 8-256] done synthesizing module 'xil_defaultlib_nand3' (30#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/nand3.vhd:13]
+INFO: [Synth 8-638] synthesizing module 'xil_defaultlib_nand4' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/nand4.vhd:14]
+INFO: [Synth 8-256] done synthesizing module 'xil_defaultlib_nand4' (31#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/nand4.vhd:14]
+INFO: [Synth 8-256] done synthesizing module 'logicals' (32#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/logicals/logicals.vhd:25]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'alu_out_selector' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd:27]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-226] default block is never used [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd:44]
+INFO: [Synth 8-256] done synthesizing module 'alu_out_selector' (33#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu_out_selector.vhd:27]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'comparator' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/comparator.vhd:25]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'comparator' (34#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/comparator.vhd:25]
+INFO: [Synth 8-256] done synthesizing module 'alu' (35#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/alu.vhd:41]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'mux_7x1' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_7x1.vhd:21]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'mux_7x1' (36#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/misc/mux_7x1.vhd:21]
+INFO: [Synth 8-256] done synthesizing module 'ex_stage' (37#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/3_ex/ex_stage.vhd:70]
+INFO: [Synth 8-638] synthesizing module 'ex_mem_reg' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/ex_mem_reg.vhd:34]
+	Parameter N bound to: 32 - type: integer 
+	Parameter N bound to: 32 - type: integer 
+	Parameter N bound to: 32 - type: integer 
+	Parameter N bound to: 5 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'ex_mem_reg' (38#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/ex_mem_reg.vhd:34]
+INFO: [Synth 8-638] synthesizing module 'mem_stage' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/4_mem/mem_stage.vhd:22]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'mem_sign_extender' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/4_mem/mem_sign_extender.vhd:21]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-226] default block is never used [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/4_mem/mem_sign_extender.vhd:30]
+INFO: [Synth 8-226] default block is never used [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/4_mem/mem_sign_extender.vhd:47]
+INFO: [Synth 8-256] done synthesizing module 'mem_sign_extender' (39#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/4_mem/mem_sign_extender.vhd:21]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'mem_stage' (40#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/4_mem/mem_stage.vhd:22]
+INFO: [Synth 8-638] synthesizing module 'mem_wb_reg' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/mem_wb_reg.vhd:28]
+	Parameter N bound to: 32 - type: integer 
+	Parameter N bound to: 32 - type: integer 
+	Parameter N bound to: 32 - type: integer 
+	Parameter N bound to: 5 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'mem_wb_reg' (41#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/mem_wb_reg.vhd:28]
+INFO: [Synth 8-638] synthesizing module 'wb_stage' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/5_wb/wb_stage.vhd:13]
+	Parameter N bound to: 32 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'wb_stage' (42#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/5_wb/wb_stage.vhd:13]
+INFO: [Synth 8-256] done synthesizing module 'datapath' (43#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/datapath.vhd:163]
+INFO: [Synth 8-638] synthesizing module 'cu' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/cu.vhd:169]
+INFO: [Synth 8-638] synthesizing module 'stall_unit' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/stall_unit.vhd:61]
+INFO: [Synth 8-226] default block is never used [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/stall_unit.vhd:175]
+INFO: [Synth 8-256] done synthesizing module 'stall_unit' (44#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/stall_unit.vhd:61]
+INFO: [Synth 8-226] default block is never used [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/cu.vhd:665]
+INFO: [Synth 8-226] default block is never used [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/cu.vhd:795]
+INFO: [Synth 8-256] done synthesizing module 'cu' (45#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/cu.vhd:169]
+	Parameter N bound to: 32 - type: integer 
+	Parameter C bound to: 32 - type: integer 
+	Parameter A bound to: 8 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'memory_controller' [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/memory_controller.vhd:45]
+	Parameter N bound to: 32 - type: integer 
+	Parameter C bound to: 32 - type: integer 
+	Parameter A bound to: 8 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'memory_controller' (46#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/memory_controller.vhd:45]
+INFO: [Synth 8-256] done synthesizing module 'dlx_syn' (47#1) [C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/dlx_syn.vhd:55]
+WARNING: [Synth 8-3331] design memory_controller has unconnected port cpu_cache_address[31]
+WARNING: [Synth 8-3331] design memory_controller has unconnected port cpu_cache_address[30]
+WARNING: [Synth 8-3331] design memory_controller has unconnected port cpu_cache_address[29]
+WARNING: [Synth 8-3331] design memory_controller has unconnected port cpu_cache_address[28]
+WARNING: [Synth 8-3331] design memory_controller has unconnected port cpu_cache_address[27]
+WARNING: [Synth 8-3331] design memory_controller has unconnected port cpu_cache_address[26]
+WARNING: [Synth 8-3331] design memory_controller has unconnected port cpu_cache_address[25]
+WARNING: [Synth 8-3331] design memory_controller has unconnected port cpu_cache_address[24]
+WARNING: [Synth 8-3331] design memory_controller has unconnected port cpu_cache_address[23]
+WARNING: [Synth 8-3331] design memory_controller has unconnected port cpu_cache_address[22]
+WARNING: [Synth 8-3331] design memory_controller has unconnected port cpu_cache_address[21]
+WARNING: [Synth 8-3331] design memory_controller has unconnected port cpu_cache_address[20]
+WARNING: [Synth 8-3331] design memory_controller has unconnected port cpu_cache_address[19]
+WARNING: [Synth 8-3331] design memory_controller has unconnected port cpu_cache_address[18]
+WARNING: [Synth 8-3331] design memory_controller has unconnected port cpu_cache_address[17]
+WARNING: [Synth 8-3331] design memory_controller has unconnected port cpu_cache_address[16]
+WARNING: [Synth 8-3331] design memory_controller has unconnected port cpu_cache_address[15]
+WARNING: [Synth 8-3331] design memory_controller has unconnected port cpu_cache_address[14]
+WARNING: [Synth 8-3331] design memory_controller has unconnected port cpu_cache_address[13]
+WARNING: [Synth 8-3331] design memory_controller has unconnected port cpu_cache_address[12]
+WARNING: [Synth 8-3331] design memory_controller has unconnected port cpu_cache_address[11]
+WARNING: [Synth 8-3331] design memory_controller has unconnected port cpu_cache_address[10]
+WARNING: [Synth 8-3331] design memory_controller has unconnected port cpu_cache_address[9]
+WARNING: [Synth 8-3331] design memory_controller has unconnected port cpu_cache_address[8]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_id[62]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_id[61]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_id[60]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_id[59]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_id[58]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_id[57]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_id[56]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_id[55]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_id[54]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_id[53]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_id[52]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_id[51]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_id[50]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_id[49]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_id[48]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_id[47]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_id[46]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_id[45]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_id[44]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_id[43]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_id[42]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_wb[3]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_wb[2]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_wb[1]
+WARNING: [Synth 8-3331] design stall_unit has unconnected port curr_wb[0]
+WARNING: [Synth 8-3331] design cu has unconnected port instr_if[25]
+WARNING: [Synth 8-3331] design cu has unconnected port instr_if[24]
+WARNING: [Synth 8-3331] design cu has unconnected port instr_if[23]
+WARNING: [Synth 8-3331] design cu has unconnected port instr_if[22]
+WARNING: [Synth 8-3331] design cu has unconnected port instr_if[21]
+WARNING: [Synth 8-3331] design cu has unconnected port instr_if[15]
+WARNING: [Synth 8-3331] design cu has unconnected port instr_if[14]
+WARNING: [Synth 8-3331] design cu has unconnected port instr_if[13]
+WARNING: [Synth 8-3331] design cu has unconnected port instr_if[12]
+WARNING: [Synth 8-3331] design cu has unconnected port instr_if[11]
+WARNING: [Synth 8-3331] design a_generator has unconnected port a_in[63]
+WARNING: [Synth 8-3331] design a_generator has unconnected port a_in[62]
+WARNING: [Synth 8-3331] design a_generator has unconnected port neg_a_in[63]
+WARNING: [Synth 8-3331] design a_generator has unconnected port neg_a_in[62]
+WARNING: [Synth 8-3331] design pg_network has unconnected port p[0]
+WARNING: [Synth 8-3331] design btb has unconnected port cache_hit_rw
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 610.906 ; gain = 308.895
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 610.906 ; gain = 308.895
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xczu7ev-ffvf1517-1LV-i
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xczu7ev-ffvf1517-1LV-i
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 610.906 ; gain = 308.895
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'curr_es_reg' in module 'cu'
+INFO: [Synth 8-802] inferred FSM for state register 'currstate_reg' in module 'memory_controller'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+           normal_op_exe |                               00 |                               00
+            a_neg_sample |                               01 |                               01
+             mul_in_prog |                               10 |                               10
+                 mul_end |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'curr_es_reg' using encoding 'sequential' in module 'cu'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    idle |                              001 |                               00
+               cachemiss |                              010 |                               01
+           eviction_read |                              100 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'currstate_reg' using encoding 'one-hot' in module 'memory_controller'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:14 . Memory (MB): peak = 729.656 ; gain = 427.645
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     31 Bit       Adders := 2     
+	   2 Input      5 Bit       Adders := 1     
+	   2 Input      4 Bit       Adders := 1     
++---XORs : 
+	   2 Input      4 Bit         XORs := 1     
+	   3 Input      1 Bit         XORs := 160   
+	   2 Input      1 Bit         XORs := 64    
++---Registers : 
+	               64 Bit    Registers := 2     
+	               63 Bit    Registers := 1     
+	               42 Bit    Registers := 1     
+	               32 Bit    Registers := 47    
+	               31 Bit    Registers := 1     
+	               30 Bit    Registers := 2     
+	               26 Bit    Registers := 1     
+	               15 Bit    Registers := 1     
+	                5 Bit    Registers := 6     
+	                4 Bit    Registers := 2     
+	                3 Bit    Registers := 1     
+	                1 Bit    Registers := 9     
++---Muxes : 
+	   2 Input     63 Bit        Muxes := 2     
+	  66 Input     63 Bit        Muxes := 1     
+	  64 Input     62 Bit        Muxes := 1     
+	   2 Input     62 Bit        Muxes := 1     
+	   2 Input     42 Bit        Muxes := 9     
+	   4 Input     42 Bit        Muxes := 1     
+	   4 Input     39 Bit        Muxes := 4     
+	   2 Input     39 Bit        Muxes := 4     
+	   4 Input     32 Bit        Muxes := 14    
+	   2 Input     32 Bit        Muxes := 28    
+	   3 Input     32 Bit        Muxes := 1     
+	   4 Input     31 Bit        Muxes := 1     
+	   2 Input     31 Bit        Muxes := 1     
+	   2 Input     30 Bit        Muxes := 1     
+	   4 Input     30 Bit        Muxes := 1     
+	   2 Input     15 Bit        Muxes := 8     
+	   4 Input     15 Bit        Muxes := 1     
+	   2 Input     10 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 2     
+	   3 Input      8 Bit        Muxes := 1     
+	   4 Input      5 Bit        Muxes := 2     
+	   2 Input      4 Bit        Muxes := 9     
+	   4 Input      4 Bit        Muxes := 1     
+	   8 Input      3 Bit        Muxes := 2     
+	   4 Input      3 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 2     
+	   3 Input      3 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 14    
+	   4 Input      2 Bit        Muxes := 8     
+	   3 Input      2 Bit        Muxes := 2     
+	   4 Input      1 Bit        Muxes := 19    
+	   2 Input      1 Bit        Muxes := 35    
+	   3 Input      1 Bit        Muxes := 4     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module reg_en 
+Detailed RTL Component Info : 
++---Registers : 
+	               30 Bit    Registers := 1     
+Module mux_2x1 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input     30 Bit        Muxes := 1     
+Module beh_hadder 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     31 Bit       Adders := 1     
+Module btb 
+Detailed RTL Component Info : 
++---Muxes : 
+	   4 Input     32 Bit        Muxes := 2     
+	   2 Input     32 Bit        Muxes := 5     
+	   4 Input      1 Bit        Muxes := 2     
+Module mux_4x1 
+Detailed RTL Component Info : 
++---Muxes : 
+	   4 Input     30 Bit        Muxes := 1     
+Module reg_en__parameterized2 
+Detailed RTL Component Info : 
++---Registers : 
+	               26 Bit    Registers := 1     
+Module mux_4x1__parameterized1 
+Detailed RTL Component Info : 
++---Muxes : 
+	   4 Input      5 Bit        Muxes := 1     
+Module reg_en__parameterized4 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 1     
+Module rf 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      5 Bit       Adders := 1     
++---Muxes : 
+	   4 Input     32 Bit        Muxes := 2     
+Module sign_extender 
+Detailed RTL Component Info : 
++---Muxes : 
+	   4 Input     32 Bit        Muxes := 1     
+	   2 Input     32 Bit        Muxes := 2     
+Module mux_2x1__parameterized1 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 1     
+Module reg_en__parameterized6 
+Detailed RTL Component Info : 
++---Registers : 
+	                5 Bit    Registers := 1     
+Module reg_en__parameterized8 
+Detailed RTL Component Info : 
++---Registers : 
+	               64 Bit    Registers := 1     
+Module reg_en__parameterized10 
+Detailed RTL Component Info : 
++---Registers : 
+	                3 Bit    Registers := 1     
+Module rshift_reg 
+Detailed RTL Component Info : 
++---Registers : 
+	               31 Bit    Registers := 1     
++---Muxes : 
+	   4 Input     31 Bit        Muxes := 1     
+	   2 Input     31 Bit        Muxes := 1     
+Module fa 
+Detailed RTL Component Info : 
++---XORs : 
+	   3 Input      1 Bit         XORs := 1     
+Module mux_4x1__parameterized3 
+Detailed RTL Component Info : 
++---Muxes : 
+	   4 Input     32 Bit        Muxes := 1     
+Module pg_net_block 
+Detailed RTL Component Info : 
++---XORs : 
+	   2 Input      1 Bit         XORs := 1     
+Module pg_network 
+Detailed RTL Component Info : 
++---XORs : 
+	   2 Input      1 Bit         XORs := 1     
+Module mux_2x1__parameterized3 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      4 Bit        Muxes := 1     
+Module p4_adder 
+Detailed RTL Component Info : 
++---XORs : 
+	   2 Input      1 Bit         XORs := 32    
+Module booth_encoder 
+Detailed RTL Component Info : 
++---Muxes : 
+	   8 Input      3 Bit        Muxes := 1     
+Module equality_comparator 
+Detailed RTL Component Info : 
++---XORs : 
+	   2 Input      4 Bit         XORs := 1     
+Module mux_4x1__parameterized5 
+Detailed RTL Component Info : 
++---Muxes : 
+	   4 Input      3 Bit        Muxes := 1     
+Module mux_2x1__parameterized5 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      3 Bit        Muxes := 1     
+Module shifter_t2 
+Detailed RTL Component Info : 
++---Muxes : 
+	   4 Input     39 Bit        Muxes := 4     
+	   2 Input     39 Bit        Muxes := 4     
+	   2 Input     32 Bit        Muxes := 12    
+	   4 Input     32 Bit        Muxes := 1     
+Module alu_out_selector 
+Detailed RTL Component Info : 
++---Muxes : 
+	   4 Input     32 Bit        Muxes := 2     
+Module mem_sign_extender 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 3     
+	   4 Input     32 Bit        Muxes := 2     
+Module stall_unit 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input     42 Bit        Muxes := 9     
+	   4 Input     42 Bit        Muxes := 1     
+	   2 Input     15 Bit        Muxes := 8     
+	   4 Input     15 Bit        Muxes := 1     
+	   2 Input     10 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 9     
+	   4 Input      2 Bit        Muxes := 3     
+	   3 Input      2 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 24    
+	   4 Input      1 Bit        Muxes := 2     
+Module cu 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 1     
++---Registers : 
+	               63 Bit    Registers := 1     
+	               42 Bit    Registers := 1     
+	               15 Bit    Registers := 1     
+	                4 Bit    Registers := 2     
+	                1 Bit    Registers := 9     
++---Muxes : 
+	   2 Input     63 Bit        Muxes := 2     
+	  66 Input     63 Bit        Muxes := 1     
+	  64 Input     62 Bit        Muxes := 1     
+	   2 Input     62 Bit        Muxes := 1     
+	   4 Input      4 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 5     
+	   4 Input      2 Bit        Muxes := 5     
+	   2 Input      1 Bit        Muxes := 10    
+	   4 Input      1 Bit        Muxes := 15    
+Module memory_controller 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 2     
++---Muxes : 
+	   3 Input     32 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 2     
+	   3 Input      8 Bit        Muxes := 1     
+	   3 Input      3 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+	   3 Input      1 Bit        Muxes := 4     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 1728 (col length:144)
+BRAMs: 624 (col length: RAMB18 144 RAMB36 72)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
+WARNING: [Synth 8-3331] design a_generator has unconnected port a_in[63]
+WARNING: [Synth 8-3331] design a_generator has unconnected port a_in[62]
+WARNING: [Synth 8-3331] design a_generator has unconnected port neg_a_in[63]
+WARNING: [Synth 8-3331] design a_generator has unconnected port neg_a_in[62]
+WARNING: [Synth 8-3331] design if_stage has unconnected port cache_data_out_read[30]
+WARNING: [Synth 8-3331] design if_stage has unconnected port cache_hit_rw
+WARNING: [Synth 8-3331] design dlx_syn has unconnected port cpu_cache_address[31]
+WARNING: [Synth 8-3331] design dlx_syn has unconnected port cpu_cache_address[30]
+WARNING: [Synth 8-3331] design dlx_syn has unconnected port cpu_cache_address[29]
+WARNING: [Synth 8-3331] design dlx_syn has unconnected port cpu_cache_address[28]
+WARNING: [Synth 8-3331] design dlx_syn has unconnected port cpu_cache_address[27]
+WARNING: [Synth 8-3331] design dlx_syn has unconnected port cpu_cache_address[26]
+WARNING: [Synth 8-3331] design dlx_syn has unconnected port cpu_cache_address[25]
+WARNING: [Synth 8-3331] design dlx_syn has unconnected port cpu_cache_address[24]
+WARNING: [Synth 8-3331] design dlx_syn has unconnected port cpu_cache_address[23]
+WARNING: [Synth 8-3331] design dlx_syn has unconnected port cpu_cache_address[22]
+WARNING: [Synth 8-3331] design dlx_syn has unconnected port cpu_cache_address[21]
+WARNING: [Synth 8-3331] design dlx_syn has unconnected port cpu_cache_address[20]
+WARNING: [Synth 8-3331] design dlx_syn has unconnected port cpu_cache_address[19]
+WARNING: [Synth 8-3331] design dlx_syn has unconnected port cpu_cache_address[18]
+WARNING: [Synth 8-3331] design dlx_syn has unconnected port cpu_cache_address[17]
+WARNING: [Synth 8-3331] design dlx_syn has unconnected port cpu_cache_address[16]
+WARNING: [Synth 8-3331] design dlx_syn has unconnected port cpu_cache_address[15]
+WARNING: [Synth 8-3331] design dlx_syn has unconnected port cpu_cache_address[14]
+WARNING: [Synth 8-3331] design dlx_syn has unconnected port cpu_cache_address[13]
+WARNING: [Synth 8-3331] design dlx_syn has unconnected port cpu_cache_address[12]
+WARNING: [Synth 8-3331] design dlx_syn has unconnected port cpu_cache_address[11]
+WARNING: [Synth 8-3331] design dlx_syn has unconnected port cpu_cache_address[10]
+WARNING: [Synth 8-3331] design dlx_syn has unconnected port cpu_cache_address[9]
+WARNING: [Synth 8-3331] design dlx_syn has unconnected port cpu_cache_address[8]
+INFO: [Synth 8-3886] merging instance 'ctrl_u/curr_id_reg[0]' (FDRE) to 'ctrl_u/curr_id_reg[46]'
+INFO: [Synth 8-3886] merging instance 'ctrl_u/curr_id_reg[2]' (FDSE) to 'ctrl_u/curr_id_reg[3]'
+INFO: [Synth 8-3886] merging instance 'ctrl_u/curr_id_reg[5]' (FDRE) to 'ctrl_u/curr_id_reg[1]'
+INFO: [Synth 8-3886] merging instance 'ctrl_u/curr_id_reg[1]' (FDRE) to 'ctrl_u/curr_id_reg[14]'
+INFO: [Synth 8-3886] merging instance 'ctrl_u/curr_id_reg[7]' (FDRE) to 'ctrl_u/curr_id_reg[16]'
+INFO: [Synth 8-3886] merging instance 'ctrl_u/curr_id_reg[4]' (FDSE) to 'ctrl_u/curr_id_reg[3]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[61]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[60]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[59]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[58]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[57]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[56]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[55]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[54]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[53]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[52]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[51]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[50]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[49]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[48]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[47]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[46]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[45]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[44]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[43]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[42]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[41]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[40]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[39]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[38]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[37]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[36]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[35]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[34]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[33]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[32]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[62]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[63]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/a_mult_reg/q_reg[63]' (FDRE) to 'dp/id_exe_regs/a_mult_reg/q_reg[31]'
+INFO: [Synth 8-3886] merging instance 'ctrl_u/curr_id_reg[42]' (FDRE) to 'ctrl_u/curr_id_reg[16]'
+INFO: [Synth 8-3886] merging instance 'ctrl_u/curr_id_reg[3]' (FDSE) to 'ctrl_u/curr_id_reg[15]'
+INFO: [Synth 8-3886] merging instance 'ctrl_u/curr_id_reg[45]' (FDSE) to 'ctrl_u/curr_id_reg[15]'
+INFO: [Synth 8-3886] merging instance 'ctrl_u/curr_id_reg[43]' (FDRE) to 'ctrl_u/curr_id_reg[20]'
+INFO: [Synth 8-3886] merging instance 'ctrl_u/curr_id_reg[47]' (FDRE) to 'ctrl_u/curr_id_reg[30]'
+INFO: [Synth 8-3886] merging instance 'ctrl_u/curr_id_reg[46]' (FDRE) to 'ctrl_u/curr_id_reg[50]'
+INFO: [Synth 8-3886] merging instance 'ctrl_u/curr_id_reg[48]' (FDRE) to 'ctrl_u/curr_id_reg[30]'
+INFO: [Synth 8-3886] merging instance 'ctrl_u/curr_id_reg[37]' (FDRE) to 'ctrl_u/curr_id_reg[30]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\ctrl_u/curr_id_reg[30] )
+INFO: [Synth 8-3886] merging instance 'ctrl_u/curr_id_reg[32]' (FDRE) to 'ctrl_u/curr_id_reg[31]'
+INFO: [Synth 8-3886] merging instance 'ctrl_u/curr_id_reg[20]' (FDRE) to 'ctrl_u/curr_id_reg[44]'
+INFO: [Synth 8-3886] merging instance 'ctrl_u/curr_id_reg[58]' (FDRE) to 'ctrl_u/curr_id_reg[57]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/imm_reg/q_reg[31]' (FDRE) to 'dp/id_exe_regs/imm_reg/q_reg[30]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/imm_reg/q_reg[30]' (FDRE) to 'dp/id_exe_regs/imm_reg/q_reg[29]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/imm_reg/q_reg[29]' (FDRE) to 'dp/id_exe_regs/imm_reg/q_reg[28]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/imm_reg/q_reg[28]' (FDRE) to 'dp/id_exe_regs/imm_reg/q_reg[27]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/imm_reg/q_reg[27]' (FDRE) to 'dp/id_exe_regs/imm_reg/q_reg[26]'
+INFO: [Synth 8-3886] merging instance 'dp/id_exe_regs/npc_reg/q_reg[1]' (FDRE) to 'dp/id_exe_regs/npc_reg/q_reg[0]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (dp/\id_exe_regs/npc_reg/q_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (dp/\id_exe_regs/b10_1_reg/q_reg[0] )
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:21 ; elapsed = 00:01:20 . Memory (MB): peak = 1629.039 ; gain = 1327.027
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:26 ; elapsed = 00:01:25 . Memory (MB): peak = 1629.039 ; gain = 1327.027
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:31 ; elapsed = 00:01:31 . Memory (MB): peak = 1629.039 ; gain = 1327.027
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:38 ; elapsed = 00:01:38 . Memory (MB): peak = 1629.039 ; gain = 1327.027
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:38 ; elapsed = 00:01:38 . Memory (MB): peak = 1629.039 ; gain = 1327.027
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:39 ; elapsed = 00:01:38 . Memory (MB): peak = 1629.039 ; gain = 1327.027
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:39 ; elapsed = 00:01:38 . Memory (MB): peak = 1629.039 ; gain = 1327.027
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:39 ; elapsed = 00:01:39 . Memory (MB): peak = 1629.039 ; gain = 1327.027
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:39 ; elapsed = 00:01:39 . Memory (MB): peak = 1629.039 ; gain = 1327.027
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |CARRY8 |     8|
+|3     |LUT1   |    42|
+|4     |LUT2   |   112|
+|5     |LUT3   |   251|
+|6     |LUT4   |   208|
+|7     |LUT5   |   863|
+|8     |LUT6   |  1262|
+|9     |MUXF7  |   273|
+|10    |MUXF8  |   124|
+|11    |FDRE   |  1800|
+|12    |FDSE   |    40|
+|13    |IBUF   |   212|
+|14    |OBUF   |   335|
+|15    |OBUFT  |     3|
++------+-------+------+
+
+Report Instance Areas: 
++------+--------------------------+--------------------------+------+
+|      |Instance                  |Module                    |Cells |
++------+--------------------------+--------------------------+------+
+|1     |top                       |                          |  5534|
+|2     |  ctrl_u                  |cu                        |   716|
+|3     |  dp                      |datapath                  |  4178|
+|4     |    ex_mem_regs           |ex_mem_reg                |   278|
+|5     |      alu_out_high_reg    |reg_en__parameterized4_48 |    32|
+|6     |      alu_out_low_reg     |reg_en__parameterized4_49 |   176|
+|7     |      b_reg               |reg_en__parameterized4_50 |    64|
+|8     |      rd_reg              |reg_en__parameterized6_51 |     6|
+|9     |    id_exe_regs           |id_ex_reg                 |  1461|
+|10    |      a_add_reg           |reg_en__parameterized4_37 |    32|
+|11    |      a_mult_reg          |reg_en__parameterized8    |   433|
+|12    |      a_neg_mult_reg      |reg_en__parameterized8_38 |   220|
+|13    |      a_shift_reg         |reg_en__parameterized4_39 |    38|
+|14    |      b10_1_reg           |reg_en__parameterized10   |    17|
+|15    |      b_add_reg           |reg_en__parameterized4_40 |    32|
+|16    |      b_mult_reg          |rshift_reg                |   150|
+|17    |      b_reg               |reg_en__parameterized4_41 |    32|
+|18    |      b_shift_reg         |reg_en__parameterized6_42 |     5|
+|19    |      imm_reg             |reg_en__parameterized4_43 |    68|
+|20    |      npc_reg             |reg_en__parameterized4_44 |    62|
+|21    |      rd_reg              |reg_en__parameterized6_45 |     5|
+|22    |      rs_reg              |reg_en__parameterized6_46 |   355|
+|23    |      rt_reg              |reg_en__parameterized6_47 |    12|
+|24    |    ids                   |id_stage                  |  2108|
+|25    |      reg_file            |rf                        |  2108|
+|26    |        \GPR_gen[10].reg  |reg_en__parameterized4_4  |    32|
+|27    |        \GPR_gen[11].reg  |reg_en__parameterized4_5  |   160|
+|28    |        \GPR_gen[12].reg  |reg_en__parameterized4_6  |    32|
+|29    |        \GPR_gen[13].reg  |reg_en__parameterized4_7  |    32|
+|30    |        \GPR_gen[14].reg  |reg_en__parameterized4_8  |    32|
+|31    |        \GPR_gen[15].reg  |reg_en__parameterized4_9  |    96|
+|32    |        \GPR_gen[16].reg  |reg_en__parameterized4_10 |    32|
+|33    |        \GPR_gen[17].reg  |reg_en__parameterized4_11 |    32|
+|34    |        \GPR_gen[18].reg  |reg_en__parameterized4_12 |    32|
+|35    |        \GPR_gen[19].reg  |reg_en__parameterized4_13 |   286|
+|36    |        \GPR_gen[1].reg   |reg_en__parameterized4_14 |    32|
+|37    |        \GPR_gen[20].reg  |reg_en__parameterized4_15 |    32|
+|38    |        \GPR_gen[21].reg  |reg_en__parameterized4_16 |    32|
+|39    |        \GPR_gen[22].reg  |reg_en__parameterized4_17 |    32|
+|40    |        \GPR_gen[23].reg  |reg_en__parameterized4_18 |    96|
+|41    |        \GPR_gen[24].reg  |reg_en__parameterized4_19 |    32|
+|42    |        \GPR_gen[25].reg  |reg_en__parameterized4_20 |    32|
+|43    |        \GPR_gen[26].reg  |reg_en__parameterized4_21 |    32|
+|44    |        \GPR_gen[27].reg  |reg_en__parameterized4_22 |   164|
+|45    |        \GPR_gen[28].reg  |reg_en__parameterized4_23 |    32|
+|46    |        \GPR_gen[29].reg  |reg_en__parameterized4_24 |    32|
+|47    |        \GPR_gen[2].reg   |reg_en__parameterized4_25 |    32|
+|48    |        \GPR_gen[30].reg  |reg_en__parameterized4_26 |    32|
+|49    |        \GPR_gen[31].reg  |reg_en__parameterized4_27 |    97|
+|50    |        \GPR_gen[3].reg   |reg_en__parameterized4_28 |   222|
+|51    |        \GPR_gen[4].reg   |reg_en__parameterized4_29 |    32|
+|52    |        \GPR_gen[5].reg   |reg_en__parameterized4_30 |    32|
+|53    |        \GPR_gen[6].reg   |reg_en__parameterized4_31 |    32|
+|54    |        \GPR_gen[7].reg   |reg_en__parameterized4_32 |    96|
+|55    |        \GPR_gen[8].reg   |reg_en__parameterized4_33 |    32|
+|56    |        \GPR_gen[9].reg   |reg_en__parameterized4_34 |    32|
+|57    |        hi                |reg_en__parameterized4_35 |    62|
+|58    |        lo                |reg_en__parameterized4_36 |    62|
+|59    |    if_id_regs            |if_id_reg                 |   135|
+|60    |      ir_reg              |reg_en__parameterized2    |    75|
+|61    |      npc_reg             |reg_en_3                  |    60|
+|62    |    ifs                   |if_stage                  |    39|
+|63    |      btb_addr_sub        |beh_hadder                |     4|
+|64    |      pc                  |reg_en                    |    31|
+|65    |      pc_adder            |beh_hadder_2              |     4|
+|66    |    mem_wb_regs           |mem_wb_reg                |   133|
+|67    |      alu_high_reg        |reg_en__parameterized4    |    32|
+|68    |      alu_low_reg         |reg_en__parameterized4_0  |    32|
+|69    |      cache_data_reg      |reg_en__parameterized4_1  |    64|
+|70    |      rd_reg              |reg_en__parameterized6    |     5|
+|71    |    mems                  |mem_stage                 |    24|
+|72    |      mem_data_ext        |mem_sign_extender         |    24|
+|73    |  mc                      |memory_controller         |    88|
++------+--------------------------+--------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:39 ; elapsed = 00:01:39 . Memory (MB): peak = 1629.039 ; gain = 1327.027
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 95 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:39 ; elapsed = 00:01:39 . Memory (MB): peak = 1629.039 ; gain = 1327.027
+Synthesis Optimization Complete : Time (s): cpu = 00:01:39 ; elapsed = 00:01:39 . Memory (MB): peak = 1629.039 ; gain = 1327.027
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.220 . Memory (MB): peak = 1629.039 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 618 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1629.039 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 213 instances were transformed.
+  BUFG => BUFGCE: 1 instance 
+  IBUF => IBUF (IBUFCTRL, INBUF): 212 instances
+
+INFO: [Common 17-83] Releasing license: Synthesis
+305 Infos, 95 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:51 ; elapsed = 00:01:53 . Memory (MB): peak = 1629.039 ; gain = 1327.027
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1629.039 ; gain = 0.000
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.runs/synth_1/dlx_syn.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file dlx_syn_utilization_synth.rpt -pb dlx_syn_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sat Oct 17 23:32:02 2020...
