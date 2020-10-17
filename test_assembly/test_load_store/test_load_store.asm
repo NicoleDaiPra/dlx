@@ -1,6 +1,6 @@
 addui $t1, $zero, 0x12fa
 addui $t2, $zero, #50
-sb 100($t1), $t1
+sb 100($zero), $t1
 sh 150($t2), $t1
 sw 200($t2), $t1
 lb $t3, 150($t2)
