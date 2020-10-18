@@ -7,8 +7,6 @@ mult $t1, $t2
 mfhi $t4
 mflo $t5
 mult $t1, $t3
-mult $t2, $t3
-add $t8, $t2, $t3
 mfhi $t6
 mflo $t7
 stop:
