@@ -142,8 +142,8 @@ begin
 			N => 5
 		)
 		port map (
-			a => instr(20 downto 16), -- rt register in I type instructions
-			b => instr(15 downto 11), -- rd register in R type instructions
+			a => instr(15 downto 11), -- rd register in R type instructions
+			b => instr(20 downto 16), -- rt register in I type instructions
 			c => reg_31, -- rd register for JAL
 			d => reg_31, -- rd register for JAL
 			sel => dest_reg_mux_enc,

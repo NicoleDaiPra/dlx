@@ -61,9 +61,12 @@ architecture behavioral of rf is
 	signal enable: std_logic_vector(31 downto 1);
 	signal regout_array: data_array;
 	signal lo_out, hi_out: std_logic_vector(N-1 downto 0);
+	signal clk_inv: std_logic;
 
 begin
 	regout_array(0) <= (others => '0'); -- "zero" or "r0" register
+
+	clk_inv <= not(clk);
 
 	-- General purpose register instantiation
 	GPR_gen: for i in 1 to 31 generate
@@ -74,7 +77,7 @@ begin
 			port map (
 				d => wp,
 				en => enable(i),
-				clk => clk,
+				clk => clk_inv,
 				rst => rst,
 				q => regout_array(i)
 			);
@@ -88,7 +91,7 @@ begin
 		port map (
 			d => lo_in,
 			en => hilo_wr_en,
-			clk => clk,
+			clk => clk_inv,
 			rst => rst,
 			q => lo_out
 		);
@@ -101,7 +104,7 @@ begin
 		port map (
 			d => hi_in,
 			en => hilo_wr_en,
-			clk => clk,
+			clk => clk_inv,
 			rst => rst,
 			q => hi_out
 		);

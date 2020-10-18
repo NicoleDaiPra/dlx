@@ -1,7 +1,102 @@
 Vivado Simulator 2019.2
 Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
-Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_jalr_behav xil_defaultlib.tb_jalr -log elaborate.log 
+Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto 2cace0a8bf2d490f9ebf019a41a9640b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_jump_and_link_behav xil_defaultlib.tb_jump_and_link -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
 Completed static elaboration
-INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package ieee.math_real
+Compiling package xil_defaultlib.fun_pack
+Compiling package xil_defaultlib.fun_pack_adder
+Compiling package synopsys.attributes
+Compiling package ieee.std_logic_misc
+Compiling package xil_defaultlib.stype
+Compiling package xil_defaultlib.control_words
+Compiling package xil_defaultlib.func_words
+Compiling package xil_defaultlib.opcodes
+Compiling package ieee.std_logic_textio
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [\mux_2x1(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.beh_hadder [\beh_hadder(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.btb [\btb(a=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.if_stage [if_stage_default]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=26)\]
+Compiling architecture struct of entity xil_defaultlib.if_id_reg [if_id_reg_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=5)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [reg_en_default]
+Compiling architecture behavioral of entity xil_defaultlib.rf [rf_default]
+Compiling architecture behavioral of entity xil_defaultlib.sign_extender [sign_extender_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [mux_2x1_default]
+Compiling architecture behavioral of entity xil_defaultlib.id_stage [id_stage_default]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=5)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=64)\]
+Compiling architecture behavioral of entity xil_defaultlib.reg_en [\reg_en(n=3)\]
+Compiling architecture behavioral of entity xil_defaultlib.rshift_reg [\rshift_reg(n=31)\]
+Compiling architecture struct of entity xil_defaultlib.id_ex_reg [id_ex_reg_default]
+Compiling architecture behavioral of entity xil_defaultlib.fa [fa_default]
+Compiling architecture structural of entity xil_defaultlib.rca_generic_struct [\rca_generic_struct(n=32)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_7x1_single_bit [mux_7x1_single_bit_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=32)\]
+Compiling architecture behavioral of entity xil_defaultlib.pg_unit [pg_unit_default]
+Compiling architecture behavioral of entity xil_defaultlib.pg_net_block [pg_net_block_default]
+Compiling architecture struct of entity xil_defaultlib.pg_network [pg_network_default]
+Compiling architecture behavioral of entity xil_defaultlib.g_unit [g_unit_default]
+Compiling architecture struct of entity xil_defaultlib.carry_generator [carry_generator_default]
+Compiling architecture structural of entity xil_defaultlib.rca_generic_struct [\rca_generic_struct(n=4)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [\mux_2x1(n=4)\]
+Compiling architecture structural of entity xil_defaultlib.carry_select_block [carry_select_block_default]
+Compiling architecture structural of entity xil_defaultlib.sum_generator [sum_generator_default]
+Compiling architecture struct of entity xil_defaultlib.p4_adder [p4_adder_default]
+Compiling architecture behavioral of entity xil_defaultlib.a_generator [a_generator_default]
+Compiling architecture behavioral of entity xil_defaultlib.booth_encoder [booth_encoder_default]
+Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=4)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_4x1 [\mux_4x1(n=3)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_6x1 [\mux_6x1(nbit=64)\]
+Compiling architecture behavioral of entity xil_defaultlib.mux_2x1 [\mux_2x1(n=3)\]
+Compiling architecture structural of entity xil_defaultlib.rca_generic_struct [\rca_generic_struct(n=64)\]
+Compiling architecture structural of entity xil_defaultlib.mul [mul_default]
+Compiling architecture beh of entity xil_defaultlib.shifter_t2 [shifter_t2_default]
+Compiling architecture behavioral of entity xil_defaultlib.nand3 [nand3_default]
+Compiling architecture behavioral of entity xil_defaultlib.nand4 [nand4_default]
+Compiling architecture structural of entity xil_defaultlib.logicals [logicals_default]
+Compiling architecture behavioral of entity xil_defaultlib.alu_out_selector [alu_out_selector_default]
+Compiling architecture behavioral of entity xil_defaultlib.comparator [comparator_default]
+Compiling architecture beh of entity xil_defaultlib.alu [alu_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_7x1 [\mux_7x1(n=32)\]
+Compiling architecture struct of entity xil_defaultlib.ex_stage [ex_stage_default]
+Compiling architecture struct of entity xil_defaultlib.ex_mem_reg [ex_mem_reg_default]
+Compiling architecture behavioral of entity xil_defaultlib.mem_sign_extender [mem_sign_extender_default]
+Compiling architecture structural of entity xil_defaultlib.mem_stage [mem_stage_default]
+Compiling architecture struct of entity xil_defaultlib.mem_wb_reg [mem_wb_reg_default]
+Compiling architecture structural of entity xil_defaultlib.wb_stage [wb_stage_default]
+Compiling architecture structural of entity xil_defaultlib.datapath [datapath_default]
+Compiling architecture behavioral of entity xil_defaultlib.stall_unit [stall_unit_default]
+Compiling architecture behavioral of entity xil_defaultlib.cu [cu_default]
+Compiling architecture behavioral of entity xil_defaultlib.memory_controller [memory_controller_default]
+Compiling architecture structural of entity xil_defaultlib.dlx_syn [dlx_syn_default]
+Compiling architecture beh of entity xil_defaultlib.rom [\rom(m=256,f="C:\\Users\\Nicole\...]
+Compiling architecture behavioral of entity xil_defaultlib.btb_cache_line [\btb_cache_line(t=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=30)\]
+Compiling architecture behavioral of entity xil_defaultlib.and2 [and2_default]
+Compiling architecture behavioral of entity xil_defaultlib.btb_cache_replacement_logic [\btb_cache_replacement_logic(nl=...]
+Compiling architecture behavioral of entity xil_defaultlib.encoder_32x5 [encoder_32x5_default]
+Compiling architecture behavioral of entity xil_defaultlib.mux_32x1 [mux_32x1_default]
+Compiling architecture structural of entity xil_defaultlib.btb_fully_associative_cache [\btb_fully_associative_cache(t=3...]
+Compiling architecture behavioral of entity xil_defaultlib.dcache_line [\dcache_line(t=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.dcache_block [\dcache_block(t=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.equality_comparator [\equality_comparator(n=28)\]
+Compiling architecture behavioral of entity xil_defaultlib.priority_encoder_4to2 [priority_encoder_4to2_default]
+Compiling architecture behavioral of entity xil_defaultlib.dcache_replacement_logic [dcache_replacement_logic_default]
+Compiling architecture behavioral of entity xil_defaultlib.encoder_4to2 [encoder_4to2_default]
+Compiling architecture behavioral of entity xil_defaultlib.four_way_dcache [\four_way_dcache(t=28,nlines=64)...]
+Compiling architecture beh of entity xil_defaultlib.ram [\ram(m=256)\]
+Compiling architecture structural of entity xil_defaultlib.dlx_sim [\dlx_sim(f="C:\\Users\\Nicole\\D...]
+Compiling architecture test of entity xil_defaultlib.tb_jump_and_link
+Built simulation snapshot tb_jump_and_link_behav

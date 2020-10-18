@@ -2,7 +2,7 @@
 2019.2
 Nov  6 2019
 21:57:16
-C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd,1602928003,vhdl,,,,tb_arith,,,,,,,,
+C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_arith.vhd,1603027276,vhdl,,,,tb_arith,,,,,,,,
 C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_branches.vhd,1602960488,vhdl,,,,tb_branches,,,,,,,,
 C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_jalr.vhd,1603024985,vhdl,,,,tb_jalr,,,,,,,,
 C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sim_1/new/tb_jump_and_link.vhd,1603016526,vhdl,,,,tb_jump_and_link,,,,,,,,
@@ -46,8 +46,8 @@ C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/4_
 C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/4_mem/mem_stage.vhd,1602782334,vhdl,,,,mem_stage,,,,,,,,
 C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/5_wb/wb_stage.vhd,1602782334,vhdl,,,,wb_stage,,,,,,,,
 C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/control_words.vhd,1602943802,vhdl,C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/cu.vhd,,,control_words,,,,,,,,
-C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/cu.vhd,1603024305,vhdl,,,,cu,,,,,,,,
-C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/func_words.vhd,1602882813,vhdl,C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/cu.vhd;C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/stall_unit.vhd,,,func_words,,,,,,,,
+C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/cu.vhd,1603029048,vhdl,,,,cu,,,,,,,,
+C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/func_words.vhd,1602882813,vhdl,C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/cu.vhd,,,func_words,,,,,,,,
 C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/memory_controller.vhd,1602782334,vhdl,,,,memory_controller,,,,,,,,
 C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/opcodes.vhd,1602782334,vhdl,C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/cu.vhd,,,opcodes,,,,,,,,
 C:/Users/Nicole/Desktop/Vivado/dlx_final/dlx_final.srcs/sources_1/imports/dlx/cu/stall_unit.vhd,1603024203,vhdl,,,,stall_unit,,,,,,,,

@@ -634,7 +634,7 @@ begin
 	    	en_b_id <= curr_id(42);
 	    end if;
 	    
-	    if (curr_id(18 downto 16) = "100" and id_stall = '0') then -- workaround to detect the start of a multiplication
+	    if (curr_id(18 downto 16) = "100") then -- workaround to detect the start of a multiplication
 	    	next_mul_id <= '1';
 	    else
 	    	next_mul_id <= '0';
@@ -645,7 +645,7 @@ begin
 	    next_pt_exe <= curr_pt_id; -- propagate "predicted_taken" to the exe
 	end process id_comblogic;
 
-	exe_comblogic: process(curr_exe, curr_mem, curr_mul_in_prog, curr_es, curr_ak_exe, curr_pt_exe, curr_it, curr_mul_id, taken_exe, exe_stall, exe_unlock_pipeline)
+	exe_comblogic: process(curr_exe, curr_mem, curr_mul_in_prog, curr_es, curr_ak_exe, curr_pt_exe, curr_it, curr_mul_id, taken_exe, exe_stall, exe_unlock_pipeline, cache_miss_mem)
 	begin
 		next_mul_in_prog <= curr_mul_in_prog;
 		--mul_stall <= '0';
@@ -704,20 +704,18 @@ begin
 					--mul_stall <= '1';
 					next_es <= A_NEG_SAMPLE;
 				else
-					if (curr_ak_exe = '1') then -- we're executing a branch (or a jump) known by the BTB
+					if (curr_ak_exe = '1' and cache_miss_mem = '0') then -- we're executing a branch (or a jump) known by the BTB
 						btb_taken_exe <= taken_exe; -- tell to the BTB if the branch is taken or not (for jumps taken_exe is always equal to '1')
 						btb_update_exe <= "01";
 						if (taken_exe /= curr_pt_exe) then
 							-- the branch was mispredicted, flush everything
 							flush_id <= '0';
 							flush_exe <= '0';
-
-
 						else
 							pc_exe <= "00"; -- the prediction was correct, keep fetching instruction as usual
 						end if;
 					else
-						if (taken_exe = '1' and curr_exe(41) = '1') then -- curr_exe(41) indicates if the instruction is actually a branch or a jump
+						if (taken_exe = '1' and curr_exe(41) = '1' and cache_miss_mem = '0') then -- curr_exe(41) indicates if the instruction is actually a branch or a jump
 							-- a new branch (or jump) has been discovered: add it to the BTB
 							btb_taken_exe <= taken_exe;
 							btb_update_exe <= "10";

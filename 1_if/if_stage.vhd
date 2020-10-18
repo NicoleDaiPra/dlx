@@ -152,8 +152,8 @@ begin
 			N => 30
 		)
 		port map (
-			a => pc_main_adder,
-			b => pc_secondary_adder,
+			a => pc_secondary_adder,
+			b => pc_main_adder,
 			sel => pc_sel(0),
 			o => btb_target_addr
 		);

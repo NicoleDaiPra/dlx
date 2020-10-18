@@ -23,6 +23,7 @@ entity id_ex_reg is
 		op_b_in: in std_logic_vector(31 downto 0);
 	
 		-- control signals
+		en_rs_rt_id: in std_logic;
 		en_add: in std_logic;
 	    en_mul: in std_logic;
 	    en_shift: in std_logic;
@@ -133,7 +134,7 @@ begin
 		)
 		port map (
 			d => rs_in,
-			en => '1',
+			en => en_rs_rt_id,
 			clk => clk,
 			rst => rst,
 			q => rs_idexe
@@ -145,7 +146,7 @@ begin
 		)
 		port map (
 			d => rt_in,
-			en => '1',
+			en => en_rs_rt_id,
 			clk => clk,
 			rst => rst,
 			q => rt_idexe

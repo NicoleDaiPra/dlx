@@ -13,12 +13,20 @@ entity dlx_sim is
 
 		-- output interface (used to evaluate execution when simulating)
 		pc_en: out std_logic; -- shows if the processor is stalling
+		pc_out: out std_logic_vector(29 downto 0); -- pc value
+		instr_fetched: out std_logic_vector(31 downto 0); -- the instruction currently fetched by the dlx
 		predicted_taken: out std_logic; -- shows if the current PC is a branch or jump has been predicted as taken
 		taken: out std_logic; -- shows if a branch (or jump) has been taken or not
 		wp_en: out std_logic; -- shows if the dlx is writing in the output port
 		hilo_wr_en: out std_logic; -- shows if the dlx is storing the res of a mul 
+		rd: out std_logic_vector(4 downto 0); -- shows the register where the data is going to be written
 		wp_data: out std_logic_vector(31 downto 0); -- the value being written in the RF
-		wp_alu_data_high: out std_logic_vector(31 downto 0) -- the highest part of the mul
+		wp_alu_data_high: out std_logic_vector(31 downto 0); -- the highest part of the mul
+
+		--debug
+		btb_cache_update_line_d, btb_cache_update_data_d, btb_cache_hit_read_d, btb_cache_hit_rw_d: out std_logic;
+		btb_cache_read_address_d, btb_cache_rw_address_d: out std_logic_vector(29 downto 0);
+		btb_cache_data_in_d, btb_cache_data_out_read_d, btb_cache_data_out_rw_d: out std_logic_vector(31 downto 0)
 	);
 end dlx_sim;
 
@@ -68,6 +76,7 @@ architecture structural of dlx_sim is
 			taken: out std_logic; -- shows if a branch (or jump) has been taken or not
 			wp_en: out std_logic; -- shows if the dlx is writing in the output port
 			hilo_wr_en: out std_logic; -- shows if the dlx is storing the res of a mul 
+			rd: out std_logic_vector(4 downto 0); -- shows the register where the data is going to be written
 			wp_data: out std_logic_vector(31 downto 0); -- the value being written in the RF
 			wp_alu_data_high: out std_logic_vector(31 downto 0) -- the highest part of the mul
 		);
@@ -151,7 +160,7 @@ architecture structural of dlx_sim is
 	    );
 	end component rom;
 
-	signal pc_out: std_logic_vector(29 downto 0);
+	signal pc_out_int: std_logic_vector(29 downto 0);
 	signal instr_if: std_logic_vector(31 downto 0);
 
 	signal btb_cache_update_line, btb_cache_update_data, btb_cache_hit_read, btb_cache_hit_rw: std_logic;
@@ -173,6 +182,16 @@ architecture structural of dlx_sim is
 	signal ram_data_in, ram_data_out: std_logic_vector(31 downto 0);
 
 begin
+    btb_cache_update_line_d <= btb_cache_update_line;
+    btb_cache_update_data_d <= btb_cache_update_data;
+    btb_cache_hit_read_d <= btb_cache_hit_read;
+    btb_cache_hit_rw_d <= btb_cache_hit_rw;
+    btb_cache_read_address_d <= btb_cache_read_address;
+    btb_cache_rw_address_d <= btb_cache_rw_address;
+    btb_cache_data_in_d <= btb_cache_data_in;
+    btb_cache_data_out_read_d <= btb_cache_data_out_read;
+    btb_cache_data_out_rw_d <= btb_cache_data_out_rw;
+    
 	dlx: dlx_syn
 		port map (
 			clk => clk,
@@ -190,7 +209,7 @@ begin
 			btb_cache_data_out_rw => btb_cache_data_out_rw,
 			
 			-- IROM interface
-			pc_out => pc_out,
+			pc_out => pc_out_int,
 			instr_if => instr_if,
 
 			-- dcache interface
@@ -218,9 +237,13 @@ begin
 			taken => taken,
 			wp_en => wp_en,
 			hilo_wr_en => hilo_wr_en,
+			rd => rd,
 			wp_data => wp_data,
 			wp_alu_data_high => wp_alu_data_high
 		);
+
+	instr_fetched <= instr_if;
+	pc_out <= pc_out_int;
 
 	irom: rom
 		generic map (
@@ -231,7 +254,7 @@ begin
 		)
 		port map (
 			rst => rst,
-	        addr => pc_out(7 downto 0),
+	        addr => pc_out_int(7 downto 0),
 	        data_out => instr_if
 		);
 
