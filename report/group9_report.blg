@@ -1,0 +1,17 @@
+[0] Config.pm:304> INFO - This is Biber 2.14
+[0] Config.pm:307> INFO - Logfile is 'group9_report.blg'
+[90] biber-darwin:322> INFO - === Sun Oct 18, 2020, 23:04:25
+[107] Biber.pm:415> INFO - Reading 'group9_report.bcf'
+[201] Biber.pm:943> INFO - Found 3 citekeys in bib section 0
+[213] Biber.pm:4256> INFO - Processing section 0
+[213] Utils.pm:75> INFO - Globbing data source 'group9_report.bib'
+[213] Utils.pm:91> INFO - Globbed data source 'group9_report.bib' to group9_report.bib
+[224] Biber.pm:4455> INFO - Looking for bibtex format file 'group9_report.bib' for section 0
+[224] bibtex.pm:1653> INFO - LaTeX decoding ...
+[228] bibtex.pm:1471> INFO - Found BibTeX data source 'group9_report.bib'
+[258] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[258] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[258] Biber.pm:4084> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[258] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
+[267] bbl.pm:652> INFO - Writing 'group9_report.bbl' with encoding 'UTF-8'
+[268] bbl.pm:755> INFO - Output to group9_report.bbl

@@ -1,0 +1,131 @@
+\chapter{Introduction}
+\label{chap:intro}
+
+\section{General architecture}
+
+The proposed DLX is a 5-stage, MIPS-based, scalar processor. Its implementation respects the MIPS ABI and O32 calling convention,
+it supports all the basic instructions, most of the ones proposed as PRO and a few 32-bits ones coming from the MIPS64
+architecture \cite{MIPS64_arch}. The DLX also features a 32 entries {\it BTB}, a 64 entries {\it four-way associative data cache} and a
+{\it forwarding unit}. To support the ABI and the extended instruction set we had to modify the file \verb|dlxasm.pl|.
+By going a little bit more in details, here there is a summary of what each stage does:
+
+\begin{enumerate}
+    \item \textbf{IF stage}: here is where the {\it program counter}, also referred to as PC, is stored. This stage contains the logic
+    to update the value of the next PC and to choose the right PC at each clock cycle.
+    
+    \item \textbf{ID stage}: in this stage the instruction fetched with the PC calculated the cycle before is decoded and the register file is
+    accessed for reading. In case an instruction has an immediate field it is extracted and properly extended.
+
+    \item \textbf{EXE stage}: based on the decoding happened the cycle before, one of the ALU's functional units is activated to perform
+    the requested calculation. It is worth noting that the ALU is capable of executing an instruction like \verb|jalr| in a single clock cycle
+    instead of the 2 specified in the MIPS architecture manual \cite{MIPS64_arch}. Another exception is the \verb|mult| instruction which works
+    with the {\it integer register file} (also referred to as RF) and it is a multi-cycle operation.
+
+    \item \textbf{MEM stage}: if the operation in this stage is a load or a store the cache is accessed, and in case of a load shorter than
+    32 bits sign extension is performed (if required). On the other hand, if an instruction does not fall in the two categories outlined before,
+    its result is simply propagated to the next stage.
+
+    \item \textbf{WB stage}: in this stage all the operations that produce a result to be stored in the RF can do so. The result to be written is
+    chosen among the one coming from the cache and the one coming from the ALU.
+\end{enumerate}
+
+The datapath is managed by the {\it control unit}, which has been implemented as a mix of two approaches: the hardwired and the FSM. The reasoning behind
+this choice is explained in chapter \ref{chap:cu}. Within the control unit there is also a stall unit, whose job is to detect any possible hazard, and to
+either enable data forwarding or to force a bubble in the pipeline for stalling the processor.
+
+Outside the control unit and the datapath there is the {\it memory controller}, which handles the communication between the RAM and the cache as well as cache misses.
+
+\section{Supported ISA}
+
+In table \ref{tab:sup_instr} are shown all the supported instructions:
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{ |c|c|c|c||c|c|c|c| }
+        \hline
+        Name & Opcode & Func & Type & Name & Opcode & Func & Type \\
+
+        \hline
+        \verb|nop| & \verb|0x00| & \verb|0x00| & \verb|R| & \verb|sll| & \verb|0x00| & \verb|0x00| & \verb|R| \\
+        \hline
+        \verb|srl| & \verb|0x00| & \verb|0x06| & \verb|R| & \verb|sra| & \verb|0x00| & \verb|0x07| & \verb|R| \\
+        \hline
+        \verb|jr| & \verb|0x00| & \verb|0x08| & \verb|R| & \verb|jalr| & \verb|0x00| & \verb|0x09| & \verb|R| \\
+        \hline
+        \verb|mult| & \verb|0x00| & \verb|0x0E| & \verb|R| & \verb|mfhi| & \verb|0x00| & \verb|0x10| & \verb|R| \\
+        \hline
+        \verb|mflo| & \verb|0x00| & \verb|0x12| & \verb|R| & \verb|add| & \verb|0x00| & \verb|0x20| & \verb|R| \\
+        \hline
+        \verb|addu| & \verb|0x00| & \verb|0x21| & \verb|R| & \verb|sub| & \verb|0x00| & \verb|0x22| & \verb|R| \\
+        \hline
+        \verb|subu| & \verb|0x00| & \verb|0x23| & \verb|R| & \verb|and| & \verb|0x00| & \verb|0x24| & \verb|R| \\
+        \hline
+        \verb|or| & \verb|0x00| & \verb|0x25| & \verb|R| & \verb|xor| & \verb|0x00| & \verb|0x26| & \verb|R| \\
+        \hline
+        \verb|seq| & \verb|0x00| & \verb|0x28| & \verb|R| & \verb|sne| & \verb|0x00| & \verb|0x29| & \verb|R| \\
+        \hline
+        \verb|slt| & \verb|0x00| & \verb|0x2A| & \verb|R| & \verb|sgt| & \verb|0x00| & \verb|0x2B| & \verb|R| \\
+        \hline
+        \verb|sle| & \verb|0x00| & \verb|0x2C| & \verb|R| & \verb|sge| & \verb|0x00| & \verb|0x2D| & \verb|R| \\
+        \hline
+        \verb|sltu| & \verb|0x00| & \verb|0x3A| & \verb|R| & \verb|sgtu| & \verb|0x00| & \verb|0x3B| & \verb|R| \\
+        \hline
+        \verb|sleu| & \verb|0x00| & \verb|0x3C| & \verb|R| & \verb|sgeu| & \verb|0x00| & \verb|0x3D| & \verb|R| \\
+        \hline
+        \verb|bgez| & \verb|0x01| & \verb|0x00| & \verb|I| & \verb|bltz| & \verb|0x01| & \verb|0x00| & \verb|I| \\
+        \hline
+        \verb|j| & \verb|0x02| & \verb|0x00| & \verb|J| & \verb|jal| & \verb|0x03| & \verb|0x00| & \verb|J| \\
+        \hline
+        \verb|beq| & \verb|0x04| & \verb|0x00| & \verb|I| & \verb|bne| & \verb|0x05| & \verb|0x00| & \verb|I| \\
+        \hline
+        \verb|blez| & \verb|0x06| & \verb|0x00| & \verb|I| & \verb|bgtz| & \verb|0x07| & \verb|0x00| & \verb|I| \\
+        \hline
+        \verb|addi| & \verb|0x08| & \verb|0x00| & \verb|I| & \verb|addui| & \verb|0x09| & \verb|0x00| & \verb|I| \\
+        \hline
+        \verb|subi| & \verb|0x0A| & \verb|0x00| & \verb|I| & \verb|subui| & \verb|0x0B| & \verb|0x00| & \verb|I| \\
+        \hline
+        \verb|andi| & \verb|0x0C| & \verb|0x00| & \verb|I| & \verb|ori| & \verb|0x0D| & \verb|0x00| & \verb|I| \\
+        \hline
+        \verb|xori| & \verb|0x0E| & \verb|0x00| & \verb|I| & \verb|beqz| & \verb|0x10| & \verb|0x00| & \verb|I| \\
+        \hline
+        \verb|bnez| & \verb|0x11| & \verb|0x00| & \verb|I| & \verb|slli| & \verb|0x14| & \verb|0x00| & \verb|I| \\
+        \hline
+        \verb|srli| & \verb|0x16| & \verb|0x00| & \verb|I| & \verb|srai| & \verb|0x17| & \verb|0x00| & \verb|I| \\
+        \hline
+        \verb|seqi| & \verb|0x18| & \verb|0x00| & \verb|I| & \verb|snei| & \verb|0x19| & \verb|0x00| & \verb|I| \\
+        \hline
+        \verb|slti| & \verb|0x1A| & \verb|0x00| & \verb|I| & \verb|sgti| & \verb|0x1B| & \verb|0x00| & \verb|I| \\
+        \hline
+        \verb|slei| & \verb|0x1C| & \verb|0x00| & \verb|I| & \verb|sgei| & \verb|0x1D| & \verb|0x00| & \verb|I| \\
+        \hline
+        \verb|lb| & \verb|0x20| & \verb|0x00| & \verb|I| & \verb|lh| & \verb|0x21| & \verb|0x00| & \verb|I| \\
+        \hline
+        \verb|lw| & \verb|0x23| & \verb|0x00| & \verb|I| & \verb|lbu| & \verb|0x24| & \verb|0x00| & \verb|I| \\
+        \hline
+        \verb|lhu| & \verb|0x25| & \verb|0x00| & \verb|I| & \verb|sb| & \verb|0x28| & \verb|0x00| & \verb|I| \\
+        \hline
+        \verb|sh| & \verb|0x29| & \verb|0x00| & \verb|I|  & \verb|sw| & \verb|0x2B| & \verb|0x00| & \verb|I| \\
+        \hline
+        \verb|sltui| & \verb|0x3A| & \verb|0x00| & \verb|I| & \verb|sgtui| & \verb|0x3B| & \verb|0x00| & \verb|I| \\
+        \hline
+        \verb|sleui| & \verb|0x3C| & \verb|0x00| & \verb|I| & \verb|sgeui| & \verb|0x3D| & \verb|0x00| & \verb|I| \\
+        \hline
+    \end{tabular}
+    \caption{Supported instructions}
+    \label{tab:sup_instr}
+\end{table}
+
+It is worth pointing out that \verb|nop| and \verb|sll| have exactly the same opcode and func fields,
+because the \verb|nop| actually corresponds to \verb|sll $zero, $zero, $zero| (\cite{MIPS64_arch}), which is an instruction that achieves nothing.
+Also \verb|bltz| and \verb|bgez| share the same opcode (as stated in \cite{MIPS64_arch} for release 1 up to 5), as their difference lies in the
+instruction's bits 20-16: they are set to \verb|0b00000| for the former one and to \verb|0b00001| for the latter one.
+Finally, \verb|jr| and \verb|jalr| are considered R instructions as specified in the manual \cite{MIPS64_arch}.
+
+\section{Design objectives}
+
+Our goal during the design phase was to deliver a fast processor and to cut latencies of the most used general purpose instructions. Our frequency target
+was to reach $1\ GHz$, and to be able to execute \verb|jal| and \verb|jalr| in a single clock cycle instead of the 2 specified in
+\cite{MIPS64_arch}. We also felt that was important to provide to a potential user a complete instruction set, therefore we have introduced also \verb|mult|,
+which is normally executed by the FPU. As discussed in chapter \ref{chap:exe}, achieving high clock frequencies with a multiplication unit is not trivial and
+some compromises had to be done in term of latencies for this particular operation. We decided to trade the presence of the operation with latency, because as
+stated in \cite{code_stats} multiplications accounts only for the $0.02\%$ of the utilized instructions.

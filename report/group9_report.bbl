@@ -1,0 +1,101 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{code_stats}{online}{}
+      \name{author}{1}{}{%
+        {{hash=44fbde1712f9e5990dd430e0bdd549eb}{%
+           family={Kankowski},
+           familyi={K\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{44fbde1712f9e5990dd430e0bdd549eb}
+      \strng{fullhash}{44fbde1712f9e5990dd430e0bdd549eb}
+      \strng{bibnamehash}{44fbde1712f9e5990dd430e0bdd549eb}
+      \strng{authorbibnamehash}{44fbde1712f9e5990dd430e0bdd549eb}
+      \strng{authornamehash}{44fbde1712f9e5990dd430e0bdd549eb}
+      \strng{authorfullhash}{44fbde1712f9e5990dd430e0bdd549eb}
+      \field{sortinit}{K}
+      \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{addendum}{(accessed: 16.10.20)}
+      \field{title}{x86 Machine Code Statistics}
+      \verb{urlraw}
+      \verb https://www.strchr.com/x86_machine_code_statistics
+      \endverb
+      \verb{url}
+      \verb https://www.strchr.com/x86_machine_code_statistics
+      \endverb
+      \keyw{x86,machine,code,statistics}
+    \endentry
+    \entry{MIPS64_arch}{book}{}
+      \name{author}{1}{}{%
+        {{hash=300462c31aecfcb6cc15aec6cb28ba0c}{%
+           family={MIPS\bibnamedelima Technologies},
+           familyi={M\bibinitperiod\bibinitdelim T\bibinitperiod},
+           given={Inc.},
+           giveni={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{300462c31aecfcb6cc15aec6cb28ba0c}
+      \strng{fullhash}{300462c31aecfcb6cc15aec6cb28ba0c}
+      \strng{bibnamehash}{300462c31aecfcb6cc15aec6cb28ba0c}
+      \strng{authorbibnamehash}{300462c31aecfcb6cc15aec6cb28ba0c}
+      \strng{authornamehash}{300462c31aecfcb6cc15aec6cb28ba0c}
+      \strng{authorfullhash}{300462c31aecfcb6cc15aec6cb28ba0c}
+      \field{sortinit}{M}
+      \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{MIPS64 Architecure For Programmers Volume II: The MIPS64 Instruction Set}
+      \field{year}{2005}
+      \keyw{MIPS64,architecture,instruction-set}
+    \endentry
+    \entry{abi_regs}{online}{}
+      \name{author}{1}{}{%
+        {{hash=9c677286866aad38f8e9b660f5411814}{%
+           family={Wikipedia},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{fullhash}{9c677286866aad38f8e9b660f5411814}
+      \strng{bibnamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authorbibnamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authornamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authorfullhash}{9c677286866aad38f8e9b660f5411814}
+      \field{sortinit}{W}
+      \field{sortinithash}{1af34bd8c148ffb32de1494636b49713}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{addendum}{(accessed: 17.10.20)}
+      \field{title}{MIPS architecture}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/MIPS_architecture
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/MIPS_architecture
+      \endverb
+      \keyw{MIPS,architecture,registers,ABI}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

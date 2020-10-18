@@ -1,0 +1,760 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.25)  19 OCT 2020 00:12
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**/Users/leonardoizzi/ms_report/group9_report.tex
+(/Users/leonardoizzi/ms_report/group9_report.tex
+LaTeX2e <2020-02-02> patch level 5
+L3 programming layer <2020-03-06> (/usr/local/texlive/2020/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2019/12/20 v1.4l Standard LaTeX document class
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/bk10.clo
+File: bk10.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
+)
+\c@part=\count167
+\c@chapter=\count168
+\c@section=\count169
+\c@subsection=\count170
+\c@subsubsection=\count171
+\c@paragraph=\count172
+\c@subparagraph=\count173
+\c@figure=\count174
+\c@table=\count175
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen134
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2020/03/22 3.42 The Babel package
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/babel/switch.def
+File: switch.def 2020/03/22 3.42 Babel switching mechanism
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2020/03/22 3.42 Babel common definitions
+\babel@savecnt=\count176
+\U@D=\dimen135
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count177
+)
+Package babel Info: \l@canadian = using hyphenrules for english
+(babel)             (\language0) on input line 102.
+Package babel Info: \l@australian = using hyphenrules for ukenglish
+(babel)             (\language21) on input line 105.
+Package babel Info: \l@newzealand = using hyphenrules for ukenglish
+(babel)             (\language21) on input line 108.
+)) (/usr/local/texlive/2020/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2019/01/31 v3.10 Extensive control of page headers and footers
+\f@nch@headwidth=\skip49
+\f@nch@O@elh=\skip50
+\f@nch@O@erh=\skip51
+\f@nch@O@olh=\skip52
+\f@nch@O@orh=\skip53
+\f@nch@O@elf=\skip54
+\f@nch@O@erf=\skip55
+\f@nch@O@olf=\skip56
+\f@nch@O@orf=\skip57
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/base/makeidx.sty
+Package: makeidx 2014/09/29 v1.0m Standard LaTeX package
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/titlesec/titlesec.sty
+Package: titlesec 2019/10/16 v2.13 Sectioning titles
+\ttl@box=\box45
+\beforetitleunit=\skip58
+\aftertitleunit=\skip59
+\ttl@plus=\dimen136
+\ttl@minus=\dimen137
+\ttl@toksa=\toks15
+\titlewidth=\dimen138
+\titlewidthlast=\dimen139
+\titlewidthfirst=\dimen140
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/listings.sty (/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+\lst@mode=\count178
+\lst@gtempboxa=\box46
+\lst@token=\toks17
+\lst@length=\count179
+\lst@currlwidth=\dimen141
+\lst@column=\count180
+\lst@pos=\count181
+\lst@lostspace=\dimen142
+\lst@width=\dimen143
+\lst@newlines=\count182
+\lst@lineno=\count183
+\lst@maxwidth=\dimen144
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+\c@lstnumber=\count184
+\lst@skipnumbers=\count185
+\lst@framebox=\box47
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2020/03/24 1.8d listings configuration
+))
+Package: listings 2020/03/24 1.8d (Carsten Heinz)
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen145
+\lightrulewidth=\dimen146
+\cmidrulewidth=\dimen147
+\belowrulesep=\dimen148
+\belowbottomsep=\dimen149
+\aboverulesep=\dimen150
+\abovetopsep=\dimen151
+\cmidrulesep=\dimen152
+\cmidrulekern=\dimen153
+\defaultaddspace=\dimen154
+\@cmidla=\count186
+\@cmidlb=\count187
+\@aboverulesep=\dimen155
+\@belowrulesep=\dimen156
+\@thisruleclass=\count188
+\@lastruleclass=\count189
+\@thisrulewidth=\dimen157
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/biblatex/biblatex.sty
+Package: biblatex 2019/12/01 v3.14 programmable bibliographies (PK/MW)
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2019/11/24 v0.31 Utility functions of pdfTeX for LuaTeX (HO)
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+) (/usr/local/texlive/2020/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2019/09/21 v2.5h e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count190
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
+ (/usr/local/texlive/2020/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+)) (/usr/local/texlive/2020/texmf-dist/tex/latex/logreq/logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count191
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/logreq/logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+)) (/usr/local/texlive/2020/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip16
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+\c@tabx@nest=\count192
+\c@listtotal=\count193
+\c@listcount=\count194
+\c@liststart=\count195
+\c@liststop=\count196
+\c@citecount=\count197
+\c@citetotal=\count198
+\c@multicitecount=\count199
+\c@multicitetotal=\count266
+\c@instcount=\count267
+\c@maxnames=\count268
+\c@minnames=\count269
+\c@maxitems=\count270
+\c@minitems=\count271
+\c@citecounter=\count272
+\c@maxcitecounter=\count273
+\c@savedcitecounter=\count274
+\c@uniquelist=\count275
+\c@uniquename=\count276
+\c@refsection=\count277
+\c@refsegment=\count278
+\c@maxextratitle=\count279
+\c@maxextratitleyear=\count280
+\c@maxextraname=\count281
+\c@maxextradate=\count282
+\c@maxextraalpha=\count283
+\c@abbrvpenalty=\count284
+\c@highnamepenalty=\count285
+\c@lownamepenalty=\count286
+\c@maxparens=\count287
+\c@parenlevel=\count288
+\blx@tempcnta=\count289
+\blx@tempcntb=\count290
+\blx@tempcntc=\count291
+\blx@maxsection=\count292
+\blx@maxsegment@0=\count293
+\blx@notetype=\count294
+\blx@parenlevel@text=\count295
+\blx@parenlevel@foot=\count296
+\blx@sectionciteorder@0=\count297
+\blx@entrysetcounter=\count298
+\labelnumberwidth=\skip60
+\labelalphawidth=\skip61
+\biblabelsep=\skip62
+\bibitemsep=\skip63
+\bibnamesep=\skip64
+\bibinitsep=\skip65
+\bibparsep=\skip66
+\bibhang=\skip67
+\blx@bcfin=\read3
+\blx@bcfout=\write3
+\blx@langwohyphens=\language86
+\c@mincomprange=\count299
+\c@maxcomprange=\count300
+\c@mincompwidth=\count301
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/biblatex/blx-dm.def
+File: blx-dm.def 2019/12/01 v3.14 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count302
+\c@savedafterword=\count303
+\c@annotator=\count304
+\c@savedannotator=\count305
+\c@author=\count306
+\c@savedauthor=\count307
+\c@bookauthor=\count308
+\c@savedbookauthor=\count309
+\c@commentator=\count310
+\c@savedcommentator=\count311
+\c@editor=\count312
+\c@savededitor=\count313
+\c@editora=\count314
+\c@savededitora=\count315
+\c@editorb=\count316
+\c@savededitorb=\count317
+\c@editorc=\count318
+\c@savededitorc=\count319
+\c@foreword=\count320
+\c@savedforeword=\count321
+\c@holder=\count322
+\c@savedholder=\count323
+\c@introduction=\count324
+\c@savedintroduction=\count325
+\c@namea=\count326
+\c@savednamea=\count327
+\c@nameb=\count328
+\c@savednameb=\count329
+\c@namec=\count330
+\c@savednamec=\count331
+\c@translator=\count332
+\c@savedtranslator=\count333
+\c@shortauthor=\count334
+\c@savedshortauthor=\count335
+\c@shorteditor=\count336
+\c@savedshorteditor=\count337
+\c@labelname=\count338
+\c@savedlabelname=\count339
+\c@institution=\count340
+\c@savedinstitution=\count341
+\c@lista=\count342
+\c@savedlista=\count343
+\c@listb=\count344
+\c@savedlistb=\count345
+\c@listc=\count346
+\c@savedlistc=\count347
+\c@listd=\count348
+\c@savedlistd=\count349
+\c@liste=\count350
+\c@savedliste=\count351
+\c@listf=\count352
+\c@savedlistf=\count353
+\c@location=\count354
+\c@savedlocation=\count355
+\c@organization=\count356
+\c@savedorganization=\count357
+\c@origlocation=\count358
+\c@savedoriglocation=\count359
+\c@origpublisher=\count360
+\c@savedorigpublisher=\count361
+\c@publisher=\count362
+\c@savedpublisher=\count363
+\c@language=\count364
+\c@savedlanguage=\count365
+\c@origlanguage=\count366
+\c@savedoriglanguage=\count367
+\c@pageref=\count368
+\c@savedpageref=\count369
+\shorthandwidth=\skip68
+\shortjournalwidth=\skip69
+\shortserieswidth=\skip70
+\shorttitlewidth=\skip71
+\shortauthorwidth=\skip72
+\shorteditorwidth=\skip73
+\locallabelnumberwidth=\skip74
+\locallabelalphawidth=\skip75
+\localshorthandwidth=\skip76
+\localshortjournalwidth=\skip77
+\localshortserieswidth=\skip78
+\localshorttitlewidth=\skip79
+\localshortauthorwidth=\skip80
+\localshorteditorwidth=\skip81
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/biblatex/blx-compat.def
+File: blx-compat.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/biblatex/biblatex.def
+File: biblatex.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
+\c@textcitecount=\count370
+\c@textcitetotal=\count371
+\c@textcitemaxnames=\count372
+\c@biburlbigbreakpenalty=\count373
+\c@biburlbreakpenalty=\count374
+\c@biburlnumpenalty=\count375
+\c@biburlucpenalty=\count376
+\c@biburllcpenalty=\count377
+\biburlbigskip=\muskip17
+\biburlnumskip=\muskip18
+\biburlucskip=\muskip19
+\biburllcskip=\muskip20
+\c@smartand=\count378
+)
+Package biblatex Info: Trying to load bibliography style 'numeric'...
+Package biblatex Info: ... file 'numeric.bbx' found.
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
+File: numeric.bbx 2019/12/01 v3.14 biblatex bibliography style (PK/MW)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+File: standard.bbx 2019/12/01 v3.14 biblatex bibliography style (PK/MW)
+\c@bbx:relatedcount=\count379
+\c@bbx:relatedtotal=\count380
+))
+Package biblatex Info: Trying to load citation style 'numeric'...
+Package biblatex Info: ... file 'numeric.cbx' found.
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/biblatex/cbx/numeric.cbx
+File: numeric.cbx 2019/12/01 v3.14 biblatex citation style (PK/MW)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\supercite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\parencites'.
+Package biblatex Info: Redefining '\smartcites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/biblatex/biblatex.cfg
+File: biblatex.cfg 
+)) (/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen158
+\Gin@req@width=\dimen159
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2020/01/20 v2.17e AMS math features
+\@mathmargin=\skip82
+
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks18
+\ex@=\dimen160
+)) (/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen161
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count381
+LaTeX Info: Redefining \frac on input line 227.
+\uproot@=\count382
+\leftroot@=\count383
+LaTeX Info: Redefining \overline on input line 389.
+\classnum@=\count384
+\DOTSCASE@=\count385
+LaTeX Info: Redefining \ldots on input line 486.
+LaTeX Info: Redefining \dots on input line 489.
+LaTeX Info: Redefining \cdots on input line 610.
+\Mathstrutbox@=\box48
+\strutbox@=\box49
+\big@size=\dimen162
+LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
+\macc@depth=\count386
+\c@MaxMatrixCols=\count387
+\dotsspace@=\muskip21
+\c@parentequation=\count388
+\dspbrk@lvl=\count389
+\tag@help=\toks19
+\row@=\count390
+\column@=\count391
+\maxfields@=\count392
+\andhelp@=\toks20
+\eqnshift@=\dimen163
+\alignsep@=\dimen164
+\tagshift@=\dimen165
+\tagwidth@=\dimen166
+\totwidth@=\dimen167
+\lineht@=\dimen168
+\@envbody=\toks21
+\multlinegap=\skip83
+\multlinetaggap=\skip84
+\mathdisplay@stack=\toks22
+LaTeX Info: Redefining \[ on input line 2859.
+LaTeX Info: Redefining \] on input line 2860.
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2017/10/31 v2.20.4
+\thm@style=\toks23
+\thm@bodyfont=\toks24
+\thm@headfont=\toks25
+\thm@notefont=\toks26
+\thm@headpunct=\toks27
+\thm@preskip=\skip85
+\thm@postskip=\skip86
+\thm@headsep=\skip87
+\dth@everypar=\toks28
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2020/01/03 v3.4h Customizing captions (AR)
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2020/01/03 v1.8h caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 61.
+\captionmargin=\dimen169
+\captionmargin@=\dimen170
+\captionwidth=\dimen171
+\caption@tempdima=\dimen172
+\caption@indent=\dimen173
+\caption@parindent=\dimen174
+\caption@hangindent=\dimen175
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count393
+\c@continuedfloat=\count394
+Package caption Info: listings package is loaded.
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2020/01/22 v1.3d Sub-captions (AR)
+\c@subfigure=\count395
+\c@subtable=\count396
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count397
+\float@exts=\toks29
+\float@box=\box50
+\@float@everytoks=\toks30
+\@floatcapt=\box51
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/mathtools/empheq.sty
+Package: empheq 2017/03/31 v2.15 Emphasizing equations
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/mathtools/mhsetup.sty
+Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/mathtools/mathtools.sty
+Package: mathtools 2020/03/24 v1.24 mathematical typesetting tools
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count398
+\calc@Bcount=\count399
+\calc@Adimen=\dimen176
+\calc@Bdimen=\dimen177
+\calc@Askip=\skip88
+\calc@Bskip=\skip89
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count400
+\calc@Cskip=\skip90
+)
+LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 130.
+LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 130.
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 130.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 130.
+\g_MT_multlinerow_int=\count401
+\l_MT_multwidth_dim=\dimen178
+\origjot=\skip91
+\l_MT_shortvdotswithinadjustabove_dim=\dimen179
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen180
+\l_MT_above_intertext_sep=\dimen181
+\l_MT_below_intertext_sep=\dimen182
+\l_MT_above_shortintertext_sep=\dimen183
+\l_MT_below_shortintertext_sep=\dimen184
+\xmathstrut@box=\box52
+\xmathstrut@dim=\dimen185
+)
+\l_EQ_equationtype_int=\count402
+\l_EQ_alignmentmode_int=\count403
+\l_EQ_totalwidth_dim=\dimen186
+\l_EQ_displaywidth_dim=\dimen187
+\l_EQ_temp_linewidth_dim=\dimen188
+\l_EQ_linewidth_dim=\dimen189
+\EmphEqdelimitershortfall=\dimen190
+\EmphEqdelimiterfactor=\count404
+\g_EQ_toptag_height_dim=\dimen191
+\g_EQ_bottomtag_depth_dim=\dimen192
+\g_EQ_toprow_height_dim=\dimen193
+\g_EQ_bottomrow_depth_dim=\dimen194
+\g_EQ_widesttag_dim=\dimen195
+\EQ_mathdisplay_box=\box53
+\EQ_tag_box=\box54
+\g_EQ_temprow_int=\count405
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2019/11/10 v1.5r LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks31
+\verbatim@line=\toks32
+\verbatim@in@stream=\read4
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2020/01/13 v3.5 verbatim text (tvz,hv)
+\FV@CodeLineNo=\count406
+\FV@InFile=\read5
+\FV@TabBox=\box55
+\c@FancyVerbLine=\count407
+\FV@StepNumber=\count408
+\FV@OutFile=\write4
+)
+\@indexfile=\write5
+\openout5 = `group9_report.idx'.
+
+
+Writing index file group9_report.idx
+
+Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
+(biblatex)                Loading 'csquotes' recommended.
+
+\@quotelevel=\count409
+\@quotereset=\count410
+(/usr/local/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
+File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
+\l__kernel_color_stack_int=\count411
+\l__pdf_internal_box=\box56
+)
+
+LaTeX Warning: Unused global option(s):
+    [makeidx].
+
+(/Users/leonardoizzi/ms_report/group9_report.aux)
+\openout1 = `group9_report.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+\c@lstlisting=\count412
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+File: english.lbx 2019/12/01 v3.14 biblatex localization (PK/MW)
+)
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'utf8'.
+\openout3 = `group9_report.bcf'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'group9_report.bbl' found.
+ (/Users/leonardoizzi/ms_report/group9_report.bbl)
+Package biblatex Info: Reference section=0 on input line 115.
+Package biblatex Info: Reference segment=0 on input line 115.
+ (/usr/local/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count413
+\scratchdimen=\dimen196
+\scratchbox=\box57
+\nofMPsegments=\count414
+\nofMParguments=\count415
+\everyMPshowfont=\toks33
+\MPscratchCnt=\count416
+\MPscratchDim=\dimen197
+\MPnumerator=\count417
+\makeMPintoPDFobject=\count418
+\everyMPtoPDFconversion=\toks34
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: End \AtBeginDocument code.
+\Hy@linkcounter=\count419
+<./logopoli.jpg, id=1, 573.8238pt x 565.1514pt>
+File: ./logopoli.jpg Graphic file (type jpg)
+<use ./logopoli.jpg>
+Package pdftex.def Info: ./logopoli.jpg  used on input line 121.
+(pdftex.def)             Requested size: 85.35826pt x 84.06192pt.
+ [1
+
+
+
+{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map} </Users/leonardoizzi/ms_report/./logopoli.jpg>] (/Users/leonardoizzi/ms_report/group9_report.toc
+LaTeX Font Info:    Trying to load font information for U+msa on input line 6.
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 6.
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [1
+
+])
+\tf@toc=\write6
+\openout6 = `group9_report.toc'.
+
+ [2] (/Users/leonardoizzi/ms_report/./chapters/introduction.tex
+Chapter 1.
+[1
+
+
+]) (/Users/leonardoizzi/ms_report/./chapters/if.tex [2] [3]
+Chapter 2.
+<./chapters/figures/IF_stage.pdf, id=31, 1220.56pt x 651.43375pt>
+File: ./chapters/figures/IF_stage.pdf Graphic file (type pdf)
+<use ./chapters/figures/IF_stage.pdf>
+Package pdftex.def Info: ./chapters/figures/IF_stage.pdf  used on input line 9.
+(pdftex.def)             Requested size: 441.01772pt x 235.38075pt.
+[4
+
+ </Users/leonardoizzi/ms_report/./chapters/figures/IF_stage.pdf>]
+<./chapters/figures/BTB_fields.pdf, id=50, 477.785pt x 56.21pt>
+File: ./chapters/figures/BTB_fields.pdf Graphic file (type pdf)
+<use ./chapters/figures/BTB_fields.pdf>
+Package pdftex.def Info: ./chapters/figures/BTB_fields.pdf  used on input line 37.
+(pdftex.def)             Requested size: 441.01772pt x 51.88449pt.
+<./chapters/figures/BTB_FSM.pdf, id=51, 183.68625pt x 188.705pt>
+File: ./chapters/figures/BTB_FSM.pdf Graphic file (type pdf)
+<use ./chapters/figures/BTB_FSM.pdf>
+Package pdftex.def Info: ./chapters/figures/BTB_FSM.pdf  used on input line 53.
+(pdftex.def)             Requested size: 132.30666pt x 135.93083pt.
+ [5 </Users/leonardoizzi/ms_report/./chapters/figures/BTB_fields.pdf> </Users/leonardoizzi/ms_report/./chapters/figures/BTB_FSM.pdf>]
+<./chapters/figures/BTB_cache.pdf, id=87, 1190.4475pt x 319.1925pt>
+File: ./chapters/figures/BTB_cache.pdf Graphic file (type pdf)
+<use ./chapters/figures/BTB_cache.pdf>
+Package pdftex.def Info: ./chapters/figures/BTB_cache.pdf  used on input line 84.
+(pdftex.def)             Requested size: 441.01772pt x 118.24548pt.
+<./chapters/figures/BTB_cache_line.pdf, id=88, 545.03625pt x 430.60875pt>
+File: ./chapters/figures/BTB_cache_line.pdf Graphic file (type pdf)
+<use ./chapters/figures/BTB_cache_line.pdf>
+Package pdftex.def Info: ./chapters/figures/BTB_cache_line.pdf  used on input line 95.
+(pdftex.def)             Requested size: 264.61331pt x 209.05524pt.
+ [6 </Users/leonardoizzi/ms_report/./chapters/figures/BTB_cache.pdf>]) (/Users/leonardoizzi/ms_report/./chapters/id.tex [7 </Users/leonardoizzi/ms_report/./chapters/figures/BTB_cache_line.pdf>]
+Chapter 3.
+<./chapters/figures/ID_stage.pdf, id=124, 863.225pt x 819.06pt>
+File: ./chapters/figures/ID_stage.pdf Graphic file (type pdf)
+<use ./chapters/figures/ID_stage.pdf>
+Package pdftex.def Info: ./chapters/figures/ID_stage.pdf  used on input line 8.
+(pdftex.def)             Requested size: 264.61331pt x 251.06897pt.
+[8
+
+ </Users/leonardoizzi/ms_report/./chapters/figures/ID_stage.pdf>]) (/Users/leonardoizzi/ms_report/./chapters/exe.tex [9] [10]
+Chapter 4.
+) (/Users/leonardoizzi/ms_report/./chapters/mem.tex [11
+
+]
+Chapter 5.
+<./chapters/figures/MEM_stage.pdf, id=146, 597.23125pt x 409.53pt>
+File: ./chapters/figures/MEM_stage.pdf Graphic file (type pdf)
+<use ./chapters/figures/MEM_stage.pdf>
+Package pdftex.def Info: ./chapters/figures/MEM_stage.pdf  used on input line 8.
+(pdftex.def)             Requested size: 308.71104pt x 211.6883pt.
+<./chapters/figures/dcache.pdf, id=147, 1321.93875pt x 967.615pt>
+File: ./chapters/figures/dcache.pdf Graphic file (type pdf)
+<use ./chapters/figures/dcache.pdf>
+Package pdftex.def Info: ./chapters/figures/dcache.pdf  used on input line 24.
+(pdftex.def)             Requested size: 441.01772pt x 322.81316pt.
+[12
+
+ </Users/leonardoizzi/ms_report/./chapters/figures/MEM_stage.pdf>]
+<./chapters/figures/dcache_replacement.pdf, id=159, 501.875pt x 405.515pt>
+File: ./chapters/figures/dcache_replacement.pdf Graphic file (type pdf)
+<use ./chapters/figures/dcache_replacement.pdf>
+Package pdftex.def Info: ./chapters/figures/dcache_replacement.pdf  used on input line 44.
+(pdftex.def)             Requested size: 264.61331pt x 213.81433pt.
+ [13 </Users/leonardoizzi/ms_report/./chapters/figures/dcache.pdf>]) (/Users/leonardoizzi/ms_report/./chapters/wb.tex [14 </Users/leonardoizzi/ms_report/./chapters/figures/dcache_replacement.pdf>]
+Chapter 6.
+) (/Users/leonardoizzi/ms_report/./chapters/cu.tex [15
+
+]
+Chapter 7.
+<./chapters/figures/bltz_bgez.pdf, id=210, 1406.25375pt x 363.3575pt>
+File: ./chapters/figures/bltz_bgez.pdf Graphic file (type pdf)
+<use ./chapters/figures/bltz_bgez.pdf>
+Package pdftex.def Info: ./chapters/figures/bltz_bgez.pdf  used on input line 24.
+(pdftex.def)             Requested size: 441.01772pt x 113.94812pt.
+[16
+
+ </Users/leonardoizzi/ms_report/./chapters/figures/bltz_bgez.pdf>]
+<./chapters/figures/mul_fsm.pdf, id=230, 1439.3775pt x 369.38pt>
+File: ./chapters/figures/mul_fsm.pdf Graphic file (type pdf)
+<use ./chapters/figures/mul_fsm.pdf>
+Package pdftex.def Info: ./chapters/figures/mul_fsm.pdf  used on input line 61.
+(pdftex.def)             Requested size: 441.01772pt x 113.17645pt.
+<./chapters/figures/normal_op_diagram.pdf, id=231, 1658.195pt x 1482.53876pt>
+File: ./chapters/figures/normal_op_diagram.pdf Graphic file (type pdf)
+<use ./chapters/figures/normal_op_diagram.pdf>
+Package pdftex.def Info: ./chapters/figures/normal_op_diagram.pdf  used on input line 73.
+(pdftex.def)             Requested size: 441.01772pt x 394.29607pt.
+ [17] [18 </Users/leonardoizzi/ms_report/./chapters/figures/mul_fsm.pdf> </Users/leonardoizzi/ms_report/./chapters/figures/normal_op_diagram.pdf>]
+<./chapters/figures/mem_fsm.pdf, id=269, 676.5275pt x 425.59pt>
+File: ./chapters/figures/mem_fsm.pdf Graphic file (type pdf)
+<use ./chapters/figures/mem_fsm.pdf>
+Package pdftex.def Info: ./chapters/figures/mem_fsm.pdf  used on input line 111.
+(pdftex.def)             Requested size: 220.50885pt x 138.71773pt.
+ [19 </Users/leonardoizzi/ms_report/./chapters/figures/mem_fsm.pdf>]
+<./chapters/figures/memcontroller_fsm.pdf, id=294, 1056.94875pt x 398.48875pt>
+File: ./chapters/figures/memcontroller_fsm.pdf Graphic file (type pdf)
+<use ./chapters/figures/memcontroller_fsm.pdf>
+Package pdftex.def Info: ./chapters/figures/memcontroller_fsm.pdf  used on input line 139.
+(pdftex.def)             Requested size: 352.8155pt x 133.01572pt.
+ [20 </Users/leonardoizzi/ms_report/./chapters/figures/memcontroller_fsm.pdf>]) (/Users/leonardoizzi/ms_report/./chapters/syn_impl.tex [21]
+Chapter 8.
+) (/Users/leonardoizzi/ms_report/./chapters/conclusions.tex [22
+
+]
+Chapter 9.
+) [23
+
+] [24
+
+] (/Users/leonardoizzi/ms_report/group9_report.aux)
+Package logreq Info: Writing requests to 'group9_report.run.xml'.
+\openout1 = `group9_report.run.xml'.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 14791 strings out of 480608
+ 254573 string characters out of 5903630
+ 918403 words of memory out of 5000000
+ 30476 multiletter control sequences out of 15000+600000
+ 538492 words of font info for 47 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 41i,10n,63p,848b,1729s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on /Users/leonardoizzi/ms_report/group9_report.pdf (27 pages, 628251 bytes).
+PDF statistics:
+ 376 PDF objects out of 1000 (max. 8388607)
+ 252 compressed objects within 3 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 76 words of extra memory for PDF output out of 10000 (max. 10000000)
+

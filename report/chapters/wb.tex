@@ -1,0 +1,13 @@
+\chapter{WB stage}
+\label{chap:wb}
+
+This is the last stage of the pipeline. It is conceptually part of the ID stage since it drives the write signals of the register file.
+It is composed only by a 2x1 mux, which decides the value of the \verb|wp| port of the register file shown in figure \ref{fig:ID_stage}.
+The choice is made among the data read from the cache in the MEM stage or the one coming from a calculation performed in the EXE stage.
+It also drives:
+
+\begin{enumerate}
+    \item \verb|wp_en|, set to 1 when an operation has to store data in a GP register.
+    \item \verb|hilo_wr_en|, set to 1 when the result of a multiplication has to be stored in \verb|lo| and \verb|hi|.
+    \item \verb|wp_addr|, which is the value of the destination register.
+\end{enumerate}
