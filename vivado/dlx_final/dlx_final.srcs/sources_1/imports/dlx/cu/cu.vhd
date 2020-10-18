@@ -588,18 +588,18 @@ begin
 		b_selector_id <= curr_id(53);
 		data_tbs_selector_id <= curr_id(52);
 	    
-	    if (curr_mul_in_prog = '0') then
-	    	en_add_id <= curr_id(51);
-	    	en_shift_id <= curr_id(49);
-	    	en_mul_id <= curr_id(50);
-	    	en_a_neg_id <= curr_id(48);
-	    	shift_reg_id <= curr_id(47);
-	    	en_shift_reg_id <= curr_id(46);
-	    	en_rd_id <= curr_id(45);
-	    	en_npc_id <= curr_id(44);
-	    	en_imm_id <= curr_id(43);
-	    	en_b_id <= curr_id(42);
-	    elsif (curr_mul_in_prog = '1') then
+	    --if (curr_mul_in_prog = '0') then
+	    --	en_add_id <= curr_id(51);
+	    --	en_shift_id <= curr_id(49);
+	    --	en_mul_id <= curr_id(50);
+	    --	en_a_neg_id <= curr_id(48);
+	    --	shift_reg_id <= curr_id(47);
+	    --	en_shift_reg_id <= curr_id(46);
+	    --	en_rd_id <= curr_id(45);
+	    --	en_npc_id <= curr_id(44);
+	    --	en_imm_id <= curr_id(43);
+	    --	en_b_id <= curr_id(42);
+	    if (curr_mul_in_prog = '1') then
 	    	en_add_id <= 'Z';
 	    	en_shift_id <= 'Z';
 	    	en_mul_id <= 'Z';
@@ -621,9 +621,20 @@ begin
 	    	en_npc_id <= '0';
 	    	en_imm_id <= '0';
 	    	en_b_id <= '0';
+	    else
+	    	en_add_id <= curr_id(51);
+	    	en_shift_id <= curr_id(49);
+	    	en_mul_id <= curr_id(50);
+	    	en_a_neg_id <= curr_id(48);
+	    	shift_reg_id <= curr_id(47);
+	    	en_shift_reg_id <= curr_id(46);
+	    	en_rd_id <= curr_id(45);
+	    	en_npc_id <= curr_id(44);
+	    	en_imm_id <= curr_id(43);
+	    	en_b_id <= curr_id(42);
 	    end if;
 	    
-	    if (curr_id(18 downto 16) = "100") then -- workaround to detect the start of a multiplication
+	    if (curr_id(18 downto 16) = "100" and id_stall = '0') then -- workaround to detect the start of a multiplication
 	    	next_mul_id <= '1';
 	    else
 	    	next_mul_id <= '0';
@@ -835,9 +846,9 @@ begin
 					next_ms <= NORMAL_OP_MEM;
 					cache_miss_mem <= '0'; -- unlock the pipeline
 				else
+					en_alu_mem <= '0';
 					en_cache_mem <= '0';
 					en_rd_mem <= '0';
-					en_alu_mem <= '0';
 				end if;
 
 			when others =>

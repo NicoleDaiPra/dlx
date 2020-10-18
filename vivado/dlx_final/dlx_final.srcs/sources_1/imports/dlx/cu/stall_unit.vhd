@@ -147,8 +147,8 @@ begin
 			mem_stall <= '1';
 			next_exe <= curr_exe;
 			next_mem <= curr_mem;
-			next_wb <= nop_fw(3 downto 0); -- force nop operation
-			cache_miss_mem_wb_rst <= '0'; 
+			next_wb <= curr_wb; -- keep the old value in wb
+			--cache_miss_mem_wb_rst <= '0'; 
 
 		elsif (curr_mul_in_prog = '1' or next_mul_in_prog = '1') then
 			en_npc_if <= '0';
