@@ -2,7 +2,6 @@ addui $t0, $zero, dest; although labels are on 26 bits this one fits also in 16
 addui $t2, $t2, #1
 addui $a0, $zero, #3 ; parameter to be passed to the procedure
 addui $t3, $zero, #2
-addi $s0, $zero, #10 ; value used to check if it will be preserved
 jalr $t0
 j stop 
 dest:
