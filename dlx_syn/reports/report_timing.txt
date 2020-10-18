@@ -1,0 +1,150 @@
+Information: Updating design information... (UID-85)
+Warning: Design 'dlx_syn' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : dlx_syn
+Version: F-2011.09-SP3
+Date   : Mon Oct 19 01:08:35 2020
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: ctrl_u/curr_es_reg[1]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dp/id_exe_regs/b_mult_reg/curr_data_reg[23]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  dlx_syn            5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  ctrl_u/curr_es_reg[1]/CK (DFF_X1)                       0.00       0.00 r
+  ctrl_u/curr_es_reg[1]/Q (DFF_X1)                        0.09       0.09 r
+  U4305/ZN (NAND3_X1)                                     0.04       0.13 f
+  U4627/ZN (NAND2_X1)                                     0.04       0.17 r
+  U4054/ZN (AND4_X2)                                      0.07       0.23 r
+  U4596/ZN (NAND4_X1)                                     0.05       0.29 f
+  U3980/ZN (NOR2_X2)                                      0.07       0.36 r
+  U3938/Z (BUF_X2)                                        0.05       0.41 r
+  U4032/ZN (INV_X1)                                       0.04       0.45 f
+  U7477/ZN (OAI22_X1)                                     0.05       0.50 r
+  U7153/ZN (INV_X1)                                       0.02       0.52 f
+  U7151/ZN (NAND2_X1)                                     0.03       0.55 r
+  U4560/ZN (XNOR2_X1)                                     0.07       0.62 r
+  U4341/ZN (NOR2_X1)                                      0.03       0.65 f
+  U4558/ZN (NOR2_X1)                                      0.07       0.72 r
+  U4550/ZN (NAND2_X1)                                     0.04       0.76 f
+  U4549/ZN (NOR2_X1)                                      0.05       0.80 r
+  U4529/ZN (AOI21_X1)                                     0.03       0.84 f
+  U4466/ZN (INV_X1)                                       0.06       0.90 r
+  U4459/ZN (AOI21_X1)                                     0.05       0.95 f
+  U4323/ZN (OAI21_X1)                                     0.05       1.00 r
+  U4322/ZN (XNOR2_X1)                                     0.06       1.06 r
+  U4319/ZN (NAND2_X1)                                     0.03       1.09 f
+  U4317/ZN (NOR2_X1)                                      0.04       1.13 r
+  U3971/ZN (AND4_X2)                                      0.07       1.20 r
+  U4452/ZN (NAND2_X1)                                     0.03       1.23 f
+  U4450/ZN (AND2_X1)                                      0.04       1.27 f
+  U4316/ZN (OAI21_X1)                                     0.04       1.32 r
+  U4315/ZN (NAND2_X1)                                     0.04       1.35 f
+  U4314/ZN (NAND2_X1)                                     0.04       1.40 r
+  U3973/ZN (OR2_X2)                                       0.05       1.44 r
+  U4443/ZN (AND2_X1)                                      0.04       1.48 r
+  U4390/ZN (NAND2_X1)                                     0.04       1.52 f
+  U4004/ZN (NAND2_X1)                                     0.06       1.59 r
+  U6576/ZN (NAND2_X1)                                     0.07       1.66 f
+  U4137/ZN (NOR2_X1)                                      0.11       1.77 r
+  U3277/ZN (AOI22_X1)                                     0.05       1.82 f
+  U3278/ZN (NAND3_X1)                                     0.04       1.86 r
+  dp/id_exe_regs/b_mult_reg/curr_data_reg[23]/D (DFF_X1)
+                                                          0.01       1.87 r
+  data arrival time                                                  1.87
+
+  clock clk (rise edge)                                   1.90       1.90
+  clock network delay (ideal)                             0.00       1.90
+  dp/id_exe_regs/b_mult_reg/curr_data_reg[23]/CK (DFF_X1)
+                                                          0.00       1.90 r
+  library setup time                                     -0.03       1.87
+  data required time                                                 1.87
+  --------------------------------------------------------------------------
+  data required time                                                 1.87
+  data arrival time                                                 -1.87
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: dcache_hit (input port)
+  Endpoint: btb_cache_data_in[1]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  dlx_syn            5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                     0.00       0.00 f
+  dcache_hit (in)                          0.00       0.00 f
+  U4023/ZN (NOR2_X2)                       0.06       0.06 r
+  U4298/ZN (INV_X1)                        0.03       0.09 f
+  U4297/ZN (NAND2_X1)                      0.03       0.11 r
+  U4296/ZN (NAND2_X1)                      0.03       0.15 f
+  U4019/ZN (AND2_X2)                       0.05       0.20 f
+  U3983/ZN (AND2_X1)                       0.06       0.26 f
+  U4030/ZN (NAND2_X4)                      0.09       0.35 r
+  U6890/ZN (OR2_X1)                        0.05       0.40 r
+  U7078/ZN (NAND2_X1)                      0.03       0.43 f
+  U4574/ZN (NOR2_X1)                       0.09       0.52 r
+  U4573/ZN (NOR2_X1)                       0.03       0.55 f
+  U4395/ZN (NOR2_X1)                       0.05       0.61 r
+  U4565/ZN (NAND2_X1)                      0.04       0.65 f
+  U4549/ZN (NOR2_X1)                       0.04       0.70 r
+  U4529/ZN (AOI21_X1)                      0.03       0.73 f
+  U4466/ZN (INV_X1)                        0.06       0.79 r
+  U4459/ZN (AOI21_X1)                      0.05       0.84 f
+  U4323/ZN (OAI21_X1)                      0.05       0.89 r
+  U4322/ZN (XNOR2_X1)                      0.06       0.95 r
+  U4319/ZN (NAND2_X1)                      0.03       0.99 f
+  U4317/ZN (NOR2_X1)                       0.04       1.02 r
+  U3971/ZN (AND4_X2)                       0.07       1.09 r
+  U4448/ZN (NAND2_X1)                      0.04       1.13 f
+  U4447/ZN (OAI21_X1)                      0.05       1.17 r
+  U4316/ZN (OAI21_X1)                      0.03       1.21 f
+  U4315/ZN (NAND2_X1)                      0.04       1.24 r
+  U4314/ZN (NAND2_X1)                      0.04       1.28 f
+  U4160/ZN (OAI21_X1)                      0.06       1.34 r
+  U7191/ZN (NAND3_X1)                      0.05       1.39 f
+  U6494/ZN (NAND2_X1)                      0.04       1.43 r
+  U4372/ZN (NAND2_X1)                      0.05       1.49 f
+  U4145/ZN (NOR2_X1)                       0.08       1.57 r
+  U4126/ZN (INV_X2)                        0.09       1.66 f
+  U7323/ZN (OAI222_X1)                     0.08       1.74 r
+  btb_cache_data_in[1] (out)               0.00       1.74 r
+  data arrival time                                   1.74
+
+  max_delay                                1.90       1.90
+  output external delay                    0.00       1.90
+  data required time                                  1.90
+  -----------------------------------------------------------
+  data required time                                  1.90
+  data arrival time                                  -1.74
+  -----------------------------------------------------------
+  slack (MET)                                         0.16
+
+
+1
