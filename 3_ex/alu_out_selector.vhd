@@ -8,6 +8,7 @@ use ieee.std_logic_misc.all;
 
 -- The result is produced on 32 bits except for the multiplication that computes a 64 bits result.
 -- In that case, it is split and returned by using alu_out_sel_high and alu_out_sel_high.
+-- If the upper 32 bits are not needed they are set to 0 by default.
 
 entity alu_out_selector is
 	generic(

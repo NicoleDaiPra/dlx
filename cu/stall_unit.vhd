@@ -147,8 +147,7 @@ begin
 			mem_stall <= '1';
 			next_exe <= curr_exe;
 			next_mem <= curr_mem;
-			next_wb <= curr_wb; -- keep the old value in wb
-			--cache_miss_mem_wb_rst <= '0'; 
+			next_wb <= curr_wb; -- keep the old value in wb 
 
 		elsif (curr_mul_in_prog = '1' or next_mul_in_prog = '1') then
 			en_npc_if <= '0';
@@ -162,7 +161,6 @@ begin
 				next_mem <= nop_fw(14 downto 0); -- force nop operation
 				mul_exe_mem_rst <= '0';
 			else
-				--next_exe <= curr_exe;
 				next_exe <= nop_fw(41 downto 0); -- force nop operation
 				flush_mul <= '0';
 			end if;

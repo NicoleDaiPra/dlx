@@ -15,19 +15,6 @@ entity mul is
 end entity mul;
 
 architecture structural of mul is
-	--component p4_adder is
-	--	generic (
-	--		N: integer := 32 
-	--	);
-	--	port (
-	--		a: in std_logic_vector(N-1 downto 0);
-	--		b: in std_logic_vector(N-1 downto 0);
-	--		cin: in std_logic;
-	--		s: out std_logic_vector(N-1 downto 0);
-	--		cout: out std_logic;
-	--		carries: out std_logic_vector(N/4 downto 0)
-	--	);
-	--end component p4_adder;
 
 	component rca_generic_struct is
 		generic (
@@ -41,19 +28,6 @@ architecture structural of mul is
 	        cout: out std_logic
 	);
 	end component rca_generic_struct;
-
-	--component tmp_adder is
-	--	generic (
-	--		N: integer := 32
-	--	);
-	--	port (
-	--		a: in std_logic_vector(N-1 downto 0);
-	--		b: in std_logic_vector(N-1 downto 0);
-	--		cin: in std_logic;
-	--		sum: out std_logic_vector(N-1 downto 0);
-	--		cout: out std_logic
-	--	);
-	--end component tmp_adder;
 
 	component mux_2x1 is
 		generic (
@@ -181,7 +155,7 @@ begin
 			y => b_enc10_1
 		);
 
-		-- in the first iteration ("0000") the value of booth_enc_10_1 must be picked, otherwise the adder's feedback
+	-- in the first iteration ("0000") the value of booth_enc_10_1 must be picked, otherwise the adder's feedback
 	eq_comp: equality_comparator
 		generic map (
 			N => 4

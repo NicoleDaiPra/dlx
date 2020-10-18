@@ -1,7 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
--- ALU that encapsulate the computing units, the comparator and the selector of the result
+-- ALU that encapsulate the computing units, the comparator and the selector of the result.
 
 entity alu is
 	port ( 

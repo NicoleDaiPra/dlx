@@ -189,8 +189,6 @@ architecture struct of ex_stage is
 
 
 begin
-	
-	--imm_in_shifted <= imm_in(29 downto 0)&"00";
 
 	rca_add: rca_generic_struct
 		generic map (

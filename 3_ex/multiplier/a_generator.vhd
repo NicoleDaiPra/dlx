@@ -2,6 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+-- component that, based on the iteration value, generates the correct shifted value for the multiplication.
 entity a_generator is
 	port (
 		a_in: in std_logic_vector(63 downto 0);

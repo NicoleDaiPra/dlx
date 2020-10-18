@@ -1,19 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-
-
-
-
--- ADD BITS TO ENABLE THE SAMPLING OF RS AND RT IN THE ID/EXE STAGE REGISTERS
--- BECAUSE OTHERWISE THE STALL UNIT USES THE WRONG REGISTERS (THE ONES OF ID) TO DETECT FORWARDING
-
-
-
-
-
-
-
 package control_words is
 	subtype cw_t is std_logic_vector(62 downto 0);
 								   --  ID	       ID/EXE      EXE               E/M    MEM     M/W WB

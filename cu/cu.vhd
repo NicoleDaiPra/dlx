@@ -387,7 +387,6 @@ architecture behavioral of cu is
 	signal curr_mul_in_prog, next_mul_in_prog: std_logic; -- tells to the ID stage to not drive some signals while a multiplication is in progress. SOURCE OF STALL	
 	signal curr_mul_stall, next_mul_stall: std_logic; -- used by the exe's fsm to ask to the stall unit to stall
 	signal curr_it, next_it: std_logic_vector(3 downto 0);
-	--signal curr_cache_miss, next_cache_miss: std_logic;
 	signal cache_miss_mem: std_logic;
 	signal if_stall, id_stall, exe_stall, mem_stall: std_logic; -- driven by the stall unit to stall the pipeline
 	signal curr_mul_end_mem, next_mul_end_mem, curr_mul_end_wb, next_mul_end_wb: std_logic; -- signal to the wb stage that a mul has finished its execution
@@ -434,7 +433,6 @@ begin
 				curr_ak_exe <= '0';
 				curr_pt_exe <= '0';
 				curr_mul_in_prog <= '0';
-				--curr_mul_stall <= '0';
 				curr_es <= NORMAL_OP_EXE;
 				curr_it <= (others => '0');
 			else
@@ -452,13 +450,11 @@ begin
 				curr_mem <= nop_fw(14 downto 0);
 				curr_wb <= nop_fw(3 downto 0);
 				curr_ms <= NORMAL_OP_MEM;
-				--curr_cache_miss <= '0';
 				curr_mul_end_mem <= '1';
 				curr_mul_end_wb <= '1';
 			else
 				if (mem_en = '1') then
 					curr_mem <= next_mem;
-					--curr_cache_miss <= next_cache_miss;
 					curr_ms <= next_ms;
 					curr_mul_end_mem <= next_mul_end_mem;
 				end if;
@@ -587,18 +583,7 @@ begin
 		a_selector_id <= curr_id(54);
 		b_selector_id <= curr_id(53);
 		data_tbs_selector_id <= curr_id(52);
-	    
-	    --if (curr_mul_in_prog = '0') then
-	    --	en_add_id <= curr_id(51);
-	    --	en_shift_id <= curr_id(49);
-	    --	en_mul_id <= curr_id(50);
-	    --	en_a_neg_id <= curr_id(48);
-	    --	shift_reg_id <= curr_id(47);
-	    --	en_shift_reg_id <= curr_id(46);
-	    --	en_rd_id <= curr_id(45);
-	    --	en_npc_id <= curr_id(44);
-	    --	en_imm_id <= curr_id(43);
-	    --	en_b_id <= curr_id(42);
+
 	    if (curr_mul_in_prog = '1') then
 	    	en_add_id <= 'Z';
 	    	en_shift_id <= 'Z';
@@ -648,7 +633,6 @@ begin
 	exe_comblogic: process(curr_exe, curr_mem, curr_mul_in_prog, curr_es, curr_ak_exe, curr_pt_exe, curr_it, curr_mul_id, taken_exe, exe_stall, exe_unlock_pipeline, cache_miss_mem)
 	begin
 		next_mul_in_prog <= curr_mul_in_prog;
-		--mul_stall <= '0';
 		next_mul_end_mem <= '1';
 		next_es <= curr_es;
 		it_exe <= curr_it;
@@ -688,12 +672,6 @@ begin
 			en_rd_exe <= curr_exe(17);
 			en_b_exe <= curr_exe(16);
 		end if;
-		
-		--if (exe_stall = '1') then
-		--	next_mem <= curr_mem;
-		--else
-		--	next_mem <= curr_exe(14 downto 0); -- propagate the remaining control signals to the MEM stage
-		--end if;
     	
     	-- FSM to handle normal ops and multiplication 
 		case (curr_es) is
@@ -742,7 +720,6 @@ begin
 	    		en_output_exe <= '1';
 	    		next_it <= (others => '0');
 	    		next_mul_end_mem <= '0';
-	    		--mul_stall <= '1';
 	    		next_es <= MUL_IN_PROG;
 
 			when MUL_IN_PROG => -- calculate the partial results
@@ -760,7 +737,6 @@ begin
 	    		en_output_exe <= '1';
 	    		next_it <= std_logic_vector(unsigned(curr_it) + 1);
 	    		next_mul_end_mem <= '0';
-	    		--mul_stall <= '1';
 	    		if (curr_it = "1110") then
 	    			next_es <= MUL_END;
 	    			next_it <= curr_it;
@@ -779,9 +755,7 @@ begin
 	    		shift_reg_id <= '0';
 	    		en_shift_reg_id <= '0';
 	    		next_mul_end_mem <= '1';
-	    		--mul_stall <= '1';
 	    		mul_push <= '1';
-	    		--flush_exe <= '0';
 	    		if (curr_it /= "0000") then
 	    			en_output_exe <= '1';
 	    		else
@@ -791,7 +765,6 @@ begin
 	    		if (exe_unlock_pipeline = '1') then
 	    			next_es <= NORMAL_OP_EXE;
 	    			next_mul_in_prog <= '0';
-	    			--mul_stall <= '0';
 	    		end if;
 
 			when others => -- why are we even here?
@@ -817,10 +790,8 @@ begin
 		next_ms <= curr_ms;
 
 		if (mem_stall = '1') then
-			--next_wb <= curr_wb;
 			next_mul_end_wb <= curr_mul_end_wb;
 		else
-			--next_wb <= curr_mem(2 downto 0);
 			next_mul_end_wb <= curr_mul_end_mem;
 		end if;
 
