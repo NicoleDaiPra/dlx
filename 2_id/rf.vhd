@@ -58,7 +58,7 @@ architecture behavioral of rf is
 
 	type data_array is array (0 to 31) of std_logic_vector(N-1 downto 0);
 
-	signal enable: std_logic_vector(31 downto 1);
+	signal enable: std_logic_vector(31 downto 0);
 	signal regout_array: data_array;
 	signal lo_out, hi_out: std_logic_vector(N-1 downto 0);
 	signal clk_inv: std_logic;
