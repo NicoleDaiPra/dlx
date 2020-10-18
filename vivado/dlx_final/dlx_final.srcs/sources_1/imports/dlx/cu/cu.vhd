@@ -599,7 +599,7 @@ begin
 	    	en_npc_id <= curr_id(44);
 	    	en_imm_id <= curr_id(43);
 	    	en_b_id <= curr_id(42);
-	    else
+	    elsif (curr_mul_in_prog = '1') then
 	    	en_add_id <= 'Z';
 	    	en_shift_id <= 'Z';
 	    	en_mul_id <= 'Z';
@@ -610,6 +610,17 @@ begin
 	    	en_npc_id <= 'Z';
 	    	en_imm_id <= 'Z';
 	    	en_b_id <= 'Z';
+	    elsif (id_stall = '1') then
+	    	en_add_id <= '0';
+	    	en_shift_id <= '0';
+	    	en_mul_id <= '0';
+	    	en_a_neg_id <= '0';
+	    	shift_reg_id <= '0';
+	    	en_shift_reg_id <= '0';
+	    	en_rd_id <= '0';
+	    	en_npc_id <= '0';
+	    	en_imm_id <= '0';
+	    	en_b_id <= '0';
 	    end if;
 	    
 	    if (curr_id(18 downto 16) = "100") then -- workaround to detect the start of a multiplication
@@ -810,6 +821,9 @@ begin
 					-- we have detected a cache miss, pass the ball to the memory controller
 					next_ms <= CACHE_MISS;
 					cache_miss_mem <= '1'; -- stall IF, ID and EXE
+					en_alu_mem <= '0';
+					en_cache_mem <= '0';
+					en_rd_mem <= '0';
 				end if;
 
 			when CACHE_MISS =>
@@ -820,6 +834,10 @@ begin
 				if (cu_resume_mem = '1') then
 					next_ms <= NORMAL_OP_MEM;
 					cache_miss_mem <= '0'; -- unlock the pipeline
+				else
+					en_cache_mem <= '0';
+					en_rd_mem <= '0';
+					en_alu_mem <= '0';
 				end if;
 
 			when others =>
