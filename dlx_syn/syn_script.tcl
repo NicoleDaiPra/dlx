@@ -24,10 +24,12 @@ elaborate DLX_SYN -architecture STRUCTURAL -library DEFAULT
 set_max_delay $clk_period -from [all_inputs] -to [all_outputs]
 create_clock -name "clk" -period $clk_period clk
 compile_ultra
+#Reports generation
 report_timing > ./reports/report_timing.txt
 report_area > ./reports/report_area.txt
 report_power > ./reports/report_power.txt
 write -hierarchy -format verilog -output dlx.v
+write_sdc dlx.sdc
 
 
 
