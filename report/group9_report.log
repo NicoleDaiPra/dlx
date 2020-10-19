@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.25)  19 OCT 2020 00:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.25)  19 OCT 2020 17:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/Users/leonardoizzi/ms_report/group9_report.tex
-(/Users/leonardoizzi/ms_report/group9_report.tex
+**/Users/leonardoizzi/dlx/report/group9_report.tex
+(/Users/leonardoizzi/dlx/report/group9_report.tex
 LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-03-06> (/usr/local/texlive/2020/texmf-dist/tex/latex/base/book.cls
 Document Class: book 2019/12/20 v1.4l Standard LaTeX document class
@@ -543,7 +543,7 @@ File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
 LaTeX Warning: Unused global option(s):
     [makeidx].
 
-(/Users/leonardoizzi/ms_report/group9_report.aux)
+(/Users/leonardoizzi/dlx/report/group9_report.aux)
 \openout1 = `group9_report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 115.
@@ -573,7 +573,7 @@ Package biblatex Info: Automatic encoding selection.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'group9_report.bbl' found.
- (/Users/leonardoizzi/ms_report/group9_report.bbl)
+ (/Users/leonardoizzi/dlx/report/group9_report.bbl)
 Package biblatex Info: Reference section=0 on input line 115.
 Package biblatex Info: Reference segment=0 on input line 115.
  (/usr/local/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -608,7 +608,7 @@ Package pdftex.def Info: ./logopoli.jpg  used on input line 121.
 
 
 
-{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map} </Users/leonardoizzi/ms_report/./logopoli.jpg>] (/Users/leonardoizzi/ms_report/group9_report.toc
+{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map} </Users/leonardoizzi/dlx/report/./logopoli.jpg>] (/Users/leonardoizzi/dlx/report/group9_report.toc
 LaTeX Font Info:    Trying to load font information for U+msa on input line 6.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -622,139 +622,204 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \tf@toc=\write6
 \openout6 = `group9_report.toc'.
 
- [2] (/Users/leonardoizzi/ms_report/./chapters/introduction.tex
+ [2] (/Users/leonardoizzi/dlx/report/./chapters/introduction.tex
 Chapter 1.
 [1
 
 
-]) (/Users/leonardoizzi/ms_report/./chapters/if.tex [2] [3]
+] [2]) (/Users/leonardoizzi/dlx/report/./chapters/assember.tex [3]
 Chapter 2.
-<./chapters/figures/IF_stage.pdf, id=31, 1220.56pt x 651.43375pt>
+) (/Users/leonardoizzi/dlx/report/./chapters/if.tex [4
+
+] [5]
+Chapter 3.
+<./chapters/figures/IF_stage.pdf, id=38, 1220.56pt x 651.43375pt>
 File: ./chapters/figures/IF_stage.pdf Graphic file (type pdf)
 <use ./chapters/figures/IF_stage.pdf>
 Package pdftex.def Info: ./chapters/figures/IF_stage.pdf  used on input line 9.
 (pdftex.def)             Requested size: 441.01772pt x 235.38075pt.
-[4
+[6
 
- </Users/leonardoizzi/ms_report/./chapters/figures/IF_stage.pdf>]
-<./chapters/figures/BTB_fields.pdf, id=50, 477.785pt x 56.21pt>
+ </Users/leonardoizzi/dlx/report/./chapters/figures/IF_stage.pdf>]
+<./chapters/figures/BTB_fields.pdf, id=56, 477.785pt x 56.21pt>
 File: ./chapters/figures/BTB_fields.pdf Graphic file (type pdf)
 <use ./chapters/figures/BTB_fields.pdf>
 Package pdftex.def Info: ./chapters/figures/BTB_fields.pdf  used on input line 37.
 (pdftex.def)             Requested size: 441.01772pt x 51.88449pt.
-<./chapters/figures/BTB_FSM.pdf, id=51, 183.68625pt x 188.705pt>
+<./chapters/figures/BTB_FSM.pdf, id=57, 183.68625pt x 188.705pt>
 File: ./chapters/figures/BTB_FSM.pdf Graphic file (type pdf)
 <use ./chapters/figures/BTB_FSM.pdf>
 Package pdftex.def Info: ./chapters/figures/BTB_FSM.pdf  used on input line 53.
 (pdftex.def)             Requested size: 132.30666pt x 135.93083pt.
- [5 </Users/leonardoizzi/ms_report/./chapters/figures/BTB_fields.pdf> </Users/leonardoizzi/ms_report/./chapters/figures/BTB_FSM.pdf>]
-<./chapters/figures/BTB_cache.pdf, id=87, 1190.4475pt x 319.1925pt>
+ [7 </Users/leonardoizzi/dlx/report/./chapters/figures/BTB_fields.pdf> </Users/leonardoizzi/dlx/report/./chapters/figures/BTB_FSM.pdf>]
+<./chapters/figures/BTB_cache.pdf, id=93, 1190.4475pt x 319.1925pt>
 File: ./chapters/figures/BTB_cache.pdf Graphic file (type pdf)
 <use ./chapters/figures/BTB_cache.pdf>
 Package pdftex.def Info: ./chapters/figures/BTB_cache.pdf  used on input line 84.
 (pdftex.def)             Requested size: 441.01772pt x 118.24548pt.
-<./chapters/figures/BTB_cache_line.pdf, id=88, 545.03625pt x 430.60875pt>
+<./chapters/figures/BTB_cache_line.pdf, id=94, 545.03625pt x 430.60875pt>
 File: ./chapters/figures/BTB_cache_line.pdf Graphic file (type pdf)
 <use ./chapters/figures/BTB_cache_line.pdf>
 Package pdftex.def Info: ./chapters/figures/BTB_cache_line.pdf  used on input line 95.
 (pdftex.def)             Requested size: 264.61331pt x 209.05524pt.
- [6 </Users/leonardoizzi/ms_report/./chapters/figures/BTB_cache.pdf>]) (/Users/leonardoizzi/ms_report/./chapters/id.tex [7 </Users/leonardoizzi/ms_report/./chapters/figures/BTB_cache_line.pdf>]
-Chapter 3.
-<./chapters/figures/ID_stage.pdf, id=124, 863.225pt x 819.06pt>
+ [8 </Users/leonardoizzi/dlx/report/./chapters/figures/BTB_cache.pdf>]) (/Users/leonardoizzi/dlx/report/./chapters/id.tex [9 </Users/leonardoizzi/dlx/report/./chapters/figures/BTB_cache_line.pdf>]
+Chapter 4.
+<./chapters/figures/ID_stage.pdf, id=130, 863.225pt x 819.06pt>
 File: ./chapters/figures/ID_stage.pdf Graphic file (type pdf)
 <use ./chapters/figures/ID_stage.pdf>
 Package pdftex.def Info: ./chapters/figures/ID_stage.pdf  used on input line 8.
 (pdftex.def)             Requested size: 264.61331pt x 251.06897pt.
-[8
+[10
 
- </Users/leonardoizzi/ms_report/./chapters/figures/ID_stage.pdf>]) (/Users/leonardoizzi/ms_report/./chapters/exe.tex [9] [10]
-Chapter 4.
-) (/Users/leonardoizzi/ms_report/./chapters/mem.tex [11
-
-]
+ </Users/leonardoizzi/dlx/report/./chapters/figures/ID_stage.pdf>]) (/Users/leonardoizzi/dlx/report/./chapters/exe.tex [11] [12]
 Chapter 5.
-<./chapters/figures/MEM_stage.pdf, id=146, 597.23125pt x 409.53pt>
+<./chapters/figures/ex_stage.pdf, id=149, 1079.03125pt x 895.345pt>
+File: ./chapters/figures/ex_stage.pdf Graphic file (type pdf)
+<use ./chapters/figures/ex_stage.pdf>
+Package pdftex.def Info: ./chapters/figures/ex_stage.pdf  used on input line 9.
+(pdftex.def)             Requested size: 352.8155pt x 292.75972pt.
+[13
+
+ </Users/leonardoizzi/dlx/report/./chapters/figures/ex_stage.pdf>]
+<./chapters/figures/ALU_exe.pdf, id=167, 1231.60126pt x 956.57375pt>
+File: ./chapters/figures/ALU_exe.pdf Graphic file (type pdf)
+<use ./chapters/figures/ALU_exe.pdf>
+Package pdftex.def Info: ./chapters/figures/ALU_exe.pdf  used on input line 44.
+(pdftex.def)             Requested size: 352.8155pt x 274.02757pt.
+ [14 </Users/leonardoizzi/dlx/report/./chapters/figures/ALU_exe.pdf>]) (/Users/leonardoizzi/dlx/report/./chapters/mem.tex [15]
+Chapter 6.
+<./chapters/figures/MEM_stage.pdf, id=188, 597.23125pt x 409.53pt>
 File: ./chapters/figures/MEM_stage.pdf Graphic file (type pdf)
 <use ./chapters/figures/MEM_stage.pdf>
 Package pdftex.def Info: ./chapters/figures/MEM_stage.pdf  used on input line 8.
 (pdftex.def)             Requested size: 308.71104pt x 211.6883pt.
-<./chapters/figures/dcache.pdf, id=147, 1321.93875pt x 967.615pt>
+<./chapters/figures/dcache.pdf, id=189, 1321.93875pt x 967.615pt>
 File: ./chapters/figures/dcache.pdf Graphic file (type pdf)
 <use ./chapters/figures/dcache.pdf>
 Package pdftex.def Info: ./chapters/figures/dcache.pdf  used on input line 24.
 (pdftex.def)             Requested size: 441.01772pt x 322.81316pt.
-[12
+[16
 
- </Users/leonardoizzi/ms_report/./chapters/figures/MEM_stage.pdf>]
-<./chapters/figures/dcache_replacement.pdf, id=159, 501.875pt x 405.515pt>
+ </Users/leonardoizzi/dlx/report/./chapters/figures/MEM_stage.pdf>]
+<./chapters/figures/dcache_replacement.pdf, id=202, 501.875pt x 405.515pt>
 File: ./chapters/figures/dcache_replacement.pdf Graphic file (type pdf)
 <use ./chapters/figures/dcache_replacement.pdf>
 Package pdftex.def Info: ./chapters/figures/dcache_replacement.pdf  used on input line 44.
 (pdftex.def)             Requested size: 264.61331pt x 213.81433pt.
- [13 </Users/leonardoizzi/ms_report/./chapters/figures/dcache.pdf>]) (/Users/leonardoizzi/ms_report/./chapters/wb.tex [14 </Users/leonardoizzi/ms_report/./chapters/figures/dcache_replacement.pdf>]
-Chapter 6.
-) (/Users/leonardoizzi/ms_report/./chapters/cu.tex [15
+ [17 </Users/leonardoizzi/dlx/report/./chapters/figures/dcache.pdf>]) (/Users/leonardoizzi/dlx/report/./chapters/wb.tex [18 </Users/leonardoizzi/dlx/report/./chapters/figures/dcache_replacement.pdf>]
+Chapter 7.
+) (/Users/leonardoizzi/dlx/report/./chapters/cu.tex [19
 
 ]
-Chapter 7.
-<./chapters/figures/bltz_bgez.pdf, id=210, 1406.25375pt x 363.3575pt>
+Chapter 8.
+<./chapters/figures/bltz_bgez.pdf, id=252, 1406.25375pt x 363.3575pt>
 File: ./chapters/figures/bltz_bgez.pdf Graphic file (type pdf)
 <use ./chapters/figures/bltz_bgez.pdf>
-Package pdftex.def Info: ./chapters/figures/bltz_bgez.pdf  used on input line 24.
+Package pdftex.def Info: ./chapters/figures/bltz_bgez.pdf  used on input line 25.
 (pdftex.def)             Requested size: 441.01772pt x 113.94812pt.
-[16
+[20
 
- </Users/leonardoizzi/ms_report/./chapters/figures/bltz_bgez.pdf>]
-<./chapters/figures/mul_fsm.pdf, id=230, 1439.3775pt x 369.38pt>
+ </Users/leonardoizzi/dlx/report/./chapters/figures/bltz_bgez.pdf>]
+<./chapters/figures/mul_fsm.pdf, id=271, 1439.3775pt x 369.38pt>
 File: ./chapters/figures/mul_fsm.pdf Graphic file (type pdf)
 <use ./chapters/figures/mul_fsm.pdf>
-Package pdftex.def Info: ./chapters/figures/mul_fsm.pdf  used on input line 61.
+Package pdftex.def Info: ./chapters/figures/mul_fsm.pdf  used on input line 62.
 (pdftex.def)             Requested size: 441.01772pt x 113.17645pt.
-<./chapters/figures/normal_op_diagram.pdf, id=231, 1658.195pt x 1482.53876pt>
+<./chapters/figures/normal_op_diagram.pdf, id=272, 1658.195pt x 1482.53876pt>
 File: ./chapters/figures/normal_op_diagram.pdf Graphic file (type pdf)
 <use ./chapters/figures/normal_op_diagram.pdf>
-Package pdftex.def Info: ./chapters/figures/normal_op_diagram.pdf  used on input line 73.
+Package pdftex.def Info: ./chapters/figures/normal_op_diagram.pdf  used on input line 74.
 (pdftex.def)             Requested size: 441.01772pt x 394.29607pt.
- [17] [18 </Users/leonardoizzi/ms_report/./chapters/figures/mul_fsm.pdf> </Users/leonardoizzi/ms_report/./chapters/figures/normal_op_diagram.pdf>]
-<./chapters/figures/mem_fsm.pdf, id=269, 676.5275pt x 425.59pt>
+ [21] [22 </Users/leonardoizzi/dlx/report/./chapters/figures/mul_fsm.pdf> </Users/leonardoizzi/dlx/report/./chapters/figures/normal_op_diagram.pdf>]
+<./chapters/figures/mem_fsm.pdf, id=311, 676.5275pt x 425.59pt>
 File: ./chapters/figures/mem_fsm.pdf Graphic file (type pdf)
 <use ./chapters/figures/mem_fsm.pdf>
-Package pdftex.def Info: ./chapters/figures/mem_fsm.pdf  used on input line 111.
+Package pdftex.def Info: ./chapters/figures/mem_fsm.pdf  used on input line 112.
 (pdftex.def)             Requested size: 220.50885pt x 138.71773pt.
- [19 </Users/leonardoizzi/ms_report/./chapters/figures/mem_fsm.pdf>]
-<./chapters/figures/memcontroller_fsm.pdf, id=294, 1056.94875pt x 398.48875pt>
+ [23 </Users/leonardoizzi/dlx/report/./chapters/figures/mem_fsm.pdf>]
+<./chapters/figures/memcontroller_fsm.pdf, id=337, 1056.94875pt x 398.48875pt>
 File: ./chapters/figures/memcontroller_fsm.pdf Graphic file (type pdf)
 <use ./chapters/figures/memcontroller_fsm.pdf>
-Package pdftex.def Info: ./chapters/figures/memcontroller_fsm.pdf  used on input line 139.
+Package pdftex.def Info: ./chapters/figures/memcontroller_fsm.pdf  used on input line 140.
 (pdftex.def)             Requested size: 352.8155pt x 133.01572pt.
- [20 </Users/leonardoizzi/ms_report/./chapters/figures/memcontroller_fsm.pdf>]) (/Users/leonardoizzi/ms_report/./chapters/syn_impl.tex [21]
-Chapter 8.
-) (/Users/leonardoizzi/ms_report/./chapters/conclusions.tex [22
-
-]
+ [24 </Users/leonardoizzi/dlx/report/./chapters/figures/memcontroller_fsm.pdf>]) (/Users/leonardoizzi/dlx/report/./chapters/syn_impl.tex [25]
 Chapter 9.
-) [23
+[26
 
-] [24
+] [27] [28]
+Overfull \hbox (73.4778pt too wide) in paragraph at lines 173--173
+[]\OT1/cmtt/m/n/10 Power Group      Power            Power               Power              Power   (   %    )  Attrs[] 
+ []
 
-] (/Users/leonardoizzi/ms_report/group9_report.aux)
+
+Overfull \hbox (73.4778pt too wide) in paragraph at lines 174--174
+[]\OT1/cmtt/m/n/10 --------------------------------------------------------------------------------------------------[] 
+ []
+
+
+Overfull \hbox (36.72812pt too wide) in paragraph at lines 175--175
+[]\OT1/cmtt/m/n/10 io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)[] 
+ []
+
+
+Overfull \hbox (36.72812pt too wide) in paragraph at lines 176--176
+[]\OT1/cmtt/m/n/10 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)[] 
+ []
+
+
+Overfull \hbox (36.72812pt too wide) in paragraph at lines 177--177
+[]\OT1/cmtt/m/n/10 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)[] 
+ []
+
+
+Overfull \hbox (36.72812pt too wide) in paragraph at lines 178--178
+[]\OT1/cmtt/m/n/10 clock_network     11.1759        1.1986e+03          114.8263        1.2098e+03  (  13.17%)[] 
+ []
+
+
+Overfull \hbox (36.72812pt too wide) in paragraph at lines 179--179
+[]\OT1/cmtt/m/n/10 register       6.7667e+03           72.8469        1.4489e+05        6.9844e+03  (  76.01%)[] 
+ []
+
+
+Overfull \hbox (36.72812pt too wide) in paragraph at lines 180--180
+[]\OT1/cmtt/m/n/10 sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)[] 
+ []
+
+
+Overfull \hbox (36.72812pt too wide) in paragraph at lines 181--181
+[]\OT1/cmtt/m/n/10 combinational    208.6468          467.4612        3.1815e+05          994.2623  (  10.82%)[] 
+ []
+
+
+Overfull \hbox (73.4778pt too wide) in paragraph at lines 182--182
+[]\OT1/cmtt/m/n/10 --------------------------------------------------------------------------------------------------[] 
+ []
+
+[29]) (/Users/leonardoizzi/dlx/report/./chapters/conclusions.tex [30]
+Chapter 10.
+) [31
+
+] [32
+
+] (/Users/leonardoizzi/dlx/report/group9_report.aux)
 Package logreq Info: Writing requests to 'group9_report.run.xml'.
 \openout1 = `group9_report.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 14791 strings out of 480608
- 254573 string characters out of 5903630
- 918403 words of memory out of 5000000
- 30476 multiletter control sequences out of 15000+600000
+ 14816 strings out of 480608
+ 255334 string characters out of 5903630
+ 918502 words of memory out of 5000000
+ 30496 multiletter control sequences out of 15000+600000
  538492 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,10n,63p,848b,1729s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on /Users/leonardoizzi/ms_report/group9_report.pdf (27 pages, 628251 bytes).
+ 41i,10n,63p,849b,1713s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on /Users/leonardoizzi/dlx/report/group9_report.pdf (35 pages, 698426 bytes).
 PDF statistics:
- 376 PDF objects out of 1000 (max. 8388607)
- 252 compressed objects within 3 object streams
+ 433 PDF objects out of 1000 (max. 8388607)
+ 291 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
- 76 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 86 words of extra memory for PDF output out of 10000 (max. 10000000)
 

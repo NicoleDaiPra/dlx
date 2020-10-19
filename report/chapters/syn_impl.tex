@@ -1,2 +1,191 @@
-\chapter{Synthesis and Implementation}
+\chapter{Simulation, Synthesis and Implementation}
 \label{chap:syn_impl}
+
+In this chapter we will discuss the flow we have followed from the DLX's simulation to implementation.
+
+\section{Simulation}
+
+The simulation has been performed on two tools: {\it Vivado} and {\it ModelSim}. The various components of the DLX have been developed
+by using the former tool, which is also the one we used to perform unit testing. The latter has been used to perform the final integration
+testing. In the {\it dlx\_sim} folder a simulation script for ModelSim can be found, called \verb|sim_script.tcl|.
+
+This script first lets ModelSim to analyze the various VHDL files, then analyzed one of the provided testbenches and it runs a simulation
+for 100 ns.
+
+We did not provided the testbenches we have written for testing the components in isolation because, during the final tests, we had to change
+many small things and we did not have enough time to modify them as well.
+
+\subsection{Test files}
+
+In the folder {\it tb} all the testbenches that can be used with \verb|sim_script.tcl| are stored. By running all the scripts we have provided
+it is possible to verify the correctness of the entire DLX's ISA.
+
+The files are:
+\begin{enumerate}
+    \item \verb|tb_arith.vhd|: it aims at testing all the various arithmetic instructions, either of type R and I, by also the forwarding logic.
+    \item \verb|tb_branches.vhd|: it tests all the branches executed by the DLX along with the prediction abilities of the BTB.
+    \item \verb|tb_jalr.vhd|: it verifies the correctness of the \verb|jalr| instruction. This test is separated because otherwise \verb|tb_branches| would have been too big.
+    \item \verb|tb_jump_and_link.vhd|: it shows the ability of the processor to follows the ABI and to execute the \verb|jalr| instruction. As a bonus, it demonstrate the ability of the control unit and memory controller to handle cache misses.
+    \item \verb|tb_load_store.vhd|: it tests if the processor is capable to handle all the supported loads and stores.
+    \item \verb|tb_mult.vhd|: it tests if the multiplication is properly executed in various scenarios, like when it would need forwarding and if it stalls the pipeline correctly.
+    \item \verb|tb_r.vhd|: it checks whether the processor is able to execute all the supported R instructions, with and without forwarding.
+\end{enumerate}
+
+The related assembly files can be found in the folder {\it test\_assembly}.
+
+\section{Synthesis}
+
+Each time we developed a new datapath component, we have synthetized it to assess if it was able to meet our initial frequency target of $1\ GHz$. Among all the datapath components,
+the multiplier was the only one to not meet such standard, as it is able to reach a little bit more than $850\ MHz$ if synthetized alone.
+When we synthetized the first version of the complete DLX (that is, also with the control unit and the memory controller) we used the \verb|set_dont_touch| command to
+
+\begin{enumerate}
+    \item use \verb|compile_ultra| on critical parts of the design, that is the EXE stage and the control unit;
+    \item use \verb|compile| on the rest of the processor, as it less time-sensitive.
+\end{enumerate}
+
+The \verb|set_dont_touch| command, in fact, tells to the tool to not modify anymore an elaborated and compiled entity. This removes some optimization opportunities, but it is very handy
+when dealing with big circuits such as a processor to reduce the synthesis time.
+The result of the synthesis didn't meet our performance target, since it reached only $800 MHz$, but we still were satisfied. However, the more we have tested the DLX, the more we have found
+issues that needed to be fixed. Most of the issue were related to the control unit and the stall management, therefore it would have needed a complete redesign. Unfortunately, there was not enough
+time to do it, therefore we have been forced to add some hacks to make it work. This has severely affected the DLX's overall performance, as $t_{CK}$ had to be raised to $1.9\ ns$. This results in
+$f_{CK} \approx 525\ MHz$, which is almost half of our initial frequency target. This value has been obtained by synthetizing the whole DLX with the \verb|compile_ultra| command.
+
+Below, the final time, area and power report are shown.
+
+\subsection{Time report}
+
+\begin{verbatim}
+Startpoint: ctrl_u/curr_es_reg[1]
+            (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: dp/id_exe_regs/b_mult_reg/curr_data_reg[23]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  dlx_syn            5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  ctrl_u/curr_es_reg[1]/CK (DFF_X1)                       0.00       0.00 r
+  ctrl_u/curr_es_reg[1]/Q (DFF_X1)                        0.09       0.09 r
+  U4305/ZN (NAND3_X1)                                     0.04       0.13 f
+  U4627/ZN (NAND2_X1)                                     0.04       0.17 r
+  U4054/ZN (AND4_X2)                                      0.07       0.23 r
+  U4596/ZN (NAND4_X1)                                     0.05       0.29 f
+  U3980/ZN (NOR2_X2)                                      0.07       0.36 r
+  U3938/Z (BUF_X2)                                        0.05       0.41 r
+  U4032/ZN (INV_X1)                                       0.04       0.45 f
+  U7477/ZN (OAI22_X1)                                     0.05       0.50 r
+  U7153/ZN (INV_X1)                                       0.02       0.52 f
+  U7151/ZN (NAND2_X1)                                     0.03       0.55 r
+  U4560/ZN (XNOR2_X1)                                     0.07       0.62 r
+  U4341/ZN (NOR2_X1)                                      0.03       0.65 f
+  U4558/ZN (NOR2_X1)                                      0.07       0.72 r
+  U4550/ZN (NAND2_X1)                                     0.04       0.76 f
+  U4549/ZN (NOR2_X1)                                      0.05       0.80 r
+  U4529/ZN (AOI21_X1)                                     0.03       0.84 f
+  U4466/ZN (INV_X1)                                       0.06       0.90 r
+  U4459/ZN (AOI21_X1)                                     0.05       0.95 f
+  U4323/ZN (OAI21_X1)                                     0.05       1.00 r
+  U4322/ZN (XNOR2_X1)                                     0.06       1.06 r
+  U4319/ZN (NAND2_X1)                                     0.03       1.09 f
+  U4317/ZN (NOR2_X1)                                      0.04       1.13 r
+  U3971/ZN (AND4_X2)                                      0.07       1.20 r
+  U4452/ZN (NAND2_X1)                                     0.03       1.23 f
+  U4450/ZN (AND2_X1)                                      0.04       1.27 f
+  U4316/ZN (OAI21_X1)                                     0.04       1.32 r
+  U4315/ZN (NAND2_X1)                                     0.04       1.35 f
+  U4314/ZN (NAND2_X1)                                     0.04       1.40 r
+  U3973/ZN (OR2_X2)                                       0.05       1.44 r
+  U4443/ZN (AND2_X1)                                      0.04       1.48 r
+  U4390/ZN (NAND2_X1)                                     0.04       1.52 f
+  U4004/ZN (NAND2_X1)                                     0.06       1.59 r
+  U6576/ZN (NAND2_X1)                                     0.07       1.66 f
+  U4137/ZN (NOR2_X1)                                      0.11       1.77 r
+  U3277/ZN (AOI22_X1)                                     0.05       1.82 f
+  U3278/ZN (NAND3_X1)                                     0.04       1.86 r
+  dp/id_exe_regs/b_mult_reg/curr_data_reg[23]/D (DFF_X1)
+                                                          0.01       1.87 r
+  data arrival time                                                  1.87
+
+  clock clk (rise edge)                                   1.90       1.90
+  clock network delay (ideal)                             0.00       1.90
+  dp/id_exe_regs/b_mult_reg/curr_data_reg[23]/CK (DFF_X1)
+                                                          0.00       1.90 r
+  library setup time                                     -0.03       1.87
+  data required time                                                 1.87
+  --------------------------------------------------------------------------
+  data required time                                                 1.87
+  data arrival time                                                 -1.87
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+\end{verbatim}
+
+As it can be seen, the critical path starts in the EXE part of the control unit, specifically from the register that holds the EXE FSM's state,
+and terminates in the multiplication's register \verb|b| data.
+
+\subsection{Area report}
+
+\begin{verbatim}
+Number of ports:                          600
+Number of nets:                          6868
+Number of cells:                         5918
+Number of combinational cells:           5083
+Number of sequential cells:               832
+Number of macros:                           0
+Number of buf/inv:                        899
+Number of references:                      54
+
+Combinational area:       10821.944148
+Noncombinational area:    8594.991691
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:          19416.935839
+Total area:                 undefined
+\end{verbatim}
+
+\subsection{Power report}
+
+\begin{verbatim}
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+  Cell Internal Power  =   6.9865 mW   (80%)
+  Net Switching Power  =   1.7389 mW   (20%)
+                         ---------
+Total Dynamic Power    =   8.7254 mW  (100%)
+
+Cell Leakage Power     = 463.1583 uW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network     11.1759        1.1986e+03          114.8263        1.2098e+03  (  13.17%)
+register       6.7667e+03           72.8469        1.4489e+05        6.9844e+03  (  76.01%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational    208.6468          467.4612        3.1815e+05          994.2623  (  10.82%)
+--------------------------------------------------------------------------------------------------
+Total          6.9865e+03 uW     1.7389e+03 uW     4.6316e+05 nW     9.1886e+03 uW
+\end{verbatim}
+
+\subsection{Synthesis files}
+
+The synthesis file are stored in the {\it dlx\_syn} folder. Inside the folder it is provided a script called
+\verb|syn_script.tcl|, capable of running the the whole synthesis process.
+
+\section{Implementation}

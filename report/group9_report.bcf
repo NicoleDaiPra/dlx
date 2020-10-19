@@ -2191,8 +2191,9 @@
     <bcf:citekey order="7">code_stats</bcf:citekey>
     <bcf:citekey order="8">abi_regs</bcf:citekey>
     <bcf:citekey order="9">abi_regs</bcf:citekey>
-    <bcf:citekey order="10">MIPS64_arch</bcf:citekey>
+    <bcf:citekey order="10">ln</bcf:citekey>
     <bcf:citekey order="11">MIPS64_arch</bcf:citekey>
+    <bcf:citekey order="12">MIPS64_arch</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

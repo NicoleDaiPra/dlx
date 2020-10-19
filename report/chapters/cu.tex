@@ -12,6 +12,7 @@ The control unit is by far the most complex component in the DLX, therefore to e
 in the related stage. 
 
 \section{IF stage}
+\label{sec:cu_IF_stage}
 
 The PC register in the datapath is used to access the {\it instruction ROM}, or IROM, where all the instructions to be executed are stored. The IROM's output is then sent to both the
 control unit, to analyze the instruction's {\it opcode} and {\it func} fields, and to the IF/ID registers for decoding the rest of the fields in the ID stage.

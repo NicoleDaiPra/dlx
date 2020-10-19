@@ -19,6 +19,28 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{ln}{book}{}
+      \name{author}{1}{}{%
+        {{hash=44701f43668797274f40ed836a7b2f36}{%
+           family={Graziano},
+           familyi={G\bibinitperiod},
+           given={Mariagrazia},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{44701f43668797274f40ed836a7b2f36}
+      \strng{fullhash}{44701f43668797274f40ed836a7b2f36}
+      \strng{bibnamehash}{44701f43668797274f40ed836a7b2f36}
+      \strng{authorbibnamehash}{44701f43668797274f40ed836a7b2f36}
+      \strng{authornamehash}{44701f43668797274f40ed836a7b2f36}
+      \strng{authorfullhash}{44701f43668797274f40ed836a7b2f36}
+      \field{sortinit}{G}
+      \field{sortinithash}{62eb2aa29549e4fdbd3cb154ec5711cb}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Microelectronic System Lecture Notes}
+      \field{year}{2019}
+      \keyw{microelectronic}
+    \endentry
     \entry{code_stats}{online}{}
       \name{author}{1}{}{%
         {{hash=44fbde1712f9e5990dd430e0bdd549eb}{%

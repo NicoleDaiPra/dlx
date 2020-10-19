@@ -1,0 +1,66 @@
+\chapter{Assembler}
+\label{chap:assembler}
+
+To support the expanded instruction set and to support the MIPS ABI, we had to modify the provided assembler, \verb|dlxasm.pl|.
+
+\section{Instruction classes}
+
+First, we had to add new class of instructions, because there were not existing suitable classes for our needs. These classes are:
+
+\begin{enumerate}
+    \item \verb|r3|: it includes operations like \verb|mflo| and \verb|mfhi|, which are R instructions with both \verb|rs| and \verb|rt| always set to 0.
+    \item \verb|r4|: it allows to the \verb|mult| instruction to be executed as an integer, R, instruction. Notably, since it writes its result inside the register \verb|lo| and \verb|hi|, its \verb|rd| register is set to 0.
+    \item \verb|b1|: it is used for \verb|bgez| and \verb|bltz|, because they have the same opcode but a different value is stored in the bits 16-20. For more informations refer to section \ref{sec:cu_IF_stage}
+    \item \verb|b2|: it is used to properly encode branches that uses registers instead of $PC + immediate$ as next PC value.
+\end{enumerate}
+
+\section{Instructions}
+
+The full list of added and/or modified instructions is provided in table \ref{tab:asm_instr}.
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular} { |c|c|c|c|c| }
+        \hline
+        Name & Class & Opcode/Func & Original opcode/func & Added/Modified \\
+
+        \hline
+        \verb|sll| & \verb|r| & \verb|0x00| & \verb|0x04| & M \\
+        \hline
+        \verb|mflo| & \verb|r3| & \verb|0x12| & \verb|-| & A \\
+        \hline
+        \verb|mfhi| & \verb|r3| & \verb|0x10| & \verb|-| & A \\
+        \hline
+        \verb|mult| & \verb|r4| & \verb|0x0E| & \verb|0x0E| & M \\
+        \hline
+        \verb|bgez| & \verb|b1| & \verb|0x01| & \verb|-| & A \\
+        \hline
+        \verb|bltz| & \verb|b1| & \verb|0x00| & \verb|-| & A \\
+        \hline
+        \verb|beq| & \verb|b2| & \verb|0x04| & \verb|-| & A \\
+        \hline
+        \verb|bne| & \verb|b2| & \verb|0x05| & \verb|-| & A \\
+        \hline
+        \verb|blez| & \verb|b| & \verb|0x06| & \verb|-| & A \\
+        \hline
+        \verb|bgtz| & \verb|b| & \verb|0x07| & \verb|-| & A \\
+        \hline
+        \verb|beqz| & \verb|b| & \verb|0x10| & \verb|0x04| & M \\
+        \hline
+        \verb|bnez| & \verb|b| & \verb|0x11| & \verb|0x05| & M \\
+        \hline
+        \verb|jr| & \verb|jr| & \verb|0x08| & \verb|0x12| & M \\
+        \hline
+        \verb|jalr| & \verb|jr| & \verb|0x09| & \verb|0x13| & M \\
+        \hline
+        \verb|nop| & \verb|n| & \verb|0x00| & \verb|0x15| & M \\
+        \hline
+    \end{tabular}
+    \caption{Instructions added or modified in the dlxasm.pl file}
+    \label{tab:asm_instr}
+\end{table}
+
+\section{Register names}
+
+To provide full ABI support, we have added support for the actual registers' name.
+The complete list is provided in table \ref{tab:registers}.

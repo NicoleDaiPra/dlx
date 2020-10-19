@@ -129,3 +129,20 @@ was to reach $1\ GHz$, and to be able to execute \verb|jal| and \verb|jalr| in a
 which is normally executed by the FPU. As discussed in chapter \ref{chap:exe}, achieving high clock frequencies with a multiplication unit is not trivial and
 some compromises had to be done in term of latencies for this particular operation. We decided to trade the presence of the operation with latency, because as
 stated in \cite{code_stats} multiplications accounts only for the $0.02\%$ of the utilized instructions.
+
+\section{Folder organization}
+
+In the root folder it is possible to find 3 folders and this file. The folders are:
+
+\begin{enumerate}
+    \item \textbf{dlx\_sim}: all the file needed for the ModelSim simulation, as well as the files we used to test the DLX, can be found here.
+    \item \textbf{dlx\_syn}: the synthetizable files are stored here along with the synthesis report.
+    \item \textbf{dlx\_impl}: it contains all the files and the outputs of the physical design.
+\end{enumerate}
+
+The VHDL files in dlx\_syn are a subset of the ones present in dlx\_sim. Moreover, in dlx\_sim there are two additional folders:
+
+\begin{enumerate}
+    \item \textbf{tb}, that contains the VHDL testbenches needed to perform the actual simulation on ModelSim.
+    \item \textbf{test\_assembly}, where the \verb|.asm| and \verb|.mem| files are saved. These files are read by their related testbench and are used to fed the {\it IROM}.
+\end{enumerate}
