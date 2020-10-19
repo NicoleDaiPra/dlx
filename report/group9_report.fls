@@ -203,6 +203,11 @@ INPUT /Users/leonardoizzi/dlx/report/./chapters/figures/ex_stage.pdf
 INPUT /Users/leonardoizzi/dlx/report/./chapters/figures/ALU_exe.pdf
 INPUT /Users/leonardoizzi/dlx/report/./chapters/figures/ALU_exe.pdf
 INPUT /Users/leonardoizzi/dlx/report/./chapters/figures/ALU_exe.pdf
+INPUT /Users/leonardoizzi/dlx/report/./chapters/figures/mult.pdf
+INPUT /Users/leonardoizzi/dlx/report/./chapters/figures/mult.pdf
+INPUT /Users/leonardoizzi/dlx/report/./chapters/figures/mult.pdf
+INPUT /usr/local/texlive/2020/texmf-dist/tex/latex/base/omlcmr.fd
+INPUT /usr/local/texlive/2020/texmf-dist/tex/latex/base/omlcmr.fd
 INPUT /Users/leonardoizzi/dlx/report/./chapters/mem.tex
 INPUT /Users/leonardoizzi/dlx/report/./chapters/mem.tex
 INPUT /Users/leonardoizzi/dlx/report/./chapters/figures/MEM_stage.pdf

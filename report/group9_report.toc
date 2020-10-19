@@ -39,62 +39,74 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {5.1}ALU}{14}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}Branch \& Jump}{15}%
+\contentsline {subsection}{\numberline {5.1.1}Multiplier}{15}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}MEM stage}{16}%
+\contentsline {subsubsection}{\numberline {5.1.1.1}a generator}{16}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.1}Data cache}{16}%
+\contentsline {subsubsection}{\numberline {5.1.1.2}Booth encoder}{16}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.1}Replacement logic}{17}%
+\contentsline {subsubsection}{\numberline {5.1.1.3}Equality comparator}{16}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}Sign extender}{18}%
+\contentsline {subsubsection}{\numberline {5.1.1.4}Multiplier's limitations}{16}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}WB stage}{19}%
+\contentsline {subsection}{\numberline {5.1.2}Comparator}{16}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {8}Control Unit}{20}%
+\contentsline {section}{\numberline {5.2}Branch \& Jump}{17}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8.1}IF stage}{20}%
+\contentsline {chapter}{\numberline {6}MEM stage}{18}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8.2}ID stage}{21}%
+\contentsline {section}{\numberline {6.1}Data cache}{18}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8.3}EXE stage}{21}%
+\contentsline {subsection}{\numberline {6.1.1}Replacement logic}{19}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.3.1}NORMAL\_OP\_EXE}{21}%
+\contentsline {section}{\numberline {6.2}Sign extender}{20}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.3.2}A\_NEG\_SAMPLE}{23}%
+\contentsline {chapter}{\numberline {7}WB stage}{21}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.3.3}MUL\_IN\_PROG}{23}%
+\contentsline {chapter}{\numberline {8}Control Unit}{22}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.3.4}MUL\_END}{23}%
+\contentsline {section}{\numberline {8.1}IF stage}{22}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8.4}MEM stage}{23}%
+\contentsline {section}{\numberline {8.2}ID stage}{23}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.4.1}NORMAL\_OP\_MEM}{24}%
+\contentsline {section}{\numberline {8.3}EXE stage}{23}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.4.2}CACHE\_MISS}{24}%
+\contentsline {subsection}{\numberline {8.3.1}NORMAL\_OP\_EXE}{23}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.4.2.1}Memory controller}{24}%
+\contentsline {subsection}{\numberline {8.3.2}A\_NEG\_SAMPLE}{25}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8.5}WB stage}{25}%
+\contentsline {subsection}{\numberline {8.3.3}MUL\_IN\_PROG}{25}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8.6}Stall unit}{25}%
+\contentsline {subsection}{\numberline {8.3.4}MUL\_END}{25}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {9}Simulation, Synthesis and Implementation}{26}%
+\contentsline {section}{\numberline {8.4}MEM stage}{25}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9.1}Simulation}{26}%
+\contentsline {subsection}{\numberline {8.4.1}NORMAL\_OP\_MEM}{26}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.1.1}Test files}{26}%
+\contentsline {subsection}{\numberline {8.4.2}CACHE\_MISS}{26}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9.2}Synthesis}{27}%
+\contentsline {subsubsection}{\numberline {8.4.2.1}Memory controller}{26}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.2.1}Time report}{27}%
+\contentsline {section}{\numberline {8.5}WB stage}{27}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.2.2}Area report}{29}%
+\contentsline {section}{\numberline {8.6}Stall unit}{27}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.2.3}Power report}{29}%
+\contentsline {chapter}{\numberline {9}Simulation, Synthesis and Implementation}{28}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.2.4}Synthesis files}{30}%
+\contentsline {section}{\numberline {9.1}Simulation}{28}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9.3}Implementation}{30}%
+\contentsline {subsection}{\numberline {9.1.1}Test files}{28}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {10}Conclusions}{31}%
+\contentsline {section}{\numberline {9.2}Synthesis}{29}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.2.1}Time report}{29}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.2.2}Area report}{31}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.2.3}Power report}{31}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.2.4}Synthesis files}{32}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9.3}Implementation}{32}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {10}Conclusions}{33}%
