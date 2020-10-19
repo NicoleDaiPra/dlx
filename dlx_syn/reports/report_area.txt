@@ -3,7 +3,7 @@
 Report : area
 Design : dlx_syn
 Version: F-2011.09-SP3
-Date   : Mon Oct 19 01:08:35 2020
+Date   : Mon Oct 19 17:41:36 2020
 ****************************************
 
 Library(s) Used:

@@ -8,7 +8,7 @@ Report : power
         -analysis_effort low
 Design : dlx_syn
 Version: F-2011.09-SP3
-Date   : Mon Oct 19 01:08:38 2020
+Date   : Mon Oct 19 17:41:38 2020
 ****************************************
 
 

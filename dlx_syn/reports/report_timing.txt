@@ -8,7 +8,7 @@ Report : timing
         -max_paths 1
 Design : dlx_syn
 Version: F-2011.09-SP3
-Date   : Mon Oct 19 01:08:35 2020
+Date   : Mon Oct 19 17:41:35 2020
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.

@@ -1,0 +1,5 @@
+Gate area 0.7980 um^2
+Level 0 Module dlx_syn                                  Gates=     24471 Cells=   11624 Area=   19528.4 um^2
+Level 1 Module dp/ids/reg_file                          Gates=10624      Cells=3964     Area=    8478.2 um^2
+Level 1 Module dp/exs/alu_unit/shifter                  Gates=1170       Cells=884      Area=     934.2 um^2
+Level 1 Module dp/exs/alu_unit/mult/a_gen               Gates=1305       Cells=900      Area=    1041.9 um^2
