@@ -48,7 +48,7 @@ The \verb|set_dont_touch| command, in fact, tells to the tool to not modify anym
 when dealing with big circuits such as a processor to reduce the synthesis time.
 The result of the synthesis didn't meet our performance target, since it reached only $800 MHz$, but we still were satisfied. However, the more we have tested the DLX, the more we have found
 issues that needed to be fixed. Most of the issue were related to the control unit and the stall management, therefore it would have needed a complete redesign. Unfortunately, there was not enough
-time to do it, therefore we have been forced to add some hacks to make it work. This has severely affected the DLX's overall performance, as $t_{CK}$ had to be raised to $1.9\ ns$. This results in
+time to do it, hence we have been forced to add some hacks to make it work. This has severely affected the DLX's overall performance, as $t_{CK}$ had to be raised to $1.9\ ns$. This results in
 $f_{CK} \approx 525\ MHz$, which is almost half of our initial frequency target. This value has been obtained by synthetizing the whole DLX with the \verb|compile_ultra| command.
 
 Below, the final time, area and power report are shown.

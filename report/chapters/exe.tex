@@ -150,16 +150,12 @@ Jumps are treated as always taken branches: this allows to exploit the BTB, lead
 after the first time a jump is encountered.
 
 Branches always calculate the next pc as $PC_{i+1} = PC_{i} + immediate$, while jumps may also appear in the form $PC_{i+1} = GPR[rs]$, where $i$ indicates
-the cycle number, $GPR$ the general purpose register file and $rs$ the index of the source register. Moreover, jumps like \verb|jal| and \verb|jalr| 
+the cycle number, $GPR$ the general purpose register file and $rs$ the index of the source register. Moreover, jumps like \verb|jal| and \verb|jalr| also need
+to perform $GPR[31] = PC_{i} + 4$.
 
-2 tipi: pc + offset e pc = registro
+The secondary adder is used for the operations that perform $PC_{i+1} = PC_{i} + immediate$, and passes the result to the IF stage through \verb|npc_jump|.
+The ALU adder is used instead to execute \verb|jr| and \verb|jalr|, since the PC value is stored in a register. The new PC value is sent to the IF stage by the
+signal \verb|npc_jr|. As explained in section \ref{sec:pc_selection}, the IF stage in conjunction with the control unit is able to correctly update the PC.
 
-% pc_sel nel caso di jump è sempre a 1 -> corrisponde ad un branch always taken
-
-% 1 caso: l'offset è l'immediato passato dal id e viene usato dall'adder secondario
-% 2 caso: l'id passa il registro contenente il valore del nuovo pc, questo viene mandato fuori in npc_jr
-
-% jr: il registro destinazione passa nella alu, viene mandato fuori tramite npc_jr
-% jalr: il registro destinazione passa nella alu, viene mandato fuori tramite npc_jr, il valore di pc+4 passa in op_b
-
-% jal: il valore di pc+4 passa in op_b
+As said before, \verb|jal| and \verb|jalr| needs to store in the register file $PC_{i} + 4$. In this case, the \verb|op_b| signal coming from the ID stage is exploited,
+by putting inside of it the value to be stored in the RF.

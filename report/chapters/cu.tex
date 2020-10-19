@@ -37,7 +37,7 @@ This part of the control unit also decide from which source must come the next v
     \item The EXE stage have not executed a branch and the BTB predicts as not taken the current fetched instruction: in this case $PC + 4$ is chosen.
     \item The EXE stage have not executed a branch and the BTB predicts as taken the current fetched instruction: in this case $PC_{BTB}$ is chosen.
     \item The EXE has executed a \verb|jr| or a \verb|jalr|: the prediction of the BTB is discarded and $PC_{main\ adder}$ is chosen.
-    \item the EXE has executed a branch or a jump different from \verb|jr| or \verb|jalr|: the prediction of the BTB is discarded and $PC_{secondary\ adder}$ is chosen.
+    \item the EXE has executed a branch or a jump different from \verb|jr| or \verb|jalr| and it was either unknown or mispredicted: the prediction of the BTB is discarded and $PC_{secondary\ adder}$ is chosen.
 \end{enumerate}
 
 \section{ID stage}
@@ -48,7 +48,7 @@ going to the ID/EXE registers are set in high impedance to avoid conflicts.
 
 The ID stage is also in charge of detecting a \verb|mult| instruction, and when it does so it may need to stall the pipeline. Unfortunately, when the multiplication's operand are sent to the
 ID/EXE stage, they are automatically extended on 64 bits by the registers themselves. This means that a \verb|mult| cannot enters the EXE stage if one of its source operands is still being processed
-in the pipeline. Due to this limitation, when an hazard is detected for a multiplication is detected, the control unit's ID stage in conjunction with the {\it stall unit} (explained in section \ref{sec:stall_unit})
+in the pipeline. Due to this limitation, when an hazard is detected for a multiplication, the control unit's ID stage in conjunction with the {\it stall unit} (explained in section \ref{sec:stall_unit})
 stalls the IF and the ID stage, until all the data hazards have been resolved.
 
 \section{EXE stage}
@@ -97,7 +97,7 @@ In this state the EXE still controls the ID/EXE registers.
 
 This state is entered when the final result of the multiplication must be sampled by the EXE/MEM registers. After the result has been sampled, the EXE remains in this state (keeping therefore the pipeline locked)
 until the multiplication result has reached the WB stage. When this happens, the next state of the FSM is set to \verb|NORMAL_OP_EXE| and the pipeline is unlocked.
-Again, this shows a limitation of the \verb|mult|: its result cannot be forwarded to \verb|mflo| and \verb|mfhi| because it is on 64 bits and with out
+Again, this shows a limitation of the \verb|mult|: its result cannot be forwarded to \verb|mflo| and \verb|mfhi| because it is on 64 bits and with our
 forwarding logic only 32 bits can be forwarded. Hence, to maintain data flow correctness the multiplication's result must be sampled in the RF before the next instruction can enters the EXE stage.
 
 \section{MEM stage}
@@ -162,7 +162,7 @@ the pipeline when a multiplication has reached this stage.
 \label{sec:stall_unit}
 
 The stall unit has the duty of detecting data hazards and of handling all the signals required to stall the processor when needed. Hazards are detected by looking at \verb|rs| and \verb|rt| stored in the
-ID/EXE registers, and by confronting them with the \verb|rd| registers stored in the EXE/MEM and MEM/WB registers. The \verb|rd| registers are accompanied in the pipeline by a bit that specifies whether
+ID/EXE registers, and by comparing them with the \verb|rd| registers stored in the EXE/MEM and MEM/WB registers. The \verb|rd| registers are accompanied in the pipeline by a bit that specifies whether
 they are valid or not. This is necessary because to reduce the switching activity the registers not needed by an operation are disabled, therefore an invalid hazard could be detected.
 Data hazards are actually checked also from the ID stage, because as said in section \ref{sec:cu_exe_stage} if a multiplication detects an hazard it has to stall.
 
@@ -178,7 +178,7 @@ This unit, before attempting to forward data, checks if it has to stall because 
 \end{enumerate}
 
 If none of the above conditions are verified, the stall unit then controls what data can forwards to the EXE stage. Not all operations supports forwarding, as in the case of a \verb|j|, or they could support the
-forwarding only of the \verb|rs| register, as in the case of most |I| instructions. This information is embedded in the CW of the instruction in the EXE stage and it is encoded in two bits. The possible values are:
+forwarding only of the \verb|rs| register, as in the case of most \verb|I| instructions. This information is embedded in the CW of the instruction in the EXE stage and it is encoded in two bits. The possible values are:
 
 \begin{enumerate}
     \item \verb|00|: forwarding is not supported.
@@ -187,5 +187,5 @@ forwarding only of the \verb|rs| register, as in the case of most |I| instructio
     \item \verb|11|: both \verb|rs| and \verb|rt| can be forwarded (\verb|rt| is forwarded in \verb|op_b|, the signal where the data to be saved in the cache during a store is kept).
 \end{enumerate}
 
-When the forwarding is supported by the instruction, it could be possible to generate a stall. In fact, if the instruction that should forward the data is a load, and said load is the MEM stage,
-it has not fetched yet the content of the memory. In this situation a bubble must be inserted in the pipeline.
+When the forwarding is supported by the instruction, it could be possible to generate a stall. In fact, if the instruction that should forward the data is a load, and said instruction is the MEM stage,
+the load has not fetched yet the content of the memory. In this situation a bubble must be inserted in the pipeline.

@@ -18,8 +18,8 @@ There are:
     \item A mux that selects among its 4 inputs which will be the next PC value.
     \item An adder that calculates $current\ pc + 4$
     \item A {\it Branch Target Buffer} (BTB) able to recognize and predict the behavior of known branches and jumps
-    \item A 32-entries, 32 bits, fully associative cache that it is used by the BTB to recognize known branches and jumps
-    \item A subtractor calculating $btb\ pc\ exe - 4$, that is the PC of the instruction in the EXE stage. It is used when updating the BTB content.
+    \item A 32-entries, 32 bits, fully associative cache that is used by the BTB to recognize known branches and jumps
+    \item A subtractor calculating $btb\_pc\_exe - 4$, that is the PC of the instruction in the EXE stage. It is used when updating the BTB content.
 \end{enumerate}
 
 In this stage the PC is used on 30 bits instead of 32 because instructions are aligned on 32 bits boundaries, therefore the 2 LSBs are always 0
@@ -27,7 +27,7 @@ and it was useless to add more HW to handle them.
 
 \section{Branch Target Buffer}
 
-The {\it branch target buffer} is a hardware structure used to known in the IF stage if the instruction being fetched is a known branch or jump.
+The {\it branch target buffer} is an hardware structure used to know in the IF stage if the instruction being fetched is a known branch or jump.
 It does so by accessing in read mode its cache using as address the current pc (this connection is not shown in figure \ref{fig:IF_stage}). For the differences
 between read mode and write mode of the cache refer to subsection \ref{subsec:fully_cache}.
 Our BTB operates over 3 values, as shown in figure \ref{fig:BTB_fields}.
@@ -103,6 +103,7 @@ is not sufficient though, because the data stored in the tag may be invalid. To 
 its hit value and the \verb|update_data| signal to determine if this line have to update its \verb|data| field.
 
 \section{Program counter selection}
+\label{sec:pc_selection}
 
 There are 4 possible next program counter values to choose at each clock cycle:
 \begin{enumerate}
